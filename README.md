@@ -1,6 +1,6 @@
 # 🚀 GrindHub — Professional DSA Problem Tracker
 
-**GrindHub** is a fast, clean, dark-mode Data Structures & Algorithms (DSA) problem tracker. It organizes **3,500+ curated problems** across **23 canonical DSA topics** from 8 top competitive programming platforms into a structured workspace.
+**GrindHub** is a fast, clean, dark-mode Data Structures & Algorithms (DSA) problem tracker. It organizes **3,500+ curated problems** across **23 essential topics arranged from basics to advanced** from 8 top competitive programming platforms into a structured workspace.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
@@ -14,7 +14,7 @@
 
 - 🖤 **Minimalist Dark Theme**: Clean interface with high-contrast typography, customizable theme accents, and fast responsive navigation.
 - 🎯 **Problem Progress Tracking**: Live solved counts, percentage indicators, and difficulty breakdown (Easy, Medium, Hard).
-- 📚 **23 Canonical DSA Topics**: Comprehensive roadmap-ordered topics from Bit Manipulation & Math to Dynamic Programming and Segment Trees.
+- 📚 **23 Essential Topics**: Structured step-by-step topics from Bit Manipulation & Math to Dynamic Programming and Segment Trees.
 - 🎯 **3,500+ Curated Problems**: Easy, Medium, and Hard tiers across 8 platforms (LeetCode, HackerRank, Codeforces, CodeChef, GeeksforGeeks, CodeStudio, InterviewBit, AtCoder).
 - 🔍 **Multi-Dimensional Filtering**: Real-time filtering by text search, solve status (All / Unsolved / Solved / Starred), difficulty tier, and coding platform.
 - ⭐ **Bookmark Problems**: Star difficult problems for quick interview revision.
