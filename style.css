@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    /* Eye-Friendly Low-Strain Dark Palette (GitHub Dark Dimmed / JetBrains / Linear spec) */
+    /* Eye-Friendly Low-Strain Dark Palette */
     --bg-void: #0d1117;
     --bg-surface: #161b22;
     --bg-card: #161b22;
@@ -10,26 +10,14 @@
     --border-subtle: #30363d;
     --border-hover: #58a6ff;
     
-    /* Text Hierarchy (Soft off-whites to reduce eye fatigue) */
-    --text-primary: #e6edf3;
+    /* Text Hierarchy */
+    --text-primary: #f0f6fc;
     --text-secondary: #8b949e;
     --text-muted: #6e7681;
 
-    /* Calibrated Soft Accents (No harsh neon glare) */
+    /* Calibrated Soft Accents */
     --pro-accent: #58a6ff;
     --pro-glow: rgba(88, 166, 255, 0.15);
-    
-    --diff-easy: #3fb950;
-    --diff-easy-bg: rgba(63, 185, 80, 0.12);
-    --diff-easy-border: rgba(63, 185, 80, 0.3);
-
-    --diff-med: #d29922;
-    --diff-med-bg: rgba(210, 153, 34, 0.12);
-    --diff-med-border: rgba(210, 153, 34, 0.3);
-
-    --diff-hard: #f85149;
-    --diff-hard-bg: rgba(248, 81, 73, 0.12);
-    --diff-hard-border: rgba(248, 81, 73, 0.3);
 }
 
 *, *::before, *::after {
@@ -105,13 +93,13 @@ body {
     border-color: #8b949e;
 }
 
-/* Eye-Friendly Checkbox */
+/* Eye-Friendly High-Visibility Checkbox */
 .pro-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid #484f58;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #6e7681;
     border-radius: 4px;
     background: #0d1117;
     cursor: pointer;
@@ -127,6 +115,7 @@ body {
 
 .pro-checkbox:hover {
     border-color: var(--pro-accent);
+    background: #161b22;
 }
 
 .pro-checkbox:checked {
@@ -136,11 +125,11 @@ body {
 
 .pro-checkbox:checked::after {
     content: '';
-    width: 4px;
-    height: 8px;
+    width: 5px;
+    height: 9px;
     border: solid #0d1117;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg) translate(-0.5px, -0.5px);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg) translate(-0.5px, -1px);
     display: block;
     font-weight: bold;
 }
@@ -150,20 +139,24 @@ body {
     background: transparent;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1;
-    color: #484f58;
+    color: #6e7681;
     padding: 3px;
     border-radius: 4px;
-    transition: color 0.15s ease;
+    transition: color 0.15s ease, transform 0.1s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     user-select: none;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 }
 
 .star-btn:hover {
     color: #d29922;
+    transform: scale(1.15);
 }
 
 .star-btn.starred {
@@ -186,12 +179,40 @@ body {
 
 /* Question Rows */
 .question-row {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 9px 12px;
     transition: background-color 0.12s ease, border-color 0.12s ease;
 }
 
 .question-row:hover {
-    background-color: var(--bg-card-hover);
+    background-color: #1c2128;
     border-color: #484f58;
+}
+
+.question-row.is-solved {
+    opacity: 0.65;
+}
+
+.q-title-link {
+    color: #f0f6fc;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 0.12s ease;
+    word-break: break-word;
+}
+
+.q-title-link:hover {
+    color: #58a6ff;
+    text-decoration: underline;
+}
+
+.question-row.is-solved .q-title-link {
+    color: #8b949e;
+    text-decoration: line-through;
 }
 
 /* Topic Jump Pill */
@@ -203,5 +224,5 @@ body {
 
 .topic-jump-pill:hover {
     border-color: var(--pro-accent);
-    color: #e6edf3;
+    color: #f0f6fc;
 }

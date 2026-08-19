@@ -7,19 +7,17 @@ const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
 
 const PRESET_COLORS = [
-    { name: "Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.25)" },
-    { name: "Indigo", hex: "#6366f1", glow: "rgba(99, 102, 241, 0.25)" },
-    { name: "Emerald", hex: "#10b981", glow: "rgba(16, 185, 129, 0.25)" },
-    { name: "Cyan", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.25)" },
-    { name: "Violet", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.25)" },
-    { name: "Rose", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.25)" },
-    { name: "Amber", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.25)" },
-    { name: "Slate", hex: "#64748b", glow: "rgba(100, 116, 139, 0.25)" }
+    { name: "Blue", hex: "#58a6ff", glow: "rgba(88, 166, 255, 0.2)" },
+    { name: "Green", hex: "#3fb950", glow: "rgba(63, 185, 80, 0.2)" },
+    { name: "Purple", hex: "#bc8cff", glow: "rgba(188, 140, 255, 0.2)" },
+    { name: "Cyan", hex: "#38bdf8", glow: "rgba(56, 189, 248, 0.2)" },
+    { name: "Amber", hex: "#d29922", glow: "rgba(210, 153, 34, 0.2)" },
+    { name: "Coral", hex: "#f85149", glow: "rgba(248, 81, 73, 0.2)" }
 ];
 
 const DEFAULT_PROFILE = {
     name: "Coder",
-    color: "#3b82f6",
+    color: "#58a6ff",
     github: "",
     codolioUrl: ""
 };
@@ -28,7 +26,9 @@ const DEFAULT_PROFILE = {
 let userProfile = loadUserProfile();
 let solvedSet = loadSolvedQuestions();
 let starredSet = loadStarredQuestions();
-let openAccordions = new Set();
+
+// Initialize with foundational topics open by default so questions are immediately visible
+let openAccordions = new Set(['topic-patterns', 'topic-bit-manipulation-math', 'topic-arrays']);
 
 let filters = {
     search: '',
@@ -49,19 +49,19 @@ function getInitial(name) {
 
 function topicPill(topicKey) {
     if (!topicKey) return '';
-    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-blue-400 bg-blue-950/40 border-blue-500/30';
-    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold border ${cls}">${topicKey}</span>`;
+    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-[#58a6ff] bg-[#58a6ff]/10 border-[#58a6ff]/30';
+    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${cls}">${topicKey}</span>`;
 }
 
 function platformPill(platform) {
-    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-slate-300 bg-slate-800 border-slate-700';
-    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold border flex-shrink-0 ${cls}">${platform || 'Other'}</span>`;
+    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-[#8b949e] bg-[#21262d] border-[#30363d]';
+    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border flex-shrink-0 ${cls}">${platform || 'Other'}</span>`;
 }
 
 function difficultyBadgeClasses(difficulty) {
-    if (difficulty === 'Easy') return 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40';
-    if (difficulty === 'Medium') return 'text-amber-400 bg-amber-950/40 border-amber-800/40';
-    return 'text-rose-400 bg-rose-950/40 border-rose-800/40';
+    if (difficulty === 'Easy') return 'text-[#3fb950] bg-[#3fb950]/15 border-[#3fb950]/40';
+    if (difficulty === 'Medium') return 'text-[#d29922] bg-[#d29922]/15 border-[#d29922]/40';
+    return 'text-[#f85149] bg-[#f85149]/15 border-[#f85149]/40';
 }
 
 function escJs(str) {
@@ -81,8 +81,8 @@ function goToTopicQuestions(topicKey) {
             toggleAccordion(sectionId);
         }
         sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        sectionEl.classList.add('ring-1', 'ring-blue-500');
-        setTimeout(() => sectionEl.classList.remove('ring-1', 'ring-blue-500'), 1500);
+        sectionEl.classList.add('ring-1', 'ring-[#58a6ff]');
+        setTimeout(() => sectionEl.classList.remove('ring-1', 'ring-[#58a6ff]'), 1500);
     }
 }
 
@@ -108,28 +108,25 @@ function saveUserProfile(profile) {
 
 function applyThemeAccent(hexColor) {
     if (!hexColor) return;
-    const preset = PRESET_COLORS.find(p => p.hex.toLowerCase() === hexColor.toLowerCase());
-    const glow = preset ? preset.glow : 'rgba(59, 130, 246, 0.25)';
     document.documentElement.style.setProperty('--pro-accent', hexColor);
-    document.documentElement.style.setProperty('--pro-glow', glow);
     document.documentElement.style.setProperty('--border-hover', hexColor);
 }
 
 function updateProfileUI() {
     const profileName = (userProfile.name || 'Coder').trim();
-    applyThemeAccent(userProfile.color || '#3b82f6');
+    applyThemeAccent(userProfile.color || '#58a6ff');
 
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
         avatarEl.textContent = getInitial(profileName);
-        avatarEl.style.backgroundColor = userProfile.color || '#3b82f6';
+        avatarEl.style.backgroundColor = userProfile.color || '#58a6ff';
     }
     if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-blue-400 cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-[#58a6ff] cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
     }
     const dashNameEl = document.getElementById('dashboard-user-name');
     if (dashNameEl) {
@@ -178,11 +175,11 @@ function openProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     if (nameInput) nameInput.value = userProfile.name || 'Coder';
-    if (colorInput) colorInput.value = userProfile.color || '#3b82f6';
+    if (colorInput) colorInput.value = userProfile.color || '#58a6ff';
     if (githubInput) githubInput.value = userProfile.github || '';
     if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
-    renderColorOptions('profile-color-options', userProfile.color || '#3b82f6', (selected) => {
+    renderColorOptions('profile-color-options', userProfile.color || '#58a6ff', (selected) => {
         if (colorInput) colorInput.value = selected;
     });
 
@@ -206,7 +203,7 @@ function saveProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     userProfile.name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Coder';
-    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#3b82f6';
+    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#58a6ff';
     userProfile.github = githubInput ? githubInput.value.trim() : '';
     userProfile.codolioUrl = codolioInput ? codolioInput.value.trim() : '';
 
@@ -229,7 +226,7 @@ function renderColorOptions(containerId, activeColor, onSelect) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.title = c.name;
-        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-slate-900' : 'opacity-70 hover:opacity-100'}`;
+        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-[#161b22]' : 'opacity-70 hover:opacity-100'}`;
         btn.style.backgroundColor = c.hex;
         btn.onclick = () => {
             renderColorOptions(containerId, c.hex, onSelect);
@@ -370,13 +367,9 @@ function updateSingleQuestionCheckboxUI(urlKey, isSolved) {
         const row = input.closest('.question-row');
         if (row) {
             if (isSolved) {
-                row.classList.add('opacity-50');
-                const link = row.querySelector('.q-title-link');
-                if (link) link.classList.add('line-through', 'text-slate-400');
+                row.classList.add('is-solved');
             } else {
-                row.classList.remove('opacity-50');
-                const link = row.querySelector('.q-title-link');
-                if (link) link.classList.remove('line-through', 'text-slate-400');
+                row.classList.remove('is-solved');
             }
         }
     });
@@ -653,37 +646,37 @@ function renderQuestions() {
         }
 
         html += `
-        <div id="${sectionId}" class="rounded-lg pro-card border border-[#30363d] overflow-hidden mb-2.5">
-            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 py-3 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-[#1c2128] transition">
-                <div class="flex items-center gap-2 flex-wrap">
-                    <span class="font-semibold text-sm text-[#f0f6fc]">${topic}</span>
+        <div id="${sectionId}" class="rounded-lg pro-card border border-[#30363d] overflow-hidden mb-3">
+            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-[#1c2128] transition">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                    <span class="font-bold text-sm sm:text-base text-[#f0f6fc]">${topic}</span>
                     ${topicPill(topic)}
-                    <span class="text-xs font-mono text-[#8b949e]">
-                        ${solvedInTopic}/${totalInTopic} (${topicPct}%)
+                    <span class="text-xs font-mono font-medium text-[#8b949e]">
+                        ${solvedInTopic}/${totalInTopic} solved (${topicPct}%)
                     </span>
-                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-[#6e7681]">Showing ${visibleCount}</span>` : ''}
+                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-[#58a6ff]">Showing ${visibleCount}</span>` : ''}
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg id="icon-${sectionId}" class="w-3.5 h-3.5 text-[#8b949e] transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="icon-${sectionId}" class="w-4 h-4 text-[#8b949e] transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </div>
             </button>
 
-            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-[#30363d] p-3 bg-[#0d1117]/60 space-y-3">
-                ${renderDifficultyBlock('Easy', easyFiltered, sectionId)}
-                ${renderDifficultyBlock('Medium', medFiltered, sectionId)}
-                ${renderDifficultyBlock('Hard', hardFiltered, sectionId)}
+            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-[#30363d] p-3.5 bg-[#0d1117]/80 space-y-4">
+                ${renderDifficultyBlock('Easy', easyFiltered, sectionId, 1)}
+                ${renderDifficultyBlock('Medium', medFiltered, sectionId, easyFiltered.length + 1)}
+                ${renderDifficultyBlock('Hard', hardFiltered, sectionId, easyFiltered.length + medFiltered.length + 1)}
             </div>
         </div>`;
     }
 
     if (!html) {
         html = `
-        <div class="pro-card p-6 rounded-lg border border-[#30363d] text-center text-[#8b949e]">
-            <p class="font-semibold text-sm text-[#f0f6fc]">No problems found</p>
+        <div class="pro-card p-8 rounded-lg border border-[#30363d] text-center text-[#8b949e]">
+            <p class="font-semibold text-base text-[#f0f6fc]">No problems found</p>
             <p class="text-xs text-[#8b949e] mt-1">Try adjusting your search query or filters.</p>
-            <button onclick="clearAllFilters()" class="mt-3 px-3 py-1 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
+            <button onclick="clearAllFilters()" class="mt-3 px-3.5 py-1.5 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
                 Clear Filters
             </button>
         </div>`;
@@ -703,30 +696,34 @@ function clearAllFilters() {
     setDiffFilter('all');
 }
 
-function renderDifficultyBlock(difficulty, list, sectionId) {
+function renderDifficultyBlock(difficulty, list, sectionId, startIndex = 1) {
     if (!list || list.length === 0) return '';
     const badgeCls = difficultyBadgeClasses(difficulty);
 
-    const itemsHtml = list.map(q => {
+    const itemsHtml = list.map((q, idx) => {
         const isSolved = solvedSet.has(q.url);
         const isStarred = starredSet.has(q.url);
         const urlAttr = escAttr(q.url);
+        const questionNum = startIndex + idx;
+
         return `
-        <div class="question-row flex items-center justify-between p-2 rounded-md border border-[#30363d] bg-[#161b22] transition ${isSolved ? 'opacity-40' : ''}">
-            <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-2">
+        <div class="question-row flex items-center justify-between p-2.5 rounded-md border border-[#30363d] bg-[#161b22] transition ${isSolved ? 'is-solved' : ''}">
+            <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-3">
                 <input type="checkbox" class="pro-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
                 
                 <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
                     ${isStarred ? '★' : '☆'}
                 </button>
 
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs font-medium text-[#c9d1d9] hover:text-[#58a6ff] transition truncate hover:underline ${isSolved ? 'line-through text-[#6e7681]' : ''}">
+                <span class="text-xs font-mono text-[#6e7681] flex-shrink-0 w-6 text-right">${questionNum}.</span>
+
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-[13.5px] font-medium text-[#f0f6fc] hover:text-[#58a6ff] transition truncate hover:underline" title="${escAttr(q.title)}">
                     ${escAttr(q.title)}
                 </a>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
                 ${platformPill(q.platform)}
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-[#8b949e] hover:text-[#f0f6fc] p-0.5 transition" title="Open external link">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-[#8b949e] hover:text-[#f0f6fc] p-1 transition" title="Open external problem link">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
@@ -737,11 +734,11 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
 
     return `
     <div>
-        <div class="flex items-center gap-1.5 mb-1.5">
-            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
-            <span class="text-[11px] font-mono text-[#8b949e]">(${list.length})</span>
+        <div class="flex items-center gap-2 mb-2">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
+            <span class="text-xs font-mono text-[#8b949e] font-medium">(${list.length} problems)</span>
         </div>
-        <div class="space-y-1">
+        <div class="space-y-1.5">
             ${itemsHtml}
         </div>
     </div>`;
