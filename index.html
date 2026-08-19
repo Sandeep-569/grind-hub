@@ -467,6 +467,44 @@
                 </div>
             </div>
 
+
+                <!-- Data Persistence, Backup & Reset Section -->
+                <div class="pt-4 border-t border-slate-700/80">
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs font-bold text-emerald-400 uppercase tracking-wider">Progress & Storage Backup</label>
+                        <span class="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-mono bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/50">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Auto-Saved Locally
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-3">Your solved questions and profile are saved locally in your browser and automatically persist across git updates and site refreshes.</p>
+                    
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="exportUserData()"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white transition border border-slate-600 shadow-sm cursor-pointer">
+                            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            Export Backup (.json)
+                        </button>
+
+                        <button type="button" onclick="triggerImportUserData()"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white transition border border-slate-600 shadow-sm cursor-pointer">
+                            <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                            </svg>
+                            Import Backup (.json)
+                        </button>
+                        <input type="file" id="import-file-input" class="hidden" accept=".json" onchange="handleImportUserData(event)">
+
+                        <button type="button" onclick="resetQuestionProgress()"
+                            class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-red-950/40 hover:bg-red-900/60 text-red-400 hover:text-red-300 transition border border-red-800/40 ml-auto cursor-pointer">
+                            Reset All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Modal Footer -->
             <div class="px-6 py-4 border-t border-slate-700 bg-slate-900/60 flex items-center justify-end gap-3 flex-shrink-0">
                 <button onclick="closeProfileModal()" type="button"
@@ -483,6 +521,15 @@
 
     <script src="data.js"></script>
     <script src="app.js"></script>
+
+
+    <!-- Floating Toast Notification -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 pointer-events-none transition-all duration-300 transform translate-y-12 opacity-0">
+        <div id="toast-message" class="flex items-center gap-2.5 bg-slate-900/95 text-white text-xs font-medium px-4 py-2.5 rounded-xl border border-emerald-500/40 shadow-2xl backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="toast-text">Progress saved</span>
+        </div>
+    </div>
 
 </body>
 
