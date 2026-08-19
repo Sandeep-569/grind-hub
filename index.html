@@ -422,44 +422,115 @@
                 <!-- Coding Platform Links / Handles -->
                 <div class="pt-3 border-t border-slate-700/80">
                     <label class="block text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3">Custom Coding Platform Links</label>
-                    <div class="grid grid-cols-1 gap-3">
+                    <div class="grid grid-cols-1 gap-3.5">
+                        <!-- LeetCode -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">LeetCode URL / Profile</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">LeetCode URL / Username</label>
+                                <button type="button" onclick="syncSinglePlatform('LeetCode')" id="sync-btn-leetcode"
+                                    class="text-[11px] font-semibold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
                             <input type="url" id="handle-leetcode" placeholder="https://leetcode.com/your-username"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500">
                         </div>
+
+                        <!-- Codeforces -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">HackerRank URL / Profile</label>
-                            <input type="url" id="handle-hackerrank" placeholder="https://www.hackerrank.com/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-400 mb-1">Codeforces URL / Profile</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">Codeforces URL / Username</label>
+                                <button type="button" onclick="syncSinglePlatform('Codeforces')" id="sync-btn-codeforces"
+                                    class="text-[11px] font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
                             <input type="url" id="handle-codeforces" placeholder="https://codeforces.com/profile/your-username"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
+
+                        <!-- GeeksforGeeks -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">CodeChef URL / Profile</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">GeeksforGeeks URL / Username</label>
+                                <button type="button" onclick="syncSinglePlatform('GeeksforGeeks')" id="sync-btn-geeksforgeeks"
+                                    class="text-[11px] font-semibold text-green-400 hover:text-green-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
+                            <input type="url" id="handle-geeksforgeeks" placeholder="https://www.geeksforgeeks.org/user/your-username"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+
+                        <!-- CodeChef -->
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">CodeChef URL / Username</label>
+                                <button type="button" onclick="syncSinglePlatform('CodeChef')" id="sync-btn-codechef"
+                                    class="text-[11px] font-semibold text-amber-500 hover:text-amber-400 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
                             <input type="url" id="handle-codechef" placeholder="https://www.codechef.com/users/your-username"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-700">
                         </div>
+
+                        <!-- HackerRank -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">GeeksforGeeks URL / Profile</label>
-                            <input type="url" id="handle-geeksforgeeks" placeholder="https://auth.geeksforgeeks.org/user/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">HackerRank URL / Username</label>
+                                <button type="button" onclick="syncSinglePlatform('HackerRank')" id="sync-btn-hackerrank"
+                                    class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
+                            <input type="url" id="handle-hackerrank" placeholder="https://www.hackerrank.com/your-username"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                         </div>
+
+                        <!-- CodeStudio -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">CodeStudio URL / Profile</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">CodeStudio (CodingNinjas) Profile</label>
+                                <button type="button" onclick="syncSinglePlatform('CodeStudio')" id="sync-btn-codestudio"
+                                    class="text-[11px] font-semibold text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
                             <input type="url" id="handle-codestudio" placeholder="https://www.naukri.com/code360/profile/your-username"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500">
                         </div>
+
+                        <!-- InterviewBit -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">InterviewBit URL / Profile</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">InterviewBit Profile</label>
+                                <button type="button" onclick="syncSinglePlatform('InterviewBit')" id="sync-btn-interviewbit"
+                                    class="text-[11px] font-semibold text-sky-400 hover:text-sky-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
                             <input type="url" id="handle-interviewbit" placeholder="https://www.interviewbit.com/profile/your-username"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
                         </div>
+
+                        <!-- AtCoder -->
                         <div>
-                            <label class="block text-xs text-slate-400 mb-1">AtCoder URL / Profile</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-slate-300">AtCoder Profile</label>
+                                <button type="button" onclick="syncSinglePlatform('AtCoder')" id="sync-btn-atcoder"
+                                    class="text-[11px] font-semibold text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span class="sync-icon">🔄</span>
+                                    <span>Sync Solved</span>
+                                </button>
+                            </div>
                             <input type="url" id="handle-atcoder" placeholder="https://atcoder.jp/users/your-username"
                                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
                         </div>
@@ -506,15 +577,24 @@
             </div>
 
             <!-- Modal Footer -->
-            <div class="px-6 py-4 border-t border-slate-700 bg-slate-900/60 flex items-center justify-end gap-3 flex-shrink-0">
-                <button onclick="closeProfileModal()" type="button"
-                    class="text-xs font-semibold text-slate-400 hover:text-white px-4 py-2 rounded-lg transition">
-                    Cancel
+            <div class="px-6 py-4 border-t border-slate-700 bg-slate-900/60 flex flex-wrap items-center justify-between gap-3 flex-shrink-0">
+                <button type="button" onclick="syncAllPlatforms()" id="sync-all-btn"
+                    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-lg shadow-emerald-600/20 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    <span>Auto-Sync All Solved</span>
                 </button>
-                <button onclick="saveProfileModal()" type="button"
-                    class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg">
-                    Save Profile
-                </button>
+                <div class="flex items-center gap-2">
+                    <button onclick="closeProfileModal()" type="button"
+                        class="text-xs font-semibold text-slate-400 hover:text-white px-3 py-2 rounded-lg transition">
+                        Cancel
+                    </button>
+                    <button onclick="saveProfileModal(true)" type="button"
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg cursor-pointer">
+                        Save & Sync
+                    </button>
+                </div>
             </div>
         </div>
     </div>
