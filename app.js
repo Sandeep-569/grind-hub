@@ -92,19 +92,30 @@ const PRESET_COLORS = [
     { name: "Teal", hex: "#14b8a6" }
 ];
 
+const DEFAULT_PLATFORM_URLS = {
+    "LeetCode": "https://leetcode.com",
+    "HackerRank": "https://www.hackerrank.com",
+    "Codeforces": "https://codeforces.com",
+    "CodeChef": "https://www.codechef.com",
+    "GeeksforGeeks": "https://www.geeksforgeeks.org",
+    "CodeStudio": "https://www.naukri.com/code360/",
+    "InterviewBit": "https://www.interviewbit.com",
+    "AtCoder": "https://atcoder.jp"
+};
+
 const DEFAULT_PROFILE = {
-    name: "Sandeep",
+    name: "Coder",
     color: "#6366f1",
-    github: "https://github.com",
+    github: "",
     handles: {
-        "LeetCode": "https://leetcode.com/u/codedbysandeep/",
-        "HackerRank": "https://www.hackerrank.com/profile/codedbysandeep",
-        "Codeforces": "https://codeforces.com/profile/codedbysandeep1413",
-        "CodeChef": "https://www.codechef.com/",
-        "GeeksforGeeks": "https://auth.geeksforgeeks.org/",
+        "LeetCode": "https://leetcode.com",
+        "HackerRank": "https://www.hackerrank.com",
+        "Codeforces": "https://codeforces.com",
+        "CodeChef": "https://www.codechef.com",
+        "GeeksforGeeks": "https://www.geeksforgeeks.org",
         "CodeStudio": "https://www.naukri.com/code360/",
-        "InterviewBit": "https://www.interviewbit.com/",
-        "AtCoder": "https://atcoder.jp/"
+        "InterviewBit": "https://www.interviewbit.com",
+        "AtCoder": "https://atcoder.jp"
     }
 };
 
@@ -115,18 +126,17 @@ function loadUserProfile() {
         const raw = localStorage.getItem(PROFILE_KEY);
         if (raw) {
             const parsed = JSON.parse(raw);
-            if (parsed && typeof parsed === 'object' && parsed.name) {
-                return Object.assign({}, DEFAULT_PROFILE, parsed);
-            }
-        }
-        const rawV2 = localStorage.getItem('dsa_profiles_v2');
-        if (rawV2) {
-            const parsedV2 = JSON.parse(rawV2);
-            if (Array.isArray(parsedV2) && parsedV2.length > 0) {
-                const first = parsedV2[0];
-                const migrated = Object.assign({}, DEFAULT_PROFILE, first);
-                saveUserProfile(migrated);
-                return migrated;
+            if (parsed && typeof parsed === 'object') {
+                // If handles contains old personal urls, clean them to default
+                if (parsed.handles) {
+                    for (const p in parsed.handles) {
+                        if (typeof parsed.handles[p] === 'string' && (parsed.handles[p].includes('codedbysandeep') || parsed.handles[p].includes('auth.geeksforgeeks.org/'))) {
+                            parsed.handles[p] = DEFAULT_PLATFORM_URLS[p] || parsed.handles[p];
+                        }
+                    }
+                }
+                const merged = Object.assign({}, DEFAULT_PROFILE, parsed);
+                return merged;
             }
         }
     } catch (e) {}
@@ -173,7 +183,7 @@ function updateProfileUI() {
         "HackerRank": { sel: '[data-platform="HackerRank"]', default: "https://www.hackerrank.com" },
         "Codeforces": { sel: '[data-platform="Codeforces"]', default: "https://codeforces.com" },
         "CodeChef": { sel: '[data-platform="CodeChef"]', default: "https://www.codechef.com" },
-        "GeeksforGeeks": { sel: '[data-platform="GeeksforGeeks"]', default: "https://auth.geeksforgeeks.org" },
+        "GeeksforGeeks": { sel: '[data-platform="GeeksforGeeks"]', default: "https://www.geeksforgeeks.org" },
         "CodeStudio": { sel: '[data-platform="CodeStudio"]', default: "https://www.naukri.com/code360/" },
         "InterviewBit": { sel: '[data-platform="InterviewBit"]', default: "https://www.interviewbit.com" },
         "AtCoder": { sel: '[data-platform="AtCoder"]', default: "https://atcoder.jp" }
