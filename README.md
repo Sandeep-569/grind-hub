@@ -1,6 +1,6 @@
 # 🚀 GrindHub — Unified DSA Tracker & Problem-Solving Platform
 
-**GrindHub** is a modern, responsive, and high-performance Data Structures & Algorithms (DSA) tracker. It organizes **2,800+ curated problems** across **24 canonical DSA topics** from top competitive programming and interview platforms into a single unified workspace.
+**GrindHub** is a modern, responsive, and high-performance Data Structures & Algorithms (DSA) tracker. It organizes **3,000+ curated problems** across **24 canonical DSA topics** from top competitive programming and interview platforms into a single unified workspace.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
@@ -11,7 +11,7 @@
 
 ## ✨ Features
 
-- 🎯 **2,800+ Curated Problems**: Covers Easy, Medium, and Hard difficulty tiers.
+- 🎯 **3,000+ Curated Problems**: Covers Easy, Medium, and Hard difficulty tiers.
 - 📚 **24 Canonical DSA Topics**:
   - Basics & Foundations, Patterns, Arrays, Matrix (2D), Searching, Sorting, Strings
   - Two Pointers & Sliding Window, Bit Manipulation & Math, Recursion & Backtracking
