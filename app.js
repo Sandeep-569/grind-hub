@@ -91,31 +91,11 @@ const PRESET_COLORS = [
     { name: "Teal", hex: "#14b8a6" }
 ];
 
-const DEFAULT_PLATFORM_URLS = {
-    "LeetCode": "https://leetcode.com",
-    "HackerRank": "https://www.hackerrank.com",
-    "Codeforces": "https://codeforces.com",
-    "CodeChef": "https://www.codechef.com",
-    "GeeksforGeeks": "https://www.geeksforgeeks.org",
-    "CodeStudio": "https://www.naukri.com/code360/",
-    "InterviewBit": "https://www.interviewbit.com",
-    "AtCoder": "https://atcoder.jp"
-};
-
 const DEFAULT_PROFILE = {
     name: "Coder",
     color: "#6366f1",
     github: "",
-    handles: {
-        "LeetCode": "https://leetcode.com",
-        "HackerRank": "https://www.hackerrank.com",
-        "Codeforces": "https://codeforces.com",
-        "CodeChef": "https://www.codechef.com",
-        "GeeksforGeeks": "https://www.geeksforgeeks.org",
-        "CodeStudio": "https://www.naukri.com/code360/",
-        "InterviewBit": "https://www.interviewbit.com",
-        "AtCoder": "https://atcoder.jp"
-    }
+    codolioUrl: ""
 };
 
 let userProfile = loadUserProfile();
@@ -126,13 +106,6 @@ function loadUserProfile() {
         if (raw) {
             const parsed = JSON.parse(raw);
             if (parsed && typeof parsed === 'object') {
-                if (parsed.handles) {
-                    for (const p in parsed.handles) {
-                        if (typeof parsed.handles[p] === 'string' && (parsed.handles[p].includes('codedbysandeep') || parsed.handles[p].includes('auth.geeksforgeeks.org/'))) {
-                            parsed.handles[p] = DEFAULT_PLATFORM_URLS[p] || parsed.handles[p];
-                        }
-                    }
-                }
                 return Object.assign({}, DEFAULT_PROFILE, parsed);
             }
         }
@@ -177,24 +150,14 @@ function updateProfileUI() {
         }
     }
 
-    // Update Coding Profile Cards on Dashboard
-    const handles = userProfile.handles || {};
-    const platformToCard = {
-        "LeetCode": { sel: '[data-platform="LeetCode"]', default: "https://leetcode.com" },
-        "HackerRank": { sel: '[data-platform="HackerRank"]', default: "https://www.hackerrank.com" },
-        "Codeforces": { sel: '[data-platform="Codeforces"]', default: "https://codeforces.com" },
-        "CodeChef": { sel: '[data-platform="CodeChef"]', default: "https://www.codechef.com" },
-        "GeeksforGeeks": { sel: '[data-platform="GeeksforGeeks"]', default: "https://www.geeksforgeeks.org" },
-        "CodeStudio": { sel: '[data-platform="CodeStudio"]', default: "https://www.naukri.com/code360/" },
-        "InterviewBit": { sel: '[data-platform="InterviewBit"]', default: "https://www.interviewbit.com" },
-        "AtCoder": { sel: '[data-platform="AtCoder"]', default: "https://atcoder.jp" }
-    };
-
-    for (const [pName, cfg] of Object.entries(platformToCard)) {
-        const card = document.querySelector(cfg.sel);
-        if (card) {
-            const url = (handles[pName] || '').trim() || cfg.default;
-            card.href = url;
+    const codolioBtn = document.getElementById('nav-codolio-link');
+    if (codolioBtn) {
+        const codolioUrl = (userProfile.codolioUrl || '').trim();
+        if (codolioUrl) {
+            codolioBtn.href = codolioUrl.startsWith('http') ? codolioUrl : `https://codolio.com/profile/${codolioUrl}`;
+            codolioBtn.classList.remove('hidden');
+        } else {
+            codolioBtn.classList.add('hidden');
         }
     }
 }
@@ -227,14 +190,7 @@ function openProfileModal() {
     colorInput.value = userProfile.color || '#6366f1';
     githubInput.value = userProfile.github || '';
 
-    document.getElementById('handle-leetcode').value = userProfile.handles?.LeetCode || '';
-    document.getElementById('handle-hackerrank').value = userProfile.handles?.HackerRank || '';
-    document.getElementById('handle-codeforces').value = userProfile.handles?.Codeforces || '';
-    document.getElementById('handle-codechef').value = userProfile.handles?.CodeChef || '';
-    document.getElementById('handle-geeksforgeeks').value = userProfile.handles?.GeeksforGeeks || '';
-    document.getElementById('handle-codestudio').value = userProfile.handles?.CodeStudio || '';
-    document.getElementById('handle-interviewbit').value = userProfile.handles?.InterviewBit || '';
-    document.getElementById('handle-atcoder').value = userProfile.handles?.AtCoder || '';
+    document.getElementById('profile-modal-codolio').value = userProfile.codolioUrl || '';
 
     renderColorOptions();
     modal.classList.remove('hidden');
@@ -246,299 +202,7 @@ function closeProfileModal() {
     if (modal) modal.classList.add('hidden');
 }
 
-// ==================== Platform Solved Questions Sync Engine ====================
-
-let questionBankIndex = null;
-function getQuestionBankIndex() {
-    if (questionBankIndex) return questionBankIndex;
-    const bySlug = new Map();
-    const byTitle = new Map();
-    const byCode = new Map();
-
-    for (const topic in questionsData) {
-        ['Easy', 'Medium', 'Hard'].forEach(diff => {
-            questionsData[topic][diff].forEach(q => {
-                const normTitle = q.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-                byTitle.set(`${q.platform}:${normTitle}`, q);
-
-                try {
-                    const segs = q.url.split('/').filter(Boolean);
-                    segs.forEach(s => {
-                        const clean = s.toLowerCase().replace(/[^a-z0-9_-]/g, '');
-                        if (clean && !['problems', 'problem', 'challenges', 'practice', 'explore', 'https', 'http'].includes(clean)) {
-                            bySlug.set(`${q.platform}:${clean}`, q);
-                        }
-                    });
-
-                    if (q.platform === 'CodeChef' && segs.length > 0) {
-                        const last = segs[segs.length - 1].toUpperCase();
-                        byCode.set(`CodeChef:${last}`, q);
-                    }
-
-                    if (q.platform === 'Codeforces' && segs.length >= 2) {
-                        const idx = segs[segs.length - 1].toUpperCase();
-                        const cid = segs[segs.length - 2];
-                        byCode.set(`Codeforces:${cid}${idx}`, q);
-                        byCode.set(`Codeforces:${cid}/${idx}`, q);
-                    }
-                } catch (e) {}
-            });
-        });
-    }
-
-    questionBankIndex = { bySlug, byTitle, byCode };
-    return questionBankIndex;
-}
-
-function extractPlatformUsername(urlOrHandle, platform) {
-    if (!urlOrHandle) return '';
-    let val = String(urlOrHandle).trim();
-    if (!val) return '';
-
-    if (!val.includes('/') && !val.includes('.')) {
-        return val.replace('@', '');
-    }
-
-    try {
-        if (!val.startsWith('http://') && !val.startsWith('https://')) {
-            val = 'https://' + val;
-        }
-        const parsed = new URL(val);
-        const parts = parsed.pathname.split('/').filter(Boolean);
-        if (parts.length === 0) return '';
-
-        if (platform === 'LeetCode') {
-            return parts[0] === 'u' ? (parts[1] || '') : parts[0];
-        }
-        if (platform === 'HackerRank' || platform === 'Codeforces') {
-            return (parts[0] === 'profile' || parts[0] === 'users') ? (parts[1] || '') : parts[0];
-        }
-        if (platform === 'GeeksforGeeks') {
-            return (parts[0] === 'user' || parts[0] === 'profile') ? (parts[1] || '') : parts[0];
-        }
-        if (platform === 'CodeChef') {
-            return parts[0] === 'users' ? (parts[1] || '') : parts[0];
-        }
-        if (platform === 'CodeStudio') {
-            const pIdx = parts.indexOf('profile');
-            return pIdx !== -1 ? (parts[pIdx + 1] || '') : parts[parts.length - 1];
-        }
-        if (platform === 'InterviewBit' || platform === 'AtCoder') {
-            return (parts[0] === 'profile' || parts[0] === 'users') ? (parts[1] || '') : parts[0];
-        }
-        return parts[parts.length - 1] || '';
-    } catch (e) {
-        return val;
-    }
-}
-
-// Fetcher: LeetCode
-async function fetchLeetCodeSolved(username) {
-    const solved = new Set();
-    const cleanUser = username.trim().toLowerCase();
-    if (!cleanUser) return solved;
-
-    const endpoints = [
-        `https://alfa-leetcode-api.onrender.com/${cleanUser}/acSubmission?limit=100`,
-        `https://alfa-leetcode-api.onrender.com/userProfile/${cleanUser}`
-    ];
-
-    for (const ep of endpoints) {
-        try {
-            const res = await fetch(ep);
-            if (res.ok) {
-                const data = await res.json();
-                if (Array.isArray(data.submission)) {
-                    data.submission.forEach(s => {
-                        if (s.titleSlug) solved.add(s.titleSlug.toLowerCase());
-                        if (s.title) solved.add(s.title.toLowerCase().replace(/[^a-z0-9]/g, ''));
-                    });
-                }
-                if (Array.isArray(data.recentSubmissions)) {
-                    data.recentSubmissions.forEach(s => {
-                        if (s.statusDisplay === 'Accepted' || !s.statusDisplay) {
-                            if (s.titleSlug) solved.add(s.titleSlug.toLowerCase());
-                            if (s.title) solved.add(s.title.toLowerCase().replace(/[^a-z0-9]/g, ''));
-                        }
-                    });
-                }
-                if (solved.size > 0) break;
-            }
-        } catch (e) {}
-    }
-
-    return solved;
-}
-
-// Fetcher: Codeforces
-async function fetchCodeforcesSolved(username) {
-    const solved = new Set();
-    try {
-        const res = await fetch(`https://codeforces.com/api/user.status?handle=${encodeURIComponent(username)}&from=1&count=10000`);
-        if (res.ok) {
-            const data = await res.json();
-            if (data.status === 'OK' && Array.isArray(data.result)) {
-                data.result.forEach(sub => {
-                    if (sub.verdict === 'OK' && sub.problem) {
-                        if (sub.problem.name) {
-                            solved.add(sub.problem.name.toLowerCase().replace(/[^a-z0-9]/g, ''));
-                        }
-                        if (sub.problem.contestId && sub.problem.index) {
-                            solved.add(`${sub.problem.contestId}${sub.problem.index}`.toLowerCase());
-                            solved.add(`${sub.problem.contestId}/${sub.problem.index}`.toLowerCase());
-                        }
-                    }
-                });
-            }
-        }
-    } catch (e) {}
-    return solved;
-}
-
-// Fetcher: GeeksforGeeks
-async function fetchGeeksforGeeksSolved(username) {
-    const solved = new Set();
-    try {
-        const res = await fetch(`https://geeks-for-geeks-stats-api.vercel.app/?userName=${encodeURIComponent(username)}`);
-        if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data.solvedStats)) {
-                data.solvedStats.forEach(q => {
-                    if (q.question) solved.add(q.question.toLowerCase().replace(/[^a-z0-9]/g, ''));
-                });
-            }
-        }
-    } catch (e) {}
-    return solved;
-}
-
-// Fetcher: CodeChef
-async function fetchCodeChefSolved(username) {
-    const solved = new Set();
-    try {
-        const res = await fetch(`https://codechef-api.vercel.app/${encodeURIComponent(username)}`);
-        if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data.fullySolved)) {
-                data.fullySolved.forEach(code => {
-                    solved.add(String(code).toUpperCase().trim());
-                });
-            }
-        }
-    } catch (e) {}
-    return solved;
-}
-
-// Universal Platform Sync Trigger
-async function syncSinglePlatform(platform) {
-    const inputId = `handle-${platform.toLowerCase()}`;
-    const btnId = `sync-btn-${platform.toLowerCase()}`;
-    const inputEl = document.getElementById(inputId);
-    const btnEl = document.getElementById(btnId);
-
-    const val = inputEl ? inputEl.value.trim() : (userProfile.handles?.[platform] || '');
-    if (!val || val === DEFAULT_PLATFORM_URLS[platform] || val.endsWith('your-username') || val.endsWith('your-id')) {
-        alert(`Please enter your ${platform} username or profile link first.`);
-        if (inputEl) inputEl.focus();
-        return;
-    }
-
-    const username = extractPlatformUsername(val, platform);
-    if (!username) {
-        alert(`Could not extract username for ${platform}. Please check the link.`);
-        return;
-    }
-
-    const origBtnHtml = btnEl ? btnEl.innerHTML : '';
-    if (btnEl) {
-        btnEl.innerHTML = `<span class="animate-spin inline-block">⏳</span> <span>Syncing...</span>`;
-        btnEl.disabled = true;
-    }
-
-    let markedCount = 0;
-    const index = getQuestionBankIndex();
-
-    try {
-        let solvedIdentifiers = new Set();
-
-        if (platform === 'LeetCode') {
-            solvedIdentifiers = await fetchLeetCodeSolved(username);
-        } else if (platform === 'Codeforces') {
-            solvedIdentifiers = await fetchCodeforcesSolved(username);
-        } else if (platform === 'GeeksforGeeks') {
-            solvedIdentifiers = await fetchGeeksforGeeksSolved(username);
-        } else if (platform === 'CodeChef') {
-            solvedIdentifiers = await fetchCodeChefSolved(username);
-        }
-
-        // Match against Question Bank
-        solvedIdentifiers.forEach(id => {
-            let q = index.bySlug.get(`${platform}:${id}`);
-            if (!q) q = index.byTitle.get(`${platform}:${id}`);
-            if (!q) q = index.byCode.get(`${platform}:${id}`);
-
-            if (q && q.url) {
-                if (!solvedQuestions.has(q.url)) {
-                    solvedQuestions.add(q.url);
-                    getNormalizedSolvedCache().add(normalizeUrl(q.url));
-                    markedCount++;
-                }
-            }
-        });
-
-        saveSolvedQuestions(solvedQuestions);
-        renderQuestions();
-        updateQuestionsProgressUI();
-        updateDashboardSummaries();
-
-        if (btnEl) {
-            btnEl.innerHTML = `✅ Synced (${markedCount})`;
-            setTimeout(() => { if (btnEl) { btnEl.innerHTML = origBtnHtml; btnEl.disabled = false; } }, 3000);
-        }
-
-        if (markedCount > 0) {
-            showToast(`Synced ${markedCount} solved questions from ${platform}! 🎯`);
-        } else {
-            showToast(`${platform} profile linked! (No new unsolved questions found)`);
-        }
-    } catch (err) {
-        console.error('Sync error:', err);
-        if (btnEl) {
-            btnEl.innerHTML = origBtnHtml;
-            btnEl.disabled = false;
-        }
-        showToast(`Could not sync ${platform} questions`);
-    }
-}
-
-async function syncAllPlatforms() {
-    const btn = document.getElementById('sync-all-btn');
-    const origHtml = btn ? btn.innerHTML : '';
-    if (btn) {
-        btn.innerHTML = `<span class="animate-spin inline-block">⏳</span> <span>Syncing All Platforms...</span>`;
-        btn.disabled = true;
-    }
-
-    const platforms = ['LeetCode', 'Codeforces', 'GeeksforGeeks', 'CodeChef', 'HackerRank', 'CodeStudio', 'InterviewBit', 'AtCoder'];
-
-    for (const p of platforms) {
-        const inputId = `handle-${p.toLowerCase()}`;
-        const inputEl = document.getElementById(inputId);
-        const val = inputEl ? inputEl.value.trim() : (userProfile.handles?.[p] || '');
-        if (val && val !== DEFAULT_PLATFORM_URLS[p] && !val.includes('your-username')) {
-            try {
-                await syncSinglePlatform(p);
-            } catch (e) {}
-        }
-    }
-
-    if (btn) {
-        btn.innerHTML = `✅ All Synced!`;
-        setTimeout(() => { if (btn) { btn.innerHTML = origHtml; btn.disabled = false; } }, 2500);
-    }
-}
-
-function saveProfileModal(shouldSync) {
+function saveProfileModal() {
     const nameInput = document.getElementById('profile-modal-name');
     const name = nameInput.value.trim();
     if (!name) {
@@ -549,33 +213,14 @@ function saveProfileModal(shouldSync) {
 
     const color = document.getElementById('profile-modal-color').value || '#6366f1';
     const github = document.getElementById('profile-modal-github').value.trim();
+    const codolioUrl = document.getElementById('profile-modal-codolio').value.trim();
 
-    const handles = {
-        "LeetCode": document.getElementById('handle-leetcode').value.trim() || 'https://leetcode.com',
-        "HackerRank": document.getElementById('handle-hackerrank').value.trim() || 'https://hackerrank.com',
-        "Codeforces": document.getElementById('handle-codeforces').value.trim() || 'https://codeforces.com',
-        "CodeChef": document.getElementById('handle-codechef').value.trim() || 'https://codechef.com',
-        "GeeksforGeeks": document.getElementById('handle-geeksforgeeks').value.trim() || 'https://geeksforgeeks.org',
-        "CodeStudio": document.getElementById('handle-codestudio').value.trim() || 'https://www.naukri.com/code360/',
-        "InterviewBit": document.getElementById('handle-interviewbit').value.trim() || 'https://interviewbit.com',
-        "AtCoder": document.getElementById('handle-atcoder').value.trim() || 'https://atcoder.jp'
-    };
-
-    userProfile = {
-        name: name,
-        color: color,
-        github: github,
-        handles: handles
-    };
+    userProfile = { name, color, github, codolioUrl };
 
     saveUserProfile(userProfile);
     closeProfileModal();
     updateProfileUI();
     showToast('Profile updated successfully! 👤');
-
-    if (shouldSync) {
-        setTimeout(() => syncAllPlatforms(), 200);
-    }
 }
 
 // ==================== Resilient Storage & Auto-Migration ====================
@@ -907,48 +552,22 @@ function filterQuestions(query) {
 // --- Dashboard summary text ---
 function updateDashboardSummaries() {
     let qTotal = 0, qSolved = 0;
+    const platforms = new Set();
     for (const topic in questionsData) {
         ['Easy', 'Medium', 'Hard'].forEach(d => {
             questionsData[topic][d].forEach(it => {
                 qTotal++;
                 if (isQuestionSolved(it.url)) qSolved++;
+                if (it.platform) platforms.add(it.platform);
             });
         });
     }
-    const platformCount = document.querySelectorAll('[data-platform]').length || 8;
+    const platformCount = platforms.size || 8;
     const qEl = document.getElementById('dashboard-question-progress');
     if (qEl) qEl.textContent = `${qTotal} questions across ${platformCount} platforms · ${qSolved} solved so far`;
 
     const titleEl = document.getElementById('questions-card-title');
     if (titleEl) titleEl.textContent = `DSA Questions — All Platforms`;
-
-    updatePlatformSolvedCounts();
-}
-
-// --- Per-platform solved counts on "My Coding Profiles" cards ---
-function updatePlatformSolvedCounts() {
-    function normalizePlatform(p) {
-        if (p === 'GFG') return 'GeeksforGeeks';
-        if (p === 'Coding Ninjas' || p === 'CodingNinjas' || p === 'CodeStudio') return 'CodeStudio';
-        return p;
-    }
-
-    const solvedByPlatform = {};
-    for (const topic in questionsData) {
-        ['Easy', 'Medium', 'Hard'].forEach(d => {
-            questionsData[topic][d].forEach(it => {
-                if (!isQuestionSolved(it.url)) return;
-                const key = normalizePlatform(it.platform);
-                solvedByPlatform[key] = (solvedByPlatform[key] || 0) + 1;
-            });
-        });
-    }
-
-    document.querySelectorAll('[data-platform]').forEach(card => {
-        const platform = card.getAttribute('data-platform');
-        const countEl = card.querySelector('.platform-solved-count');
-        if (countEl) countEl.textContent = solvedByPlatform[platform] || 0;
-    });
 }
 
 // ==================== First-Time Welcome Modal Logic ====================

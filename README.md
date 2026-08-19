@@ -31,7 +31,7 @@
   - AtCoder
 - 👤 **Customizable Profile & Quick Links**:
   - Personal avatar colors and user profile name.
-  - One-click access to your coding profiles with automatic solved-count tracking.
+  - Quick-access Codolio and GitHub links directly from the navigation bar.
 - ⚡ **Instant Search & Topic Filtering**: Real-time debounce search across all questions, difficulties, and platforms.
 - 💾 **Local Progress Persistence**: Stores solved questions and profile settings directly in browser `localStorage`. No server setup required.
 
@@ -68,6 +68,16 @@ npx serve
 ├── LICENSE           # MIT License
 └── README.md         # Documentation
 ```
+
+---
+
+## 🔗 Codolio Integration
+
+GrindHub focuses on being a curated question bank and manual progress
+tracker. For unified stats across LeetCode, Codeforces, CodeChef,
+GeeksforGeeks, and other platforms, link your [Codolio](https://codolio.com)
+profile in the Edit Profile modal — a quick-access button will appear in the
+nav bar.
 
 ---
 

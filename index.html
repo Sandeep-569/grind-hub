@@ -48,9 +48,16 @@
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                         GitHub
                     </a>
+                    <a id="nav-codolio-link" href="https://codolio.com" target="_blank"
+                        class="hidden text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-sm font-medium transition sm:inline-flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Codolio
+                    </a>
 
                     <!-- Profile Button (Opens Edit Profile Modal) -->
-                    <button onclick="openProfileModal()" id="profile-edit-btn" title="Edit Profile & Coding Links"
+                    <button onclick="openProfileModal()" id="profile-edit-btn" title="Edit Profile"
                         class="flex items-center gap-2 bg-slate-700/80 hover:bg-slate-700 text-white px-2.5 py-1.5 rounded-lg border border-slate-600 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm">
                         <span id="active-profile-avatar" class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-sm" style="background-color: #6366f1;">S</span>
                         <span id="active-profile-name" class="text-sm font-semibold max-w-[100px] truncate">Profile</span>
@@ -133,190 +140,6 @@
                         </div>
                     </div>
                 </button>
-            </section>
-
-
-            <section>
-                <div class="flex items-center justify-between mb-6 border-b border-slate-700 pb-2">
-                    <h2 class="text-xl font-semibold text-slate-200">My Coding Profiles</h2>
-                    <span class="text-sm text-slate-400">Click to view stats</span>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
-
-                    <!-- LeetCode Card -->
-                    <a href="https://leetcode.com" target="_blank" data-platform="LeetCode"
-                        class="platform-card hover-glow-leetcode bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="#FFA116" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.365.497 1.9-.038.535-.536.553-1.387.039-1.901l-2.606-2.636a4.46 4.46 0 0 0-3.153-1.258c-1.199 0-2.327.464-3.176 1.312l-4.322 4.38a4.52 4.52 0 0 0-1.312 3.175c0 1.21.464 2.348 1.312 3.195l4.322 4.351a4.52 4.52 0 0 0 3.176 1.312c1.21 0 2.348-.464 3.195-1.312l2.606-2.636c.514-.515.496-1.366-.039-1.901-.535-.535-1.386-.553-1.9-.038zm-6.529-5.183h8.318c.744 0 1.346-.602 1.346-1.346s-.602-1.346-1.346-1.346H9.573c-.744 0-1.346.602-1.346 1.346s.602 1.346 1.346 1.346z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">LeetCode</h3>
-                                <p class="text-sm text-slate-400 group-hover:text-slate-300">Problem Solving</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- HackerRank Card -->
-                    <a href="https://www.hackerrank.com" target="_blank" data-platform="HackerRank"
-                        class="platform-card hover-glow-hackerrank bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="#00EA64" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 0L22.3923 6V18L12 24L1.6077 18V6L12 0ZM12 2.766L3.998 7.383V16.617L12 21.234L20.002 16.617V7.383L12 2.766ZM7.14 7.558H9.362V11.232H14.638V7.558H16.86V16.442H14.638V12.768H9.362V16.442H7.14V7.558Z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">HackerRank</h3>
-                                <p class="text-sm text-slate-400">Skill Badges & Tests</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- Codeforces Card -->
-                    <a href="https://codeforces.com" target="_blank" data-platform="Codeforces"
-                        class="platform-card hover-glow-codeforces bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 gap-1 p-2">
-                                <div class="w-2.5 h-full bg-[#FFB300] rounded-sm"></div>
-                                <div class="w-2.5 h-2/3 mt-auto bg-[#3182CE] rounded-sm"></div>
-                                <div class="w-2.5 h-1/2 mt-auto bg-[#E53E3E] rounded-sm"></div>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">Codeforces</h3>
-                                <p class="text-sm text-slate-400">Competitive Contests</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- CodeChef Card -->
-                    <a href="https://www.codechef.com/" target="_blank" data-platform="CodeChef"
-                        class="platform-card hover-glow-codechef bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-[#5B4638] rounded-lg flex items-center justify-center flex-shrink-0">
-                                <span class="text-white font-black text-2xl"
-                                    style="font-family: serif; letter-spacing: -2px;">CC</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">CodeChef</h3>
-                                <p class="text-sm text-slate-400">Monthly Challenges</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- GeeksforGeeks Card -->
-                    <a href="https://www.geeksforgeeks.org" target="_blank" data-platform="GeeksforGeeks"
-                        class="platform-card hover-glow-gfg bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg viewBox="0 0 40 40" class="w-9 h-9" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M19.999 0C8.955 0 0 8.954 0 19.999s8.955 19.999 19.999 19.999c11.045 0 20.001-8.954 20.001-19.999S31.044 0 19.999 0zm0 37.142c-9.471 0-17.143-7.671-17.143-17.143 0-9.472 7.672-17.143 17.143-17.143 9.47 0 17.142 7.671 17.142 17.143 0 9.472-7.672 17.143-17.142 17.143z"
-                                        fill="#2F8D46" />
-                                    <path
-                                        d="M13.313 14.869c1.942 0 3.32.999 4.14 2.155l-2.025 1.55c-.56-.708-1.22-1.29-2.115-1.29-1.921 0-3.359 1.62-3.359 3.498 0 1.897 1.438 3.518 3.359 3.518 1.139 0 2.05-.623 2.532-1.291v-1.127H13.25v-2.316h4.94v4.444c-1.139 1.51-2.91 2.688-5.018 2.688-3.359 0-5.839-2.47-5.839-5.916.002-3.426 2.48-5.913 5.98-5.913zm13.376 0c1.94 0 3.318.999 4.139 2.155l-2.025 1.55c-.56-.708-1.22-1.29-2.115-1.29-1.921 0-3.359 1.62-3.359 3.498 0 1.897 1.439 3.518 3.359 3.518 1.14 0 2.05-.623 2.532-1.291v-1.127h-2.593v-2.316h4.94v4.444c-1.139 1.51-2.91 2.688-5.017 2.688-3.36 0-5.84-2.47-5.84-5.916.001-3.426 2.48-5.913 5.979-5.913z"
-                                        fill="#2F8D46" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">GeeksforGeeks</h3>
-                                <p class="text-sm text-slate-400">Articles & Practice</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- CodeStudio Card -->
-                    <a href="https://www.naukri.com/code360/" target="_blank" data-platform="CodeStudio"
-                        class="platform-card hover-glow-codestudio bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="#F27121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="16 18 22 12 16 6"></polyline>
-                                    <polyline points="8 6 2 12 8 18"></polyline>
-                                    <line x1="14" y1="4" x2="10" y2="20"></line>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">CodeStudio</h3>
-                                <p class="text-sm text-slate-400">Guided Paths & Contests</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- InterviewBit Card -->
-                    <a href="https://www.interviewbit.com/" target="_blank" data-platform="InterviewBit"
-                        class="platform-card hover-glow-interviewbit bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="#008DD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                                    <polyline points="9 8 11 10 15 6"></polyline>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">InterviewBit</h3>
-                                <p class="text-sm text-slate-400">Tracks & Assessments</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                    <!-- AtCoder Card -->
-                    <a href="https://atcoder.jp/" target="_blank" data-platform="AtCoder"
-                        class="platform-card hover-glow-atcoder bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="#00C4DF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 22 20 2 20"></polygon>
-                                    <line x1="7" y1="15" x2="17" y2="15"></line>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white">AtCoder</h3>
-                                <p class="text-sm text-slate-400">Contests & Ratings</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex-shrink-0">
-                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
-                            <p class="text-xs text-slate-400">Solved</p>
-                        </div>
-                    </a>
-
-                </div>
             </section>
         </main>
 
@@ -419,122 +242,12 @@
                         class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
 
-                <!-- Coding Platform Links / Handles -->
+                <!-- Codolio Profile Link -->
                 <div class="pt-3 border-t border-slate-700/80">
-                    <label class="block text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3">Custom Coding Platform Links</label>
-                    <div class="grid grid-cols-1 gap-3.5">
-                        <!-- LeetCode -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">LeetCode URL / Username</label>
-                                <button type="button" onclick="syncSinglePlatform('LeetCode')" id="sync-btn-leetcode"
-                                    class="text-[11px] font-semibold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-leetcode" placeholder="https://leetcode.com/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                        </div>
-
-                        <!-- Codeforces -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">Codeforces URL / Username</label>
-                                <button type="button" onclick="syncSinglePlatform('Codeforces')" id="sync-btn-codeforces"
-                                    class="text-[11px] font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-codeforces" placeholder="https://codeforces.com/profile/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-
-                        <!-- GeeksforGeeks -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">GeeksforGeeks URL / Username</label>
-                                <button type="button" onclick="syncSinglePlatform('GeeksforGeeks')" id="sync-btn-geeksforgeeks"
-                                    class="text-[11px] font-semibold text-green-400 hover:text-green-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-geeksforgeeks" placeholder="https://www.geeksforgeeks.org/user/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-
-                        <!-- CodeChef -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">CodeChef URL / Username</label>
-                                <button type="button" onclick="syncSinglePlatform('CodeChef')" id="sync-btn-codechef"
-                                    class="text-[11px] font-semibold text-amber-500 hover:text-amber-400 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-codechef" placeholder="https://www.codechef.com/users/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-700">
-                        </div>
-
-                        <!-- HackerRank -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">HackerRank URL / Username</label>
-                                <button type="button" onclick="syncSinglePlatform('HackerRank')" id="sync-btn-hackerrank"
-                                    class="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-hackerrank" placeholder="https://www.hackerrank.com/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        </div>
-
-                        <!-- CodeStudio -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">CodeStudio (CodingNinjas) Profile</label>
-                                <button type="button" onclick="syncSinglePlatform('CodeStudio')" id="sync-btn-codestudio"
-                                    class="text-[11px] font-semibold text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-codestudio" placeholder="https://www.naukri.com/code360/profile/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        </div>
-
-                        <!-- InterviewBit -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">InterviewBit Profile</label>
-                                <button type="button" onclick="syncSinglePlatform('InterviewBit')" id="sync-btn-interviewbit"
-                                    class="text-[11px] font-semibold text-sky-400 hover:text-sky-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-interviewbit" placeholder="https://www.interviewbit.com/profile/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
-                        </div>
-
-                        <!-- AtCoder -->
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-medium text-slate-300">AtCoder Profile</label>
-                                <button type="button" onclick="syncSinglePlatform('AtCoder')" id="sync-btn-atcoder"
-                                    class="text-[11px] font-semibold text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1 cursor-pointer">
-                                    <span class="sync-icon">🔄</span>
-                                    <span>Sync Solved</span>
-                                </button>
-                            </div>
-                            <input type="url" id="handle-atcoder" placeholder="https://atcoder.jp/users/your-username"
-                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                        </div>
-                    </div>
+                    <label class="block text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">Codolio Profile</label>
+                    <p class="text-xs text-slate-400 mb-2">Track your solved stats across LeetCode, Codeforces, CodeChef, and more in one place with <a href="https://codolio.com" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline">Codolio</a>. Paste your profile link below to add a quick-access button to the nav bar.</p>
+                    <input type="url" id="profile-modal-codolio" placeholder="https://codolio.com/profile/your-username"
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
 
                 <!-- Browser Storage Section -->
@@ -558,24 +271,15 @@
             </div>
 
             <!-- Modal Footer -->
-            <div class="px-6 py-4 border-t border-slate-700 bg-slate-900/60 flex flex-wrap items-center justify-between gap-3 flex-shrink-0">
-                <button type="button" onclick="syncAllPlatforms()" id="sync-all-btn"
-                    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-lg shadow-emerald-600/20 cursor-pointer">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                    <span>Auto-Sync All Solved</span>
+            <div class="px-6 py-4 border-t border-slate-700 bg-slate-900/60 flex items-center justify-end gap-2 flex-shrink-0">
+                <button onclick="closeProfileModal()" type="button"
+                    class="text-xs font-semibold text-slate-400 hover:text-white px-3 py-2 rounded-lg transition cursor-pointer">
+                    Cancel
                 </button>
-                <div class="flex items-center gap-2">
-                    <button onclick="closeProfileModal()" type="button"
-                        class="text-xs font-semibold text-slate-400 hover:text-white px-3 py-2 rounded-lg transition cursor-pointer">
-                        Cancel
-                    </button>
-                    <button onclick="saveProfileModal(true)" type="button"
-                        class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg cursor-pointer">
-                        Save & Sync
-                    </button>
-                </div>
+                <button onclick="saveProfileModal()" type="button"
+                    class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg cursor-pointer">
+                    Save
+                </button>
             </div>
         </div>
     </div>

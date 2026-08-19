@@ -6,57 +6,6 @@ body {
             /* Tailwind slate-50 */
         }
 
-        /* Custom hover effects for platform cards */
-        .platform-card {
-            transition: all 0.3s ease;
-        }
-
-        .platform-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Specific glow effects based on platform colors */
-        .hover-glow-leetcode:hover {
-            border-color: #FFA116;
-            box-shadow: 0 0 15px rgba(255, 161, 22, 0.2);
-        }
-
-        .hover-glow-hackerrank:hover {
-            border-color: #00EA64;
-            box-shadow: 0 0 15px rgba(0, 234, 100, 0.2);
-        }
-
-        .hover-glow-codeforces:hover {
-            border-color: #3182CE;
-            box-shadow: 0 0 15px rgba(49, 130, 206, 0.2);
-        }
-
-        .hover-glow-codechef:hover {
-            border-color: #5B4638;
-            box-shadow: 0 0 15px rgba(91, 70, 56, 0.2);
-        }
-
-        .hover-glow-gfg:hover {
-            border-color: #2F8D46;
-            box-shadow: 0 0 15px rgba(47, 141, 70, 0.2);
-        }
-
-        .hover-glow-codestudio:hover {
-            border-color: #F27121;
-            box-shadow: 0 0 15px rgba(242, 113, 33, 0.2);
-        }
-
-        .hover-glow-interviewbit:hover {
-            border-color: #008DD0;
-            box-shadow: 0 0 15px rgba(0, 141, 208, 0.2);
-        }
-
-        .hover-glow-atcoder:hover {
-            border-color: #00C4DF;
-            box-shadow: 0 0 15px rgba(0, 196, 223, 0.2);
-        }
-
         /* Custom Scrollbar for inner panes */
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
