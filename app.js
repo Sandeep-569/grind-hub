@@ -200,11 +200,11 @@ function updateProfileUI() {
 }
 
 function renderColorOptions() {
-    const container = document.getElementById('color-options-container');
+    const container = document.getElementById('profile-color-options') || document.getElementById('color-options-container');
     if (!container) return;
     container.innerHTML = PRESET_COLORS.map(c => `
         <button type="button" onclick="selectProfileColor('${c.hex}')"
-            class="w-6 h-6 rounded-full border-2 transition-transform hover:scale-110 flex items-center justify-center ${userProfile.color === c.hex ? 'border-white scale-110' : 'border-transparent'}"
+            class="w-6 h-6 rounded-full border-2 transition-transform hover:scale-110 flex items-center justify-center cursor-pointer ${userProfile.color === c.hex ? 'border-white scale-110 ring-2 ring-indigo-400' : 'border-transparent'}"
             style="background-color: ${c.hex};" title="${c.name}">
         </button>
     `).join('');
