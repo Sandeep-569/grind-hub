@@ -19,6 +19,7 @@ function showDashboard() {
         dash.classList.add('block');
     }
     updateDashboardSummaries();
+    checkFirstTimeUser();
 }
 
 function showQuestionsView() {
@@ -715,6 +716,73 @@ function updatePlatformSolvedCounts() {
         const countEl = card.querySelector('.platform-solved-count');
         if (countEl) countEl.textContent = solvedByPlatform[platform] || 0;
     });
+}
+
+
+// ==================== First-Time Welcome Modal Logic ====================
+const HAS_ONBOARDED_KEY = 'dsa_user_has_onboarded_v1';
+let welcomeSelectedColor = userProfile.color || '#6366f1';
+
+function renderWelcomeColorOptions() {
+    const container = document.getElementById('welcome-color-options');
+    if (!container) return;
+    container.innerHTML = PRESET_COLORS.map(c => `
+        <button type="button" onclick="selectWelcomeColor('${c.hex}')"
+            class="w-7 h-7 rounded-full border-2 transition-transform hover:scale-110 flex items-center justify-center ${welcomeSelectedColor === c.hex ? 'border-white scale-110 ring-2 ring-indigo-400' : 'border-transparent'}"
+            style="background-color: ${c.hex};" title="${c.name}">
+        </button>
+    `).join('');
+}
+
+function selectWelcomeColor(hex) {
+    welcomeSelectedColor = hex;
+    renderWelcomeColorOptions();
+}
+
+function openWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    const nameInput = document.getElementById('welcome-modal-name');
+    if (!modal) return;
+
+    if (nameInput) {
+        nameInput.value = (userProfile.name && userProfile.name !== 'Coder' && userProfile.name !== 'User') ? userProfile.name : '';
+    }
+    welcomeSelectedColor = userProfile.color || '#6366f1';
+    renderWelcomeColorOptions();
+    modal.classList.remove('hidden');
+    if (nameInput) setTimeout(() => nameInput.focus(), 100);
+}
+
+function closeWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function submitWelcomeModal() {
+    const nameInput = document.getElementById('welcome-modal-name');
+    const name = (nameInput ? nameInput.value : '').trim();
+    if (!name) {
+        alert('Please enter your name.');
+        if (nameInput) nameInput.focus();
+        return;
+    }
+
+    userProfile.name = name;
+    userProfile.color = welcomeSelectedColor;
+    saveUserProfile(userProfile);
+    localStorage.setItem(HAS_ONBOARDED_KEY, 'true');
+
+    closeWelcomeModal();
+    updateProfileUI();
+    updateDashboardSummaries();
+    showToast(`Welcome back, ${name}! 🚀`);
+}
+
+function checkFirstTimeUser() {
+    const hasOnboarded = localStorage.getItem(HAS_ONBOARDED_KEY);
+    if (!hasOnboarded) {
+        openWelcomeModal();
+    }
 }
 
 // Initialize App
