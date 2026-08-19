@@ -20,7 +20,6 @@ const PRESET_COLORS = [
 const DEFAULT_PROFILE = {
     name: "Coder",
     color: "#3b82f6",
-    soundEnabled: true,
     github: "",
     codolioUrl: ""
 };
@@ -124,57 +123,6 @@ function escAttr(str) {
     return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
-// ==================== Audio Feedback ====================
-let audioCtx = null;
-
-function playProChime() {
-    if (!userProfile.soundEnabled) return;
-    try {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, now); // D5
-        osc.frequency.setValueAtTime(880.00, now + 0.05); // A5
-
-        gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.08, now + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-
-        osc.start(now);
-        osc.stop(now + 0.25);
-    } catch (e) {}
-}
-
-function toggleSound() {
-    userProfile.soundEnabled = !userProfile.soundEnabled;
-    saveUserProfile(userProfile);
-    updateSoundUI();
-    showToast(userProfile.soundEnabled ? "Audio On" : "Audio Off");
-}
-
-function updateSoundUI() {
-    const btn = document.getElementById('sound-toggle-icon');
-    if (btn) {
-        btn.textContent = userProfile.soundEnabled ? "Sound On" : "Sound Off";
-    }
-    const modalSound = document.getElementById('profile-modal-sound');
-    if (modalSound) {
-        modalSound.checked = !!userProfile.soundEnabled;
-    }
-}
-
 // ==================== User Profile ====================
 function loadUserProfile() {
     try {
@@ -251,8 +199,6 @@ function updateProfileUI() {
             codolioLink.classList.remove('inline-flex');
         }
     }
-
-    updateSoundUI();
 }
 
 function openProfileModal() {
@@ -277,9 +223,6 @@ function openProfileModal() {
         if (colorInput) colorInput.value = selected;
     });
 
-    const modalSound = document.getElementById('profile-modal-sound');
-    if (modalSound) modalSound.checked = !!userProfile.soundEnabled;
-
     if (nameInput) {
         setTimeout(() => nameInput.focus(), 100);
     }
@@ -298,13 +241,11 @@ function saveProfileModal() {
     const colorInput = document.getElementById('profile-modal-color');
     const githubInput = document.getElementById('profile-modal-github');
     const codolioInput = document.getElementById('profile-modal-codolio');
-    const modalSound = document.getElementById('profile-modal-sound');
 
     userProfile.name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Coder';
     userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#3b82f6';
     userProfile.github = githubInput ? githubInput.value.trim() : '';
     userProfile.codolioUrl = codolioInput ? codolioInput.value.trim() : '';
-    userProfile.soundEnabled = modalSound ? modalSound.checked : true;
 
     saveUserProfile(userProfile);
     try {
@@ -393,7 +334,6 @@ function submitWelcomeModal() {
     updateProfileUI();
     closeWelcomeModal();
     showToast(`Welcome, ${name}`);
-    playProChime();
 }
 
 // ==================== Solved & Starred Storage ====================
@@ -440,7 +380,6 @@ function toggleQuestionSolved(urlKey, ev) {
         solvedSet.add(urlKey);
         saveSolvedQuestions();
         updateSingleQuestionCheckboxUI(urlKey, true);
-        playProChime();
     }
     updateDashboardSummaries();
     updateQuestionsViewProgress();
@@ -456,7 +395,6 @@ function toggleQuestionStarred(urlKey, ev) {
         starredSet.add(urlKey);
         saveStarredQuestions();
         updateSingleQuestionStarUI(urlKey, true);
-        playProChime();
     }
     if (vaultFilters.status === 'starred') {
         renderQuestions();
@@ -946,7 +884,6 @@ function pickRandomQuestion() {
     goToTopicQuestions(randomPick.topic);
 
     showToast(`Selected: ${randomPick.title} (${randomPick.diff})`);
-    playProChime();
 }
 
 // ==================== Global Search Dropdown ====================
