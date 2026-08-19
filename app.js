@@ -479,7 +479,7 @@ function renderTopicQuickJumpBar() {
     let html = '';
     for (const topic in questionsData) {
         html += `
-        <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill px-3 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-slate-300 hover:text-white border border-slate-700 transition cursor-pointer flex-shrink-0">
+        <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill px-2.5 py-1 rounded-md bg-[#21262d] text-xs font-medium text-[#8b949e] hover:text-[#f0f6fc] border border-[#30363d] transition cursor-pointer flex-shrink-0">
             ${topic}
         </button>`;
     }
@@ -509,10 +509,10 @@ function updatePlatformLegend() {
     legend.innerHTML = Object.keys(platformCounts).sort().map(p => {
         const count = platformCounts[p];
         const pSol = platformSolved[p] || 0;
-        const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-slate-300 bg-slate-800 border-slate-700';
-        return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border ${cls}">
+        const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-[#8b949e] bg-[#21262d] border-[#30363d]';
+        return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium border ${cls}">
             <span>${p}</span>
-            <span class="text-slate-400 font-mono text-[11px]">${pSol}/${count}</span>
+            <span class="text-[#8b949e] font-mono text-[11px]">${pSol}/${count}</span>
         </span>`;
     }).join('');
 }
@@ -524,9 +524,9 @@ function setStatusFilter(status) {
         const btn = document.getElementById(`filter-status-${s}`);
         if (btn) {
             if (s === status) {
-                btn.className = 'px-3 py-1.5 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
+                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white';
             } else {
-                btn.className = 'px-3 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white transition cursor-pointer';
+                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-[#8b949e] hover:text-[#e6edf3] transition cursor-pointer';
             }
         }
     });
@@ -539,9 +539,9 @@ function setDiffFilter(diff) {
         const btn = document.getElementById(`filter-diff-${d}`);
         if (btn) {
             if (d === diff) {
-                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
+                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white';
             } else {
-                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-slate-400 hover:text-white transition cursor-pointer';
+                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded text-[#8b949e] hover:text-[#e6edf3] transition cursor-pointer';
             }
         }
     });
@@ -653,24 +653,24 @@ function renderQuestions() {
         }
 
         html += `
-        <div id="${sectionId}" class="rounded-xl pro-card border border-slate-800 overflow-hidden mb-3">
-            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-slate-800/60 transition">
-                <div class="flex items-center gap-2.5 flex-wrap">
-                    <span class="font-bold text-sm sm:text-base text-slate-100">${topic}</span>
+        <div id="${sectionId}" class="rounded-lg pro-card border border-[#30363d] overflow-hidden mb-2.5">
+            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 py-3 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-[#1c2128] transition">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-semibold text-sm text-[#f0f6fc]">${topic}</span>
                     ${topicPill(topic)}
-                    <span class="text-xs font-mono font-semibold text-slate-400">
+                    <span class="text-xs font-mono text-[#8b949e]">
                         ${solvedInTopic}/${totalInTopic} (${topicPct}%)
                     </span>
-                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-slate-500">Showing ${visibleCount}</span>` : ''}
+                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-[#6e7681]">Showing ${visibleCount}</span>` : ''}
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg id="icon-${sectionId}" class="w-4 h-4 text-slate-400 transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="icon-${sectionId}" class="w-3.5 h-3.5 text-[#8b949e] transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </div>
             </button>
 
-            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-slate-800 p-3 sm:p-4 bg-slate-950/40 space-y-4">
+            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-[#30363d] p-3 bg-[#0d1117]/60 space-y-3">
                 ${renderDifficultyBlock('Easy', easyFiltered, sectionId)}
                 ${renderDifficultyBlock('Medium', medFiltered, sectionId)}
                 ${renderDifficultyBlock('Hard', hardFiltered, sectionId)}
@@ -680,10 +680,10 @@ function renderQuestions() {
 
     if (!html) {
         html = `
-        <div class="pro-card p-8 rounded-xl border border-slate-800 text-center text-slate-400">
-            <p class="font-bold text-base text-white">No problems found</p>
-            <p class="text-xs text-slate-400 mt-1">Try adjusting your search query or filters.</p>
-            <button onclick="clearAllFilters()" class="mt-3 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
+        <div class="pro-card p-6 rounded-lg border border-[#30363d] text-center text-[#8b949e]">
+            <p class="font-semibold text-sm text-[#f0f6fc]">No problems found</p>
+            <p class="text-xs text-[#8b949e] mt-1">Try adjusting your search query or filters.</p>
+            <button onclick="clearAllFilters()" class="mt-3 px-3 py-1 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
                 Clear Filters
             </button>
         </div>`;
@@ -712,21 +712,21 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
         const isStarred = starredSet.has(q.url);
         const urlAttr = escAttr(q.url);
         return `
-        <div class="question-row flex items-center justify-between p-2.5 sm:px-3 rounded-lg border border-slate-800 bg-slate-900/60 transition ${isSolved ? 'opacity-50' : ''}">
-            <div class="flex items-center gap-3 min-w-0 flex-grow pr-2">
+        <div class="question-row flex items-center justify-between p-2 rounded-md border border-[#30363d] bg-[#161b22] transition ${isSolved ? 'opacity-40' : ''}">
+            <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-2">
                 <input type="checkbox" class="pro-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
                 
                 <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
                     ${isStarred ? '★' : '☆'}
                 </button>
 
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs sm:text-sm font-medium text-slate-200 hover:text-blue-400 transition truncate hover:underline ${isSolved ? 'line-through text-slate-500' : ''}">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs font-medium text-[#c9d1d9] hover:text-[#58a6ff] transition truncate hover:underline ${isSolved ? 'line-through text-[#6e7681]' : ''}">
                     ${escAttr(q.title)}
                 </a>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
                 ${platformPill(q.platform)}
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white p-1 transition" title="Open external link">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-[#8b949e] hover:text-[#f0f6fc] p-0.5 transition" title="Open external link">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
@@ -737,11 +737,11 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
 
     return `
     <div>
-        <div class="flex items-center gap-2 mb-2">
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
-            <span class="text-[11px] font-mono text-slate-400">(${list.length})</span>
+        <div class="flex items-center gap-1.5 mb-1.5">
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
+            <span class="text-[11px] font-mono text-[#8b949e]">(${list.length})</span>
         </div>
-        <div class="space-y-1.5">
+        <div class="space-y-1">
             ${itemsHtml}
         </div>
     </div>`;

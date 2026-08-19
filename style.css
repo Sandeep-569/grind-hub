@@ -1,17 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    --bg-void: #090d16;
-    --bg-surface: #0e1424;
-    --bg-card: #111827;
-    --bg-card-hover: #172033;
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(59, 130, 246, 0.4);
+    /* Eye-Friendly Low-Strain Dark Palette (GitHub Dark Dimmed / JetBrains / Linear spec) */
+    --bg-void: #0d1117;
+    --bg-surface: #161b22;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2128;
+    --bg-input: #0d1117;
+    --border-subtle: #30363d;
+    --border-hover: #58a6ff;
     
-    /* Dynamic Theme Accent (Defaults to Modern Blue) */
-    --pro-accent: #3b82f6;
-    --pro-glow: rgba(59, 130, 246, 0.25);
-    --pro-accent-secondary: #6366f1;
+    /* Text Hierarchy (Soft off-whites to reduce eye fatigue) */
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+
+    /* Calibrated Soft Accents (No harsh neon glare) */
+    --pro-accent: #58a6ff;
+    --pro-glow: rgba(88, 166, 255, 0.15);
+    
+    --diff-easy: #3fb950;
+    --diff-easy-bg: rgba(63, 185, 80, 0.12);
+    --diff-easy-border: rgba(63, 185, 80, 0.3);
+
+    --diff-med: #d29922;
+    --diff-med-bg: rgba(210, 153, 34, 0.12);
+    --diff-med-border: rgba(210, 153, 34, 0.3);
+
+    --diff-hard: #f85149;
+    --diff-hard-bg: rgba(248, 81, 73, 0.12);
+    --diff-hard-border: rgba(248, 81, 73, 0.3);
 }
 
 *, *::before, *::after {
@@ -20,7 +38,7 @@
 
 html, body {
     background-color: var(--bg-void);
-    color: #f8fafc;
+    color: var(--text-primary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
     margin: 0;
@@ -29,29 +47,27 @@ html, body {
     scroll-behavior: smooth;
 }
 
-/* Atmospheric Professional Dark Subtle Gradient */
 body {
-    background: radial-gradient(circle at 50% 0%, #111a2e 0%, #090d16 65%);
-    background-attachment: fixed;
+    background: #0d1117;
 }
 
-/* Custom Sleek Scrollbar */
+/* Subtle, Comfortable Scrollbars */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #090d16;
+    background: #0d1117;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #30363d;
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #484f58;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -64,45 +80,43 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #30363d;
     border-radius: 3px;
 }
 
-/* Professional Minimal Cards */
+/* Eye-Comfortable Cards */
 .pro-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s ease;
+    border-radius: 0.75rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .pro-card-interactive {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s ease;
+    border-radius: 0.75rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
     cursor: pointer;
 }
 
 .pro-card-interactive:hover {
     background: var(--bg-card-hover);
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6);
+    border-color: #8b949e;
 }
 
-/* Custom Minimal Professional Checkbox */
+/* Eye-Friendly Checkbox */
 .pro-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #484f58;
     border-radius: 4px;
-    background: #090d16;
+    background: #0d1117;
     cursor: pointer;
     position: relative;
-    transition: all 0.15s ease;
+    transition: all 0.12s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -124,23 +138,24 @@ body {
     content: '';
     width: 4px;
     height: 8px;
-    border: solid #ffffff;
+    border: solid #0d1117;
     border-width: 0 2px 2px 0;
-    transform: rotate(45deg) translate(-1px, -1px);
+    transform: rotate(45deg) translate(-0.5px, -0.5px);
     display: block;
+    font-weight: bold;
 }
 
-/* Star / Bookmark Toggle Button */
+/* Star / Bookmark Button */
 .star-btn {
     background: transparent;
     border: none;
     cursor: pointer;
     font-size: 14px;
     line-height: 1;
-    color: #475569;
+    color: #484f58;
     padding: 3px;
     border-radius: 4px;
-    transition: all 0.15s ease;
+    transition: color 0.15s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -148,63 +163,45 @@ body {
 }
 
 .star-btn:hover {
-    color: #fbbf24;
+    color: #d29922;
 }
 
 .star-btn.starred {
-    color: #fbbf24;
+    color: #d29922;
 }
 
-/* Smooth Transitions & View Fade */
+/* Fade in animation */
 .view-fade {
-    animation: proFadeIn 0.2s ease-out;
+    animation: proFadeIn 0.15s ease-out;
 }
 
 @keyframes proFadeIn {
     from {
         opacity: 0;
-        transform: translateY(4px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
 /* Question Rows */
 .question-row {
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
 }
 
 .question-row:hover {
-    background-color: #172033;
-    border-color: rgba(59, 130, 246, 0.3);
+    background-color: var(--bg-card-hover);
+    border-color: #484f58;
 }
 
-/* Topic Card on Dashboard */
-.topic-roadmap-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 0.75rem;
-    transition: all 0.2s ease;
-    position: relative;
-}
-
-.topic-roadmap-card:hover {
-    transform: translateY(-2px);
-    background: var(--bg-card-hover);
-    border-color: var(--border-hover);
-    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6);
-}
-
-/* Topic Quick Jump Pills */
+/* Topic Jump Pill */
 .topic-jump-pill {
-    transition: all 0.15s ease;
+    transition: all 0.12s ease;
     white-space: nowrap;
     user-select: none;
 }
 
 .topic-jump-pill:hover {
     border-color: var(--pro-accent);
-    color: #ffffff;
+    color: #e6edf3;
 }
