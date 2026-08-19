@@ -57,7 +57,7 @@
         </div>
     </nav>
 
-    <!-- Main Content Container -->
+    <!-- Main Content Container (Direct Problem Base on Home Page) -->
     <div id="app-container" class="flex-grow w-full relative">
 
         <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 view-fade block">
@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            <!-- Professional Metric Cards (4 Cards) -->
+            <!-- Metric Cards (4 Cards) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <!-- Card 1: Total Problems -->
                 <div class="pro-card p-5 rounded-xl border border-slate-800 flex flex-col justify-between">
@@ -145,26 +145,26 @@
                     <div class="relative flex-grow">
                         <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-mono">🔍</span>
                         <input id="question-search" type="text"
-                            placeholder="Filter questions by name, topic, or platform (e.g. Two Sum, Dijkstra, Binary Search)..."
-                            oninput="onVaultFilterChanged()"
+                            placeholder="Search problems by name, topic, or platform (e.g. Two Sum, Dijkstra, Binary Search)..."
+                            oninput="onFilterChanged()"
                             class="w-full bg-slate-900 border border-slate-800 rounded-lg pl-9 pr-3.5 py-2 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition">
                     </div>
 
                     <!-- Status Filter Tabs -->
                     <div class="flex items-center gap-1 bg-slate-900 p-1 rounded-lg border border-slate-800 flex-shrink-0">
-                        <button type="button" onclick="setVaultStatusFilter('all')" id="filter-status-all"
+                        <button type="button" onclick="setStatusFilter('all')" id="filter-status-all"
                             class="px-3 py-1.5 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white">
                             All
                         </button>
-                        <button type="button" onclick="setVaultStatusFilter('unsolved')" id="filter-status-unsolved"
+                        <button type="button" onclick="setStatusFilter('unsolved')" id="filter-status-unsolved"
                             class="px-3 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white transition cursor-pointer">
                             Unsolved
                         </button>
-                        <button type="button" onclick="setVaultStatusFilter('solved')" id="filter-status-solved"
+                        <button type="button" onclick="setStatusFilter('solved')" id="filter-status-solved"
                             class="px-3 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white transition cursor-pointer">
                             Solved
                         </button>
-                        <button type="button" onclick="setVaultStatusFilter('starred')" id="filter-status-starred"
+                        <button type="button" onclick="setStatusFilter('starred')" id="filter-status-starred"
                             class="px-3 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-yellow-400 transition cursor-pointer">
                             Starred
                         </button>
@@ -175,19 +175,19 @@
                 <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800">
                     <div class="flex items-center gap-1.5 flex-wrap">
                         <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Difficulty:</span>
-                        <button type="button" onclick="setVaultDiffFilter('all')" id="filter-diff-all"
+                        <button type="button" onclick="setDiffFilter('all')" id="filter-diff-all"
                             class="px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white">
                             All
                         </button>
-                        <button type="button" onclick="setVaultDiffFilter('Easy')" id="filter-diff-Easy"
+                        <button type="button" onclick="setDiffFilter('Easy')" id="filter-diff-Easy"
                             class="px-2.5 py-1 text-xs font-semibold rounded text-slate-400 hover:text-emerald-400 transition cursor-pointer">
                             Easy
                         </button>
-                        <button type="button" onclick="setVaultDiffFilter('Medium')" id="filter-diff-Medium"
+                        <button type="button" onclick="setDiffFilter('Medium')" id="filter-diff-Medium"
                             class="px-2.5 py-1 text-xs font-semibold rounded text-slate-400 hover:text-amber-400 transition cursor-pointer">
                             Medium
                         </button>
-                        <button type="button" onclick="setVaultDiffFilter('Hard')" id="filter-diff-Hard"
+                        <button type="button" onclick="setDiffFilter('Hard')" id="filter-diff-Hard"
                             class="px-2.5 py-1 text-xs font-semibold rounded text-slate-400 hover:text-rose-400 transition cursor-pointer">
                             Hard
                         </button>
@@ -196,7 +196,7 @@
                     <div class="flex items-center gap-2 flex-wrap">
                         <div class="flex items-center gap-2">
                             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Platform:</span>
-                            <select id="vault-platform-select" onchange="onVaultFilterChanged()"
+                            <select id="platform-select" onchange="onFilterChanged()"
                                 class="bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer">
                                 <option value="all">All Platforms (8)</option>
                                 <option value="LeetCode">LeetCode</option>

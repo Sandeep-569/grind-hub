@@ -1,4 +1,4 @@
-// ==================== GrindHub: Unified DSA Problem Tracker ====================
+// ==================== GrindHub: Professional DSA Problem Tracker ====================
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
@@ -30,7 +30,7 @@ let solvedSet = loadSolvedQuestions();
 let starredSet = loadStarredQuestions();
 let openAccordions = new Set();
 
-let vaultFilters = {
+let filters = {
     search: '',
     status: 'all', // 'all' | 'unsolved' | 'solved' | 'starred'
     diff: 'all',   // 'all' | 'Easy' | 'Medium' | 'Hard'
@@ -359,7 +359,7 @@ function toggleQuestionStarred(urlKey, ev) {
         saveStarredQuestions();
         updateSingleQuestionStarUI(urlKey, true);
     }
-    if (vaultFilters.status === 'starred') {
+    if (filters.status === 'starred') {
         renderQuestions();
     }
 }
@@ -518,8 +518,8 @@ function updatePlatformLegend() {
 }
 
 // ==================== Filter Controls ====================
-function setVaultStatusFilter(status) {
-    vaultFilters.status = status;
+function setStatusFilter(status) {
+    filters.status = status;
     ['all', 'unsolved', 'solved', 'starred'].forEach(s => {
         const btn = document.getElementById(`filter-status-${s}`);
         if (btn) {
@@ -533,8 +533,8 @@ function setVaultStatusFilter(status) {
     renderQuestions();
 }
 
-function setVaultDiffFilter(diff) {
-    vaultFilters.diff = diff;
+function setDiffFilter(diff) {
+    filters.diff = diff;
     ['all', 'Easy', 'Medium', 'Hard'].forEach(d => {
         const btn = document.getElementById(`filter-diff-${d}`);
         if (btn) {
@@ -548,11 +548,11 @@ function setVaultDiffFilter(diff) {
     renderQuestions();
 }
 
-function onVaultFilterChanged() {
+function onFilterChanged() {
     const searchInput = document.getElementById('question-search');
-    const platSelect = document.getElementById('vault-platform-select');
-    vaultFilters.search = searchInput ? searchInput.value.trim() : '';
-    vaultFilters.platform = platSelect ? platSelect.value : 'all';
+    const platSelect = document.getElementById('platform-select');
+    filters.search = searchInput ? searchInput.value.trim() : '';
+    filters.platform = platSelect ? platSelect.value : 'all';
     renderQuestions();
 }
 
@@ -597,13 +597,12 @@ function renderQuestions() {
     const container = document.getElementById('questions-container');
     if (!container || typeof questionsData === 'undefined') return;
 
-    const query = vaultFilters.search.toLowerCase();
-    const statusFilter = vaultFilters.status;
-    const diffFilter = vaultFilters.diff;
-    const platFilter = vaultFilters.platform;
+    const query = filters.search.toLowerCase();
+    const statusFilter = filters.status;
+    const diffFilter = filters.diff;
+    const platFilter = filters.platform;
 
     let html = '';
-    let totalMatchingQuestions = 0;
 
     for (const topic in questionsData) {
         const sectionId = `topic-${slugify(topic)}`;
@@ -638,7 +637,6 @@ function renderQuestions() {
         const hardFiltered = filterList(questionsData[topic].Hard, 'Hard');
 
         const visibleCount = easyFiltered.length + medFiltered.length + hardFiltered.length;
-        totalMatchingQuestions += visibleCount;
 
         ['Easy', 'Medium', 'Hard'].forEach(diff => {
             (questionsData[topic][diff] || []).forEach(q => {
@@ -685,7 +683,7 @@ function renderQuestions() {
         <div class="pro-card p-8 rounded-xl border border-slate-800 text-center text-slate-400">
             <p class="font-bold text-base text-white">No problems found</p>
             <p class="text-xs text-slate-400 mt-1">Try adjusting your search query or filters.</p>
-            <button onclick="clearAllVaultFilters()" class="mt-3 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
+            <button onclick="clearAllFilters()" class="mt-3 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
                 Clear Filters
             </button>
         </div>`;
@@ -694,15 +692,15 @@ function renderQuestions() {
     container.innerHTML = html;
 }
 
-function clearAllVaultFilters() {
+function clearAllFilters() {
     const searchInput = document.getElementById('question-search');
-    const platSelect = document.getElementById('vault-platform-select');
+    const platSelect = document.getElementById('platform-select');
     if (searchInput) searchInput.value = '';
     if (platSelect) platSelect.value = 'all';
-    vaultFilters.search = '';
-    vaultFilters.platform = 'all';
-    setVaultStatusFilter('all');
-    setVaultDiffFilter('all');
+    filters.search = '';
+    filters.platform = 'all';
+    setStatusFilter('all');
+    setDiffFilter('all');
 }
 
 function renderDifficultyBlock(difficulty, list, sectionId) {
