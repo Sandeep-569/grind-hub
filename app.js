@@ -133,11 +133,12 @@ function updateProfileUI() {
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" class="text-indigo-400 font-extrabold">${escAttr(profileName)}</span>! 🚀`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Click to edit profile" class="text-indigo-400 font-extrabold cursor-pointer hover:underline">${escAttr(profileName)}</span>! 🚀`;
     }
     const dashNameEl = document.getElementById('dashboard-user-name');
     if (dashNameEl) {
         dashNameEl.textContent = profileName;
+        dashNameEl.onclick = openProfileModal;
     }
 
     const githubLink = document.getElementById('nav-github-link');
@@ -146,7 +147,10 @@ function updateProfileUI() {
         if (gh) {
             githubLink.href = gh.startsWith('http') ? gh : `https://github.com/${gh}`;
             githubLink.classList.remove('hidden');
-            githubLink.classList.add('sm:inline-flex');
+            githubLink.classList.add('inline-flex');
+        } else {
+            githubLink.classList.add('hidden');
+            githubLink.classList.remove('inline-flex');
         }
     }
 
@@ -156,8 +160,10 @@ function updateProfileUI() {
         if (codolioUrl) {
             codolioBtn.href = codolioUrl.startsWith('http') ? codolioUrl : `https://codolio.com/profile/${codolioUrl}`;
             codolioBtn.classList.remove('hidden');
+            codolioBtn.classList.add('inline-flex');
         } else {
             codolioBtn.classList.add('hidden');
+            codolioBtn.classList.remove('inline-flex');
         }
     }
 }
@@ -181,39 +187,46 @@ function selectProfileColor(hex) {
 }
 
 function openProfileModal() {
+    closeWelcomeModal();
     const modal = document.getElementById('profile-modal');
+    if (!modal) return;
+
     const nameInput = document.getElementById('profile-modal-name');
     const colorInput = document.getElementById('profile-modal-color');
     const githubInput = document.getElementById('profile-modal-github');
+    const codolioInput = document.getElementById('profile-modal-codolio');
 
-    nameInput.value = userProfile.name || '';
-    colorInput.value = userProfile.color || '#6366f1';
-    githubInput.value = userProfile.github || '';
-
-    document.getElementById('profile-modal-codolio').value = userProfile.codolioUrl || '';
+    if (nameInput) nameInput.value = userProfile.name || '';
+    if (colorInput) colorInput.value = userProfile.color || '#6366f1';
+    if (githubInput) githubInput.value = userProfile.github || '';
+    if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
     renderColorOptions();
     modal.classList.remove('hidden');
-    nameInput.focus();
+    modal.classList.add('flex');
+    if (nameInput) setTimeout(() => nameInput.focus(), 50);
 }
 
 function closeProfileModal() {
     const modal = document.getElementById('profile-modal');
-    if (modal) modal.classList.add('hidden');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
 }
 
 function saveProfileModal() {
     const nameInput = document.getElementById('profile-modal-name');
-    const name = nameInput.value.trim();
+    const name = nameInput ? nameInput.value.trim() : '';
     if (!name) {
         alert('Please enter a profile name.');
-        nameInput.focus();
+        if (nameInput) nameInput.focus();
         return;
     }
 
-    const color = document.getElementById('profile-modal-color').value || '#6366f1';
-    const github = document.getElementById('profile-modal-github').value.trim();
-    const codolioUrl = document.getElementById('profile-modal-codolio').value.trim();
+    const color = (document.getElementById('profile-modal-color')?.value) || '#6366f1';
+    const github = (document.getElementById('profile-modal-github')?.value || '').trim();
+    const codolioUrl = (document.getElementById('profile-modal-codolio')?.value || '').trim();
 
     userProfile = { name, color, github, codolioUrl };
 
