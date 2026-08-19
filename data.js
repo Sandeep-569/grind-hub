@@ -1,202 +1,5 @@
 // --- Data: Unified DSA Question Bank (Roadmap Order across 8 Platforms) ---
 const questionsData = {
-    "Java Foundations": {
-        "Easy": [
-            {
-                "title": "Solve Me First",
-                "url": "https://www.hackerrank.com/challenges/solve-me-first/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Stdin and Stdout I",
-                "url": "https://www.hackerrank.com/challenges/java-stdin-and-stdout-1/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Loops I",
-                "url": "https://www.hackerrank.com/challenges/java-loops-i/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Methods",
-                "url": "https://www.hackerrank.com/challenges/java-method/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java If-Else",
-                "url": "https://www.hackerrank.com/challenges/java-if-else/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Stdin and Stdout II",
-                "url": "https://www.hackerrank.com/challenges/java-stdin-stdout/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Output Formatting",
-                "url": "https://www.hackerrank.com/challenges/java-output-formatting/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Loops II",
-                "url": "https://www.hackerrank.com/challenges/java-loops/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Datatypes",
-                "url": "https://www.hackerrank.com/challenges/java-datatypes/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java End-of-file",
-                "url": "https://www.hackerrank.com/challenges/java-end-of-file/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Static Initializer Block",
-                "url": "https://www.hackerrank.com/challenges/java-static-initializer-block/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Int to String",
-                "url": "https://www.hackerrank.com/challenges/java-int-to-string/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Date and Time",
-                "url": "https://www.hackerrank.com/challenges/java-date-and-time/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Currency Formatter",
-                "url": "https://www.hackerrank.com/challenges/java-currency-formatter/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Primality Test",
-                "url": "https://www.hackerrank.com/challenges/java-primality-test/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java BigInteger",
-                "url": "https://www.hackerrank.com/challenges/java-biginteger/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java 1D Array",
-                "url": "https://www.hackerrank.com/challenges/java-1d-array-introduction/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java 2D Array",
-                "url": "https://www.hackerrank.com/challenges/java-2d-array/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Subarray",
-                "url": "https://www.hackerrank.com/challenges/java-negative-subarray/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Arraylist",
-                "url": "https://www.hackerrank.com/challenges/java-arraylist/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java List",
-                "url": "https://www.hackerrank.com/challenges/java-list/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Map",
-                "url": "https://www.hackerrank.com/challenges/phone-book/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Hashset",
-                "url": "https://www.hackerrank.com/challenges/java-hashset/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Generics",
-                "url": "https://www.hackerrank.com/challenges/java-generics/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Sort",
-                "url": "https://www.hackerrank.com/challenges/java-sort/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java BitSet",
-                "url": "https://www.hackerrank.com/challenges/java-bitset/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Exception Handling (Try-catch)",
-                "url": "https://www.hackerrank.com/challenges/java-exception-handling-try-catch/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Exception Handling",
-                "url": "https://www.hackerrank.com/challenges/java-exception-handling/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Varargs - Simple Addition",
-                "url": "https://www.hackerrank.com/challenges/simple-addition-varargs/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Reflection - Attributes",
-                "url": "https://www.hackerrank.com/challenges/java-reflection-attributes/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Covariant Return Types",
-                "url": "https://www.hackerrank.com/challenges/java-covariance/problem",
-                "platform": "HackerRank"
-            }
-        ],
-        "Medium": [
-            {
-                "title": "Java BigDecimal",
-                "url": "https://www.hackerrank.com/challenges/java-bigdecimal/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Can You Access?",
-                "url": "https://www.hackerrank.com/challenges/can-you-access/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Prime Checker",
-                "url": "https://www.hackerrank.com/challenges/prime-checker/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Annotations",
-                "url": "https://www.hackerrank.com/challenges/java-annotations/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Lambda Expressions",
-                "url": "https://www.hackerrank.com/challenges/java-lambda-expressions/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java MD5",
-                "url": "https://www.hackerrank.com/challenges/java-md5/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java SHA-256",
-                "url": "https://www.hackerrank.com/challenges/sha-256/problem",
-                "platform": "HackerRank"
-            }
-        ],
-        "Hard": []
-    },
     "Patterns": {
         "Easy": [
             {
@@ -1710,6 +1513,66 @@ const questionsData = {
                 "title": "Speciality",
                 "url": "https://www.codechef.com/problems/SPECIALITY",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "Solve Me First",
+                "url": "https://www.hackerrank.com/challenges/solve-me-first/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Stdin and Stdout I",
+                "url": "https://www.hackerrank.com/challenges/java-stdin-and-stdout-1/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Loops I",
+                "url": "https://www.hackerrank.com/challenges/java-loops-i/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java If-Else",
+                "url": "https://www.hackerrank.com/challenges/java-if-else/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Stdin and Stdout II",
+                "url": "https://www.hackerrank.com/challenges/java-stdin-stdout/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Loops II",
+                "url": "https://www.hackerrank.com/challenges/java-loops/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Datatypes",
+                "url": "https://www.hackerrank.com/challenges/java-datatypes/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java End-of-file",
+                "url": "https://www.hackerrank.com/challenges/java-end-of-file/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Date and Time",
+                "url": "https://www.hackerrank.com/challenges/java-date-and-time/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Primality Test",
+                "url": "https://www.hackerrank.com/challenges/java-primality-test/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java BigInteger",
+                "url": "https://www.hackerrank.com/challenges/java-biginteger/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java BitSet",
+                "url": "https://www.hackerrank.com/challenges/java-bitset/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -2327,6 +2190,16 @@ const questionsData = {
                 "title": "Rain Flows into Dams",
                 "url": "https://atcoder.jp/contests/abc133/tasks/abc133_d",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Java BigDecimal",
+                "url": "https://www.hackerrank.com/challenges/java-bigdecimal/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Prime Checker",
+                "url": "https://www.hackerrank.com/challenges/prime-checker/problem",
+                "platform": "HackerRank"
             }
         ],
         "Hard": [
@@ -3418,6 +3291,26 @@ const questionsData = {
                 "title": "Stair, Peak, or Neither?",
                 "url": "https://codeforces.com/problemset/problem/1950/A",
                 "platform": "Codeforces"
+            },
+            {
+                "title": "Java 1D Array",
+                "url": "https://www.hackerrank.com/challenges/java-1d-array-introduction/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Subarray",
+                "url": "https://www.hackerrank.com/challenges/java-negative-subarray/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Arraylist",
+                "url": "https://www.hackerrank.com/challenges/java-arraylist/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java List",
+                "url": "https://www.hackerrank.com/challenges/java-list/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -4571,6 +4464,11 @@ const questionsData = {
                 "title": "Determinant",
                 "url": "https://atcoder.jp/contests/abc184/tasks/abc184_a",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Java 2D Array",
+                "url": "https://www.hackerrank.com/challenges/java-2d-array/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -5584,6 +5482,21 @@ const questionsData = {
                 "title": "Creating Words",
                 "url": "https://codeforces.com/problemset/problem/1985/A",
                 "platform": "Codeforces"
+            },
+            {
+                "title": "Java Output Formatting",
+                "url": "https://www.hackerrank.com/challenges/java-output-formatting/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Int to String",
+                "url": "https://www.hackerrank.com/challenges/java-int-to-string/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Currency Formatter",
+                "url": "https://www.hackerrank.com/challenges/java-currency-formatter/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -6171,6 +6084,16 @@ const questionsData = {
                 "title": "Hachi",
                 "url": "https://atcoder.jp/contests/abc181/tasks/abc181_d",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Java MD5",
+                "url": "https://www.hackerrank.com/challenges/java-md5/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java SHA-256",
+                "url": "https://www.hackerrank.com/challenges/sha-256/problem",
+                "platform": "HackerRank"
             }
         ],
         "Hard": [
@@ -7459,6 +7382,11 @@ const questionsData = {
             {
                 "title": "Java Comparator",
                 "url": "https://www.hackerrank.com/challenges/java-comparator/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Sort",
+                "url": "https://www.hackerrank.com/challenges/java-sort/problem",
                 "platform": "HackerRank"
             }
         ],
@@ -10192,6 +10120,16 @@ const questionsData = {
                 "title": "Distinct or Not",
                 "url": "https://atcoder.jp/contests/abc154/tasks/abc154_c",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Java Map",
+                "url": "https://www.hackerrank.com/challenges/phone-book/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Hashset",
+                "url": "https://www.hackerrank.com/challenges/java-hashset/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -17816,6 +17754,46 @@ const questionsData = {
                 "title": "Java Singleton Pattern",
                 "url": "https://www.hackerrank.com/challenges/java-singleton/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Java Methods",
+                "url": "https://www.hackerrank.com/challenges/java-method/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Static Initializer Block",
+                "url": "https://www.hackerrank.com/challenges/java-static-initializer-block/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Generics",
+                "url": "https://www.hackerrank.com/challenges/java-generics/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Exception Handling (Try-catch)",
+                "url": "https://www.hackerrank.com/challenges/java-exception-handling-try-catch/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Exception Handling",
+                "url": "https://www.hackerrank.com/challenges/java-exception-handling/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Varargs - Simple Addition",
+                "url": "https://www.hackerrank.com/challenges/simple-addition-varargs/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Reflection - Attributes",
+                "url": "https://www.hackerrank.com/challenges/java-reflection-attributes/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Covariant Return Types",
+                "url": "https://www.hackerrank.com/challenges/java-covariance/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -17838,6 +17816,21 @@ const questionsData = {
                 "title": "Java Visitor Pattern",
                 "url": "https://www.hackerrank.com/challenges/java-vistor-pattern/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Can You Access?",
+                "url": "https://www.hackerrank.com/challenges/can-you-access/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Annotations",
+                "url": "https://www.hackerrank.com/challenges/java-annotations/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Java Lambda Expressions",
+                "url": "https://www.hackerrank.com/challenges/java-lambda-expressions/problem",
+                "platform": "HackerRank"
             }
         ],
         "Hard": [
@@ -17851,7 +17844,6 @@ const questionsData = {
 };
 
 const TOPIC_COLORS = {
-    "Java Foundations": "text-slate-300 bg-slate-400/10 border-slate-400/20",
     "Patterns": "text-orange-300 bg-orange-300/10 border-orange-300/20",
     "Arrays": "text-sky-400 bg-sky-400/10 border-sky-400/20",
     "Matrix": "text-sky-300 bg-sky-300/10 border-sky-300/20",

@@ -12,14 +12,13 @@
 ## ✨ Features
 
 - 🎯 **3,500+ Curated Problems**: Covers Easy, Medium, and Hard difficulty tiers.
-- 📚 **24 Canonical DSA Topics**:
-  - Basics & Foundations, Patterns, Arrays, Matrix (2D), Searching, Sorting, Strings
-  - Two Pointers & Sliding Window, Bit Manipulation & Math, Recursion & Backtracking
-  - Linked List, Stacks & Queues, Hash Tables & Sets
+- 📚 **23 Canonical DSA Topics**:
+  - Patterns, Bit Manipulation & Math, Arrays, Matrix (2D), Strings, Searching, Sorting
+  - Two Pointers & Sliding Window, Linked List, Stacks & Queues, Hash Tables & Sets
+  - Recursion & Backtracking, Greedy Algorithms, Intervals
   - Binary Trees & BST, Heaps & Priority Queues, Tries
-  - Greedy Algorithms, Intervals, Dynamic Programming
-  - Graphs, Disjoint Set Union (DSU), Segment Trees & Fenwick Trees
-  - Data Structure Design & OOP
+  - Graphs, Disjoint Set Union (DSU), Dynamic Programming
+  - Segment Trees & Fenwick Trees, Data Structure Design & OOP
 - 🌐 **8 Supported Coding Platforms**:
   - LeetCode
   - HackerRank
