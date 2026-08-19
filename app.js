@@ -149,27 +149,31 @@ function saveUserProfile(profile) {
 }
 
 function updateProfileUI() {
+    const profileName = (userProfile.name || 'Coder').trim();
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
-        avatarEl.textContent = (userProfile.name || 'U').charAt(0).toUpperCase();
+        avatarEl.textContent = (profileName || 'U').charAt(0).toUpperCase();
         avatarEl.style.backgroundColor = userProfile.color || '#6366f1';
     }
-    if (nameEl) nameEl.textContent = userProfile.name || 'User';
+    if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span class="text-indigo-400 font-extrabold">${escAttr(userProfile.name || 'Coder')}</span>! 🚀`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" class="text-indigo-400 font-extrabold">${escAttr(profileName)}</span>! 🚀`;
+    }
+    const dashNameEl = document.getElementById('dashboard-user-name');
+    if (dashNameEl) {
+        dashNameEl.textContent = profileName;
     }
 
-    const githubLink = document.getElementById('profile-github-link');
+    const githubLink = document.getElementById('nav-github-link');
     if (githubLink) {
         const gh = (userProfile.github || '').trim();
         if (gh) {
             githubLink.href = gh.startsWith('http') ? gh : `https://github.com/${gh}`;
             githubLink.classList.remove('hidden');
-        } else {
-            githubLink.classList.add('hidden');
+            githubLink.classList.add('sm:inline-flex');
         }
     }
 
