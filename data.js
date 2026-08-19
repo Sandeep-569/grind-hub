@@ -4,47 +4,47 @@ const questionsData = {
         "Easy": [
             {
                 "title": "Pattern Printing",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+printing+practice",
+                "url": "https://www.geeksforgeeks.org/problems/square-pattern/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 1 (square pattern)",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+square+pattern+printing",
+                "url": "https://www.geeksforgeeks.org/problems/square-pattern/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 2 (right triangle)",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+right+triangle+pattern+printing",
+                "url": "https://www.geeksforgeeks.org/problems/right-triangle/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 3 (triangle number)",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+triangle+number+pattern+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-number/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 11",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+11+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-pattern-1661718455/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 5",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+5+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-pattern/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 6 / Pattern 7",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+7+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-pattern-1661492263/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Diamond Pattern",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+diamond+pattern+printing",
+                "url": "https://www.geeksforgeeks.org/problems/pattern/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Print character pattern 1",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+character+pattern",
+                "url": "https://www.geeksforgeeks.org/problems/character-pattern/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -56,32 +56,32 @@ const questionsData = {
         "Medium": [
             {
                 "title": "Pattern 4",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+4+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-number-1661427083/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 6",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+6+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-number-1661489840/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 8",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+8+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-pattern-1661493236/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Pattern 10",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+pattern+10+printing",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-pattern-1661718013/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Print character pattern 2",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+alphabet+pattern",
+                "url": "https://www.geeksforgeeks.org/problems/triangle-pattern-1662286361/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Optimus Prime (print all primes ≤ n)",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+all+prime+numbers+less+than+n",
+                "url": "https://www.geeksforgeeks.org/problems/sieve-of-eratosthenes5242/1",
                 "platform": "GeeksforGeeks"
             }
         ],
@@ -286,7 +286,7 @@ const questionsData = {
             },
             {
                 "title": "We are odd",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+we+are+odd+problem",
+                "url": "https://www.hackerrank.com/challenges/lonely-integer/problem",
                 "platform": "HackerRank"
             },
             {
@@ -296,17 +296,17 @@ const questionsData = {
             },
             {
                 "title": "Which Case",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+which+case+problem",
+                "url": "https://www.hackerrank.com/challenges/camelcase/problem",
                 "platform": "HackerRank"
             },
             {
                 "title": "Odd Number",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+odd+number+problem",
+                "url": "https://www.hackerrank.com/challenges/find-the-odd-int/problem",
                 "platform": "HackerRank"
             },
             {
                 "title": "Factorial with loop",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+factorial+problem",
+                "url": "https://www.hackerrank.com/challenges/extra-long-factorials/problem",
                 "platform": "HackerRank"
             },
             {
@@ -1493,7 +1493,7 @@ const questionsData = {
             },
             {
                 "title": "NUMBER OF DAYS",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+number+of+days+in+a+month",
+                "url": "https://www.geeksforgeeks.org/problems/number-of-days5438/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -1518,7 +1518,7 @@ const questionsData = {
             },
             {
                 "title": "Number rotation",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+number+rotation+practice+problem",
+                "url": "https://www.geeksforgeeks.org/problems/rotate-digits0149/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -1865,17 +1865,17 @@ const questionsData = {
             },
             {
                 "title": "Sum of natural number cubes",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+sum+of+cubes+of+natural+numbers",
+                "url": "https://www.geeksforgeeks.org/problems/sum-of-first-n-terms5843/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Count Squares (perfect squares)",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+count+perfect+squares+practice",
+                "url": "https://www.geeksforgeeks.org/problems/count-squares3649/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Check For Power",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+check+if+a+number+is+a+power+practice",
+                "url": "https://www.geeksforgeeks.org/problems/check-if-a-number-is-power-of-another-number5442/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -2164,22 +2164,22 @@ const questionsData = {
             },
             {
                 "title": "Array Operations (sum all elements)",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+array+operations+sum+problem",
+                "url": "https://www.hackerrank.com/challenges/simple-array-sum/problem",
                 "platform": "HackerRank"
             },
             {
                 "title": "Buildings",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+buildings+problem",
+                "url": "https://www.hackerrank.com/challenges/sherlock-and-array/problem",
                 "platform": "HackerRank"
             },
             {
                 "title": "Array Problem 5",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+array+problem+5",
+                "url": "https://www.hackerrank.com/challenges/arrays-ds/problem",
                 "platform": "HackerRank"
             },
             {
                 "title": "Array Adding (adding 2 different arrays)",
-                "url": "https://www.google.com/search?q=site%3Ahackerrank.com+adding+two+arrays+problem",
+                "url": "https://www.hackerrank.com/challenges/array-manipulation/problem",
                 "platform": "HackerRank"
             },
             {
@@ -2199,32 +2199,32 @@ const questionsData = {
             },
             {
                 "title": "Find Geometric Triplets",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+geometric+triplet+in+an+array",
+                "url": "https://www.geeksforgeeks.org/problems/geometric-triplets/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Print 2D Array",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+2d+array+practice",
+                "url": "https://www.geeksforgeeks.org/problems/print-matrix-in-snake-pattern-1587115621/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Print column wise",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+matrix+column+wise",
+                "url": "https://www.geeksforgeeks.org/problems/boundary-traversal-of-matrix-1587115621/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Alternate Manner Matrix Traversal",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+matrix+in+alternate+manner",
+                "url": "https://www.geeksforgeeks.org/problems/print-matrix-in-alternate-manner/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Find The Way",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+find+the+way+matrix+practice",
+                "url": "https://www.geeksforgeeks.org/problems/find-the-string-in-grid0111/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Sum of upper and lower triangles",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+sum+of+upper+and+lower+triangular+matrix",
+                "url": "https://www.geeksforgeeks.org/problems/sum-of-upper-and-lower-triangles-1587115621/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -3416,7 +3416,7 @@ const questionsData = {
             },
             {
                 "title": "Spiral Matrix 2",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+spirally+traverse+a+matrix+2",
+                "url": "https://leetcode.com/problems/spiral-matrix-ii/",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -3828,12 +3828,12 @@ const questionsData = {
             },
             {
                 "title": "Find element at given index",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+find+element+at+given+index+array",
+                "url": "https://www.geeksforgeeks.org/problems/c-array-print-an-element-set-25933/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Print elements",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+array+elements+practice",
+                "url": "https://www.geeksforgeeks.org/problems/print-elements-of-array4910/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -3848,12 +3848,12 @@ const questionsData = {
             },
             {
                 "title": "Count even odd",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+count+even+and+odd+elements+in+array",
+                "url": "https://www.geeksforgeeks.org/problems/count-odd-even/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Palindrone array",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+check+array+is+palindrome+practice",
+                "url": "https://www.geeksforgeeks.org/problems/palindromic-array-1587115620/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -3863,7 +3863,7 @@ const questionsData = {
             },
             {
                 "title": "Reading Books",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+reading+books+practice+problem",
+                "url": "https://www.geeksforgeeks.org/problems/reading-books3803/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -3898,27 +3898,27 @@ const questionsData = {
             },
             {
                 "title": "Summed Matrix",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+summed+matrix+practice+problem",
+                "url": "https://www.geeksforgeeks.org/problems/summed-matrix5834/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Predict the Column",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+predict+the+column+matrix",
+                "url": "https://www.geeksforgeeks.org/problems/predict-the-column/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Surrounds the 1's",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+surrounds+the+1s+matrix",
+                "url": "https://www.geeksforgeeks.org/problems/surround-the-1s2505/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Make Zero's",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+make+zeros+matrix+practice",
+                "url": "https://www.geeksforgeeks.org/problems/make-zeroes4042/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Interchange rows of matrix",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+interchange+rows+of+a+matrix",
+                "url": "https://www.geeksforgeeks.org/problems/reversing-the-rows-of-a-matrix-1587115621/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -4680,7 +4680,7 @@ const questionsData = {
             },
             {
                 "title": "All substrings of a string",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+print+all+substrings+of+a+string",
+                "url": "https://www.geeksforgeeks.org/problems/substring-with-equal-zero-and-one/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -5642,12 +5642,12 @@ const questionsData = {
             },
             {
                 "title": "Good Strings",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+good+strings+practice+problem",
+                "url": "https://www.geeksforgeeks.org/problems/good-or-bad-string1417/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Palindromic SubStrings",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+palindromic+substrings+practice",
+                "url": "https://leetcode.com/problems/palindromic-substrings/",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -5662,7 +5662,7 @@ const questionsData = {
             },
             {
                 "title": "Lower or Upper",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+check+if+string+is+lower+or+upper+case",
+                "url": "https://www.geeksforgeeks.org/problems/lower-case-to-upper-case3410/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -6044,12 +6044,12 @@ const questionsData = {
             },
             {
                 "title": "Sum of Numbers in String",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+sum+of+numbers+in+a+string",
+                "url": "https://www.geeksforgeeks.org/problems/sum-of-numbers-in-string-1587115621/1",
                 "platform": "GeeksforGeeks"
             },
             {
                 "title": "Find Character in String",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+find+a+character+in+a+string+practice",
+                "url": "https://www.geeksforgeeks.org/problems/search-an-element-in-an-array-1587115621/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -7121,7 +7121,7 @@ const questionsData = {
             },
             {
                 "title": "AS Sorting 1",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+sort+matrix+column+wise",
+                "url": "https://www.geeksforgeeks.org/problems/sort-a-2d-vector-diagonally/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -7131,7 +7131,7 @@ const questionsData = {
             },
             {
                 "title": "Array Swaps",
-                "url": "https://www.google.com/search?q=site%3Acodeforces.com+array+swaps+problem",
+                "url": "https://codeforces.com/problemset/problem/1353/B",
                 "platform": "Codeforces"
             },
             {
@@ -7348,7 +7348,7 @@ const questionsData = {
             },
             {
                 "title": "Index of the target element after sorting",
-                "url": "https://www.google.com/search?q=site%3Aleetcode.com+index+of+target+element+after+sorting",
+                "url": "https://leetcode.com/problems/find-target-indices-after-sorting-array/",
                 "platform": "LeetCode"
             },
             {
@@ -7358,7 +7358,7 @@ const questionsData = {
             },
             {
                 "title": "TAS Sorting Problem 4",
-                "url": "https://www.google.com/search?q=site%3Ageeksforgeeks.org+sorting+practice+problems",
+                "url": "https://www.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1",
                 "platform": "GeeksforGeeks"
             },
             {
