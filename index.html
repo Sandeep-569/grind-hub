@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My DSA Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased min-h-screen flex flex-col h-screen overflow-hidden">
+
+    <nav class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 shadow-lg flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand / Logo -->
+                <div class="flex items-center flex-shrink-0 cursor-pointer" onclick="showDashboard()">
+                    <!-- Custom DSA Logo SVG (Representing a Graph/Tree Data Structure) -->
+                    <svg class="h-10 w-10 text-indigo-500" viewBox="0 0 100 100" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" rx="20" fill="#1E293B" />
+                        <!-- Edges -->
+                        <path d="M50 30 L30 60 M50 30 L70 60 M30 60 L15 85 M30 60 L45 85" stroke="#6366F1"
+                            stroke-width="4" stroke-linecap="round" />
+                        <!-- Nodes -->
+                        <circle cx="50" cy="30" r="8" fill="#818CF8" />
+                        <circle cx="30" cy="60" r="8" fill="#818CF8" />
+                        <circle cx="70" cy="60" r="8" fill="#818CF8" />
+                        <circle cx="15" cy="85" r="6" fill="#A5B4FC" />
+                        <circle cx="45" cy="85" r="6" fill="#A5B4FC" />
+                        <!-- Array Representation at Bottom -->
+                        <rect x="60" y="80" width="10" height="10" stroke="#818CF8" stroke-width="2" />
+                        <rect x="70" y="80" width="10" height="10" stroke="#818CF8" stroke-width="2" />
+                        <rect x="80" y="80" width="10" height="10" stroke="#818CF8" stroke-width="2" />
+                    </svg>
+                    <span class="ml-3 font-bold text-xl tracking-wider text-white">DSA<span
+                            class="text-indigo-400">Tracker</span></span>
+                </div>
+
+                <!-- Nav Links & Edit Profile Button -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="showDashboard()"
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition shadow-sm">Dashboard</button>
+                    <a id="nav-github-link" href="https://github.com" target="_blank"
+                        class="text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-sm font-medium transition hidden sm:inline-flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                        GitHub
+                    </a>
+
+                    <!-- Profile Button (Opens Edit Profile Modal) -->
+                    <button onclick="openProfileModal()" id="profile-edit-btn" title="Edit Profile & Coding Links"
+                        class="flex items-center gap-2 bg-slate-700/80 hover:bg-slate-700 text-white px-2.5 py-1.5 rounded-lg border border-slate-600 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm">
+                        <span id="active-profile-avatar" class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-sm" style="background-color: #6366f1;">S</span>
+                        <span id="active-profile-name" class="text-sm font-semibold max-w-[100px] truncate">Sandeep</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- App Container -->
+    <div id="app-container" class="flex-grow overflow-y-auto custom-scrollbar relative">
+
+        <!-- ==================== DASHBOARD VIEW ==================== -->
+        <main id="dashboard-view" class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 view-fade block">
+
+            <!-- Welcome Header -->
+            <div class="mb-6 text-center md:text-left">
+                <h1 class="text-3xl md:text-4xl font-bold mb-2">Welcome back, <span id="dashboard-user-name" class="text-indigo-400">Coder</span>! 🚀</h1>
+                <p class="text-slate-400">Keep up the momentum. Consistency is the key to mastering Data Structures and
+                    Algorithms.</p>
+            </div>
+
+            <!-- Global Fast Question Search -->
+            <div class="mb-10 relative">
+                <div class="relative">
+                    <svg class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"></path>
+                    </svg>
+                    <input id="global-question-search" type="text" autocomplete="off"
+                        placeholder="Search any question across the entire bank…"
+                        oninput="handleGlobalSearch(this.value)"
+                        onfocus="if(this.value) handleGlobalSearch(this.value)"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-3 py-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                </div>
+                <div id="global-search-results"
+                    class="hidden absolute z-20 mt-1 w-full bg-slate-800 border border-slate-700 rounded-lg shadow-xl max-h-96 overflow-y-auto custom-scrollbar">
+                </div>
+            </div>
+
+            <section class="mb-12">
+                <h2 class="text-xl font-semibold mb-4 text-slate-200 border-b border-slate-700 pb-2">DSA Practice
+                    Questions</h2>
+
+                <button onclick="showQuestionsView()" class="w-full text-left block group focus:outline-none">
+                    <div
+                        class="bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col md:flex-row items-center gap-6 hover:bg-slate-750 transition-colors shadow-md hover:border-emerald-500/50">
+
+                        <div
+                            class="relative w-full md:w-64 aspect-video bg-slate-900 rounded-lg overflow-hidden flex-shrink-0 border border-slate-700 group-hover:border-emerald-500 transition-colors flex items-center justify-center">
+                            <svg class="w-16 h-16 text-emerald-500 group-hover:scale-110 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="flex-grow text-center md:text-left">
+                            <div
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 mb-2">
+                                Unified Question Bank
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2" id="questions-card-title">DSA Questions —
+                                All Platforms</h3>
+                            <p class="text-slate-400 mb-1">LeetCode • HackerRank • Codeforces • CodeChef • GeeksforGeeks • CodeStudio • InterviewBit • AtCoder</p>
+                            <p class="text-sm text-slate-500 mb-4" id="dashboard-question-progress">Loading
+                                progress…</p>
+                            <div
+                                class="flex items-center justify-center md:justify-start gap-2 text-emerald-400 font-semibold group-hover:text-emerald-300">
+                                <span>Open Question Bank</span>
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </section>
+
+
+            <section>
+                <div class="flex items-center justify-between mb-6 border-b border-slate-700 pb-2">
+                    <h2 class="text-xl font-semibold text-slate-200">My Coding Profiles</h2>
+                    <span class="text-sm text-slate-400">Click to view stats</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
+
+                    <!-- LeetCode Card -->
+                    <a href="https://leetcode.com/u/codedbysandeep/" target="_blank" data-platform="LeetCode"
+                        class="platform-card hover-glow-leetcode bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="#FFA116" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.365.497 1.9-.038.535-.536.553-1.387.039-1.901l-2.606-2.636a4.46 4.46 0 0 0-3.153-1.258c-1.199 0-2.327.464-3.176 1.312l-4.322 4.38a4.52 4.52 0 0 0-1.312 3.175c0 1.21.464 2.348 1.312 3.195l4.322 4.351a4.52 4.52 0 0 0 3.176 1.312c1.21 0 2.348-.464 3.195-1.312l2.606-2.636c.514-.515.496-1.366-.039-1.901-.535-.535-1.386-.553-1.9-.038zm-6.529-5.183h8.318c.744 0 1.346-.602 1.346-1.346s-.602-1.346-1.346-1.346H9.573c-.744 0-1.346.602-1.346 1.346s.602 1.346 1.346 1.346z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">LeetCode</h3>
+                                <p class="text-sm text-slate-400 group-hover:text-slate-300">Problem Solving</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- HackerRank Card -->
+                    <a href="https://www.hackerrank.com/profile/codedbysandeep" target="_blank" data-platform="HackerRank"
+                        class="platform-card hover-glow-hackerrank bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="#00EA64" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 0L22.3923 6V18L12 24L1.6077 18V6L12 0ZM12 2.766L3.998 7.383V16.617L12 21.234L20.002 16.617V7.383L12 2.766ZM7.14 7.558H9.362V11.232H14.638V7.558H16.86V16.442H14.638V12.768H9.362V16.442H7.14V7.558Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">HackerRank</h3>
+                                <p class="text-sm text-slate-400">Skill Badges & Tests</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- Codeforces Card -->
+                    <a href="https://codeforces.com/profile/codedbysandeep1413" target="_blank" data-platform="Codeforces"
+                        class="platform-card hover-glow-codeforces bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0 gap-1 p-2">
+                                <div class="w-2.5 h-full bg-[#FFB300] rounded-sm"></div>
+                                <div class="w-2.5 h-2/3 mt-auto bg-[#3182CE] rounded-sm"></div>
+                                <div class="w-2.5 h-1/2 mt-auto bg-[#E53E3E] rounded-sm"></div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">Codeforces</h3>
+                                <p class="text-sm text-slate-400">Competitive Contests</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- CodeChef Card -->
+                    <a href="https://www.codechef.com/" target="_blank" data-platform="CodeChef"
+                        class="platform-card hover-glow-codechef bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-[#5B4638] rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-black text-2xl"
+                                    style="font-family: serif; letter-spacing: -2px;">CC</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">CodeChef</h3>
+                                <p class="text-sm text-slate-400">Monthly Challenges</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- GeeksforGeeks Card -->
+                    <a href="https://auth.geeksforgeeks.org/" target="_blank" data-platform="GeeksforGeeks"
+                        class="platform-card hover-glow-gfg bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg viewBox="0 0 40 40" class="w-9 h-9" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19.999 0C8.955 0 0 8.954 0 19.999s8.955 19.999 19.999 19.999c11.045 0 20.001-8.954 20.001-19.999S31.044 0 19.999 0zm0 37.142c-9.471 0-17.143-7.671-17.143-17.143 0-9.472 7.672-17.143 17.143-17.143 9.47 0 17.142 7.671 17.142 17.143 0 9.472-7.672 17.143-17.142 17.143z"
+                                        fill="#2F8D46" />
+                                    <path
+                                        d="M13.313 14.869c1.942 0 3.32.999 4.14 2.155l-2.025 1.55c-.56-.708-1.22-1.29-2.115-1.29-1.921 0-3.359 1.62-3.359 3.498 0 1.897 1.438 3.518 3.359 3.518 1.139 0 2.05-.623 2.532-1.291v-1.127H13.25v-2.316h4.94v4.444c-1.139 1.51-2.91 2.688-5.018 2.688-3.359 0-5.839-2.47-5.839-5.916.002-3.426 2.48-5.913 5.98-5.913zm13.376 0c1.94 0 3.318.999 4.139 2.155l-2.025 1.55c-.56-.708-1.22-1.29-2.115-1.29-1.921 0-3.359 1.62-3.359 3.498 0 1.897 1.439 3.518 3.359 3.518 1.14 0 2.05-.623 2.532-1.291v-1.127h-2.593v-2.316h4.94v4.444c-1.139 1.51-2.91 2.688-5.017 2.688-3.36 0-5.84-2.47-5.84-5.916.001-3.426 2.48-5.913 5.979-5.913z"
+                                        fill="#2F8D46" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">GeeksforGeeks</h3>
+                                <p class="text-sm text-slate-400">Articles & Practice</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- CodeStudio Card -->
+                    <a href="https://www.naukri.com/code360/" target="_blank" data-platform="CodeStudio"
+                        class="platform-card hover-glow-codestudio bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="#F27121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                    <line x1="14" y1="4" x2="10" y2="20"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">CodeStudio</h3>
+                                <p class="text-sm text-slate-400">Guided Paths & Contests</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- InterviewBit Card -->
+                    <a href="https://www.interviewbit.com/" target="_blank" data-platform="InterviewBit"
+                        class="platform-card hover-glow-interviewbit bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="#008DD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                    <polyline points="9 8 11 10 15 6"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">InterviewBit</h3>
+                                <p class="text-sm text-slate-400">Tracks & Assessments</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                    <!-- AtCoder Card -->
+                    <a href="https://atcoder.jp/" target="_blank" data-platform="AtCoder"
+                        class="platform-card hover-glow-atcoder bg-slate-800 rounded-xl border border-slate-700 p-6 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg viewBox="0 0 24 24" class="w-8 h-8" fill="none" stroke="#00C4DF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 22 20 2 20"></polygon>
+                                    <line x1="7" y1="15" x2="17" y2="15"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">AtCoder</h3>
+                                <p class="text-sm text-slate-400">Contests & Ratings</p>
+                            </div>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <p class="platform-solved-count text-2xl font-bold text-white">0</p>
+                            <p class="text-xs text-slate-400">Solved</p>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- ==================== DSA QUESTIONS VIEW ==================== -->
+        <main id="questions-view" class="hidden w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 view-fade">
+
+            <!-- Top Action Bar -->
+            <div class="flex items-center justify-between mb-4">
+                <button onclick="showDashboard()"
+                    class="flex items-center text-slate-400 hover:text-white transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Dashboard
+                </button>
+                <div class="text-right">
+                    <h2 class="text-xl font-bold text-white">DSA Question Bank</h2>
+                    <p class="text-sm text-slate-400">Every platform, one list</p>
+                </div>
+            </div>
+
+            <!-- Progress summary -->
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-5 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-semibold text-slate-200" id="questions-progress-label">Loading
+                        progress…</span>
+                    <button onclick="resetQuestionProgress()"
+                        class="text-xs text-slate-500 hover:text-red-400 transition-colors">Reset question
+                        progress</button>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+                    <div id="questions-progress-bar" class="bg-emerald-500 h-2.5 rounded-full transition-all"
+                        style="width:0%"></div>
+                </div>
+                <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3" id="platform-legend"></div>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="p-4 border-b border-slate-700 bg-slate-900/50">
+                    <div class="relative">
+                        <svg class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"></path>
+                        </svg>
+                        <input id="question-search" type="text"
+                            placeholder="Filter questions by name, topic, or platform…"
+                            oninput="filterQuestions(this.value)"
+                            class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <!-- Questions Accordion List -->
+                <div class="p-4 max-h-[65vh] overflow-y-auto custom-scrollbar" id="questions-container">
+                    <!-- Populated dynamically by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+
+    </div>
+
+    <!-- ==================== PROFILE MODAL ==================== -->
+    <div id="profile-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl view-fade max-h-[90vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/60 flex items-center justify-between flex-shrink-0">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2" id="profile-modal-title">
+                    <span>👤</span>
+                    <span>Edit Profile & Links</span>
+                </h3>
+                <button onclick="closeProfileModal()" class="text-slate-400 hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-5 flex-grow">
+                <!-- Profile Name -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Profile Name</label>
+                    <input type="text" id="profile-modal-name" placeholder="e.g., Sandeep"
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <!-- Avatar Color Picker -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Avatar Color</label>
+                    <div class="flex items-center gap-3 flex-wrap" id="profile-color-options">
+                        <!-- Rendered by JS -->
+                    </div>
+                    <input type="hidden" id="profile-modal-color" value="#6366f1">
+                </div>
+
+                <!-- GitHub Profile URL -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">GitHub Profile Link</label>
+                    <input type="url" id="profile-modal-github" placeholder="https://github.com/your-username"
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <!-- Coding Platform Links / Handles -->
+                <div class="pt-3 border-t border-slate-700/80">
+                    <label class="block text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3">Custom Coding Platform Links</label>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">LeetCode URL / Profile</label>
+                            <input type="url" id="handle-leetcode" placeholder="https://leetcode.com/u/your-id/"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">HackerRank URL / Profile</label>
+                            <input type="url" id="handle-hackerrank" placeholder="https://www.hackerrank.com/profile/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Codeforces URL / Profile</label>
+                            <input type="url" id="handle-codeforces" placeholder="https://codeforces.com/profile/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">CodeChef URL / Profile</label>
+                            <input type="url" id="handle-codechef" placeholder="https://www.codechef.com/users/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">GeeksforGeeks URL / Profile</label>
+                            <input type="url" id="handle-geeksforgeeks" placeholder="https://auth.geeksforgeeks.org/user/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">CodeStudio URL / Profile</label>
+                            <input type="url" id="handle-codestudio" placeholder="https://www.naukri.com/code360/profile/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">InterviewBit URL / Profile</label>
+                            <input type="url" id="handle-interviewbit" placeholder="https://www.interviewbit.com/profile/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">AtCoder URL / Profile</label>
+                            <input type="url" id="handle-atcoder" placeholder="https://atcoder.jp/users/your-id"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-slate-700 bg-slate-900/60 flex items-center justify-end gap-3 flex-shrink-0">
+                <button onclick="closeProfileModal()" type="button"
+                    class="text-xs font-semibold text-slate-400 hover:text-white px-4 py-2 rounded-lg transition">
+                    Cancel
+                </button>
+                <button onclick="saveProfileModal()" type="button"
+                    class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg">
+                    Save Profile
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
