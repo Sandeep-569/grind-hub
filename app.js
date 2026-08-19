@@ -220,7 +220,13 @@ function loadUserProfile() {
         if (raw) {
             const parsed = JSON.parse(raw);
             if (parsed && typeof parsed === 'object') {
-                return Object.assign({}, DEFAULT_PROFILE, parsed);
+                const profile = Object.assign({}, DEFAULT_PROFILE, parsed);
+                // Sanitize any legacy cat emojis from local storage
+                const legacyCatAvatars = ["🐱", "😸", "😻", "😼", "😽", "🐈‍⬛", "🦁", "🐯", "🐾", "🍼"];
+                if (legacyCatAvatars.includes(profile.avatarEmoji)) {
+                    profile.avatarEmoji = "💻";
+                }
+                return profile;
             }
         }
     } catch (e) {}
@@ -636,7 +642,7 @@ function updateDashboardSummaries() {
     const devRank = getDevRank(solvedCount);
 
     // Navbar XP & rank
-    const navXp = document.getElementById('nav-xp-count');
+    const navXp = document.getElementById('nav-xp-count') || document.getElementById('nav-treats-count');
     if (navXp) navXp.textContent = `${xp.toLocaleString()} XP`;
 
     const navRankIcon = document.getElementById('nav-rank-icon');
@@ -680,8 +686,12 @@ function updateDashboardSummaries() {
         }
     }
 
-    const dashXp = document.getElementById('dash-stat-treats');
+    const dashXp = document.getElementById('dash-stat-xp') || document.getElementById('dash-stat-treats');
     if (dashXp) dashXp.textContent = `${xp.toLocaleString()} XP`;
+    const dashXpSub = document.getElementById('dash-stat-xp-sub') || document.getElementById('dash-stat-treats-sub');
+    if (dashXpSub) dashXpSub.textContent = `+10 XP per solved problem`;
+    const dashXpNext = document.getElementById('dash-stat-xp-next') || document.getElementById('dash-stat-treats-next');
+    if (dashXpNext) dashXpNext.textContent = `Level up your problem solving`;
 }
 
 // ==================== 23-Topic Dashboard Grid Renderer ====================
