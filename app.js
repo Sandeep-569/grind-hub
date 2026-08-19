@@ -1,4 +1,4 @@
-// ==================== GrindHub: Professional DSA & Competitive Programming Vault ====================
+// ==================== GrindHub: Professional DSA Problem Tracker ====================
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
@@ -6,60 +6,20 @@ const SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
 const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
 
-// --- Professional Developer Avatars & Palettes ---
-const DEV_AVATARS = ["💻", "⚡", "🚀", "🛡️", "🎯", "🧠", "🔥", "💎", "☕", "🌐"];
-
 const PRESET_COLORS = [
-    { name: "Electric Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.35)" },
-    { name: "Neon Indigo", hex: "#6366f1", glow: "rgba(99, 102, 241, 0.35)" },
-    { name: "Emerald Green", hex: "#10b981", glow: "rgba(16, 185, 129, 0.35)" },
-    { name: "Cyan Teal", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.35)" },
-    { name: "Amber Gold", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.35)" },
-    { name: "Laser Purple", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.35)" },
-    { name: "Crimson Rose", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.35)" },
-    { name: "Slate Silver", hex: "#64748b", glow: "rgba(100, 116, 139, 0.35)" }
-];
-
-const TOPIC_ICONS = {
-    "Patterns": "📐",
-    "Bit Manipulation & Math": "⚡",
-    "Arrays": "📦",
-    "Matrix": "🔢",
-    "Strings": "🔤",
-    "Searching": "🔍",
-    "Sorting": "📊",
-    "Two Pointer & Sliding Window": "🪟",
-    "Linked List": "🔗",
-    "Stacks & Queues": "📚",
-    "HashMap / Hash Table": "🗺️",
-    "Recursion & Backtracking": "🌀",
-    "Greedy": "💰",
-    "Intervals": "⏱️",
-    "Trees": "🌲",
-    "Heaps": "⛰️",
-    "Tries": "🌴",
-    "Graphs": "🕸️",
-    "Union Find / Disjoint Set": "🤝",
-    "Dynamic Programming": "🧩",
-    "Segment Tree / Binary Indexed Tree": "🎋",
-    "Design": "🏗️",
-    "OOP": "🏛️",
-    "_default": "📌"
-};
-
-const DEV_RANKS = [
-    { min: 0, title: "Apprentice Developer", icon: "🌱", nextDesc: "Solve 25 for Junior Engineer", nextTarget: 25 },
-    { min: 25, title: "Junior Engineer", icon: "⚡", nextDesc: "Solve 100 for Software Engineer", nextTarget: 100 },
-    { min: 100, title: "Software Engineer", icon: "🚀", nextDesc: "Solve 250 for Senior Engineer", nextTarget: 250 },
-    { min: 250, title: "Senior Engineer", icon: "🔥", nextDesc: "Solve 500 for Staff Engineer", nextTarget: 500 },
-    { min: 500, title: "Staff Engineer", icon: "💎", nextDesc: "Solve 1,000 for Principal Architect", nextTarget: 1000 },
-    { min: 1000, title: "Principal Architect", icon: "👑", nextDesc: "Master of all algorithms!", nextTarget: 3532 }
+    { name: "Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.25)" },
+    { name: "Indigo", hex: "#6366f1", glow: "rgba(99, 102, 241, 0.25)" },
+    { name: "Emerald", hex: "#10b981", glow: "rgba(16, 185, 129, 0.25)" },
+    { name: "Cyan", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.25)" },
+    { name: "Violet", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.25)" },
+    { name: "Rose", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.25)" },
+    { name: "Amber", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.25)" },
+    { name: "Slate", hex: "#64748b", glow: "rgba(100, 116, 139, 0.25)" }
 ];
 
 const DEFAULT_PROFILE = {
     name: "Coder",
     color: "#3b82f6",
-    avatarEmoji: "💻",
     soundEnabled: true,
     github: "",
     codolioUrl: ""
@@ -123,8 +83,8 @@ function goToTopicQuestions(topicKey) {
         if (sectionEl && contentEl) {
             if (contentEl.classList.contains('hidden')) toggleAccordion(sectionId);
             sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            sectionEl.classList.add('ring-2', 'ring-blue-400');
-            setTimeout(() => sectionEl.classList.remove('ring-2', 'ring-blue-400'), 1600);
+            sectionEl.classList.add('ring-1', 'ring-blue-500');
+            setTimeout(() => sectionEl.classList.remove('ring-1', 'ring-blue-500'), 1500);
         }
     }, 100);
 }
@@ -134,21 +94,26 @@ function slugify(s) {
     return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+function getInitial(name) {
+    if (!name || !name.trim()) return 'C';
+    return name.trim().charAt(0).toUpperCase();
+}
+
 function topicPill(topicKey) {
     if (!topicKey) return '';
     const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-blue-400 bg-blue-950/40 border-blue-500/30';
-    return `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border ${cls}">${topicKey}</span>`;
+    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold border ${cls}">${topicKey}</span>`;
 }
 
 function platformPill(platform) {
-    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-slate-300 bg-slate-400/10 border-slate-400/30';
-    return `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border flex-shrink-0 ${cls}">${platform || 'Other'}</span>`;
+    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-slate-300 bg-slate-800 border-slate-700';
+    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold border flex-shrink-0 ${cls}">${platform || 'Other'}</span>`;
 }
 
 function difficultyBadgeClasses(difficulty) {
-    if (difficulty === 'Easy') return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
-    if (difficulty === 'Medium') return 'text-amber-400 bg-amber-500/10 border-amber-500/30';
-    return 'text-rose-400 bg-rose-500/10 border-rose-500/30';
+    if (difficulty === 'Easy') return 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40';
+    if (difficulty === 'Medium') return 'text-amber-400 bg-amber-950/40 border-amber-800/40';
+    return 'text-rose-400 bg-rose-950/40 border-rose-800/40';
 }
 
 function escJs(str) {
@@ -159,7 +124,7 @@ function escAttr(str) {
     return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
-// ==================== Audio Synthesis (Professional Chime FX) ====================
+// ==================== Audio Feedback ====================
 let audioCtx = null;
 
 function playProChime() {
@@ -179,19 +144,16 @@ function playProChime() {
         osc.connect(gain);
         gain.connect(audioCtx.destination);
 
-        // Clean, pleasant modern UI completion chime
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, now); // C5
-        osc.frequency.setValueAtTime(659.25, now + 0.06); // E5
-        osc.frequency.setValueAtTime(783.99, now + 0.12); // G5
-        osc.frequency.setValueAtTime(1046.50, now + 0.18); // C6
+        osc.frequency.setValueAtTime(587.33, now); // D5
+        osc.frequency.setValueAtTime(880.00, now + 0.05); // A5
 
         gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.14, now + 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        gain.gain.linearRampToValueAtTime(0.08, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
 
         osc.start(now);
-        osc.stop(now + 0.4);
+        osc.stop(now + 0.25);
     } catch (e) {}
 }
 
@@ -199,13 +161,13 @@ function toggleSound() {
     userProfile.soundEnabled = !userProfile.soundEnabled;
     saveUserProfile(userProfile);
     updateSoundUI();
-    showToast(userProfile.soundEnabled ? "Audio Effects: Enabled 🔊" : "Audio Effects: Muted 🔇");
+    showToast(userProfile.soundEnabled ? "Audio On" : "Audio Off");
 }
 
 function updateSoundUI() {
     const btn = document.getElementById('sound-toggle-icon');
     if (btn) {
-        btn.textContent = userProfile.soundEnabled ? "🔊" : "🔇";
+        btn.textContent = userProfile.soundEnabled ? "Sound On" : "Sound Off";
     }
     const modalSound = document.getElementById('profile-modal-sound');
     if (modalSound) {
@@ -213,20 +175,14 @@ function updateSoundUI() {
     }
 }
 
-// ==================== User Profile & Theme Accent ====================
+// ==================== User Profile ====================
 function loadUserProfile() {
     try {
         const raw = localStorage.getItem(PROFILE_KEY);
         if (raw) {
             const parsed = JSON.parse(raw);
             if (parsed && typeof parsed === 'object') {
-                const profile = Object.assign({}, DEFAULT_PROFILE, parsed);
-                // Sanitize any legacy cat emojis from local storage
-                const legacyCatAvatars = ["🐱", "😸", "😻", "😼", "😽", "🐈‍⬛", "🦁", "🐯", "🐾", "🍼"];
-                if (legacyCatAvatars.includes(profile.avatarEmoji)) {
-                    profile.avatarEmoji = "💻";
-                }
-                return profile;
+                return Object.assign({}, DEFAULT_PROFILE, parsed);
             }
         }
     } catch (e) {}
@@ -242,28 +198,27 @@ function saveUserProfile(profile) {
 function applyThemeAccent(hexColor) {
     if (!hexColor) return;
     const preset = PRESET_COLORS.find(p => p.hex.toLowerCase() === hexColor.toLowerCase());
-    const glow = preset ? preset.glow : 'rgba(59, 130, 246, 0.35)';
+    const glow = preset ? preset.glow : 'rgba(59, 130, 246, 0.25)';
     document.documentElement.style.setProperty('--pro-accent', hexColor);
     document.documentElement.style.setProperty('--pro-glow', glow);
-    document.documentElement.style.setProperty('--border-hover', glow);
+    document.documentElement.style.setProperty('--border-hover', hexColor);
 }
 
 function updateProfileUI() {
     const profileName = (userProfile.name || 'Coder').trim();
-    const avatarEmoji = userProfile.avatarEmoji || '💻';
     applyThemeAccent(userProfile.color || '#3b82f6');
 
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
-        avatarEl.textContent = avatarEmoji;
+        avatarEl.textContent = getInitial(profileName);
         avatarEl.style.backgroundColor = userProfile.color || '#3b82f6';
     }
     if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Click to edit profile" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 font-black cursor-pointer hover:underline">${escAttr(profileName)}</span>! 🚀`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-blue-400 cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
     }
     const dashNameEl = document.getElementById('dashboard-user-name');
     if (dashNameEl) {
@@ -318,10 +273,6 @@ function openProfileModal() {
     if (githubInput) githubInput.value = userProfile.github || '';
     if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
-    renderAvatarOptions('profile-avatar-options', userProfile.avatarEmoji || '💻', (selected) => {
-        userProfile.avatarEmoji = selected;
-    });
-
     renderColorOptions('profile-color-options', userProfile.color || '#3b82f6', (selected) => {
         if (colorInput) colorInput.value = selected;
     });
@@ -362,25 +313,7 @@ function saveProfileModal() {
 
     updateProfileUI();
     closeProfileModal();
-    showToast("Profile Settings Saved ⚡");
-}
-
-function renderAvatarOptions(containerId, activeAvatar, onSelect) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = '';
-
-    DEV_AVATARS.forEach(emoji => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = `w-9 h-9 rounded-xl text-lg flex items-center justify-center transition cursor-pointer border ${emoji === activeAvatar ? 'border-blue-500 bg-blue-500/20 scale-110 shadow-md shadow-blue-500/30' : 'border-slate-800 bg-slate-900/80 hover:border-slate-600'}`;
-        btn.textContent = emoji;
-        btn.onclick = () => {
-            renderAvatarOptions(containerId, emoji, onSelect);
-            onSelect(emoji);
-        };
-        container.appendChild(btn);
-    });
+    showToast("Profile Saved");
 }
 
 function renderColorOptions(containerId, activeColor, onSelect) {
@@ -392,7 +325,7 @@ function renderColorOptions(containerId, activeColor, onSelect) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.title = c.name;
-        btn.className = `w-7 h-7 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-slate-900 shadow-lg' : 'opacity-70 hover:opacity-100 hover:scale-110'}`;
+        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-slate-900' : 'opacity-70 hover:opacity-100'}`;
         btn.style.backgroundColor = c.hex;
         btn.onclick = () => {
             renderColorOptions(containerId, c.hex, onSelect);
@@ -402,13 +335,12 @@ function renderColorOptions(containerId, activeColor, onSelect) {
     });
 }
 
-// ==================== First-Time Welcome Modal ====================
+// ==================== First-Time Onboarding ====================
 function checkFirstTimeUser() {
     try {
         const hasVisited = localStorage.getItem(VISITED_KEY);
         if (hasVisited === 'true') return;
 
-        // If profile was already customized and saved, mark visited and never ask again
         const rawProfile = localStorage.getItem(PROFILE_KEY);
         if (rawProfile) {
             const p = JSON.parse(rawProfile);
@@ -429,12 +361,6 @@ function openWelcomeModal() {
     if (!modal) return;
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-
-    let selectedAvatar = '💻';
-    renderAvatarOptions('welcome-avatar-options', selectedAvatar, (avatar) => {
-        selectedAvatar = avatar;
-        userProfile.avatarEmoji = avatar;
-    });
 
     const nameInput = document.getElementById('welcome-modal-name');
     if (nameInput) {
@@ -466,7 +392,7 @@ function submitWelcomeModal() {
 
     updateProfileUI();
     closeWelcomeModal();
-    showToast(`Welcome to GrindHub, ${name}! 🚀`);
+    showToast(`Welcome, ${name}`);
     playProChime();
 }
 
@@ -532,7 +458,6 @@ function toggleQuestionStarred(urlKey, ev) {
         updateSingleQuestionStarUI(urlKey, true);
         playProChime();
     }
-    // If viewing starred filter, re-render
     if (vaultFilters.status === 'starred') {
         renderQuestions();
     }
@@ -560,24 +485,24 @@ function updateSingleQuestionStarUI(urlKey, isStarred) {
     document.querySelectorAll(`button[data-starurl="${CSS.escape(urlKey)}"]`).forEach(btn => {
         if (isStarred) {
             btn.classList.add('starred');
-            btn.textContent = '⭐';
-            btn.title = 'Remove star';
+            btn.textContent = '★';
+            btn.title = 'Remove bookmark';
         } else {
             btn.classList.remove('starred');
             btn.textContent = '☆';
-            btn.title = 'Star problem for revision';
+            btn.title = 'Bookmark problem';
         }
     });
 }
 
 function resetQuestionProgress() {
-    if (confirm("Reset all problem progress? This will uncheck all solved problems in your local storage.")) {
+    if (confirm("Reset all problem progress? This will uncheck all solved problems.")) {
         solvedSet.clear();
         saveSolvedQuestions();
         renderQuestions();
         updateDashboardSummaries();
         renderDashboardTopicGrid();
-        showToast("All progress reset ⚡");
+        showToast("All progress reset");
     }
 }
 
@@ -589,27 +514,14 @@ function showToast(msg) {
     if (!toast || !toastText) return;
 
     toastText.textContent = msg;
-    toast.classList.remove('translate-y-12', 'opacity-0');
+    toast.classList.remove('translate-y-8', 'opacity-0');
     toast.classList.add('translate-y-0', 'opacity-100');
 
     if (toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-12', 'opacity-0');
-    }, 2200);
-}
-
-// ==================== Developer Rank Calculation ====================
-function getDevRank(solvedCount) {
-    let currentRank = DEV_RANKS[0];
-    for (let i = 0; i < DEV_RANKS.length; i++) {
-        if (solvedCount >= DEV_RANKS[i].min) {
-            currentRank = DEV_RANKS[i];
-        } else {
-            break;
-        }
-    }
-    return currentRank;
+        toast.classList.add('translate-y-8', 'opacity-0');
+    }, 2000);
 }
 
 // ==================== Dashboard Summaries & Stats ====================
@@ -638,24 +550,13 @@ function updateDashboardSummaries() {
     }
 
     const pct = totalQuestions ? Math.round((solvedCount / totalQuestions) * 100) : 0;
-    const xp = solvedCount * 10;
-    const devRank = getDevRank(solvedCount);
+    const remaining = Math.max(0, totalQuestions - solvedCount);
 
-    // Navbar XP & rank
-    const navXp = document.getElementById('nav-xp-count') || document.getElementById('nav-treats-count');
-    if (navXp) navXp.textContent = `${xp.toLocaleString()} XP`;
-
-    const navRankIcon = document.getElementById('nav-rank-icon');
-    const navRankTitle = document.getElementById('nav-rank-title');
-    if (navRankIcon) navRankIcon.textContent = devRank.icon;
-    if (navRankTitle) navRankTitle.textContent = devRank.title;
-
-    // Dashboard 4 stat cards
     const dashSolved = document.getElementById('dash-stat-solved');
     const dashProg = document.getElementById('dash-stat-progress');
     const dashBar = document.getElementById('dash-stat-bar');
     if (dashSolved) dashSolved.textContent = solvedCount.toLocaleString();
-    if (dashProg) dashProg.textContent = `${pct}% of ${totalQuestions.toLocaleString()} problems`;
+    if (dashProg) dashProg.textContent = `${pct}% Completed (${solvedCount}/${totalQuestions})`;
     if (dashBar) dashBar.style.width = `${pct}%`;
 
     const dashEasy = document.getElementById('dash-solved-easy');
@@ -665,33 +566,8 @@ function updateDashboardSummaries() {
     if (dashMed) dashMed.textContent = `M: ${solvedMed}`;
     if (dashHard) dashHard.textContent = `H: ${solvedHard}`;
 
-    const dashRankIcon = document.getElementById('dash-stat-rank-icon');
-    const dashRankTitle = document.getElementById('dash-stat-rank-title');
-    const dashRankDesc = document.getElementById('dash-stat-rank-desc');
-    const dashRankBar = document.getElementById('dash-stat-rank-bar');
-    if (dashRankIcon) dashRankIcon.textContent = devRank.icon;
-    if (dashRankTitle) dashRankTitle.textContent = devRank.title;
-    if (dashRankDesc) dashRankDesc.textContent = devRank.nextDesc;
-
-    if (dashRankBar) {
-        const rankIdx = DEV_RANKS.indexOf(devRank);
-        const nextRank = DEV_RANKS[rankIdx + 1];
-        if (nextRank) {
-            const range = nextRank.min - devRank.min;
-            const progress = solvedCount - devRank.min;
-            const rankPct = Math.min(100, Math.round((progress / range) * 100));
-            dashRankBar.style.width = `${rankPct}%`;
-        } else {
-            dashRankBar.style.width = `100%`;
-        }
-    }
-
-    const dashXp = document.getElementById('dash-stat-xp') || document.getElementById('dash-stat-treats');
-    if (dashXp) dashXp.textContent = `${xp.toLocaleString()} XP`;
-    const dashXpSub = document.getElementById('dash-stat-xp-sub') || document.getElementById('dash-stat-treats-sub');
-    if (dashXpSub) dashXpSub.textContent = `+10 XP per solved problem`;
-    const dashXpNext = document.getElementById('dash-stat-xp-next') || document.getElementById('dash-stat-treats-next');
-    if (dashXpNext) dashXpNext.textContent = `Level up your problem solving`;
+    const dashRemaining = document.getElementById('dash-stat-remaining');
+    if (dashRemaining) dashRemaining.textContent = `${remaining.toLocaleString()} Unsolved`;
 }
 
 // ==================== 23-Topic Dashboard Grid Renderer ====================
@@ -701,7 +577,6 @@ function renderDashboardTopicGrid() {
 
     let html = '';
     for (const topic in questionsData) {
-        const icon = TOPIC_ICONS[topic] || TOPIC_ICONS['_default'];
         let total = 0;
         let solved = 0;
         let easyCount = (questionsData[topic].Easy || []).length;
@@ -719,36 +594,31 @@ function renderDashboardTopicGrid() {
         const colorCls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topic]) ? TOPIC_COLORS[topic] : 'text-blue-400 bg-blue-950/40 border-blue-500/30';
 
         html += `
-        <div onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-roadmap-card p-5 cursor-pointer flex flex-col justify-between group">
+        <div onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-roadmap-card p-4 sm:p-5 cursor-pointer flex flex-col justify-between group">
             <div>
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-2xl">${icon}</span>
-                        <h3 class="font-extrabold text-sm sm:text-base text-white group-hover:text-blue-300 transition-colors">${topic}</h3>
-                    </div>
-                    <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full border ${colorCls}">
+                <div class="flex items-center justify-between mb-2.5">
+                    <h3 class="font-bold text-sm sm:text-base text-white group-hover:text-blue-400 transition-colors">${topic}</h3>
+                    <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded border ${colorCls}">
                         ${solved}/${total}
                     </span>
                 </div>
 
-                <!-- Difficulty Count Chips -->
                 <div class="flex items-center gap-2 mb-3 text-[11px] font-mono">
-                    <span class="text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">E: ${easyCount}</span>
-                    <span class="text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">M: ${medCount}</span>
-                    <span class="text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20">H: ${hardCount}</span>
+                    <span class="text-emerald-400 bg-emerald-950/40 px-1.5 py-0.5 rounded border border-emerald-900/50">E: ${easyCount}</span>
+                    <span class="text-amber-400 bg-amber-950/40 px-1.5 py-0.5 rounded border border-amber-900/50">M: ${medCount}</span>
+                    <span class="text-rose-400 bg-rose-950/40 px-1.5 py-0.5 rounded border border-rose-900/50">H: ${hardCount}</span>
                 </div>
             </div>
 
             <div>
-                <!-- Topic Progress Bar -->
                 <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 mb-2">
-                    <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                    <div class="bg-blue-500 h-full rounded-full transition-all duration-300" style="width: ${pct}%"></div>
                 </div>
                 <div class="flex items-center justify-between text-[11px] text-slate-400">
-                    <span class="font-mono">${pct}% completed</span>
-                    <span class="text-blue-400 group-hover:text-blue-300 font-bold flex items-center gap-1">
+                    <span class="font-mono">${pct}%</span>
+                    <span class="text-blue-400 group-hover:text-blue-300 font-semibold flex items-center gap-1">
                         <span>Solve</span>
-                        <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </span>
                 </div>
             </div>
@@ -765,17 +635,15 @@ function renderTopicQuickJumpBar() {
 
     let html = '';
     for (const topic in questionsData) {
-        const icon = TOPIC_ICONS[topic] || '📌';
         html += `
-        <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 text-xs font-semibold text-slate-300 hover:text-white border border-slate-800 transition cursor-pointer flex-shrink-0">
-            <span>${icon}</span>
-            <span>${topic}</span>
+        <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill px-3 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-slate-300 hover:text-white border border-slate-700 transition cursor-pointer flex-shrink-0">
+            ${topic}
         </button>`;
     }
     bar.innerHTML = html;
 }
 
-// ==================== Questions View Mastery & Progress ====================
+// ==================== Questions View Progress ====================
 function updateQuestionsViewProgress() {
     let total = 0;
     let solved = 0;
@@ -806,18 +674,17 @@ function updateQuestionsViewProgress() {
 
     if (bar) bar.style.width = `${pct}%`;
     if (label) label.textContent = `${solved.toLocaleString()} of ${total.toLocaleString()} problems completed`;
-    if (pctBadge) pctBadge.textContent = `${pct}% Mastered`;
+    if (pctBadge) pctBadge.textContent = `${pct}% Completed`;
 
-    // Render Platform Legend
     const legend = document.getElementById('platform-legend');
     if (legend) {
         legend.innerHTML = Object.keys(platformCounts).sort().map(p => {
             const count = platformCounts[p];
             const pSol = platformSolved[p] || 0;
-            const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-slate-300 bg-slate-400/10 border-slate-400/30';
-            return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold border ${cls}">
+            const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-slate-300 bg-slate-800 border-slate-700';
+            return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border ${cls}">
                 <span>${p}</span>
-                <span class="text-slate-400 font-mono text-[11px] font-bold">${pSol}/${count}</span>
+                <span class="text-slate-400 font-mono text-[11px]">${pSol}/${count}</span>
             </span>`;
         }).join('');
     }
@@ -830,9 +697,9 @@ function setVaultStatusFilter(status) {
         const btn = document.getElementById(`filter-status-${s}`);
         if (btn) {
             if (s === status) {
-                btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition cursor-pointer bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-sm';
+                btn.className = 'px-3 py-1.5 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
             } else {
-                btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition cursor-pointer border border-transparent';
+                btn.className = 'px-3 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-white transition cursor-pointer';
             }
         }
     });
@@ -845,9 +712,9 @@ function setVaultDiffFilter(diff) {
         const btn = document.getElementById(`filter-diff-${d}`);
         if (btn) {
             if (d === diff) {
-                btn.className = 'px-2.5 py-1 text-xs font-bold rounded-lg transition cursor-pointer bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-sm';
+                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
             } else {
-                btn.className = 'px-2.5 py-1 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition cursor-pointer border border-transparent';
+                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-slate-400 hover:text-white transition cursor-pointer';
             }
         }
     });
@@ -946,7 +813,6 @@ function renderQuestions() {
         const visibleCount = easyFiltered.length + medFiltered.length + hardFiltered.length;
         totalMatchingQuestions += visibleCount;
 
-        // Calculate total solved in topic from full dataset
         ['Easy', 'Medium', 'Hard'].forEach(diff => {
             (questionsData[topic][diff] || []).forEach(q => {
                 totalInTopic++;
@@ -956,23 +822,21 @@ function renderQuestions() {
 
         const topicPct = totalInTopic ? Math.round((solvedInTopic / totalInTopic) * 100) : 0;
         const isOpen = (query || statusFilter !== 'all' || diffFilter !== 'all' || platFilter !== 'all') ? true : openAccordions.has(sectionId);
-        const icon = TOPIC_ICONS[topic] || '📌';
 
         if (visibleCount === 0 && (query || statusFilter !== 'all' || diffFilter !== 'all' || platFilter !== 'all')) {
             continue;
         }
 
         html += `
-        <div id="${sectionId}" class="rounded-2xl pro-card border border-slate-800 overflow-hidden transition shadow-sm mb-3">
-            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-slate-900/60 transition">
+        <div id="${sectionId}" class="rounded-xl pro-card border border-slate-800 overflow-hidden mb-3">
+            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-slate-850 transition">
                 <div class="flex items-center gap-2.5 flex-wrap">
-                    <span class="text-xl">${icon}</span>
-                    <span class="font-black text-sm sm:text-base text-slate-100">${topic}</span>
+                    <span class="font-bold text-sm sm:text-base text-slate-100">${topic}</span>
                     ${topicPill(topic)}
-                    <span class="text-xs font-mono font-bold text-blue-400 bg-blue-500/10 px-2.5 py-0.5 rounded-full border border-blue-500/20">
+                    <span class="text-xs font-mono font-semibold text-slate-400">
                         ${solvedInTopic}/${totalInTopic} (${topicPct}%)
                     </span>
-                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-slate-400">Showing ${visibleCount}</span>` : ''}
+                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-slate-500">Showing ${visibleCount}</span>` : ''}
                 </div>
                 <div class="flex items-center gap-2">
                     <svg id="icon-${sectionId}" class="w-4 h-4 text-slate-400 transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -981,7 +845,7 @@ function renderQuestions() {
                 </div>
             </button>
 
-            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-slate-800/80 p-3 sm:p-4 bg-slate-950/60 space-y-4">
+            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-slate-800 p-3 sm:p-4 bg-slate-950/40 space-y-4">
                 ${renderDifficultyBlock('Easy', easyFiltered, sectionId)}
                 ${renderDifficultyBlock('Medium', medFiltered, sectionId)}
                 ${renderDifficultyBlock('Hard', hardFiltered, sectionId)}
@@ -991,12 +855,11 @@ function renderQuestions() {
 
     if (!html) {
         html = `
-        <div class="pro-card p-10 rounded-2xl border border-slate-800 text-center text-slate-400">
-            <span class="text-4xl block mb-3">🔍</span>
-            <p class="font-extrabold text-base text-white">No questions matched your filters</p>
-            <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Try clearing your search query or switching your status/difficulty filters.</p>
-            <button onclick="clearAllVaultFilters()" class="mt-4 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 text-xs font-bold rounded-xl border border-blue-500/30 transition cursor-pointer">
-                Clear All Filters
+        <div class="pro-card p-8 rounded-xl border border-slate-800 text-center text-slate-400">
+            <p class="font-bold text-base text-white">No problems found</p>
+            <p class="text-xs text-slate-400 mt-1">Try adjusting your search query or filters.</p>
+            <button onclick="clearAllVaultFilters()" class="mt-3 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
+                Clear Filters
             </button>
         </div>`;
     }
@@ -1024,24 +887,21 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
         const isStarred = starredSet.has(q.url);
         const urlAttr = escAttr(q.url);
         return `
-        <div class="question-row flex items-center justify-between p-2.5 sm:px-3.5 rounded-xl border border-slate-800/80 bg-slate-900/70 hover:border-blue-500/30 transition ${isSolved ? 'opacity-50' : ''}">
+        <div class="question-row flex items-center justify-between p-2.5 sm:px-3 rounded-lg border border-slate-800 bg-slate-900/60 transition ${isSolved ? 'opacity-50' : ''}">
             <div class="flex items-center gap-3 min-w-0 flex-grow pr-2">
-                <!-- Checkbox -->
                 <input type="checkbox" class="pro-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
                 
-                <!-- Star Button -->
-                <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove star' : 'Star problem'}">
-                    ${isStarred ? '⭐' : '☆'}
+                <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
+                    ${isStarred ? '★' : '☆'}
                 </button>
 
-                <!-- Problem Link -->
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs sm:text-sm font-semibold text-slate-100 hover:text-blue-300 transition truncate hover:underline ${isSolved ? 'line-through text-slate-400' : ''}">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs sm:text-sm font-medium text-slate-200 hover:text-blue-400 transition truncate hover:underline ${isSolved ? 'line-through text-slate-500' : ''}">
                     ${escAttr(q.title)}
                 </a>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
                 ${platformPill(q.platform)}
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white p-1 rounded transition" title="Open problem in new tab">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white p-1 transition" title="Open external link">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
@@ -1053,8 +913,8 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
     return `
     <div>
         <div class="flex items-center gap-2 mb-2">
-            <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider border ${badgeCls}">${difficulty}</span>
-            <span class="text-[11px] font-mono font-bold text-slate-400">(${list.length})</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
+            <span class="text-[11px] font-mono text-slate-400">(${list.length})</span>
         </div>
         <div class="space-y-1.5">
             ${itemsHtml}
@@ -1062,7 +922,7 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
     </div>`;
 }
 
-// ==================== Random Challenge Picker ====================
+// ==================== Random Problem Picker ====================
 function pickRandomQuestion() {
     if (typeof questionsData === 'undefined') return;
     const unsolvedList = [];
@@ -1085,11 +945,11 @@ function pickRandomQuestion() {
     const randomPick = pool[Math.floor(Math.random() * pool.length)];
     goToTopicQuestions(randomPick.topic);
 
-    showToast(`Random Challenge: ${randomPick.title} (${randomPick.diff}) 🎲`);
+    showToast(`Selected: ${randomPick.title} (${randomPick.diff})`);
     playProChime();
 }
 
-// ==================== Global Fast Search Dropdown ====================
+// ==================== Global Search Dropdown ====================
 function handleGlobalSearch(query) {
     const resultsContainer = document.getElementById('global-search-results');
     if (!resultsContainer) return;
@@ -1119,42 +979,41 @@ function handleGlobalSearch(query) {
     }
 
     if (matches.length === 0) {
-        resultsContainer.innerHTML = `<div class="p-5 text-xs text-slate-400 text-center font-semibold">No questions found matching "${escAttr(query)}"</div>`;
+        resultsContainer.innerHTML = `<div class="p-4 text-xs text-slate-400 text-center font-medium">No problems found matching "${escAttr(query)}"</div>`;
         resultsContainer.classList.remove('hidden');
         return;
     }
 
-    const maxShown = 35;
+    const maxShown = 30;
     const listHtml = matches.slice(0, maxShown).map(item => {
         const isSolved = solvedSet.has(item.url);
         const badgeCls = difficultyBadgeClasses(item.diff);
         return `
-        <div class="p-3 border-b border-slate-800/80 hover:bg-slate-900/80 transition flex items-center justify-between gap-3">
+        <div class="p-3 border-b border-slate-800 hover:bg-slate-800/60 transition flex items-center justify-between gap-3">
             <div class="min-w-0 flex-grow">
                 <div class="flex items-center gap-2 mb-1 flex-wrap">
-                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase border ${badgeCls}">${item.diff}</span>
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase border ${badgeCls}">${item.diff}</span>
                     ${platformPill(item.platform)}
                     ${topicPill(item.topic)}
                 </div>
-                <a href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold text-white hover:text-blue-300 transition truncate block ${isSolved ? 'line-through text-slate-400' : ''}">
+                <a href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-medium text-white hover:text-blue-400 transition truncate block ${isSolved ? 'line-through text-slate-400' : ''}">
                     ${escAttr(item.title)}
                 </a>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
-                <button type="button" onclick="goToTopicQuestions('${escJs(item.topic)}'); document.getElementById('global-search-results').classList.add('hidden');" class="text-[11px] font-bold text-blue-400 hover:text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-xl border border-blue-500/20 cursor-pointer transition">
-                    Jump to Topic
+                <button type="button" onclick="goToTopicQuestions('${escJs(item.topic)}'); document.getElementById('global-search-results').classList.add('hidden');" class="text-[11px] font-semibold text-blue-400 hover:text-blue-300 bg-slate-800 px-2.5 py-1 rounded border border-slate-700 cursor-pointer transition">
+                    Jump
                 </button>
             </div>
         </div>`;
     }).join('');
 
     resultsContainer.innerHTML = `
-        <div class="p-2.5 bg-slate-950 border-b border-slate-800 text-[11px] font-bold text-blue-400 flex items-center justify-between">
-            <span>Found ${matches.length} questions matching "${escAttr(query)}"</span>
-            <span>⚡</span>
+        <div class="p-2.5 bg-slate-900 border-b border-slate-800 text-[11px] font-semibold text-slate-400 flex items-center justify-between">
+            <span>Found ${matches.length} matching problems</span>
         </div>
         ${listHtml}
-        ${matches.length > maxShown ? `<div class="p-2.5 text-center text-xs text-slate-400 font-mono">Showing first ${maxShown} results. Refine search for more.</div>` : ''}
+        ${matches.length > maxShown ? `<div class="p-2.5 text-center text-xs text-slate-500 font-mono">Showing first ${maxShown} results</div>` : ''}
     `;
     resultsContainer.classList.remove('hidden');
 }
@@ -1168,7 +1027,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Keyboard shortcuts: '/' or 'Ctrl/Cmd+K' to search, 'Escape' to close
+// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
         e.preventDefault();
@@ -1192,7 +1051,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ==================== Initialize Application ====================
+// ==================== Initialization ====================
 document.addEventListener('DOMContentLoaded', () => {
     updateProfileUI();
     updateDashboardSummaries();
