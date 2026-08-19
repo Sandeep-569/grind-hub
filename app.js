@@ -302,7 +302,6 @@ function loadUserProfile() {
             }
         }
     } catch (e) {}
-    saveUserProfile(DEFAULT_PROFILE);
     return JSON.parse(JSON.stringify(DEFAULT_PROFILE));
 }
 
@@ -434,6 +433,10 @@ function saveProfileModal() {
     userProfile.soundEnabled = modalSound ? modalSound.checked : true;
 
     saveUserProfile(userProfile);
+    try {
+        localStorage.setItem(VISITED_KEY, 'true');
+    } catch (e) {}
+
     updateProfileUI();
     closeProfileModal();
     showToast("Profile & Cyber-Neko Persona Saved! 🐾");
@@ -480,11 +483,22 @@ function renderColorOptions(containerId, activeColor, onSelect) {
 function checkFirstTimeUser() {
     try {
         const hasVisited = localStorage.getItem(VISITED_KEY);
-        if (!hasVisited) {
-            setTimeout(() => {
-                openWelcomeModal();
-            }, 350);
+        // If visited key is set, never ask again
+        if (hasVisited === 'true') return;
+
+        // If profile was already customized and saved, mark visited and never ask again
+        const rawProfile = localStorage.getItem(PROFILE_KEY);
+        if (rawProfile) {
+            const p = JSON.parse(rawProfile);
+            if (p && p.name && p.name.trim() !== '' && p.name !== 'Coder') {
+                localStorage.setItem(VISITED_KEY, 'true');
+                return;
+            }
         }
+
+        setTimeout(() => {
+            openWelcomeModal();
+        }, 350);
     } catch (e) {}
 }
 
@@ -513,6 +527,9 @@ function closeWelcomeModal() {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
     }
+    try {
+        localStorage.setItem(VISITED_KEY, 'true');
+    } catch (e) {}
 }
 
 function submitWelcomeModal() {
@@ -830,7 +847,6 @@ function renderTopicQuickJumpBar() {
     let html = '';
     for (const topic in questionsData) {
         const icon = TOPIC_ICONS[topic] || '🐾';
-        const sectionId = `topic-${slugify(topic)}`;
         html += `
         <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 text-xs font-semibold text-slate-300 hover:text-white border border-slate-800 transition cursor-pointer flex-shrink-0">
             <span>${icon}</span>
@@ -1095,7 +1111,7 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
                 <input type="checkbox" class="paw-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
                 
                 <!-- Star Button -->
-                <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} text-sm focus:outline-none" title="${isStarred ? 'Remove star' : 'Star problem'}">
+                <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove star' : 'Star problem'}">
                     ${isStarred ? '⭐' : '☆'}
                 </button>
 
@@ -1197,7 +1213,7 @@ function handleGlobalSearch(query) {
         <div class="p-3 border-b border-slate-800/80 hover:bg-slate-900/80 transition flex items-center justify-between gap-3">
             <div class="min-w-0 flex-grow">
                 <div class="flex items-center gap-2 mb-1 flex-wrap">
-                    <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-extrabold uppercase border ${badgeCls}">${item.diff}</span>
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase border ${badgeCls}">${item.diff}</span>
                     ${platformPill(item.platform)}
                     ${topicPill(item.topic)}
                 </div>

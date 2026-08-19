@@ -27,6 +27,10 @@
     --cat-emerald-glow: rgba(16, 185, 129, 0.3);
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html, body {
     background-color: var(--bg-void);
     color: #f1f5f9;
@@ -121,7 +125,7 @@ body {
     -webkit-appearance: none;
     width: 22px;
     height: 22px;
-    border: 2px solid rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.22);
     border-radius: 7px;
     background: #090d16;
     cursor: pointer;
@@ -132,6 +136,7 @@ body {
     justify-content: center;
     flex-shrink: 0;
     outline: none;
+    margin: 0;
 }
 
 .paw-checkbox:hover {
@@ -163,19 +168,30 @@ body {
 
 /* Star / Bookmark Toggle Button */
 .star-btn {
-    color: #64748b;
-    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
     cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    color: #64748b;
+    padding: 2px 4px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
 }
 
 .star-btn:hover {
     color: #fbbf24;
-    transform: scale(1.2);
+    transform: scale(1.25);
 }
 
 .star-btn.starred {
     color: #fbbf24;
-    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.5));
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+    transform: scale(1.1);
 }
 
 /* Floating Paw Particles */
