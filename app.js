@@ -1,4 +1,4 @@
-// ==================== GrindNeko: Cyber-Cat DSA Tracker & Problem Vault ====================
+// ==================== GrindHub: Professional DSA & Competitive Programming Vault ====================
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
@@ -6,18 +6,18 @@ const SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
 const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
 
-// --- Cat Mascot & Preset Palettes ---
-const CAT_AVATARS = ["🐱", "😸", "😻", "😼", "😽", "🐈‍⬛", "🦁", "🐯", "🐾", "⚡"];
+// --- Professional Developer Avatars & Palettes ---
+const DEV_AVATARS = ["💻", "⚡", "🚀", "🛡️", "🎯", "🧠", "🔥", "💎", "☕", "🌐"];
 
 const PRESET_COLORS = [
-    { name: "Cyber Pink", hex: "#ff5376", glow: "rgba(255, 83, 118, 0.35)" },
-    { name: "Neon Purple", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.35)" },
-    { name: "Electric Cyan", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.35)" },
-    { name: "Cat Amber", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.35)" },
-    { name: "Neon Emerald", hex: "#10b981", glow: "rgba(16, 185, 129, 0.35)" },
-    { name: "Cyber Indigo", hex: "#6366f1", glow: "rgba(99, 102, 241, 0.35)" },
-    { name: "Laser Rose", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.35)" },
-    { name: "Sky Blue", hex: "#0ea5e9", glow: "rgba(14, 165, 233, 0.35)" }
+    { name: "Electric Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.35)" },
+    { name: "Neon Indigo", hex: "#6366f1", glow: "rgba(99, 102, 241, 0.35)" },
+    { name: "Emerald Green", hex: "#10b981", glow: "rgba(16, 185, 129, 0.35)" },
+    { name: "Cyan Teal", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.35)" },
+    { name: "Amber Gold", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.35)" },
+    { name: "Laser Purple", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.35)" },
+    { name: "Crimson Rose", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.35)" },
+    { name: "Slate Silver", hex: "#64748b", glow: "rgba(100, 116, 139, 0.35)" }
 ];
 
 const TOPIC_ICONS = {
@@ -44,39 +44,22 @@ const TOPIC_ICONS = {
     "Segment Tree / Binary Indexed Tree": "🎋",
     "Design": "🏗️",
     "OOP": "🏛️",
-    "_default": "🐾"
+    "_default": "📌"
 };
 
-const FELINE_RANKS = [
-    { min: 0, title: "Novice Kitten", icon: "🍼", nextDesc: "Solve 25 for Curious Prowler", nextTarget: 25 },
-    { min: 25, title: "Curious Prowler", icon: "🐾", nextDesc: "Solve 100 for Cyber TomCat", nextTarget: 100 },
-    { min: 100, title: "Cyber TomCat", icon: "⚡", nextDesc: "Solve 250 for Ninja Shorthair", nextTarget: 250 },
-    { min: 250, title: "Ninja Shorthair", icon: "🗡️", nextDesc: "Solve 500 for Shadow Panther", nextTarget: 500 },
-    { min: 500, title: "Shadow Panther", icon: "🔮", nextDesc: "Solve 1,000 for Apex Mythic Neko", nextTarget: 1000 },
-    { min: 1000, title: "Apex Mythic Neko", icon: "👑", nextDesc: "Master of all algorithms!", nextTarget: 3532 }
-];
-
-const NEKO_QUOTES = [
-    "Meow! You can master Dynamic Programming! 🐾",
-    "Knock that Hard graph problem off the table! 😼",
-    "A cat always lands on its feet, and you'll land this binary search! 🐱",
-    "Purr-fect recursion depth! Keep grinding! ✨",
-    "Time for a cat nap? No, one more tree traversal first! 🐾",
-    "Claw through the test cases! Zero WA allowed! 🦁",
-    "Treat yourself to a fish 🐟 after solving 5 problems!",
-    "Even the longest linked list starts with a single node! 🐾",
-    "Sharpen your claws on some Two Pointers today! 😼",
-    "You're purr-fectly capable of clearing FAANG! 👑",
-    "Keep calm and cuddle the stack! 🐱‍💻",
-    "Fish treats earned: Keep pouncing on those problems! 🐟",
-    "Sliding window? More like a cat looking out the window! 🪟🐱",
-    "Memoization is just saving tasty snacks for later! 🐟✨"
+const DEV_RANKS = [
+    { min: 0, title: "Apprentice Developer", icon: "🌱", nextDesc: "Solve 25 for Junior Engineer", nextTarget: 25 },
+    { min: 25, title: "Junior Engineer", icon: "⚡", nextDesc: "Solve 100 for Software Engineer", nextTarget: 100 },
+    { min: 100, title: "Software Engineer", icon: "🚀", nextDesc: "Solve 250 for Senior Engineer", nextTarget: 250 },
+    { min: 250, title: "Senior Engineer", icon: "🔥", nextDesc: "Solve 500 for Staff Engineer", nextTarget: 500 },
+    { min: 500, title: "Staff Engineer", icon: "💎", nextDesc: "Solve 1,000 for Principal Architect", nextTarget: 1000 },
+    { min: 1000, title: "Principal Architect", icon: "👑", nextDesc: "Master of all algorithms!", nextTarget: 3532 }
 ];
 
 const DEFAULT_PROFILE = {
     name: "Coder",
-    color: "#ff5376",
-    avatarEmoji: "🐱",
+    color: "#3b82f6",
+    avatarEmoji: "💻",
     soundEnabled: true,
     github: "",
     codolioUrl: ""
@@ -140,8 +123,8 @@ function goToTopicQuestions(topicKey) {
         if (sectionEl && contentEl) {
             if (contentEl.classList.contains('hidden')) toggleAccordion(sectionId);
             sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            sectionEl.classList.add('ring-2', 'ring-pink-400');
-            setTimeout(() => sectionEl.classList.remove('ring-2', 'ring-pink-400'), 1600);
+            sectionEl.classList.add('ring-2', 'ring-blue-400');
+            setTimeout(() => sectionEl.classList.remove('ring-2', 'ring-blue-400'), 1600);
         }
     }, 100);
 }
@@ -153,7 +136,7 @@ function slugify(s) {
 
 function topicPill(topicKey) {
     if (!topicKey) return '';
-    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-pink-400 bg-pink-950/40 border-pink-500/30';
+    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-blue-400 bg-blue-950/40 border-blue-500/30';
     return `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border ${cls}">${topicKey}</span>`;
 }
 
@@ -176,10 +159,10 @@ function escAttr(str) {
     return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
-// ==================== Audio Synthesis (Meow / Chime FX) ====================
+// ==================== Audio Synthesis (Professional Chime FX) ====================
 let audioCtx = null;
 
-function playFelineChime(isMeow = false) {
+function playProChime() {
     if (!userProfile.soundEnabled) return;
     try {
         if (!audioCtx) {
@@ -196,34 +179,19 @@ function playFelineChime(isMeow = false) {
         osc.connect(gain);
         gain.connect(audioCtx.destination);
 
-        if (isMeow) {
-            // Sweet cute feline chirp
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(587.33, now); // D5
-            osc.frequency.exponentialRampToValueAtTime(880.00, now + 0.15); // A5
-            osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.35); // G5
-            
-            gain.gain.setValueAtTime(0.01, now);
-            gain.gain.linearRampToValueAtTime(0.18, now + 0.08);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        // Clean, pleasant modern UI completion chime
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.setValueAtTime(659.25, now + 0.06); // E5
+        osc.frequency.setValueAtTime(783.99, now + 0.12); // G5
+        osc.frequency.setValueAtTime(1046.50, now + 0.18); // C6
 
-            osc.start(now);
-            osc.stop(now + 0.4);
-        } else {
-            // Sparkling completion chime
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(523.25, now); // C5
-            osc.frequency.setValueAtTime(659.25, now + 0.07); // E5
-            osc.frequency.setValueAtTime(783.99, now + 0.14); // G5
-            osc.frequency.setValueAtTime(1046.50, now + 0.22); // C6
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.14, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
 
-            gain.gain.setValueAtTime(0.01, now);
-            gain.gain.linearRampToValueAtTime(0.16, now + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-
-            osc.start(now);
-            osc.stop(now + 0.45);
-        }
+        osc.start(now);
+        osc.stop(now + 0.4);
     } catch (e) {}
 }
 
@@ -231,7 +199,7 @@ function toggleSound() {
     userProfile.soundEnabled = !userProfile.soundEnabled;
     saveUserProfile(userProfile);
     updateSoundUI();
-    showToast(userProfile.soundEnabled ? "Sound FX: Meow & Chimes Enabled 🔊" : "Sound FX: Muted 🔇");
+    showToast(userProfile.soundEnabled ? "Audio Effects: Enabled 🔊" : "Audio Effects: Muted 🔇");
 }
 
 function updateSoundUI() {
@@ -243,52 +211,6 @@ function updateSoundUI() {
     if (modalSound) {
         modalSound.checked = !!userProfile.soundEnabled;
     }
-}
-
-// ==================== Floating Paw Particle ====================
-function spawnFloatingPaw(x, y) {
-    const paw = document.createElement('div');
-    paw.className = 'floating-paw';
-    paw.textContent = '🐾';
-    paw.style.left = `${x}px`;
-    paw.style.top = `${y}px`;
-    document.body.appendChild(paw);
-    setTimeout(() => {
-        if (paw && paw.parentNode) paw.parentNode.removeChild(paw);
-    }, 950);
-}
-
-// ==================== Interactive Neko Desk Mascot ====================
-function petTheCat() {
-    const speechEl = document.getElementById('neko-speech-text');
-    const bubbleEl = document.getElementById('neko-speech-bubble');
-    const mascotEmoji = document.getElementById('neko-mascot-emoji');
-
-    if (speechEl) {
-        const randomQuote = NEKO_QUOTES[Math.floor(Math.random() * NEKO_QUOTES.length)];
-        speechEl.textContent = randomQuote;
-    }
-
-    if (mascotEmoji) {
-        mascotEmoji.classList.remove('animate-purr');
-        mascotEmoji.classList.add('scale-125', 'rotate-12');
-        setTimeout(() => {
-            mascotEmoji.classList.remove('scale-125', 'rotate-12');
-            mascotEmoji.classList.add('animate-purr');
-        }, 400);
-    }
-
-    if (bubbleEl) {
-        bubbleEl.classList.remove('hidden');
-        bubbleEl.classList.add('scale-105');
-        setTimeout(() => bubbleEl.classList.remove('scale-105'), 300);
-    }
-
-    // Spawn paw particle
-    const rect = mascotEmoji ? mascotEmoji.getBoundingClientRect() : { left: window.innerWidth / 2, top: 150 };
-    spawnFloatingPaw(rect.left + 35, rect.top + 20);
-
-    playFelineChime(true);
 }
 
 // ==================== User Profile & Theme Accent ====================
@@ -314,28 +236,28 @@ function saveUserProfile(profile) {
 function applyThemeAccent(hexColor) {
     if (!hexColor) return;
     const preset = PRESET_COLORS.find(p => p.hex.toLowerCase() === hexColor.toLowerCase());
-    const glow = preset ? preset.glow : 'rgba(255, 83, 118, 0.35)';
-    document.documentElement.style.setProperty('--neon-accent', hexColor);
-    document.documentElement.style.setProperty('--neon-glow', glow);
+    const glow = preset ? preset.glow : 'rgba(59, 130, 246, 0.35)';
+    document.documentElement.style.setProperty('--pro-accent', hexColor);
+    document.documentElement.style.setProperty('--pro-glow', glow);
     document.documentElement.style.setProperty('--border-hover', glow);
 }
 
 function updateProfileUI() {
     const profileName = (userProfile.name || 'Coder').trim();
-    const avatarEmoji = userProfile.avatarEmoji || '🐱';
-    applyThemeAccent(userProfile.color || '#ff5376');
+    const avatarEmoji = userProfile.avatarEmoji || '💻';
+    applyThemeAccent(userProfile.color || '#3b82f6');
 
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
         avatarEl.textContent = avatarEmoji;
-        avatarEl.style.backgroundColor = userProfile.color || '#ff5376';
+        avatarEl.style.backgroundColor = userProfile.color || '#3b82f6';
     }
     if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Click to edit profile" class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 font-black cursor-pointer hover:underline">${escAttr(profileName)}</span>! 🚀`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Click to edit profile" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 font-black cursor-pointer hover:underline">${escAttr(profileName)}</span>! 🚀`;
     }
     const dashNameEl = document.getElementById('dashboard-user-name');
     if (dashNameEl) {
@@ -369,11 +291,6 @@ function updateProfileUI() {
         }
     }
 
-    const mascotEmoji = document.getElementById('neko-mascot-emoji');
-    if (mascotEmoji) {
-        mascotEmoji.textContent = avatarEmoji;
-    }
-
     updateSoundUI();
 }
 
@@ -391,15 +308,15 @@ function openProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     if (nameInput) nameInput.value = userProfile.name || 'Coder';
-    if (colorInput) colorInput.value = userProfile.color || '#ff5376';
+    if (colorInput) colorInput.value = userProfile.color || '#3b82f6';
     if (githubInput) githubInput.value = userProfile.github || '';
     if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
-    renderAvatarOptions('profile-avatar-options', userProfile.avatarEmoji || '🐱', (selected) => {
+    renderAvatarOptions('profile-avatar-options', userProfile.avatarEmoji || '💻', (selected) => {
         userProfile.avatarEmoji = selected;
     });
 
-    renderColorOptions('profile-color-options', userProfile.color || '#ff5376', (selected) => {
+    renderColorOptions('profile-color-options', userProfile.color || '#3b82f6', (selected) => {
         if (colorInput) colorInput.value = selected;
     });
 
@@ -427,7 +344,7 @@ function saveProfileModal() {
     const modalSound = document.getElementById('profile-modal-sound');
 
     userProfile.name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Coder';
-    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#ff5376';
+    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#3b82f6';
     userProfile.github = githubInput ? githubInput.value.trim() : '';
     userProfile.codolioUrl = codolioInput ? codolioInput.value.trim() : '';
     userProfile.soundEnabled = modalSound ? modalSound.checked : true;
@@ -439,7 +356,7 @@ function saveProfileModal() {
 
     updateProfileUI();
     closeProfileModal();
-    showToast("Profile & Cyber-Neko Persona Saved! 🐾");
+    showToast("Profile Settings Saved ⚡");
 }
 
 function renderAvatarOptions(containerId, activeAvatar, onSelect) {
@@ -447,10 +364,10 @@ function renderAvatarOptions(containerId, activeAvatar, onSelect) {
     if (!container) return;
     container.innerHTML = '';
 
-    CAT_AVATARS.forEach(emoji => {
+    DEV_AVATARS.forEach(emoji => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = `w-9 h-9 rounded-xl text-lg flex items-center justify-center transition cursor-pointer border ${emoji === activeAvatar ? 'border-pink-500 bg-pink-500/20 scale-110 shadow-md shadow-pink-500/30' : 'border-slate-800 bg-slate-900/80 hover:border-slate-600'}`;
+        btn.className = `w-9 h-9 rounded-xl text-lg flex items-center justify-center transition cursor-pointer border ${emoji === activeAvatar ? 'border-blue-500 bg-blue-500/20 scale-110 shadow-md shadow-blue-500/30' : 'border-slate-800 bg-slate-900/80 hover:border-slate-600'}`;
         btn.textContent = emoji;
         btn.onclick = () => {
             renderAvatarOptions(containerId, emoji, onSelect);
@@ -483,7 +400,6 @@ function renderColorOptions(containerId, activeColor, onSelect) {
 function checkFirstTimeUser() {
     try {
         const hasVisited = localStorage.getItem(VISITED_KEY);
-        // If visited key is set, never ask again
         if (hasVisited === 'true') return;
 
         // If profile was already customized and saved, mark visited and never ask again
@@ -508,7 +424,7 @@ function openWelcomeModal() {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 
-    let selectedAvatar = '🐱';
+    let selectedAvatar = '💻';
     renderAvatarOptions('welcome-avatar-options', selectedAvatar, (avatar) => {
         selectedAvatar = avatar;
         userProfile.avatarEmoji = avatar;
@@ -544,8 +460,8 @@ function submitWelcomeModal() {
 
     updateProfileUI();
     closeWelcomeModal();
-    showToast(`Welcome to GrindNeko, ${name}! 🐾`);
-    playFelineChime(true);
+    showToast(`Welcome to GrindHub, ${name}! 🚀`);
+    playProChime();
 }
 
 // ==================== Solved & Starred Storage ====================
@@ -584,10 +500,6 @@ function saveStarredQuestions() {
 }
 
 function toggleQuestionSolved(urlKey, ev) {
-    if (ev && ev.clientX && ev.clientY) {
-        spawnFloatingPaw(ev.clientX, ev.clientY);
-    }
-
     if (solvedSet.has(urlKey)) {
         solvedSet.delete(urlKey);
         saveSolvedQuestions();
@@ -596,7 +508,7 @@ function toggleQuestionSolved(urlKey, ev) {
         solvedSet.add(urlKey);
         saveSolvedQuestions();
         updateSingleQuestionCheckboxUI(urlKey, true);
-        playFelineChime(false);
+        playProChime();
     }
     updateDashboardSummaries();
     updateQuestionsViewProgress();
@@ -612,7 +524,7 @@ function toggleQuestionStarred(urlKey, ev) {
         starredSet.add(urlKey);
         saveStarredQuestions();
         updateSingleQuestionStarUI(urlKey, true);
-        playFelineChime(true);
+        playProChime();
     }
     // If viewing starred filter, re-render
     if (vaultFilters.status === 'starred') {
@@ -659,7 +571,7 @@ function resetQuestionProgress() {
         renderQuestions();
         updateDashboardSummaries();
         renderDashboardTopicGrid();
-        showToast("All question progress reset 🐾");
+        showToast("All progress reset ⚡");
     }
 }
 
@@ -678,15 +590,15 @@ function showToast(msg) {
     toastTimer = setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-12', 'opacity-0');
-    }, 2400);
+    }, 2200);
 }
 
-// ==================== Feline Rank Calculation ====================
-function getCatRank(solvedCount) {
-    let currentRank = FELINE_RANKS[0];
-    for (let i = 0; i < FELINE_RANKS.length; i++) {
-        if (solvedCount >= FELINE_RANKS[i].min) {
-            currentRank = FELINE_RANKS[i];
+// ==================== Developer Rank Calculation ====================
+function getDevRank(solvedCount) {
+    let currentRank = DEV_RANKS[0];
+    for (let i = 0; i < DEV_RANKS.length; i++) {
+        if (solvedCount >= DEV_RANKS[i].min) {
+            currentRank = DEV_RANKS[i];
         } else {
             break;
         }
@@ -720,18 +632,17 @@ function updateDashboardSummaries() {
     }
 
     const pct = totalQuestions ? Math.round((solvedCount / totalQuestions) * 100) : 0;
-    const treats = Math.floor(solvedCount / 5);
-    const catRank = getCatRank(solvedCount);
-    const nextTreatRemaining = 5 - (solvedCount % 5);
+    const xp = solvedCount * 10;
+    const devRank = getDevRank(solvedCount);
 
-    // Navbar treats & rank
-    const navTreats = document.getElementById('nav-treats-count');
-    if (navTreats) navTreats.textContent = `${treats} Treats`;
+    // Navbar XP & rank
+    const navXp = document.getElementById('nav-xp-count');
+    if (navXp) navXp.textContent = `${xp.toLocaleString()} XP`;
 
     const navRankIcon = document.getElementById('nav-rank-icon');
     const navRankTitle = document.getElementById('nav-rank-title');
-    if (navRankIcon) navRankIcon.textContent = catRank.icon;
-    if (navRankTitle) navRankTitle.textContent = catRank.title;
+    if (navRankIcon) navRankIcon.textContent = devRank.icon;
+    if (navRankTitle) navRankTitle.textContent = devRank.title;
 
     // Dashboard 4 stat cards
     const dashSolved = document.getElementById('dash-stat-solved');
@@ -752,16 +663,16 @@ function updateDashboardSummaries() {
     const dashRankTitle = document.getElementById('dash-stat-rank-title');
     const dashRankDesc = document.getElementById('dash-stat-rank-desc');
     const dashRankBar = document.getElementById('dash-stat-rank-bar');
-    if (dashRankIcon) dashRankIcon.textContent = catRank.icon;
-    if (dashRankTitle) dashRankTitle.textContent = catRank.title;
-    if (dashRankDesc) dashRankDesc.textContent = catRank.nextDesc;
+    if (dashRankIcon) dashRankIcon.textContent = devRank.icon;
+    if (dashRankTitle) dashRankTitle.textContent = devRank.title;
+    if (dashRankDesc) dashRankDesc.textContent = devRank.nextDesc;
 
     if (dashRankBar) {
-        const rankIdx = FELINE_RANKS.indexOf(catRank);
-        const nextRank = FELINE_RANKS[rankIdx + 1];
+        const rankIdx = DEV_RANKS.indexOf(devRank);
+        const nextRank = DEV_RANKS[rankIdx + 1];
         if (nextRank) {
-            const range = nextRank.min - catRank.min;
-            const progress = solvedCount - catRank.min;
+            const range = nextRank.min - devRank.min;
+            const progress = solvedCount - devRank.min;
             const rankPct = Math.min(100, Math.round((progress / range) * 100));
             dashRankBar.style.width = `${rankPct}%`;
         } else {
@@ -769,10 +680,8 @@ function updateDashboardSummaries() {
         }
     }
 
-    const dashTreats = document.getElementById('dash-stat-treats');
-    const dashTreatsNext = document.getElementById('dash-stat-treats-next');
-    if (dashTreats) dashTreats.textContent = treats.toLocaleString();
-    if (dashTreatsNext) dashTreatsNext.textContent = `${nextTreatRemaining} more solved for next treat 🐟`;
+    const dashXp = document.getElementById('dash-stat-treats');
+    if (dashXp) dashXp.textContent = `${xp.toLocaleString()} XP`;
 }
 
 // ==================== 23-Topic Dashboard Grid Renderer ====================
@@ -797,7 +706,7 @@ function renderDashboardTopicGrid() {
         });
 
         const pct = total ? Math.round((solved / total) * 100) : 0;
-        const colorCls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topic]) ? TOPIC_COLORS[topic] : 'text-pink-400 bg-pink-950/40 border-pink-500/30';
+        const colorCls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topic]) ? TOPIC_COLORS[topic] : 'text-blue-400 bg-blue-950/40 border-blue-500/30';
 
         html += `
         <div onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-roadmap-card p-5 cursor-pointer flex flex-col justify-between group">
@@ -805,7 +714,7 @@ function renderDashboardTopicGrid() {
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2.5">
                         <span class="text-2xl">${icon}</span>
-                        <h3 class="font-extrabold text-sm sm:text-base text-white group-hover:text-pink-300 transition-colors">${topic}</h3>
+                        <h3 class="font-extrabold text-sm sm:text-base text-white group-hover:text-blue-300 transition-colors">${topic}</h3>
                     </div>
                     <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full border ${colorCls}">
                         ${solved}/${total}
@@ -823,12 +732,12 @@ function renderDashboardTopicGrid() {
             <div>
                 <!-- Topic Progress Bar -->
                 <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 mb-2">
-                    <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
                 </div>
                 <div class="flex items-center justify-between text-[11px] text-slate-400">
-                    <span class="font-mono">${pct}% mastered</span>
-                    <span class="text-pink-400 group-hover:text-pink-300 font-bold flex items-center gap-1">
-                        <span>Pounce</span>
+                    <span class="font-mono">${pct}% completed</span>
+                    <span class="text-blue-400 group-hover:text-blue-300 font-bold flex items-center gap-1">
+                        <span>Solve</span>
                         <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </span>
                 </div>
@@ -846,7 +755,7 @@ function renderTopicQuickJumpBar() {
 
     let html = '';
     for (const topic in questionsData) {
-        const icon = TOPIC_ICONS[topic] || '🐾';
+        const icon = TOPIC_ICONS[topic] || '📌';
         html += `
         <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 text-xs font-semibold text-slate-300 hover:text-white border border-slate-800 transition cursor-pointer flex-shrink-0">
             <span>${icon}</span>
@@ -887,7 +796,7 @@ function updateQuestionsViewProgress() {
 
     if (bar) bar.style.width = `${pct}%`;
     if (label) label.textContent = `${solved.toLocaleString()} of ${total.toLocaleString()} problems completed`;
-    if (pctBadge) pctBadge.textContent = `${pct}% Mastered 🐾`;
+    if (pctBadge) pctBadge.textContent = `${pct}% Mastered`;
 
     // Render Platform Legend
     const legend = document.getElementById('platform-legend');
@@ -911,7 +820,7 @@ function setVaultStatusFilter(status) {
         const btn = document.getElementById(`filter-status-${s}`);
         if (btn) {
             if (s === status) {
-                btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition cursor-pointer bg-pink-500/20 text-pink-300 border border-pink-500/30 shadow-sm';
+                btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition cursor-pointer bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-sm';
             } else {
                 btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition cursor-pointer border border-transparent';
             }
@@ -926,7 +835,7 @@ function setVaultDiffFilter(diff) {
         const btn = document.getElementById(`filter-diff-${d}`);
         if (btn) {
             if (d === diff) {
-                btn.className = 'px-2.5 py-1 text-xs font-bold rounded-lg transition cursor-pointer bg-pink-500/20 text-pink-300 border border-pink-500/30 shadow-sm';
+                btn.className = 'px-2.5 py-1 text-xs font-bold rounded-lg transition cursor-pointer bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-sm';
             } else {
                 btn.className = 'px-2.5 py-1 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition cursor-pointer border border-transparent';
             }
@@ -1037,20 +946,20 @@ function renderQuestions() {
 
         const topicPct = totalInTopic ? Math.round((solvedInTopic / totalInTopic) * 100) : 0;
         const isOpen = (query || statusFilter !== 'all' || diffFilter !== 'all' || platFilter !== 'all') ? true : openAccordions.has(sectionId);
-        const icon = TOPIC_ICONS[topic] || '🐾';
+        const icon = TOPIC_ICONS[topic] || '📌';
 
         if (visibleCount === 0 && (query || statusFilter !== 'all' || diffFilter !== 'all' || platFilter !== 'all')) {
             continue;
         }
 
         html += `
-        <div id="${sectionId}" class="rounded-2xl neko-card border border-slate-800 overflow-hidden transition shadow-sm mb-3">
+        <div id="${sectionId}" class="rounded-2xl pro-card border border-slate-800 overflow-hidden transition shadow-sm mb-3">
             <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-slate-900/60 transition">
                 <div class="flex items-center gap-2.5 flex-wrap">
                     <span class="text-xl">${icon}</span>
                     <span class="font-black text-sm sm:text-base text-slate-100">${topic}</span>
                     ${topicPill(topic)}
-                    <span class="text-xs font-mono font-bold text-pink-400 bg-pink-500/10 px-2.5 py-0.5 rounded-full border border-pink-500/20">
+                    <span class="text-xs font-mono font-bold text-blue-400 bg-blue-500/10 px-2.5 py-0.5 rounded-full border border-blue-500/20">
                         ${solvedInTopic}/${totalInTopic} (${topicPct}%)
                     </span>
                     ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-slate-400">Showing ${visibleCount}</span>` : ''}
@@ -1072,11 +981,11 @@ function renderQuestions() {
 
     if (!html) {
         html = `
-        <div class="neko-card p-10 rounded-2xl border border-slate-800 text-center text-slate-400">
-            <span class="text-4xl block mb-3">🐾</span>
+        <div class="pro-card p-10 rounded-2xl border border-slate-800 text-center text-slate-400">
+            <span class="text-4xl block mb-3">🔍</span>
             <p class="font-extrabold text-base text-white">No questions matched your filters</p>
             <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Try clearing your search query or switching your status/difficulty filters.</p>
-            <button onclick="clearAllVaultFilters()" class="mt-4 px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 text-xs font-bold rounded-xl border border-pink-500/30 transition cursor-pointer">
+            <button onclick="clearAllVaultFilters()" class="mt-4 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 text-xs font-bold rounded-xl border border-blue-500/30 transition cursor-pointer">
                 Clear All Filters
             </button>
         </div>`;
@@ -1105,10 +1014,10 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
         const isStarred = starredSet.has(q.url);
         const urlAttr = escAttr(q.url);
         return `
-        <div class="question-row flex items-center justify-between p-2.5 sm:px-3.5 rounded-xl border border-slate-800/80 bg-slate-900/70 hover:border-pink-500/30 transition ${isSolved ? 'opacity-50' : ''}">
+        <div class="question-row flex items-center justify-between p-2.5 sm:px-3.5 rounded-xl border border-slate-800/80 bg-slate-900/70 hover:border-blue-500/30 transition ${isSolved ? 'opacity-50' : ''}">
             <div class="flex items-center gap-3 min-w-0 flex-grow pr-2">
-                <!-- Paw Checkbox -->
-                <input type="checkbox" class="paw-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
+                <!-- Checkbox -->
+                <input type="checkbox" class="pro-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
                 
                 <!-- Star Button -->
                 <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove star' : 'Star problem'}">
@@ -1116,7 +1025,7 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
                 </button>
 
                 <!-- Problem Link -->
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs sm:text-sm font-semibold text-slate-100 hover:text-pink-300 transition truncate hover:underline ${isSolved ? 'line-through text-slate-400' : ''}">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-xs sm:text-sm font-semibold text-slate-100 hover:text-blue-300 transition truncate hover:underline ${isSolved ? 'line-through text-slate-400' : ''}">
                     ${escAttr(q.title)}
                 </a>
             </div>
@@ -1167,7 +1076,7 @@ function pickRandomQuestion() {
     goToTopicQuestions(randomPick.topic);
 
     showToast(`Random Challenge: ${randomPick.title} (${randomPick.diff}) 🎲`);
-    playFelineChime(true);
+    playProChime();
 }
 
 // ==================== Global Fast Search Dropdown ====================
@@ -1200,7 +1109,7 @@ function handleGlobalSearch(query) {
     }
 
     if (matches.length === 0) {
-        resultsContainer.innerHTML = `<div class="p-5 text-xs text-slate-400 text-center font-semibold">No questions found matching "${escAttr(query)}" 🐾</div>`;
+        resultsContainer.innerHTML = `<div class="p-5 text-xs text-slate-400 text-center font-semibold">No questions found matching "${escAttr(query)}"</div>`;
         resultsContainer.classList.remove('hidden');
         return;
     }
@@ -1217,12 +1126,12 @@ function handleGlobalSearch(query) {
                     ${platformPill(item.platform)}
                     ${topicPill(item.topic)}
                 </div>
-                <a href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold text-white hover:text-pink-300 transition truncate block ${isSolved ? 'line-through text-slate-400' : ''}">
+                <a href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold text-white hover:text-blue-300 transition truncate block ${isSolved ? 'line-through text-slate-400' : ''}">
                     ${escAttr(item.title)}
                 </a>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
-                <button type="button" onclick="goToTopicQuestions('${escJs(item.topic)}'); document.getElementById('global-search-results').classList.add('hidden');" class="text-[11px] font-bold text-pink-400 hover:text-pink-300 bg-pink-500/10 hover:bg-pink-500/20 px-2.5 py-1 rounded-xl border border-pink-500/20 cursor-pointer transition">
+                <button type="button" onclick="goToTopicQuestions('${escJs(item.topic)}'); document.getElementById('global-search-results').classList.add('hidden');" class="text-[11px] font-bold text-blue-400 hover:text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-xl border border-blue-500/20 cursor-pointer transition">
                     Jump to Topic
                 </button>
             </div>
@@ -1230,9 +1139,9 @@ function handleGlobalSearch(query) {
     }).join('');
 
     resultsContainer.innerHTML = `
-        <div class="p-2.5 bg-slate-950 border-b border-slate-800 text-[11px] font-bold text-pink-400 flex items-center justify-between">
+        <div class="p-2.5 bg-slate-950 border-b border-slate-800 text-[11px] font-bold text-blue-400 flex items-center justify-between">
             <span>Found ${matches.length} questions matching "${escAttr(query)}"</span>
-            <span>🐾</span>
+            <span>⚡</span>
         </div>
         ${listHtml}
         ${matches.length > maxShown ? `<div class="p-2.5 text-center text-xs text-slate-400 font-mono">Showing first ${maxShown} results. Refine search for more.</div>` : ''}
