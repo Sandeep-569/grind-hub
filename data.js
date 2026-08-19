@@ -8,34 +8,9 @@ const questionsData = {
                 "platform": "HackerRank"
             },
             {
-                "title": "Add Two Numbers",
-                "url": "https://www.codechef.com/problems/FLOW001",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Watermelon",
-                "url": "https://codeforces.com/problemset/problem/4/A",
-                "platform": "Codeforces"
-            },
-            {
                 "title": "Java Stdin and Stdout I",
                 "url": "https://www.hackerrank.com/challenges/java-stdin-and-stdout-1/problem",
                 "platform": "HackerRank"
-            },
-            {
-                "title": "Enormous Input Test",
-                "url": "https://www.codechef.com/problems/INTEST",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Odd or Even",
-                "url": "https://www.geeksforgeeks.org/problems/count-odd-even/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "title": "Add Two Integers",
-                "url": "https://leetcode.com/problems/add-two-integers/",
-                "platform": "LeetCode"
             },
             {
                 "title": "Java Loops I",
@@ -43,63 +18,8 @@ const questionsData = {
                 "platform": "HackerRank"
             },
             {
-                "title": "Find Remainder",
-                "url": "https://www.codechef.com/problems/FLOW002",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Reverse a Number",
-                "url": "https://www.geeksforgeeks.org/problems/reverse-digit0316/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "title": "Fibonacci Number",
-                "url": "https://leetcode.com/problems/fibonacci-number/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Subtract the Product and Sum of Digits of an Integer",
-                "url": "https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Switch Statement",
-                "url": "https://www.geeksforgeeks.org/problems/switch-statement/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "title": "Calculator using Switch",
-                "url": "https://www.geeksforgeeks.org/problems/calculator/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "title": "Java Methods",
                 "url": "https://www.hackerrank.com/challenges/java-method/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Primality Test",
-                "url": "https://www.codechef.com/problems/PRB01",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Armstrong Numbers",
-                "url": "https://www.geeksforgeeks.org/problems/armstrong-numbers2727/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "title": "Add Digits",
-                "url": "https://leetcode.com/problems/add-digits/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Perfect Number",
-                "url": "https://leetcode.com/problems/perfect-number/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Welcome to Java!",
-                "url": "https://www.hackerrank.com/challenges/welcome-to-java/problem",
                 "platform": "HackerRank"
             },
             {
@@ -236,872 +156,12 @@ const questionsData = {
                 "title": "Covariant Return Types",
                 "url": "https://www.hackerrank.com/challenges/java-covariance/problem",
                 "platform": "HackerRank"
-            },
-            {
-                "title": "Maximum Height of a Triangle",
-                "url": "https://leetcode.com/problems/maximum-height-of-a-triangle/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Convert Date to Binary",
-                "url": "https://leetcode.com/problems/convert-date-to-binary/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Count Subarrays of Length Three With a Condition",
-                "url": "https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum Difference Between Adjacent Elements in a Circular Array",
-                "url": "https://leetcode.com/problems/maximum-difference-between-adjacent-elements-in-a-circular-array/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find Valid Emails",
-                "url": "https://leetcode.com/problems/find-valid-emails/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Sum of Good Numbers",
-                "url": "https://leetcode.com/problems/sum-of-good-numbers/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Transform Array by Parity",
-                "url": "https://leetcode.com/problems/transform-array-by-parity/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Minimum Operations to Make Array Sum Divisible by K",
-                "url": "https://leetcode.com/problems/minimum-operations-to-make-array-sum-divisible-by-k/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find Most Frequent Vowel and Consonant",
-                "url": "https://leetcode.com/problems/find-most-frequent-vowel-and-consonant/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Check if Any Element Has Prime Frequency",
-                "url": "https://leetcode.com/problems/check-if-any-element-has-prime-frequency/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Hexadecimal and Hexatrigesimal Conversion",
-                "url": "https://leetcode.com/problems/hexadecimal-and-hexatrigesimal-conversion/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Earliest Finish Time for Land and Water Rides I",
-                "url": "https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-i/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Least Frequent Digit",
-                "url": "https://leetcode.com/problems/least-frequent-digit/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Number of Days in a Month",
-                "url": "https://leetcode.com/problems/number-of-days-in-a-month/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Remove Vowels from a String",
-                "url": "https://leetcode.com/problems/remove-vowels-from-a-string/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Armstrong Number",
-                "url": "https://leetcode.com/problems/armstrong-number/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Check If a Number Is Majority Element in a Sorted Array",
-                "url": "https://leetcode.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Day of the Year",
-                "url": "https://leetcode.com/problems/day-of-the-year/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Single-Row Keyboard",
-                "url": "https://leetcode.com/problems/single-row-keyboard/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Prime Arrangements",
-                "url": "https://leetcode.com/problems/prime-arrangements/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Missing Number In Arithmetic Progression",
-                "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Minimum Time Visiting All Points",
-                "url": "https://leetcode.com/problems/minimum-time-visiting-all-points/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Hexspeak",
-                "url": "https://leetcode.com/problems/hexspeak/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Convert Integer to the Sum of Two No-Zero Integers",
-                "url": "https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum 69 Number",
-                "url": "https://leetcode.com/problems/maximum-69-number/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Remove Palindromic Subsequences",
-                "url": "https://leetcode.com/problems/remove-palindromic-subsequences/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Number of Days Between Two Dates",
-                "url": "https://leetcode.com/problems/number-of-days-between-two-dates/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Generate a String With Characters That Have Odd Counts",
-                "url": "https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find the Distance Value Between Two Arrays",
-                "url": "https://leetcode.com/problems/find-the-distance-value-between-two-arrays/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find Lucky Integer in an Array",
-                "url": "https://leetcode.com/problems/find-lucky-integer-in-an-array/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Count Largest Group",
-                "url": "https://leetcode.com/problems/count-largest-group/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Minimum Value to Get Positive Step by Step Sum",
-                "url": "https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Reformat The String",
-                "url": "https://leetcode.com/problems/reformat-the-string/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum Score After Splitting a String",
-                "url": "https://leetcode.com/problems/maximum-score-after-splitting-a-string/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Counting Elements",
-                "url": "https://leetcode.com/problems/counting-elements/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Perform String Shifts",
-                "url": "https://leetcode.com/problems/perform-string-shifts/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Check If All 1's Are at Least Length K Places Away",
-                "url": "https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Consecutive Characters",
-                "url": "https://leetcode.com/problems/consecutive-characters/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Check If a Word Occurs As a Prefix of Any Word in a Sentence",
-                "url": "https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Three Consecutive Odds",
-                "url": "https://leetcode.com/problems/three-consecutive-odds/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Thousand Separator",
-                "url": "https://leetcode.com/problems/thousand-separator/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Most Visited Sector in a Circular Track",
-                "url": "https://leetcode.com/problems/most-visited-sector-in-a-circular-track/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Get Maximum in Generated Array",
-                "url": "https://leetcode.com/problems/get-maximum-in-generated-array/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Defuse the Bomb",
-                "url": "https://leetcode.com/problems/defuse-the-bomb/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Number of Students Unable to Eat Lunch",
-                "url": "https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Number Of Rectangles That Can Form The Largest Square",
-                "url": "https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Latest Time by Replacing Hidden Digits",
-                "url": "https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum Number of Balls in a Box",
-                "url": "https://leetcode.com/problems/maximum-number-of-balls-in-a-box/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Sum of Unique Elements",
-                "url": "https://leetcode.com/problems/sum-of-unique-elements/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find Nearest Point That Has the Same X or Y Coordinate",
-                "url": "https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Check if One String Swap Can Make Strings Equal",
-                "url": "https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum Ascending Subarray Sum",
-                "url": "https://leetcode.com/problems/maximum-ascending-subarray-sum/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Faulty Sensor",
-                "url": "https://leetcode.com/problems/faulty-sensor/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Bit++",
-                "url": "https://codeforces.com/problemset/problem/282/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Bear and Big Brother",
-                "url": "https://codeforces.com/problemset/problem/791/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "George and Accommodation",
-                "url": "https://codeforces.com/problemset/problem/467/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Chef And Operators",
-                "url": "https://www.codechef.com/problems/CHOPRT",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Decrement OR Increment",
-                "url": "https://www.codechef.com/problems/DECINC",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Sum OR Difference",
-                "url": "https://www.codechef.com/problems/DIFFSUM",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Servant",
-                "url": "https://www.codechef.com/problems/FLOW008",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Day of the Programmer",
-                "url": "https://www.hackerrank.com/challenges/day-of-the-programmer/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Bill Division",
-                "url": "https://www.hackerrank.com/challenges/bon-appetit/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Domino piling",
-                "url": "https://codeforces.com/problemset/problem/50/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Tram",
-                "url": "https://codeforces.com/problemset/problem/116/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Queue at the School",
-                "url": "https://codeforces.com/problemset/problem/266/B",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Calculating Function",
-                "url": "https://codeforces.com/problemset/problem/486/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Drinks",
-                "url": "https://codeforces.com/problemset/problem/200/B",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Hulk",
-                "url": "https://codeforces.com/problemset/problem/705/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Divisibility Problem",
-                "url": "https://codeforces.com/problemset/problem/1328/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Expression",
-                "url": "https://codeforces.com/problemset/problem/479/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Hit the Lottery",
-                "url": "https://codeforces.com/problemset/problem/996/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Vasya the Hipster",
-                "url": "https://codeforces.com/problemset/problem/581/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Anton and Polyhedrons",
-                "url": "https://codeforces.com/problemset/problem/785/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Candies and Two Sisters",
-                "url": "https://codeforces.com/problemset/problem/1335/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Buy a Shovel",
-                "url": "https://codeforces.com/problemset/problem/732/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Restoring Three Numbers",
-                "url": "https://codeforces.com/problemset/problem/1154/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Sum of Round Numbers",
-                "url": "https://codeforces.com/problemset/problem/1352/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Yet Another Two Integers Problem",
-                "url": "https://codeforces.com/problemset/problem/1409/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Mishka and Game",
-                "url": "https://codeforces.com/problemset/problem/703/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Required Remainder",
-                "url": "https://codeforces.com/problemset/problem/1374/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Dislike of Threes",
-                "url": "https://codeforces.com/problemset/problem/1560/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Minutes Before the New Year",
-                "url": "https://codeforces.com/problemset/problem/1283/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Maximum GCD",
-                "url": "https://codeforces.com/problemset/problem/1370/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Collecting Coins",
-                "url": "https://codeforces.com/problemset/problem/1294/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Floor Number",
-                "url": "https://codeforces.com/problemset/problem/1426/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Fair Division",
-                "url": "https://codeforces.com/problemset/problem/1472/B",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Minimal Square",
-                "url": "https://codeforces.com/problemset/problem/1360/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Polycarp and Coins",
-                "url": "https://codeforces.com/problemset/problem/1551/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Design Tutorial: Learn from Math",
-                "url": "https://codeforces.com/problemset/problem/472/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Square String?",
-                "url": "https://codeforces.com/problemset/problem/1619/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Lucky?",
-                "url": "https://codeforces.com/problemset/problem/1676/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Marathon",
-                "url": "https://codeforces.com/problemset/problem/1692/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Number Mirror",
-                "url": "https://www.codechef.com/problems/START01",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "ATM",
-                "url": "https://www.codechef.com/problems/HS08TEST",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Id and Ship",
-                "url": "https://www.codechef.com/problems/FLOW010",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Gross Salary",
-                "url": "https://www.codechef.com/problems/FLOW011",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Grade The Steel",
-                "url": "https://www.codechef.com/problems/FLOW014",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Total Expenses",
-                "url": "https://www.codechef.com/problems/FLOW009",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Passing Marks",
-                "url": "https://www.codechef.com/problems/PSGRADE",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Lazy Chef",
-                "url": "https://www.codechef.com/problems/LAZYCHF",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Which Division",
-                "url": "https://www.codechef.com/problems/WHICHDIV",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Hardest Problem Bet",
-                "url": "https://www.codechef.com/problems/HARDBET",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Which Mixture",
-                "url": "https://www.codechef.com/problems/MIXTURE",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Problem Category",
-                "url": "https://www.codechef.com/problems/PROBCAT",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Pass or Fail",
-                "url": "https://www.codechef.com/problems/PASSORFAIL",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Battery Low",
-                "url": "https://www.codechef.com/problems/BATTERYLOW",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Fill the Bucket",
-                "url": "https://www.codechef.com/problems/FBC",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Tyre problem",
-                "url": "https://www.codechef.com/problems/TYRE",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Janmansh and Games",
-                "url": "https://www.codechef.com/problems/JASSIGNMENTS",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Janmansh and Coins",
-                "url": "https://www.codechef.com/problems/JCOINS",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Minimum Pizzas",
-                "url": "https://www.codechef.com/problems/MINPIZZA",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Chess Ratings",
-                "url": "https://www.codechef.com/problems/C_RATING",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Mario and Transformation",
-                "url": "https://www.codechef.com/problems/TRANSFORM",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Practice makes us perfect",
-                "url": "https://www.codechef.com/problems/PRACTICEPERF",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "How many unattempted problems",
-                "url": "https://www.codechef.com/problems/PRACLIST",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "My very 1st contest!",
-                "url": "https://www.codechef.com/problems/MY1STCONTEST",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Total Prize Money",
-                "url": "https://www.codechef.com/problems/PRIZEPOOL",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Chairs Requirement",
-                "url": "https://www.codechef.com/problems/CHAIRS_",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Burgers",
-                "url": "https://www.codechef.com/problems/BURGERS",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Waiting Time",
-                "url": "https://www.codechef.com/problems/WAITTIME",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Determine the Score",
-                "url": "https://www.codechef.com/problems/DETSCORE",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Biryani classes",
-                "url": "https://www.codechef.com/problems/BIRYANI",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Fitness",
-                "url": "https://www.codechef.com/problems/FIT",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Best of Two",
-                "url": "https://www.codechef.com/problems/BESTOFTWO",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Product (AtCoder)",
-                "url": "https://atcoder.jp/contests/abc086/tasks/abc086_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Placing Marbles",
-                "url": "https://atcoder.jp/contests/abc081/tasks/abc081_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Infinite Coins",
-                "url": "https://atcoder.jp/contests/abc088/tasks/abc088_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Toll Gates",
-                "url": "https://atcoder.jp/contests/abc094/tasks/abc094_b",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Bitter Alchemy",
-                "url": "https://atcoder.jp/contests/abc095/tasks/abc095_b",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Large Digits",
-                "url": "https://atcoder.jp/contests/abc187/tasks/abc187_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Brick",
-                "url": "https://atcoder.jp/contests/abc186/tasks/abc186_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "ABC Preparation",
-                "url": "https://atcoder.jp/contests/abc185/tasks/abc185_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Determinant",
-                "url": "https://atcoder.jp/contests/abc184/tasks/abc184_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Quizzes",
-                "url": "https://atcoder.jp/contests/abc184/tasks/abc184_b",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "ReLU",
-                "url": "https://atcoder.jp/contests/abc183/tasks/abc183_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "twiblr",
-                "url": "https://atcoder.jp/contests/abc182/tasks/abc182_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Heavy Rotation",
-                "url": "https://atcoder.jp/contests/abc181/tasks/abc181_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "box",
-                "url": "https://atcoder.jp/contests/abc180/tasks/abc180_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Don't be late",
-                "url": "https://atcoder.jp/contests/abc177/tasks/abc177_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Plural Form",
-                "url": "https://atcoder.jp/contests/abc179/tasks/abc179_a",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "YES or YES?",
-                "url": "https://codeforces.com/problemset/problem/1703/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Spell Check",
-                "url": "https://codeforces.com/problemset/problem/1722/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Sum (Codeforces)",
-                "url": "https://codeforces.com/problemset/problem/1742/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Medium Number",
-                "url": "https://codeforces.com/problemset/problem/1760/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Codeforces Checking",
-                "url": "https://codeforces.com/problemset/problem/1791/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Plus or Minus",
-                "url": "https://codeforces.com/problemset/problem/1807/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Love Story",
-                "url": "https://codeforces.com/problemset/problem/1829/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "To My Critics",
-                "url": "https://codeforces.com/problemset/problem/1850/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Short Sort",
-                "url": "https://codeforces.com/problemset/problem/1873/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Odd One Out",
-                "url": "https://codeforces.com/problemset/problem/1915/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Vlad and the Best of Five",
-                "url": "https://codeforces.com/problemset/problem/1926/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Stair, Peak, or Neither?",
-                "url": "https://codeforces.com/problemset/problem/1950/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "My First Sorting Problem",
-                "url": "https://codeforces.com/problemset/problem/1971/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Creating Words",
-                "url": "https://codeforces.com/problemset/problem/1985/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "A+B Again?",
-                "url": "https://codeforces.com/problemset/problem/1999/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Division?",
-                "url": "https://codeforces.com/problemset/problem/1669/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Chef and Brain Speed",
-                "url": "https://www.codechef.com/problems/CBSPEED",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Who is taller!",
-                "url": "https://www.codechef.com/problems/TALLER",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Roller Coaster",
-                "url": "https://www.codechef.com/problems/MINHEIGHT",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Chef and Chapters",
-                "url": "https://www.codechef.com/problems/SEMCOURSES",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Chef and Chocolates",
-                "url": "https://www.codechef.com/problems/CHEFCHOCO",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Candy Distribution",
-                "url": "https://www.codechef.com/problems/CANDYDIST",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Tax in Chefland",
-                "url": "https://www.codechef.com/problems/TAXTEN",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Reach on Time",
-                "url": "https://www.codechef.com/problems/TIMELY",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Audible Range",
-                "url": "https://www.codechef.com/problems/AUDIBLE",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Expert Setter",
-                "url": "https://www.codechef.com/problems/EXPERT",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Speciality",
-                "url": "https://www.codechef.com/problems/SPECIALITY",
-                "platform": "CodeChef"
             }
         ],
         "Medium": [
             {
                 "title": "Java BigDecimal",
                 "url": "https://www.hackerrank.com/challenges/java-bigdecimal/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java 1D Array (Part 2)",
-                "url": "https://www.hackerrank.com/challenges/java-1d-array/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Stack",
-                "url": "https://www.hackerrank.com/challenges/java-stack/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Comparator",
-                "url": "https://www.hackerrank.com/challenges/java-comparator/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Dequeue",
-                "url": "https://www.hackerrank.com/challenges/java-dequeue/problem",
-                "platform": "HackerRank"
-            },
-            {
-                "title": "Java Priority Queue",
-                "url": "https://www.hackerrank.com/challenges/java-priority-queue/problem",
                 "platform": "HackerRank"
             },
             {
@@ -1133,11 +193,6 @@ const questionsData = {
                 "title": "Java SHA-256",
                 "url": "https://www.hackerrank.com/challenges/sha-256/problem",
                 "platform": "HackerRank"
-            },
-            {
-                "title": "Average Waiting Time",
-                "url": "https://leetcode.com/problems/average-waiting-time/",
-                "platform": "LeetCode"
             }
         ],
         "Hard": []
@@ -1930,6 +985,731 @@ const questionsData = {
                 "title": "Replacing Integer",
                 "url": "https://atcoder.jp/contests/abc161/tasks/abc161_c",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Add Two Numbers",
+                "url": "https://www.codechef.com/problems/FLOW001",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Watermelon",
+                "url": "https://codeforces.com/problemset/problem/4/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Enormous Input Test",
+                "url": "https://www.codechef.com/problems/INTEST",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Odd or Even",
+                "url": "https://www.geeksforgeeks.org/problems/count-odd-even/1",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Add Two Integers",
+                "url": "https://leetcode.com/problems/add-two-integers/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Remainder",
+                "url": "https://www.codechef.com/problems/FLOW002",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Fibonacci Number",
+                "url": "https://leetcode.com/problems/fibonacci-number/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Subtract the Product and Sum of Digits of an Integer",
+                "url": "https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Switch Statement",
+                "url": "https://www.geeksforgeeks.org/problems/switch-statement/1",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Calculator using Switch",
+                "url": "https://www.geeksforgeeks.org/problems/calculator/1",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Primality Test",
+                "url": "https://www.codechef.com/problems/PRB01",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Armstrong Numbers",
+                "url": "https://www.geeksforgeeks.org/problems/armstrong-numbers2727/1",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Add Digits",
+                "url": "https://leetcode.com/problems/add-digits/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Perfect Number",
+                "url": "https://leetcode.com/problems/perfect-number/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Welcome to Java!",
+                "url": "https://www.hackerrank.com/challenges/welcome-to-java/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Maximum Height of a Triangle",
+                "url": "https://leetcode.com/problems/maximum-height-of-a-triangle/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Convert Date to Binary",
+                "url": "https://leetcode.com/problems/convert-date-to-binary/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Valid Emails",
+                "url": "https://leetcode.com/problems/find-valid-emails/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Sum of Good Numbers",
+                "url": "https://leetcode.com/problems/sum-of-good-numbers/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Most Frequent Vowel and Consonant",
+                "url": "https://leetcode.com/problems/find-most-frequent-vowel-and-consonant/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Check if Any Element Has Prime Frequency",
+                "url": "https://leetcode.com/problems/check-if-any-element-has-prime-frequency/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Hexadecimal and Hexatrigesimal Conversion",
+                "url": "https://leetcode.com/problems/hexadecimal-and-hexatrigesimal-conversion/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Earliest Finish Time for Land and Water Rides I",
+                "url": "https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-i/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Least Frequent Digit",
+                "url": "https://leetcode.com/problems/least-frequent-digit/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Number of Days in a Month",
+                "url": "https://leetcode.com/problems/number-of-days-in-a-month/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Armstrong Number",
+                "url": "https://leetcode.com/problems/armstrong-number/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Day of the Year",
+                "url": "https://leetcode.com/problems/day-of-the-year/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Single-Row Keyboard",
+                "url": "https://leetcode.com/problems/single-row-keyboard/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Prime Arrangements",
+                "url": "https://leetcode.com/problems/prime-arrangements/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Missing Number In Arithmetic Progression",
+                "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Minimum Time Visiting All Points",
+                "url": "https://leetcode.com/problems/minimum-time-visiting-all-points/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Hexspeak",
+                "url": "https://leetcode.com/problems/hexspeak/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Convert Integer to the Sum of Two No-Zero Integers",
+                "url": "https://leetcode.com/problems/convert-integer-to-the-sum-of-two-no-zero-integers/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum 69 Number",
+                "url": "https://leetcode.com/problems/maximum-69-number/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Remove Palindromic Subsequences",
+                "url": "https://leetcode.com/problems/remove-palindromic-subsequences/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Number of Days Between Two Dates",
+                "url": "https://leetcode.com/problems/number-of-days-between-two-dates/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Count Largest Group",
+                "url": "https://leetcode.com/problems/count-largest-group/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Minimum Value to Get Positive Step by Step Sum",
+                "url": "https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Counting Elements",
+                "url": "https://leetcode.com/problems/counting-elements/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Check If All 1's Are at Least Length K Places Away",
+                "url": "https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Consecutive Characters",
+                "url": "https://leetcode.com/problems/consecutive-characters/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Three Consecutive Odds",
+                "url": "https://leetcode.com/problems/three-consecutive-odds/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Thousand Separator",
+                "url": "https://leetcode.com/problems/thousand-separator/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Most Visited Sector in a Circular Track",
+                "url": "https://leetcode.com/problems/most-visited-sector-in-a-circular-track/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Defuse the Bomb",
+                "url": "https://leetcode.com/problems/defuse-the-bomb/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Number of Students Unable to Eat Lunch",
+                "url": "https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Number Of Rectangles That Can Form The Largest Square",
+                "url": "https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Latest Time by Replacing Hidden Digits",
+                "url": "https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum Number of Balls in a Box",
+                "url": "https://leetcode.com/problems/maximum-number-of-balls-in-a-box/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Sum of Unique Elements",
+                "url": "https://leetcode.com/problems/sum-of-unique-elements/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Nearest Point That Has the Same X or Y Coordinate",
+                "url": "https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Faulty Sensor",
+                "url": "https://leetcode.com/problems/faulty-sensor/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Bit++",
+                "url": "https://codeforces.com/problemset/problem/282/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Bear and Big Brother",
+                "url": "https://codeforces.com/problemset/problem/791/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "George and Accommodation",
+                "url": "https://codeforces.com/problemset/problem/467/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Chef And Operators",
+                "url": "https://www.codechef.com/problems/CHOPRT",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Decrement OR Increment",
+                "url": "https://www.codechef.com/problems/DECINC",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Sum OR Difference",
+                "url": "https://www.codechef.com/problems/DIFFSUM",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Servant",
+                "url": "https://www.codechef.com/problems/FLOW008",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Domino piling",
+                "url": "https://codeforces.com/problemset/problem/50/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Tram",
+                "url": "https://codeforces.com/problemset/problem/116/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Queue at the School",
+                "url": "https://codeforces.com/problemset/problem/266/B",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Calculating Function",
+                "url": "https://codeforces.com/problemset/problem/486/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Drinks",
+                "url": "https://codeforces.com/problemset/problem/200/B",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Hulk",
+                "url": "https://codeforces.com/problemset/problem/705/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Divisibility Problem",
+                "url": "https://codeforces.com/problemset/problem/1328/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Expression",
+                "url": "https://codeforces.com/problemset/problem/479/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Hit the Lottery",
+                "url": "https://codeforces.com/problemset/problem/996/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Vasya the Hipster",
+                "url": "https://codeforces.com/problemset/problem/581/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Anton and Polyhedrons",
+                "url": "https://codeforces.com/problemset/problem/785/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Candies and Two Sisters",
+                "url": "https://codeforces.com/problemset/problem/1335/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Buy a Shovel",
+                "url": "https://codeforces.com/problemset/problem/732/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Restoring Three Numbers",
+                "url": "https://codeforces.com/problemset/problem/1154/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Sum of Round Numbers",
+                "url": "https://codeforces.com/problemset/problem/1352/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Yet Another Two Integers Problem",
+                "url": "https://codeforces.com/problemset/problem/1409/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Mishka and Game",
+                "url": "https://codeforces.com/problemset/problem/703/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Required Remainder",
+                "url": "https://codeforces.com/problemset/problem/1374/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Dislike of Threes",
+                "url": "https://codeforces.com/problemset/problem/1560/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Minutes Before the New Year",
+                "url": "https://codeforces.com/problemset/problem/1283/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Maximum GCD",
+                "url": "https://codeforces.com/problemset/problem/1370/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Collecting Coins",
+                "url": "https://codeforces.com/problemset/problem/1294/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Floor Number",
+                "url": "https://codeforces.com/problemset/problem/1426/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Fair Division",
+                "url": "https://codeforces.com/problemset/problem/1472/B",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Minimal Square",
+                "url": "https://codeforces.com/problemset/problem/1360/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Polycarp and Coins",
+                "url": "https://codeforces.com/problemset/problem/1551/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Design Tutorial: Learn from Math",
+                "url": "https://codeforces.com/problemset/problem/472/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Lucky?",
+                "url": "https://codeforces.com/problemset/problem/1676/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Number Mirror",
+                "url": "https://www.codechef.com/problems/START01",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "ATM",
+                "url": "https://www.codechef.com/problems/HS08TEST",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Id and Ship",
+                "url": "https://www.codechef.com/problems/FLOW010",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Gross Salary",
+                "url": "https://www.codechef.com/problems/FLOW011",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Grade The Steel",
+                "url": "https://www.codechef.com/problems/FLOW014",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Total Expenses",
+                "url": "https://www.codechef.com/problems/FLOW009",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Passing Marks",
+                "url": "https://www.codechef.com/problems/PSGRADE",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Lazy Chef",
+                "url": "https://www.codechef.com/problems/LAZYCHF",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Which Division",
+                "url": "https://www.codechef.com/problems/WHICHDIV",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Hardest Problem Bet",
+                "url": "https://www.codechef.com/problems/HARDBET",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Which Mixture",
+                "url": "https://www.codechef.com/problems/MIXTURE",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Problem Category",
+                "url": "https://www.codechef.com/problems/PROBCAT",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Pass or Fail",
+                "url": "https://www.codechef.com/problems/PASSORFAIL",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Battery Low",
+                "url": "https://www.codechef.com/problems/BATTERYLOW",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Fill the Bucket",
+                "url": "https://www.codechef.com/problems/FBC",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Tyre problem",
+                "url": "https://www.codechef.com/problems/TYRE",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Janmansh and Games",
+                "url": "https://www.codechef.com/problems/JASSIGNMENTS",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Janmansh and Coins",
+                "url": "https://www.codechef.com/problems/JCOINS",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Minimum Pizzas",
+                "url": "https://www.codechef.com/problems/MINPIZZA",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Chess Ratings",
+                "url": "https://www.codechef.com/problems/C_RATING",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Mario and Transformation",
+                "url": "https://www.codechef.com/problems/TRANSFORM",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Total Prize Money",
+                "url": "https://www.codechef.com/problems/PRIZEPOOL",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Burgers",
+                "url": "https://www.codechef.com/problems/BURGERS",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Waiting Time",
+                "url": "https://www.codechef.com/problems/WAITTIME",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Determine the Score",
+                "url": "https://www.codechef.com/problems/DETSCORE",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Biryani classes",
+                "url": "https://www.codechef.com/problems/BIRYANI",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Fitness",
+                "url": "https://www.codechef.com/problems/FIT",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Best of Two",
+                "url": "https://www.codechef.com/problems/BESTOFTWO",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Product (AtCoder)",
+                "url": "https://atcoder.jp/contests/abc086/tasks/abc086_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Placing Marbles",
+                "url": "https://atcoder.jp/contests/abc081/tasks/abc081_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Infinite Coins",
+                "url": "https://atcoder.jp/contests/abc088/tasks/abc088_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Toll Gates",
+                "url": "https://atcoder.jp/contests/abc094/tasks/abc094_b",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Bitter Alchemy",
+                "url": "https://atcoder.jp/contests/abc095/tasks/abc095_b",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Large Digits",
+                "url": "https://atcoder.jp/contests/abc187/tasks/abc187_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "ABC Preparation",
+                "url": "https://atcoder.jp/contests/abc185/tasks/abc185_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Quizzes",
+                "url": "https://atcoder.jp/contests/abc184/tasks/abc184_b",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "ReLU",
+                "url": "https://atcoder.jp/contests/abc183/tasks/abc183_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "twiblr",
+                "url": "https://atcoder.jp/contests/abc182/tasks/abc182_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Heavy Rotation",
+                "url": "https://atcoder.jp/contests/abc181/tasks/abc181_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "box",
+                "url": "https://atcoder.jp/contests/abc180/tasks/abc180_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Don't be late",
+                "url": "https://atcoder.jp/contests/abc177/tasks/abc177_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Sum (Codeforces)",
+                "url": "https://codeforces.com/problemset/problem/1742/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Codeforces Checking",
+                "url": "https://codeforces.com/problemset/problem/1791/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Plus or Minus",
+                "url": "https://codeforces.com/problemset/problem/1807/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Short Sort",
+                "url": "https://codeforces.com/problemset/problem/1873/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "A+B Again?",
+                "url": "https://codeforces.com/problemset/problem/1999/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Division?",
+                "url": "https://codeforces.com/problemset/problem/1669/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Chef and Brain Speed",
+                "url": "https://www.codechef.com/problems/CBSPEED",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Who is taller!",
+                "url": "https://www.codechef.com/problems/TALLER",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Roller Coaster",
+                "url": "https://www.codechef.com/problems/MINHEIGHT",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Chef and Chapters",
+                "url": "https://www.codechef.com/problems/SEMCOURSES",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Chef and Chocolates",
+                "url": "https://www.codechef.com/problems/CHEFCHOCO",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Candy Distribution",
+                "url": "https://www.codechef.com/problems/CANDYDIST",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Tax in Chefland",
+                "url": "https://www.codechef.com/problems/TAXTEN",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Reach on Time",
+                "url": "https://www.codechef.com/problems/TIMELY",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Audible Range",
+                "url": "https://www.codechef.com/problems/AUDIBLE",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Expert Setter",
+                "url": "https://www.codechef.com/problems/EXPERT",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Speciality",
+                "url": "https://www.codechef.com/problems/SPECIALITY",
+                "platform": "CodeChef"
             }
         ],
         "Medium": [
@@ -3543,6 +3323,101 @@ const questionsData = {
                 "title": "Temple Land",
                 "url": "https://www.codechef.com/problems/TEMPLELA",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "Count Subarrays of Length Three With a Condition",
+                "url": "https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum Difference Between Adjacent Elements in a Circular Array",
+                "url": "https://leetcode.com/problems/maximum-difference-between-adjacent-elements-in-a-circular-array/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Transform Array by Parity",
+                "url": "https://leetcode.com/problems/transform-array-by-parity/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Minimum Operations to Make Array Sum Divisible by K",
+                "url": "https://leetcode.com/problems/minimum-operations-to-make-array-sum-divisible-by-k/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Check If a Number Is Majority Element in a Sorted Array",
+                "url": "https://leetcode.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find the Distance Value Between Two Arrays",
+                "url": "https://leetcode.com/problems/find-the-distance-value-between-two-arrays/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Lucky Integer in an Array",
+                "url": "https://leetcode.com/problems/find-lucky-integer-in-an-array/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Get Maximum in Generated Array",
+                "url": "https://leetcode.com/problems/get-maximum-in-generated-array/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum Ascending Subarray Sum",
+                "url": "https://leetcode.com/problems/maximum-ascending-subarray-sum/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Marathon",
+                "url": "https://codeforces.com/problemset/problem/1692/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Practice makes us perfect",
+                "url": "https://www.codechef.com/problems/PRACTICEPERF",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "How many unattempted problems",
+                "url": "https://www.codechef.com/problems/PRACLIST",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "My very 1st contest!",
+                "url": "https://www.codechef.com/problems/MY1STCONTEST",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Chairs Requirement",
+                "url": "https://www.codechef.com/problems/CHAIRS_",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Medium Number",
+                "url": "https://codeforces.com/problemset/problem/1760/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "To My Critics",
+                "url": "https://codeforces.com/problemset/problem/1850/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Odd One Out",
+                "url": "https://codeforces.com/problemset/problem/1915/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Vlad and the Best of Five",
+                "url": "https://codeforces.com/problemset/problem/1926/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Stair, Peak, or Neither?",
+                "url": "https://codeforces.com/problemset/problem/1950/A",
+                "platform": "Codeforces"
             }
         ],
         "Medium": [
@@ -4686,6 +4561,16 @@ const questionsData = {
                 "title": "Go to Jail",
                 "url": "https://atcoder.jp/contests/abc179/tasks/abc179_b",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Brick",
+                "url": "https://atcoder.jp/contests/abc186/tasks/abc186_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Determinant",
+                "url": "https://atcoder.jp/contests/abc184/tasks/abc184_a",
+                "platform": "AtCoder"
             }
         ],
         "Medium": [
@@ -5624,6 +5509,81 @@ const questionsData = {
                 "title": "Chef and Table Tennis",
                 "url": "https://www.codechef.com/problems/TTENIS",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "Reverse a Number",
+                "url": "https://www.geeksforgeeks.org/problems/reverse-digit0316/1",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Remove Vowels from a String",
+                "url": "https://leetcode.com/problems/remove-vowels-from-a-string/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Generate a String With Characters That Have Odd Counts",
+                "url": "https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Reformat The String",
+                "url": "https://leetcode.com/problems/reformat-the-string/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum Score After Splitting a String",
+                "url": "https://leetcode.com/problems/maximum-score-after-splitting-a-string/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Perform String Shifts",
+                "url": "https://leetcode.com/problems/perform-string-shifts/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Check If a Word Occurs As a Prefix of Any Word in a Sentence",
+                "url": "https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Check if One String Swap Can Make Strings Equal",
+                "url": "https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Day of the Programmer",
+                "url": "https://www.hackerrank.com/challenges/day-of-the-programmer/problem",
+                "platform": "HackerRank"
+            },
+            {
+                "title": "Square String?",
+                "url": "https://codeforces.com/problemset/problem/1619/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Plural Form",
+                "url": "https://atcoder.jp/contests/abc179/tasks/abc179_a",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "YES or YES?",
+                "url": "https://codeforces.com/problemset/problem/1703/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Spell Check",
+                "url": "https://codeforces.com/problemset/problem/1722/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Love Story",
+                "url": "https://codeforces.com/problemset/problem/1829/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Creating Words",
+                "url": "https://codeforces.com/problemset/problem/1985/A",
+                "platform": "Codeforces"
             }
         ],
         "Medium": [
@@ -7490,6 +7450,16 @@ const questionsData = {
                 "title": "Max power",
                 "url": "https://www.codechef.com/problems/MAXPWR",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "My First Sorting Problem",
+                "url": "https://codeforces.com/problemset/problem/1971/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Java Comparator",
+                "url": "https://www.hackerrank.com/challenges/java-comparator/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -9274,6 +9244,11 @@ const questionsData = {
                 "title": "Reverse First K elements of Queue",
                 "url": "https://www.naukri.com/code360/problems/reverse-first-k-elements-of-queue_982770",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Java Stack",
+                "url": "https://www.hackerrank.com/challenges/java-stack/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -9826,6 +9801,11 @@ const questionsData = {
                 "title": "Circular tour (Gas Station)",
                 "url": "https://www.naukri.com/code360/problems/gas-tank-problem_893077",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Java Dequeue",
+                "url": "https://www.hackerrank.com/challenges/java-dequeue/problem",
+                "platform": "HackerRank"
             }
         ],
         "Hard": [
@@ -11272,6 +11252,11 @@ const questionsData = {
                 "title": "Letter Combinations of a Phone Number",
                 "url": "https://www.naukri.com/code360/problems/letter-combinations-of-a-phone-number_983623",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Java 1D Array (Part 2)",
+                "url": "https://www.hackerrank.com/challenges/java-1d-array/problem",
+                "platform": "HackerRank"
             }
         ],
         "Hard": [
@@ -11693,6 +11678,11 @@ const questionsData = {
                 "title": "Tadaa",
                 "url": "https://www.codechef.com/problems/TASTEDEC",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "Bill Division",
+                "url": "https://www.hackerrank.com/challenges/bon-appetit/problem",
+                "platform": "HackerRank"
             }
         ],
         "Medium": [
@@ -12345,6 +12335,11 @@ const questionsData = {
                 "title": "Chef and Sign Sequences",
                 "url": "https://www.codechef.com/problems/CHEFSIGN",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "Average Waiting Time",
+                "url": "https://leetcode.com/problems/average-waiting-time/",
+                "platform": "LeetCode"
             }
         ],
         "Hard": [
@@ -14329,6 +14324,11 @@ const questionsData = {
                 "title": "Redundant Redundancy",
                 "url": "https://atcoder.jp/contests/abc160/tasks/abc160_e",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Java Priority Queue",
+                "url": "https://www.hackerrank.com/challenges/java-priority-queue/problem",
+                "platform": "HackerRank"
             }
         ],
         "Hard": [
