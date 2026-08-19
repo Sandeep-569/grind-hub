@@ -1,4 +1,4 @@
-// ==================== GrindHub: Professional DSA Problem Tracker ====================
+// ==================== GrindHub: Professional DSA Problem Tracker (Pure Black 000) ====================
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
@@ -7,17 +7,17 @@ const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
 
 const PRESET_COLORS = [
-    { name: "Blue", hex: "#58a6ff", glow: "rgba(88, 166, 255, 0.2)" },
-    { name: "Green", hex: "#3fb950", glow: "rgba(63, 185, 80, 0.2)" },
-    { name: "Purple", hex: "#bc8cff", glow: "rgba(188, 140, 255, 0.2)" },
-    { name: "Cyan", hex: "#38bdf8", glow: "rgba(56, 189, 248, 0.2)" },
-    { name: "Amber", hex: "#d29922", glow: "rgba(210, 153, 34, 0.2)" },
-    { name: "Coral", hex: "#f85149", glow: "rgba(248, 81, 73, 0.2)" }
+    { name: "Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.25)" },
+    { name: "Green", hex: "#10b981", glow: "rgba(16, 185, 129, 0.25)" },
+    { name: "Purple", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.25)" },
+    { name: "Cyan", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.25)" },
+    { name: "Amber", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.25)" },
+    { name: "Coral", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.25)" }
 ];
 
 const DEFAULT_PROFILE = {
     name: "Coder",
-    color: "#58a6ff",
+    color: "#3b82f6",
     github: "",
     codolioUrl: ""
 };
@@ -53,19 +53,19 @@ function getTopicKeys() {
 
 function topicPill(topicKey) {
     if (!topicKey) return '';
-    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-[#58a6ff] bg-[#58a6ff]/10 border-[#58a6ff]/30';
+    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-blue-400 bg-blue-950/40 border-blue-900/50';
     return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${cls}">${topicKey}</span>`;
 }
 
 function platformPill(platform) {
-    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-[#8b949e] bg-[#21262d] border-[#30363d]';
+    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-neutral-400 bg-[#0f0f0f] border-[#1c1c1c]';
     return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border flex-shrink-0 ${cls}">${platform || 'Other'}</span>`;
 }
 
 function difficultyBadgeClasses(difficulty) {
-    if (difficulty === 'Easy') return 'text-[#3fb950] bg-[#3fb950]/15 border-[#3fb950]/40';
-    if (difficulty === 'Medium') return 'text-[#d29922] bg-[#d29922]/15 border-[#d29922]/40';
-    return 'text-[#f85149] bg-[#f85149]/15 border-[#f85149]/40';
+    if (difficulty === 'Easy') return 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40';
+    if (difficulty === 'Medium') return 'text-amber-400 bg-amber-950/40 border-amber-800/40';
+    return 'text-rose-400 bg-rose-950/40 border-rose-800/40';
 }
 
 function escJs(str) {
@@ -104,19 +104,19 @@ function applyThemeAccent(hexColor) {
 
 function updateProfileUI() {
     const profileName = (userProfile.name || 'Coder').trim();
-    applyThemeAccent(userProfile.color || '#58a6ff');
+    applyThemeAccent(userProfile.color || '#3b82f6');
 
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
         avatarEl.textContent = getInitial(profileName);
-        avatarEl.style.backgroundColor = userProfile.color || '#58a6ff';
+        avatarEl.style.backgroundColor = userProfile.color || '#3b82f6';
     }
     if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-[#58a6ff] cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-blue-400 cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
     }
     const dashNameEl = document.getElementById('dashboard-user-name');
     if (dashNameEl) {
@@ -165,11 +165,11 @@ function openProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     if (nameInput) nameInput.value = userProfile.name || 'Coder';
-    if (colorInput) colorInput.value = userProfile.color || '#58a6ff';
+    if (colorInput) colorInput.value = userProfile.color || '#3b82f6';
     if (githubInput) githubInput.value = userProfile.github || '';
     if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
-    renderColorOptions('profile-color-options', userProfile.color || '#58a6ff', (selected) => {
+    renderColorOptions('profile-color-options', userProfile.color || '#3b82f6', (selected) => {
         if (colorInput) colorInput.value = selected;
     });
 
@@ -193,7 +193,7 @@ function saveProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     userProfile.name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Coder';
-    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#58a6ff';
+    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#3b82f6';
     userProfile.github = githubInput ? githubInput.value.trim() : '';
     userProfile.codolioUrl = codolioInput ? codolioInput.value.trim() : '';
 
@@ -216,7 +216,7 @@ function renderColorOptions(containerId, activeColor, onSelect) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.title = c.name;
-        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-[#161b22]' : 'opacity-70 hover:opacity-100'}`;
+        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-[#000000]' : 'opacity-70 hover:opacity-100'}`;
         btn.style.backgroundColor = c.hex;
         btn.onclick = () => {
             renderColorOptions(containerId, c.hex, onSelect);
@@ -468,10 +468,10 @@ function updatePlatformLegend() {
     legend.innerHTML = Object.keys(platformCounts).sort().map(p => {
         const count = platformCounts[p];
         const pSol = platformSolved[p] || 0;
-        const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-[#8b949e] bg-[#21262d] border-[#30363d]';
+        const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-neutral-400 bg-[#0f0f0f] border-[#1c1c1c]';
         return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium border ${cls}">
             <span>${p}</span>
-            <span class="text-[#8b949e] font-mono text-[11px]">${pSol}/${count}</span>
+            <span class="text-neutral-400 font-mono text-[11px]">${pSol}/${count}</span>
         </span>`;
     }).join('');
 }
@@ -485,13 +485,11 @@ function renderRoadmapGrid() {
     const query = roadmapSearchQuery.toLowerCase();
 
     let html = '';
-    let matchCount = 0;
 
     topics.forEach((topic, idx) => {
         if (query && !topic.toLowerCase().includes(query)) {
             return;
         }
-        matchCount++;
 
         const easyList = questionsData[topic].Easy || [];
         const medList = questionsData[topic].Medium || [];
@@ -514,31 +512,31 @@ function renderRoadmapGrid() {
         <div onclick="openTopicPage('${escJs(topic)}')" class="roadmap-card group">
             <div>
                 <div class="flex items-center justify-between gap-2 mb-2">
-                    <span class="text-xs font-mono text-[#6e7681] font-semibold">#${idx + 1}</span>
+                    <span class="text-xs font-mono text-neutral-500 font-semibold">#${idx + 1}</span>
                     ${topicPill(topic)}
                 </div>
-                <h3 class="text-base font-bold text-[#f0f6fc] group-hover:text-[#58a6ff] transition mb-1">
+                <h3 class="text-base font-bold text-white group-hover:text-blue-400 transition mb-1">
                     ${topic}
                 </h3>
-                <div class="flex items-center gap-2 text-xs text-[#8b949e] font-mono mt-1">
-                    <span class="text-[#3fb950]">E: ${easySolved}/${easyList.length}</span>
-                    <span class="text-[#484f58]">•</span>
-                    <span class="text-[#d29922]">M: ${medSolved}/${medList.length}</span>
-                    <span class="text-[#484f58]">•</span>
-                    <span class="text-[#f85149]">H: ${hardSolved}/${hardList.length}</span>
+                <div class="flex items-center gap-2 text-xs text-neutral-400 font-mono mt-1">
+                    <span class="text-emerald-400">E: ${easySolved}/${easyList.length}</span>
+                    <span class="text-neutral-700">•</span>
+                    <span class="text-amber-400">M: ${medSolved}/${medList.length}</span>
+                    <span class="text-neutral-700">•</span>
+                    <span class="text-rose-400">H: ${hardSolved}/${hardList.length}</span>
                 </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-[#30363d]">
+            <div class="mt-4 pt-3 border-t border-[#1c1c1c]">
                 <div class="flex items-center justify-between text-xs mb-1.5 font-mono">
-                    <span class="text-[#8b949e]">${solvedInTopic}/${totalInTopic} Solved</span>
-                    <span class="${isCompleted ? 'text-[#3fb950] font-bold' : 'text-[#58a6ff] font-semibold'}">${pct}%</span>
+                    <span class="text-neutral-400">${solvedInTopic}/${totalInTopic} Solved</span>
+                    <span class="${isCompleted ? 'text-emerald-400 font-bold' : 'text-blue-400 font-semibold'}">${pct}%</span>
                 </div>
-                <div class="w-full bg-[#0d1117] rounded-full h-1.5 overflow-hidden border border-[#30363d] mb-3">
-                    <div class="${isCompleted ? 'bg-[#3fb950]' : 'bg-[#238636]'} h-1.5 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+                <div class="w-full bg-[#000000] rounded-full h-1.5 overflow-hidden border border-[#1c1c1c] mb-3">
+                    <div class="${isCompleted ? 'bg-emerald-500' : 'bg-blue-600'} h-1.5 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
                 </div>
 
-                <div class="flex items-center justify-between text-xs font-semibold text-[#58a6ff] group-hover:text-[#79c0ff] transition">
+                <div class="flex items-center justify-between text-xs font-semibold text-blue-400 group-hover:text-blue-300 transition">
                     <span>Solve Questions</span>
                     <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -550,9 +548,9 @@ function renderRoadmapGrid() {
 
     if (!html) {
         html = `
-        <div class="col-span-full pro-card p-8 text-center text-[#8b949e]">
-            <p class="font-semibold text-base text-[#f0f6fc]">No topics matching "${escAttr(roadmapSearchQuery)}"</p>
-            <button onclick="clearRoadmapSearch()" class="mt-3 px-3 py-1 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
+        <div class="col-span-full pro-card p-8 text-center text-neutral-400">
+            <p class="font-semibold text-base text-white">No topics matching "${escAttr(roadmapSearchQuery)}"</p>
+            <button onclick="clearRoadmapSearch()" class="mt-3 px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-md transition cursor-pointer">
                 Clear Search
             </button>
         </div>`;
@@ -704,9 +702,9 @@ function setTopicStatusFilter(status) {
         const btn = document.getElementById(`topic-filter-status-${s}`);
         if (btn) {
             if (s === status) {
-                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white';
+                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
             } else {
-                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-[#8b949e] hover:text-[#e6edf3] transition cursor-pointer';
+                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-neutral-400 hover:text-white transition cursor-pointer';
             }
         }
     });
@@ -719,9 +717,9 @@ function setTopicDiffFilter(diff) {
         const btn = document.getElementById(`topic-filter-diff-${d}`);
         if (btn) {
             if (d === diff) {
-                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white';
+                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
             } else {
-                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded text-[#8b949e] hover:text-[#e6edf3] transition cursor-pointer';
+                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded text-neutral-400 hover:text-white transition cursor-pointer';
             }
         }
     });
@@ -780,10 +778,10 @@ function renderTopicQuestions(topicName) {
 
     if (totalVisible === 0) {
         html = `
-        <div class="pro-card p-8 rounded-lg border border-[#30363d] text-center text-[#8b949e]">
-            <p class="font-semibold text-base text-[#f0f6fc]">No questions found matching your filter</p>
-            <p class="text-xs text-[#8b949e] mt-1">Try changing or resetting your search and filter criteria.</p>
-            <button onclick="clearTopicFilters()" class="mt-3 px-3 py-1.5 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
+        <div class="pro-card p-8 rounded-lg border border-[#1c1c1c] text-center text-neutral-400">
+            <p class="font-semibold text-base text-white">No questions found matching your filter</p>
+            <p class="text-xs text-neutral-400 mt-1">Try changing or resetting your search and filter criteria.</p>
+            <button onclick="clearTopicFilters()" class="mt-3 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-md transition cursor-pointer">
                 Clear Filters
             </button>
         </div>`;
@@ -814,7 +812,7 @@ function renderDifficultyBlock(difficulty, list, startIndex = 1) {
         const questionNum = startIndex + idx;
 
         return `
-        <div class="question-row flex items-center justify-between p-2.5 rounded-md border border-[#30363d] bg-[#161b22] transition ${isSolved ? 'is-solved' : ''}">
+        <div class="question-row flex items-center justify-between p-2.5 rounded-md border border-[#1c1c1c] bg-[#080808] transition ${isSolved ? 'is-solved' : ''}">
             <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-3">
                 <input type="checkbox" class="pro-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
                 
@@ -822,15 +820,15 @@ function renderDifficultyBlock(difficulty, list, startIndex = 1) {
                     ${isStarred ? '★' : '☆'}
                 </button>
 
-                <span class="text-xs font-mono text-[#6e7681] flex-shrink-0 w-6 text-right">${questionNum}.</span>
+                <span class="text-xs font-mono text-neutral-500 flex-shrink-0 w-6 text-right">${questionNum}.</span>
 
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-[13.5px] font-medium text-[#f0f6fc] hover:text-[#58a6ff] transition truncate hover:underline" title="${escAttr(q.title)}">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-[13.5px] font-medium text-white hover:text-blue-400 transition truncate hover:underline" title="${escAttr(q.title)}">
                     ${escAttr(q.title)}
                 </a>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
                 ${platformPill(q.platform)}
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-[#8b949e] hover:text-[#f0f6fc] p-1 transition" title="Open external problem link">
+                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white p-1 transition" title="Open external problem link">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
@@ -840,10 +838,10 @@ function renderDifficultyBlock(difficulty, list, startIndex = 1) {
     }).join('');
 
     return `
-    <div class="pro-card p-4 border border-[#30363d] rounded-lg">
+    <div class="pro-card p-4 border border-[#1c1c1c] rounded-lg">
         <div class="flex items-center gap-2 mb-3">
             <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
-            <span class="text-xs font-mono text-[#8b949e] font-medium">(${list.length} problems)</span>
+            <span class="text-xs font-mono text-neutral-400 font-medium">(${list.length} problems)</span>
         </div>
         <div class="space-y-1.5">
             ${itemsHtml}

@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    /* Eye-Friendly Low-Strain Dark Palette */
-    --bg-void: #0d1117;
-    --bg-surface: #161b22;
-    --bg-card: #161b22;
-    --bg-card-hover: #1c2128;
-    --bg-input: #0d1117;
-    --border-subtle: #30363d;
-    --border-hover: #58a6ff;
+    /* Pure Pitch Black / OLED 000 Palette */
+    --bg-void: #000000;
+    --bg-surface: #080808;
+    --bg-card: #0c0c0c;
+    --bg-card-hover: #141414;
+    --bg-input: #000000;
+    --border-subtle: #1c1c1c;
+    --border-hover: #3b82f6;
     
     /* Text Hierarchy */
-    --text-primary: #f0f6fc;
-    --text-secondary: #8b949e;
-    --text-muted: #6e7681;
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --text-muted: #666666;
 
-    /* Calibrated Soft Accents */
-    --pro-accent: #58a6ff;
-    --pro-glow: rgba(88, 166, 255, 0.15);
+    /* Accents */
+    --pro-accent: #3b82f6;
+    --pro-glow: rgba(59, 130, 246, 0.2);
 }
 
 *, *::before, *::after {
@@ -25,7 +25,7 @@
 }
 
 html, body {
-    background-color: var(--bg-void);
+    background-color: #000000;
     color: var(--text-primary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
@@ -36,26 +36,26 @@ html, body {
 }
 
 body {
-    background: #0d1117;
+    background: #000000;
 }
 
-/* Subtle, Comfortable Scrollbars */
+/* OLED Black Scrollbars */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0d1117;
+    background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #30363d;
+    background: #222222;
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #484f58;
+    background: #333333;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -68,22 +68,22 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #30363d;
+    background: #222222;
     border-radius: 3px;
 }
 
-/* Eye-Comfortable Cards */
+/* Pure Black Cards */
 .pro-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
+    background: #0c0c0c;
+    border: 1px solid #1c1c1c;
     border-radius: 0.75rem;
     transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 /* Interactive Roadmap Cards */
 .roadmap-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
+    background: #0c0c0c;
+    border: 1px solid #1c1c1c;
     border-radius: 0.75rem;
     padding: 1.25rem;
     transition: all 0.15s ease;
@@ -95,21 +95,21 @@ body {
 }
 
 .roadmap-card:hover {
-    background: var(--bg-card-hover);
-    border-color: #58a6ff;
+    background: #141414;
+    border-color: #3b82f6;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.8);
 }
 
-/* Eye-Friendly High-Visibility Checkbox */
+/* OLED Pure Black Checkbox */
 .pro-checkbox {
     appearance: none;
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    border: 1.5px solid #6e7681;
+    border: 1.5px solid #444444;
     border-radius: 4px;
-    background: #0d1117;
+    background: #000000;
     cursor: pointer;
     position: relative;
     transition: all 0.12s ease;
@@ -123,7 +123,7 @@ body {
 
 .pro-checkbox:hover {
     border-color: var(--pro-accent);
-    background: #161b22;
+    background: #111111;
 }
 
 .pro-checkbox:checked {
@@ -135,7 +135,7 @@ body {
     content: '';
     width: 5px;
     height: 9px;
-    border: solid #0d1117;
+    border: solid #000000;
     border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg) translate(-0.5px, -1px);
     display: block;
@@ -149,7 +149,7 @@ body {
     cursor: pointer;
     font-size: 15px;
     line-height: 1;
-    color: #6e7681;
+    color: #555555;
     padding: 3px;
     border-radius: 4px;
     transition: color 0.15s ease, transform 0.1s ease;
@@ -163,12 +163,12 @@ body {
 }
 
 .star-btn:hover {
-    color: #d29922;
+    color: #fbbf24;
     transform: scale(1.15);
 }
 
 .star-btn.starred {
-    color: #d29922;
+    color: #fbbf24;
 }
 
 /* Fade in animation */
@@ -189,24 +189,24 @@ body {
 
 /* Question Rows */
 .question-row {
-    background-color: #161b22;
-    border: 1px solid #30363d;
+    background-color: #080808;
+    border: 1px solid #1c1c1c;
     border-radius: 8px;
     padding: 10px 12px;
     transition: background-color 0.12s ease, border-color 0.12s ease;
 }
 
 .question-row:hover {
-    background-color: #1c2128;
-    border-color: #484f58;
+    background-color: #121212;
+    border-color: #333333;
 }
 
 .question-row.is-solved {
-    opacity: 0.65;
+    opacity: 0.6;
 }
 
 .q-title-link {
-    color: #f0f6fc;
+    color: #ffffff;
     font-size: 13.5px;
     font-weight: 500;
     line-height: 1.4;
@@ -216,12 +216,12 @@ body {
 }
 
 .q-title-link:hover {
-    color: #58a6ff;
+    color: #3b82f6;
     text-decoration: underline;
 }
 
 .question-row.is-solved .q-title-link {
-    color: #8b949e;
+    color: #777777;
     text-decoration: line-through;
 }
 
@@ -234,5 +234,5 @@ body {
 
 .topic-jump-pill:hover {
     border-color: var(--pro-accent);
-    color: #f0f6fc;
+    color: #ffffff;
 }
