@@ -65,6 +65,7 @@ npx serve
 ├── style.css         # Custom animations, platform glows, and scrollbars
 ├── data.js           # Question bank data, topic palettes, and platform tokens
 ├── app.js            # Core application logic, search, and state management
+├── LICENSE           # MIT License
 └── README.md         # Documentation
 ```
 
