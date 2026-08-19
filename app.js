@@ -2,8 +2,11 @@
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
-const SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
-const STARRED_KEY = 'dsa_tracker_starred_v1';
+const SOLVED_KEY = 'dsa_tracker_solved_questions_v2';
+const STARRED_KEY = 'dsa_tracker_starred_v2';
+const LEGACY_SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
+const LEGACY_STARRED_KEY = 'dsa_tracker_starred_v1';
+const MIGRATION_KEY = 'dsa_tracker_id_migration_v2';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
 
 const PRESET_COLORS = [
@@ -49,6 +52,23 @@ function getInitial(name) {
 
 function getTopicKeys() {
     return (typeof questionsData !== 'undefined') ? Object.keys(questionsData) : [];
+}
+
+function buildUrlToIdsMap() {
+    const map = new Map();
+    if (typeof questionsData !== 'undefined') {
+        for (const topic in questionsData) {
+            for (const diff of ['Easy', 'Medium', 'Hard']) {
+                (questionsData[topic][diff] || []).forEach(q => {
+                    if (q.url && q.id) {
+                        if (!map.has(q.url)) map.set(q.url, []);
+                        map.get(q.url).push(q.id);
+                    }
+                });
+            }
+        }
+    }
+    return map;
 }
 
 function topicPill(topicKey) {
@@ -286,13 +306,48 @@ function submitWelcomeModal() {
     showToast(`Welcome, ${name}`);
 }
 
-// ==================== Solved & Starred Storage ====================
+// ==================== Solved & Starred Storage & Migration ====================
 function loadSolvedQuestions() {
     try {
+        // Try V2 ID-based key first
         const raw = localStorage.getItem(SOLVED_KEY);
         if (raw) {
             const arr = JSON.parse(raw);
-            if (Array.isArray(arr)) return new Set(arr);
+            if (Array.isArray(arr)) {
+                // If contains any old URL items, migrate them
+                const urlMap = buildUrlToIdsMap();
+                const resultSet = new Set();
+                let hasLegacyUrls = false;
+                arr.forEach(item => {
+                    if (typeof item === 'string' && item.startsWith('http')) {
+                        hasLegacyUrls = true;
+                        const matchingIds = urlMap.get(item) || [];
+                        matchingIds.forEach(id => resultSet.add(id));
+                    } else {
+                        resultSet.add(item);
+                    }
+                });
+                if (hasLegacyUrls) {
+                    localStorage.setItem(SOLVED_KEY, JSON.stringify(Array.from(resultSet)));
+                }
+                return resultSet;
+            }
+        }
+
+        // Fallback: Check Legacy V1 URL-based key
+        const legacyRaw = localStorage.getItem(LEGACY_SOLVED_KEY);
+        if (legacyRaw) {
+            const legacyArr = JSON.parse(legacyRaw);
+            if (Array.isArray(legacyArr)) {
+                const urlMap = buildUrlToIdsMap();
+                const migratedSet = new Set();
+                legacyArr.forEach(url => {
+                    const matchingIds = urlMap.get(url) || [];
+                    matchingIds.forEach(id => migratedSet.add(id));
+                });
+                localStorage.setItem(SOLVED_KEY, JSON.stringify(Array.from(migratedSet)));
+                return migratedSet;
+            }
         }
     } catch (e) {}
     return new Set();
@@ -306,10 +361,45 @@ function saveSolvedQuestions() {
 
 function loadStarredQuestions() {
     try {
+        // Try V2 ID-based key first
         const raw = localStorage.getItem(STARRED_KEY);
         if (raw) {
             const arr = JSON.parse(raw);
-            if (Array.isArray(arr)) return new Set(arr);
+            if (Array.isArray(arr)) {
+                // If contains any old URL items, migrate them
+                const urlMap = buildUrlToIdsMap();
+                const resultSet = new Set();
+                let hasLegacyUrls = false;
+                arr.forEach(item => {
+                    if (typeof item === 'string' && item.startsWith('http')) {
+                        hasLegacyUrls = true;
+                        const matchingIds = urlMap.get(item) || [];
+                        matchingIds.forEach(id => resultSet.add(id));
+                    } else {
+                        resultSet.add(item);
+                    }
+                });
+                if (hasLegacyUrls) {
+                    localStorage.setItem(STARRED_KEY, JSON.stringify(Array.from(resultSet)));
+                }
+                return resultSet;
+            }
+        }
+
+        // Fallback: Check Legacy V1 URL-based key
+        const legacyRaw = localStorage.getItem(LEGACY_STARRED_KEY);
+        if (legacyRaw) {
+            const legacyArr = JSON.parse(legacyRaw);
+            if (Array.isArray(legacyArr)) {
+                const urlMap = buildUrlToIdsMap();
+                const migratedSet = new Set();
+                legacyArr.forEach(url => {
+                    const matchingIds = urlMap.get(url) || [];
+                    matchingIds.forEach(id => migratedSet.add(id));
+                });
+                localStorage.setItem(STARRED_KEY, JSON.stringify(Array.from(migratedSet)));
+                return migratedSet;
+            }
         }
     } catch (e) {}
     return new Set();
@@ -321,15 +411,31 @@ function saveStarredQuestions() {
     } catch (e) {}
 }
 
-function toggleQuestionSolved(urlKey, ev) {
-    if (solvedSet.has(urlKey)) {
-        solvedSet.delete(urlKey);
+function checkMigrationNotice() {
+    try {
+        const hasMigrated = localStorage.getItem(MIGRATION_KEY);
+        if (!hasMigrated) {
+            const hadLegacySolved = localStorage.getItem(LEGACY_SOLVED_KEY);
+            const hadLegacyStarred = localStorage.getItem(LEGACY_STARRED_KEY);
+            localStorage.setItem(MIGRATION_KEY, 'true');
+            if (hadLegacySolved || hadLegacyStarred) {
+                setTimeout(() => {
+                    showToast("GrindHub updated: Solved progress migrated to unique problem IDs!");
+                }, 600);
+            }
+        }
+    } catch (e) {}
+}
+
+function toggleQuestionSolved(qId, ev) {
+    if (solvedSet.has(qId)) {
+        solvedSet.delete(qId);
         saveSolvedQuestions();
-        updateSingleQuestionCheckboxUI(urlKey, false);
+        updateSingleQuestionCheckboxUI(qId, false);
     } else {
-        solvedSet.add(urlKey);
+        solvedSet.add(qId);
         saveSolvedQuestions();
-        updateSingleQuestionCheckboxUI(urlKey, true);
+        updateSingleQuestionCheckboxUI(qId, true);
     }
     updateDashboardSummaries();
     updatePlatformLegend();
@@ -338,24 +444,24 @@ function toggleQuestionSolved(urlKey, ev) {
     }
 }
 
-function toggleQuestionStarred(urlKey, ev) {
+function toggleQuestionStarred(qId, ev) {
     if (ev) ev.stopPropagation();
-    if (starredSet.has(urlKey)) {
-        starredSet.delete(urlKey);
+    if (starredSet.has(qId)) {
+        starredSet.delete(qId);
         saveStarredQuestions();
-        updateSingleQuestionStarUI(urlKey, false);
+        updateSingleQuestionStarUI(qId, false);
     } else {
-        starredSet.add(urlKey);
+        starredSet.add(qId);
         saveStarredQuestions();
-        updateSingleQuestionStarUI(urlKey, true);
+        updateSingleQuestionStarUI(qId, true);
     }
     if (topicFilters.status === 'starred' && currentTopic) {
         renderTopicQuestions(currentTopic);
     }
 }
 
-function updateSingleQuestionCheckboxUI(urlKey, isSolved) {
-    document.querySelectorAll(`input[data-qurl="${CSS.escape(urlKey)}"]`).forEach(input => {
+function updateSingleQuestionCheckboxUI(qId, isSolved) {
+    document.querySelectorAll(`input[data-qid="${CSS.escape(qId)}"]`).forEach(input => {
         input.checked = isSolved;
         const row = input.closest('.question-row');
         if (row) {
@@ -368,8 +474,8 @@ function updateSingleQuestionCheckboxUI(urlKey, isSolved) {
     });
 }
 
-function updateSingleQuestionStarUI(urlKey, isStarred) {
-    document.querySelectorAll(`button[data-starurl="${CSS.escape(urlKey)}"]`).forEach(btn => {
+function updateSingleQuestionStarUI(qId, isStarred) {
+    document.querySelectorAll(`button[data-starid="${CSS.escape(qId)}"]`).forEach(btn => {
         if (isStarred) {
             btn.classList.add('starred');
             btn.textContent = '★';
@@ -397,7 +503,7 @@ function showToast(msg) {
     toastTimer = setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-8', 'opacity-0');
-    }, 2000);
+    }, 2500);
 }
 
 // ==================== Overall Stats ====================
@@ -412,15 +518,15 @@ function updateDashboardSummaries() {
         for (const topic in questionsData) {
             (questionsData[topic].Easy || []).forEach(q => {
                 totalQuestions++;
-                if (solvedSet.has(q.url)) { solvedCount++; solvedEasy++; }
+                if (solvedSet.has(q.id)) { solvedCount++; solvedEasy++; }
             });
             (questionsData[topic].Medium || []).forEach(q => {
                 totalQuestions++;
-                if (solvedSet.has(q.url)) { solvedCount++; solvedMed++; }
+                if (solvedSet.has(q.id)) { solvedCount++; solvedMed++; }
             });
             (questionsData[topic].Hard || []).forEach(q => {
                 totalQuestions++;
-                if (solvedSet.has(q.url)) { solvedCount++; solvedHard++; }
+                if (solvedSet.has(q.id)) { solvedCount++; solvedHard++; }
             });
         }
     }
@@ -458,7 +564,7 @@ function updatePlatformLegend() {
             (questionsData[topic][diff] || []).forEach(q => {
                 const p = q.platform || 'Other';
                 platformCounts[p] = (platformCounts[p] || 0) + 1;
-                if (solvedSet.has(q.url)) {
+                if (solvedSet.has(q.id)) {
                     platformSolved[p] = (platformSolved[p] || 0) + 1;
                 }
             });
@@ -501,9 +607,9 @@ function renderRoadmapGrid() {
         let medSolved = 0;
         let hardSolved = 0;
 
-        easyList.forEach(q => { if (solvedSet.has(q.url)) { solvedInTopic++; easySolved++; } });
-        medList.forEach(q => { if (solvedSet.has(q.url)) { solvedInTopic++; medSolved++; } });
-        hardList.forEach(q => { if (solvedSet.has(q.url)) { solvedInTopic++; hardSolved++; } });
+        easyList.forEach(q => { if (solvedSet.has(q.id)) { solvedInTopic++; easySolved++; } });
+        medList.forEach(q => { if (solvedSet.has(q.id)) { solvedInTopic++; medSolved++; } });
+        hardList.forEach(q => { if (solvedSet.has(q.id)) { solvedInTopic++; hardSolved++; } });
 
         const pct = totalInTopic ? Math.round((solvedInTopic / totalInTopic) * 100) : 0;
         const isCompleted = totalInTopic > 0 && solvedInTopic === totalInTopic;
@@ -644,9 +750,9 @@ function updateTopicHeaderStats(topicName) {
     const total = easyList.length + medList.length + hardList.length;
 
     let solved = 0, eSol = 0, mSol = 0, hSol = 0;
-    easyList.forEach(q => { if (solvedSet.has(q.url)) { solved++; eSol++; } });
-    medList.forEach(q => { if (solvedSet.has(q.url)) { solved++; mSol++; } });
-    hardList.forEach(q => { if (solvedSet.has(q.url)) { solved++; hSol++; } });
+    easyList.forEach(q => { if (solvedSet.has(q.id)) { solved++; eSol++; } });
+    medList.forEach(q => { if (solvedSet.has(q.id)) { solved++; mSol++; } });
+    hardList.forEach(q => { if (solvedSet.has(q.id)) { solved++; hSol++; } });
 
     const pct = total ? Math.round((solved / total) * 100) : 0;
 
@@ -746,8 +852,8 @@ function renderTopicQuestions(topicName) {
     const filterList = (list, dName) => {
         if (diffFilter !== 'all' && diffFilter !== dName) return [];
         return (list || []).filter(q => {
-            const isSolved = solvedSet.has(q.url);
-            const isStarred = starredSet.has(q.url);
+            const isSolved = solvedSet.has(q.id);
+            const isStarred = starredSet.has(q.id);
 
             if (statusFilter === 'solved' && !isSolved) return false;
             if (statusFilter === 'unsolved' && isSolved) return false;
@@ -806,17 +912,18 @@ function renderDifficultyBlock(difficulty, list, startIndex = 1) {
     const badgeCls = difficultyBadgeClasses(difficulty);
 
     const itemsHtml = list.map((q, idx) => {
-        const isSolved = solvedSet.has(q.url);
-        const isStarred = starredSet.has(q.url);
+        const isSolved = solvedSet.has(q.id);
+        const isStarred = starredSet.has(q.id);
+        const qIdAttr = escAttr(q.id);
         const urlAttr = escAttr(q.url);
         const questionNum = startIndex + idx;
 
         return `
         <div class="question-row flex items-center justify-between p-2.5 rounded-md border border-[#1c1c1c] bg-[#080808] transition ${isSolved ? 'is-solved' : ''}">
             <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-3">
-                <input type="checkbox" class="pro-checkbox" data-qurl="${urlAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.url)}', event)">
+                <input type="checkbox" class="pro-checkbox" data-qid="${qIdAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.id)}', event)">
                 
-                <button type="button" data-starurl="${urlAttr}" onclick="toggleQuestionStarred('${escJs(q.url)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
+                <button type="button" data-starid="${qIdAttr}" onclick="toggleQuestionStarred('${escJs(q.id)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
                     ${isStarred ? '★' : '☆'}
                 </button>
 
@@ -894,4 +1001,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderRoadmapGrid();
     handleHashRoute();
     checkFirstTimeUser();
+    checkMigrationNotice();
 });
