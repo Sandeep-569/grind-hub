@@ -165,11 +165,6 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Count the Number of Consistent Strings",
-                "url": "https://leetcode.com/problems/count-the-number-of-consistent-strings/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Decode XORed Array",
                 "url": "https://leetcode.com/problems/decode-xored-array/",
                 "platform": "LeetCode"
@@ -177,16 +172,6 @@ const questionsData = {
             {
                 "title": "Sum of All Subset XOR Totals",
                 "url": "https://leetcode.com/problems/sum-of-all-subset-xor-totals/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Longest Nice Substring",
-                "url": "https://leetcode.com/problems/longest-nice-substring/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Roman to Integer.",
-                "url": "https://leetcode.com/problems/roman-to-integer/",
                 "platform": "LeetCode"
             },
             {
@@ -245,16 +230,6 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Minimum Moves To Equal Array Elements",
-                "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Missing Number",
-                "url": "https://leetcode.com/problems/missing-number/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Maximizing XOR",
                 "url": "https://www.hackerrank.com/challenges/maximizing-xor/problem",
                 "platform": "HackerRank"
@@ -263,11 +238,6 @@ const questionsData = {
                 "title": "Sieve of Eratosthenes",
                 "url": "https://www.geeksforgeeks.org/sieve-of-eratosthenes/",
                 "platform": "GeeksforGeeks"
-            },
-            {
-                "title": "Sqrt(x)",
-                "url": "https://leetcode.com/problems/sqrtx/",
-                "platform": "LeetCode"
             },
             {
                 "title": "Count set bits in an integer (GFG)",
@@ -298,11 +268,6 @@ const questionsData = {
                 "title": "Swap Two Numbers Without Temp Variable",
                 "url": "https://www.geeksforgeeks.org/?s=Swap%20Two%20Numbers%20Without%20Temp%20Variable",
                 "platform": "GeeksforGeeks"
-            },
-            {
-                "title": "Excel Sheet Column Number",
-                "url": "https://leetcode.com/problems/excel-sheet-column-number/",
-                "platform": "LeetCode"
             },
             {
                 "title": "Power of Three",
@@ -380,11 +345,6 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Construct the Rectangle",
-                "url": "https://leetcode.com/problems/construct-the-rectangle/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Base 7",
                 "url": "https://leetcode.com/problems/base-7/",
                 "platform": "LeetCode"
@@ -457,11 +417,6 @@ const questionsData = {
             {
                 "title": "Smallest Range I",
                 "url": "https://leetcode.com/problems/smallest-range-i/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Largest Triangle Area",
-                "url": "https://leetcode.com/problems/largest-triangle-area/",
                 "platform": "LeetCode"
             },
             {
@@ -585,18 +540,8 @@ const questionsData = {
                 "platform": "HackerRank"
             },
             {
-                "title": "Total Moves For Bishop!",
-                "url": "https://www.interviewbit.com/problems/total-moves-for-bishop/",
-                "platform": "InterviewBit"
-            },
-            {
                 "title": "Distribute in Circle!",
                 "url": "https://www.interviewbit.com/problems/distribute-in-circle/",
-                "platform": "InterviewBit"
-            },
-            {
-                "title": "Is Rectangle?",
-                "url": "https://www.interviewbit.com/problems/is-rectangle/",
                 "platform": "InterviewBit"
             },
             {
@@ -650,16 +595,6 @@ const questionsData = {
                 "platform": "Codeforces"
             },
             {
-                "title": "Array with Odd Sum",
-                "url": "https://codeforces.com/problemset/problem/1296/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Second Largest",
-                "url": "https://www.codechef.com/problems/FLOW017",
-                "platform": "CodeChef"
-            },
-            {
                 "title": "Small Factorial",
                 "url": "https://www.codechef.com/problems/FLOW018",
                 "platform": "CodeChef"
@@ -690,11 +625,6 @@ const questionsData = {
                 "platform": "CodeChef"
             },
             {
-                "title": "Black cells in a chessboard",
-                "url": "https://www.codechef.com/problems/BLACKCEL",
-                "platform": "CodeChef"
-            },
-            {
                 "title": "Cars and Bikes",
                 "url": "https://www.codechef.com/problems/TYRES",
                 "platform": "CodeChef"
@@ -702,11 +632,6 @@ const questionsData = {
             {
                 "title": "Highest Divisor",
                 "url": "https://www.codechef.com/problems/HDIVISR",
-                "platform": "CodeChef"
-            },
-            {
-                "title": "Pair Me",
-                "url": "https://www.codechef.com/problems/SUMPOS",
                 "platform": "CodeChef"
             },
             {
@@ -835,11 +760,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "title": "Calculator using Switch",
-                "url": "https://www.geeksforgeeks.org/problems/calculator/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "title": "Primality Test",
                 "url": "https://www.codechef.com/problems/PRB01",
                 "platform": "CodeChef"
@@ -875,18 +795,8 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Find Valid Emails",
-                "url": "https://leetcode.com/problems/find-valid-emails/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Sum of Good Numbers",
                 "url": "https://leetcode.com/problems/sum-of-good-numbers/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find Most Frequent Vowel and Consonant",
-                "url": "https://leetcode.com/problems/find-most-frequent-vowel-and-consonant/",
                 "platform": "LeetCode"
             },
             {
@@ -897,11 +807,6 @@ const questionsData = {
             {
                 "title": "Hexadecimal and Hexatrigesimal Conversion",
                 "url": "https://leetcode.com/problems/hexadecimal-and-hexatrigesimal-conversion/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Earliest Finish Time for Land and Water Rides I",
-                "url": "https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-i/",
                 "platform": "LeetCode"
             },
             {
@@ -925,28 +830,8 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Single-Row Keyboard",
-                "url": "https://leetcode.com/problems/single-row-keyboard/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Prime Arrangements",
                 "url": "https://leetcode.com/problems/prime-arrangements/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Missing Number In Arithmetic Progression",
-                "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Minimum Time Visiting All Points",
-                "url": "https://leetcode.com/problems/minimum-time-visiting-all-points/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Hexspeak",
-                "url": "https://leetcode.com/problems/hexspeak/",
                 "platform": "LeetCode"
             },
             {
@@ -960,73 +845,8 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Remove Palindromic Subsequences",
-                "url": "https://leetcode.com/problems/remove-palindromic-subsequences/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Number of Days Between Two Dates",
                 "url": "https://leetcode.com/problems/number-of-days-between-two-dates/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Count Largest Group",
-                "url": "https://leetcode.com/problems/count-largest-group/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Minimum Value to Get Positive Step by Step Sum",
-                "url": "https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Counting Elements",
-                "url": "https://leetcode.com/problems/counting-elements/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Check If All 1's Are at Least Length K Places Away",
-                "url": "https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Consecutive Characters",
-                "url": "https://leetcode.com/problems/consecutive-characters/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Three Consecutive Odds",
-                "url": "https://leetcode.com/problems/three-consecutive-odds/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Thousand Separator",
-                "url": "https://leetcode.com/problems/thousand-separator/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Most Visited Sector in a Circular Track",
-                "url": "https://leetcode.com/problems/most-visited-sector-in-a-circular-track/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Defuse the Bomb",
-                "url": "https://leetcode.com/problems/defuse-the-bomb/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Number of Students Unable to Eat Lunch",
-                "url": "https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Number Of Rectangles That Can Form The Largest Square",
-                "url": "https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Latest Time by Replacing Hidden Digits",
-                "url": "https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/",
                 "platform": "LeetCode"
             },
             {
@@ -1035,18 +855,8 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Sum of Unique Elements",
-                "url": "https://leetcode.com/problems/sum-of-unique-elements/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Find Nearest Point That Has the Same X or Y Coordinate",
                 "url": "https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Faulty Sensor",
-                "url": "https://leetcode.com/problems/faulty-sensor/",
                 "platform": "LeetCode"
             },
             {
@@ -1092,11 +902,6 @@ const questionsData = {
             {
                 "title": "Tram",
                 "url": "https://codeforces.com/problemset/problem/116/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Queue at the School",
-                "url": "https://codeforces.com/problemset/problem/266/B",
                 "platform": "Codeforces"
             },
             {
@@ -1435,18 +1240,8 @@ const questionsData = {
                 "platform": "Codeforces"
             },
             {
-                "title": "Codeforces Checking",
-                "url": "https://codeforces.com/problemset/problem/1791/A",
-                "platform": "Codeforces"
-            },
-            {
                 "title": "Plus or Minus",
                 "url": "https://codeforces.com/problemset/problem/1807/A",
-                "platform": "Codeforces"
-            },
-            {
-                "title": "Short Sort",
-                "url": "https://codeforces.com/problemset/problem/1873/A",
                 "platform": "Codeforces"
             },
             {
@@ -1577,16 +1372,6 @@ const questionsData = {
         ],
         "Medium": [
             {
-                "title": "Subsets",
-                "url": "https://leetcode.com/problems/subsets/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Subsets II",
-                "url": "https://leetcode.com/problems/subsets-ii/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Single Number II",
                 "url": "https://leetcode.com/problems/single-number-ii/",
                 "platform": "LeetCode"
@@ -1602,73 +1387,13 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Repeated DNA Sequences",
-                "url": "https://leetcode.com/problems/repeated-dna-sequences/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Integer to Roman",
-                "url": "https://leetcode.com/problems/integer-to-roman/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Unique Paths",
-                "url": "https://leetcode.com/problems/unique-paths/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Perfect Squares",
-                "url": "https://leetcode.com/problems/perfect-squares/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Next Greater Element III",
-                "url": "https://leetcode.com/problems/next-greater-element-iii/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Angle Between Hands of a Clock",
                 "url": "https://leetcode.com/problems/angle-between-hands-of-a-clock/",
                 "platform": "LeetCode"
             },
             {
-                "title": "String to Integer (atoi)",
-                "url": "https://leetcode.com/problems/string-to-integer-atoi/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "The Kth Factor of N",
                 "url": "https://leetcode.com/problems/the-kth-factor-of-n/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Queries on Number of Points Inside a Circle",
-                "url": "https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Product of Array Except Self",
-                "url": "https://leetcode.com/problems/product-of-array-except-self/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Multiply Strings",
-                "url": "https://leetcode.com/problems/multiply-strings/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Encode and Decode TinyURL",
-                "url": "https://leetcode.com/problems/encode-and-decode-tinyurl/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Integer Break",
-                "url": "https://leetcode.com/problems/integer-break/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Valid Square",
-                "url": "https://leetcode.com/problems/valid-square/",
                 "platform": "LeetCode"
             },
             {
@@ -1742,11 +1467,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "title": "Power Set Using Bit Manipulation",
-                "url": "https://www.geeksforgeeks.org/?s=Power%20Set%20Using%20Bit%20Manipulation",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "title": "Bitwise AND of Numbers Range",
                 "url": "https://leetcode.com/problems/bitwise-and-of-numbers-range/",
                 "platform": "LeetCode"
@@ -1812,33 +1532,8 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "title": "Rectangle Area",
-                "url": "https://leetcode.com/problems/rectangle-area/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum Product of Word Lengths",
-                "url": "https://leetcode.com/problems/maximum-product-of-word-lengths/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Water and Jug Problem",
                 "url": "https://leetcode.com/problems/water-and-jug-problem/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Random Pick Index",
-                "url": "https://leetcode.com/problems/random-pick-index/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Reconstruct Original Digits from English",
-                "url": "https://leetcode.com/problems/reconstruct-original-digits-from-english/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Beautiful Arrangement II",
-                "url": "https://leetcode.com/problems/beautiful-arrangement-ii/",
                 "platform": "LeetCode"
             },
             {
@@ -1854,11 +1549,6 @@ const questionsData = {
             {
                 "title": "Check if Number is a Sum of Powers of Three",
                 "url": "https://leetcode.com/problems/check-if-number-is-a-sum-of-powers-of-three/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find Unique Binary String",
-                "url": "https://leetcode.com/problems/find-unique-binary-string/",
                 "platform": "LeetCode"
             },
             {
@@ -1879,16 +1569,6 @@ const questionsData = {
             {
                 "title": "Prime Pairs With Target Sum",
                 "url": "https://leetcode.com/problems/prime-pairs-with-target-sum/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Convex Polygon",
-                "url": "https://leetcode.com/problems/convex-polygon/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Implement Rand10() Using Rand7()",
-                "url": "https://leetcode.com/problems/implement-rand10-using-rand7/",
                 "platform": "LeetCode"
             },
             {
@@ -1924,11 +1604,6 @@ const questionsData = {
             {
                 "title": "Smallest Integer Divisible by K",
                 "url": "https://leetcode.com/problems/smallest-integer-divisible-by-k/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Binary String With Substrings Representing 1 To N",
-                "url": "https://leetcode.com/problems/binary-string-with-substrings-representing-1-to-n/",
                 "platform": "LeetCode"
             },
             {
@@ -1972,11 +1647,6 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Find the Longest Substring Containing Vowels in Even Counts",
-                "url": "https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Cinema Seat Allocation",
                 "url": "https://leetcode.com/problems/cinema-seat-allocation/",
                 "platform": "LeetCode"
@@ -1984,11 +1654,6 @@ const questionsData = {
             {
                 "title": "Four Divisors",
                 "url": "https://leetcode.com/problems/four-divisors/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Circle and Rectangle Overlapping",
-                "url": "https://leetcode.com/problems/circle-and-rectangle-overlapping/",
                 "platform": "LeetCode"
             },
             {
@@ -2037,16 +1702,6 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Square Root of Integer",
-                "url": "https://www.interviewbit.com/problems/square-root-of-integer/",
-                "platform": "InterviewBit"
-            },
-            {
-                "title": "Repeat and Missing Number Array",
-                "url": "https://www.interviewbit.com/problems/repeat-and-missing-number-array/",
-                "platform": "InterviewBit"
-            },
-            {
                 "title": "K-th Not Divisible by n",
                 "url": "https://codeforces.com/problemset/problem/1352/C",
                 "platform": "Codeforces"
@@ -2054,11 +1709,6 @@ const questionsData = {
             {
                 "title": "To 3",
                 "url": "https://atcoder.jp/contests/abc182/tasks/abc182_c",
-                "platform": "AtCoder"
-            },
-            {
-                "title": "Bowls and Dishes",
-                "url": "https://atcoder.jp/contests/abc190/tasks/abc190_c",
                 "platform": "AtCoder"
             },
             {
@@ -2107,16 +1757,6 @@ const questionsData = {
                 "platform": "InterviewBit"
             },
             {
-                "title": "Excel Column Number",
-                "url": "https://www.interviewbit.com/problems/excel-column-number/",
-                "platform": "InterviewBit"
-            },
-            {
-                "title": "Excel Column Title",
-                "url": "https://www.interviewbit.com/problems/excel-column-title/",
-                "platform": "InterviewBit"
-            },
-            {
                 "title": "Greatest Common Divisor (IB)",
                 "url": "https://www.interviewbit.com/problems/greatest-common-divisor/",
                 "platform": "InterviewBit"
@@ -2129,11 +1769,6 @@ const questionsData = {
             {
                 "title": "Two Numbers with Odd Occurrences",
                 "url": "https://www.naukri.com/code360/problems/two-numbers-with-odd-occurrences_8160466",
-                "platform": "CodeStudio"
-            },
-            {
-                "title": "Power Set",
-                "url": "https://www.naukri.com/code360/problems/power-set_1062667",
                 "platform": "CodeStudio"
             },
             {
@@ -2204,33 +1839,8 @@ const questionsData = {
         ],
         "Hard": [
             {
-                "title": "Minimum Number of Flips to onvert Binary Matrix to zero matrix",
-                "url": "https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Minimum cost to connect two group of points",
-                "url": "https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Find XOR Sum of All Pairs Bitwise AND",
                 "url": "https://leetcode.com/problems/find-xor-sum-of-all-pairs-bitwise-and/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Permutation Sequence",
-                "url": "https://leetcode.com/problems/permutation-sequence/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Basic Calculator",
-                "url": "https://leetcode.com/problems/basic-calculator/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Max Points on a Line",
-                "url": "https://leetcode.com/problems/max-points-on-a-line/",
                 "platform": "LeetCode"
             },
             {
@@ -2279,33 +1889,8 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "title": "Self Crossing",
-                "url": "https://leetcode.com/problems/self-crossing/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Perfect Rectangle",
-                "url": "https://leetcode.com/problems/perfect-rectangle/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Largest Palindrome Product",
-                "url": "https://leetcode.com/problems/largest-palindrome-product/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Find the Closest Palindrome",
-                "url": "https://leetcode.com/problems/find-the-closest-palindrome/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Remove 9",
                 "url": "https://leetcode.com/problems/remove-9/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Transform to Chessboard",
-                "url": "https://leetcode.com/problems/transform-to-chessboard/",
                 "platform": "LeetCode"
             },
             {
@@ -2316,21 +1901,6 @@ const questionsData = {
             {
                 "title": "Consecutive Numbers Sum",
                 "url": "https://leetcode.com/problems/consecutive-numbers-sum/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Super Palindromes",
-                "url": "https://leetcode.com/problems/super-palindromes/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Three Equal Parts",
-                "url": "https://leetcode.com/problems/three-equal-parts/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Equal Rational Numbers",
-                "url": "https://leetcode.com/problems/equal-rational-numbers/",
                 "platform": "LeetCode"
             },
             {
@@ -2349,38 +1919,13 @@ const questionsData = {
                 "platform": "LeetCode"
             },
             {
-                "title": "Number of Valid Words for Each Puzzle",
-                "url": "https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Maximum Number of Darts Inside of a Circular Dartboard",
-                "url": "https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Best Position for a Service Centre",
-                "url": "https://leetcode.com/problems/best-position-for-a-service-centre/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Find a Value of a Mysterious Function Closest to Target",
                 "url": "https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/",
                 "platform": "LeetCode"
             },
             {
-                "title": "Find Longest Awesome Substring",
-                "url": "https://leetcode.com/problems/find-longest-awesome-substring/",
-                "platform": "LeetCode"
-            },
-            {
                 "title": "Minimum One Bit Operations to Make Integers Zero",
                 "url": "https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/",
-                "platform": "LeetCode"
-            },
-            {
-                "title": "Make the XOR of All Segments Equal to Zero",
-                "url": "https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/",
                 "platform": "LeetCode"
             },
             {
@@ -3311,6 +2856,71 @@ const questionsData = {
                 "title": "Java List",
                 "url": "https://www.hackerrank.com/challenges/java-list/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Minimum Moves To Equal Array Elements",
+                "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Missing Number",
+                "url": "https://leetcode.com/problems/missing-number/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Array with Odd Sum",
+                "url": "https://codeforces.com/problemset/problem/1296/A",
+                "platform": "Codeforces"
+            },
+            {
+                "title": "Second Largest",
+                "url": "https://www.codechef.com/problems/FLOW017",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Pair Me",
+                "url": "https://www.codechef.com/problems/SUMPOS",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Missing Number In Arithmetic Progression",
+                "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Minimum Value to Get Positive Step by Step Sum",
+                "url": "https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Check If All 1's Are at Least Length K Places Away",
+                "url": "https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Three Consecutive Odds",
+                "url": "https://leetcode.com/problems/three-consecutive-odds/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Most Visited Sector in a Circular Track",
+                "url": "https://leetcode.com/problems/most-visited-sector-in-a-circular-track/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Defuse the Bomb",
+                "url": "https://leetcode.com/problems/defuse-the-bomb/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Faulty Sensor",
+                "url": "https://leetcode.com/problems/faulty-sensor/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Short Sort",
+                "url": "https://codeforces.com/problemset/problem/1873/A",
+                "platform": "Codeforces"
             }
         ],
         "Medium": [
@@ -4158,6 +3768,21 @@ const questionsData = {
                 "title": "Stamp",
                 "url": "https://atcoder.jp/contests/abc185/tasks/abc185_d",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Next Greater Element III",
+                "url": "https://leetcode.com/problems/next-greater-element-iii/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Product of Array Except Self",
+                "url": "https://leetcode.com/problems/product-of-array-except-self/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Repeat and Missing Number Array",
+                "url": "https://www.interviewbit.com/problems/repeat-and-missing-number-array/",
+                "platform": "InterviewBit"
             }
         ],
         "Hard": [
@@ -4350,6 +3975,11 @@ const questionsData = {
                 "title": "Majority Element II",
                 "url": "https://www.naukri.com/code360/problems/majority-element-ii_893027",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Three Equal Parts",
+                "url": "https://leetcode.com/problems/three-equal-parts/",
+                "platform": "LeetCode"
             }
         ]
     },
@@ -4469,6 +4099,41 @@ const questionsData = {
                 "title": "Java 2D Array",
                 "url": "https://www.hackerrank.com/challenges/java-2d-array/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Construct the Rectangle",
+                "url": "https://leetcode.com/problems/construct-the-rectangle/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Largest Triangle Area",
+                "url": "https://leetcode.com/problems/largest-triangle-area/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Total Moves For Bishop!",
+                "url": "https://www.interviewbit.com/problems/total-moves-for-bishop/",
+                "platform": "InterviewBit"
+            },
+            {
+                "title": "Is Rectangle?",
+                "url": "https://www.interviewbit.com/problems/is-rectangle/",
+                "platform": "InterviewBit"
+            },
+            {
+                "title": "Black cells in a chessboard",
+                "url": "https://www.codechef.com/problems/BLACKCEL",
+                "platform": "CodeChef"
+            },
+            {
+                "title": "Minimum Time Visiting All Points",
+                "url": "https://leetcode.com/problems/minimum-time-visiting-all-points/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Number Of Rectangles That Can Form The Largest Square",
+                "url": "https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/",
+                "platform": "LeetCode"
             }
         ],
         "Medium": [
@@ -4691,6 +4356,31 @@ const questionsData = {
                 "title": "Kefa and Park",
                 "url": "https://codeforces.com/problemset/problem/580/C",
                 "platform": "Codeforces"
+            },
+            {
+                "title": "Queries on Number of Points Inside a Circle",
+                "url": "https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Valid Square",
+                "url": "https://leetcode.com/problems/valid-square/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Rectangle Area",
+                "url": "https://leetcode.com/problems/rectangle-area/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Convex Polygon",
+                "url": "https://leetcode.com/problems/convex-polygon/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Circle and Rectangle Overlapping",
+                "url": "https://leetcode.com/problems/circle-and-rectangle-overlapping/",
+                "platform": "LeetCode"
             }
         ],
         "Hard": [
@@ -4708,6 +4398,41 @@ const questionsData = {
                 "title": "Matrix Median (CodeStudio)",
                 "url": "https://www.naukri.com/code360/problems/matrix-median_799352",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Minimum Number of Flips to onvert Binary Matrix to zero matrix",
+                "url": "https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Max Points on a Line",
+                "url": "https://leetcode.com/problems/max-points-on-a-line/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Self Crossing",
+                "url": "https://leetcode.com/problems/self-crossing/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Perfect Rectangle",
+                "url": "https://leetcode.com/problems/perfect-rectangle/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Transform to Chessboard",
+                "url": "https://leetcode.com/problems/transform-to-chessboard/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum Number of Darts Inside of a Circular Dartboard",
+                "url": "https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Best Position for a Service Centre",
+                "url": "https://leetcode.com/problems/best-position-for-a-service-centre/",
+                "platform": "LeetCode"
             }
         ]
     },
@@ -5497,6 +5222,71 @@ const questionsData = {
                 "title": "Java Currency Formatter",
                 "url": "https://www.hackerrank.com/challenges/java-currency-formatter/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Count the Number of Consistent Strings",
+                "url": "https://leetcode.com/problems/count-the-number-of-consistent-strings/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Longest Nice Substring",
+                "url": "https://leetcode.com/problems/longest-nice-substring/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Roman to Integer.",
+                "url": "https://leetcode.com/problems/roman-to-integer/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Excel Sheet Column Number",
+                "url": "https://leetcode.com/problems/excel-sheet-column-number/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Valid Emails",
+                "url": "https://leetcode.com/problems/find-valid-emails/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Most Frequent Vowel and Consonant",
+                "url": "https://leetcode.com/problems/find-most-frequent-vowel-and-consonant/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Single-Row Keyboard",
+                "url": "https://leetcode.com/problems/single-row-keyboard/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Hexspeak",
+                "url": "https://leetcode.com/problems/hexspeak/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Remove Palindromic Subsequences",
+                "url": "https://leetcode.com/problems/remove-palindromic-subsequences/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Consecutive Characters",
+                "url": "https://leetcode.com/problems/consecutive-characters/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Thousand Separator",
+                "url": "https://leetcode.com/problems/thousand-separator/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Latest Time by Replacing Hidden Digits",
+                "url": "https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Codeforces Checking",
+                "url": "https://codeforces.com/problemset/problem/1791/A",
+                "platform": "Codeforces"
             }
         ],
         "Medium": [
@@ -6094,6 +5884,61 @@ const questionsData = {
                 "title": "Java SHA-256",
                 "url": "https://www.hackerrank.com/challenges/sha-256/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Repeated DNA Sequences",
+                "url": "https://leetcode.com/problems/repeated-dna-sequences/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Integer to Roman",
+                "url": "https://leetcode.com/problems/integer-to-roman/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "String to Integer (atoi)",
+                "url": "https://leetcode.com/problems/string-to-integer-atoi/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Multiply Strings",
+                "url": "https://leetcode.com/problems/multiply-strings/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Maximum Product of Word Lengths",
+                "url": "https://leetcode.com/problems/maximum-product-of-word-lengths/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Reconstruct Original Digits from English",
+                "url": "https://leetcode.com/problems/reconstruct-original-digits-from-english/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Unique Binary String",
+                "url": "https://leetcode.com/problems/find-unique-binary-string/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Binary String With Substrings Representing 1 To N",
+                "url": "https://leetcode.com/problems/binary-string-with-substrings-representing-1-to-n/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find the Longest Substring Containing Vowels in Even Counts",
+                "url": "https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Excel Column Number",
+                "url": "https://www.interviewbit.com/problems/excel-column-number/",
+                "platform": "InterviewBit"
+            },
+            {
+                "title": "Excel Column Title",
+                "url": "https://www.interviewbit.com/problems/excel-column-title/",
+                "platform": "InterviewBit"
             }
         ],
         "Hard": [
@@ -6261,6 +6106,36 @@ const questionsData = {
                 "title": "KMP Algorithm",
                 "url": "https://www.naukri.com/code360/problems/kmp-algorithm_630423",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Largest Palindrome Product",
+                "url": "https://leetcode.com/problems/largest-palindrome-product/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find the Closest Palindrome",
+                "url": "https://leetcode.com/problems/find-the-closest-palindrome/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Super Palindromes",
+                "url": "https://leetcode.com/problems/super-palindromes/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Equal Rational Numbers",
+                "url": "https://leetcode.com/problems/equal-rational-numbers/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Number of Valid Words for Each Puzzle",
+                "url": "https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Find Longest Awesome Substring",
+                "url": "https://leetcode.com/problems/find-longest-awesome-substring/",
+                "platform": "LeetCode"
             }
         ]
     },
@@ -6445,6 +6320,16 @@ const questionsData = {
                 "title": "Uncle Johny",
                 "url": "https://www.codechef.com/problems/JOHNY",
                 "platform": "CodeChef"
+            },
+            {
+                "title": "Sqrt(x)",
+                "url": "https://leetcode.com/problems/sqrtx/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Earliest Finish Time for Land and Water Rides I",
+                "url": "https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-i/",
+                "platform": "LeetCode"
             }
         ],
         "Medium": [
@@ -6917,6 +6802,11 @@ const questionsData = {
                 "title": "Synthetic Kadomatsu",
                 "url": "https://atcoder.jp/contests/abc119/tasks/abc119_c",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Square Root of Integer",
+                "url": "https://www.interviewbit.com/problems/square-root-of-integer/",
+                "platform": "InterviewBit"
             }
         ],
         "Hard": [
@@ -9177,6 +9067,21 @@ const questionsData = {
                 "title": "Java Stack",
                 "url": "https://www.hackerrank.com/challenges/java-stack/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Calculator using Switch",
+                "url": "https://www.geeksforgeeks.org/problems/calculator/1",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Number of Students Unable to Eat Lunch",
+                "url": "https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Queue at the School",
+                "url": "https://codeforces.com/problemset/problem/266/B",
+                "platform": "Codeforces"
             }
         ],
         "Medium": [
@@ -9871,6 +9776,11 @@ const questionsData = {
                 "title": "Max rectangle in binary sub-matrix with all 1s",
                 "url": "https://www.naukri.com/code360/problems/maximum-size-rectangle-sub-matrix-with-all-1-s_893017",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Basic Calculator",
+                "url": "https://leetcode.com/problems/basic-calculator/",
+                "platform": "LeetCode"
             }
         ]
     },
@@ -10130,6 +10040,21 @@ const questionsData = {
                 "title": "Java Hashset",
                 "url": "https://www.hackerrank.com/challenges/java-hashset/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Count Largest Group",
+                "url": "https://leetcode.com/problems/count-largest-group/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Counting Elements",
+                "url": "https://leetcode.com/problems/counting-elements/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Sum of Unique Elements",
+                "url": "https://leetcode.com/problems/sum-of-unique-elements/",
+                "platform": "LeetCode"
             }
         ],
         "Medium": [
@@ -11195,6 +11120,36 @@ const questionsData = {
                 "title": "Java 1D Array (Part 2)",
                 "url": "https://www.hackerrank.com/challenges/java-1d-array/problem",
                 "platform": "HackerRank"
+            },
+            {
+                "title": "Subsets",
+                "url": "https://leetcode.com/problems/subsets/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Subsets II",
+                "url": "https://leetcode.com/problems/subsets-ii/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Power Set Using Bit Manipulation",
+                "url": "https://www.geeksforgeeks.org/?s=Power%20Set%20Using%20Bit%20Manipulation",
+                "platform": "GeeksforGeeks"
+            },
+            {
+                "title": "Beautiful Arrangement II",
+                "url": "https://leetcode.com/problems/beautiful-arrangement-ii/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Bowls and Dishes",
+                "url": "https://atcoder.jp/contests/abc190/tasks/abc190_c",
+                "platform": "AtCoder"
+            },
+            {
+                "title": "Power Set",
+                "url": "https://www.naukri.com/code360/problems/power-set_1062667",
+                "platform": "CodeStudio"
             }
         ],
         "Hard": [
@@ -11467,6 +11422,11 @@ const questionsData = {
                 "title": "Sudoku Solver (CodeStudio)",
                 "url": "https://www.naukri.com/code360/problems/sudoku-solver_981292",
                 "platform": "CodeStudio"
+            },
+            {
+                "title": "Permutation Sequence",
+                "url": "https://leetcode.com/problems/permutation-sequence/",
+                "platform": "LeetCode"
             }
         ]
     },
@@ -16743,6 +16703,21 @@ const questionsData = {
                 "title": "Redistribution",
                 "url": "https://atcoder.jp/contests/abc178/tasks/abc178_d",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Unique Paths",
+                "url": "https://leetcode.com/problems/unique-paths/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Perfect Squares",
+                "url": "https://leetcode.com/problems/perfect-squares/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Integer Break",
+                "url": "https://leetcode.com/problems/integer-break/",
+                "platform": "LeetCode"
             }
         ],
         "Hard": [
@@ -17435,6 +17410,16 @@ const questionsData = {
                 "title": "Almost Prime (Digit DP)",
                 "url": "https://atcoder.jp/contests/abc154/tasks/abc154_e",
                 "platform": "AtCoder"
+            },
+            {
+                "title": "Minimum cost to connect two group of points",
+                "url": "https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Make the XOR of All Segments Equal to Zero",
+                "url": "https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/",
+                "platform": "LeetCode"
             }
         ]
     },
@@ -17662,6 +17647,21 @@ const questionsData = {
             {
                 "title": "Throne Inheritance",
                 "url": "https://leetcode.com/problems/throne-inheritance/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Encode and Decode TinyURL",
+                "url": "https://leetcode.com/problems/encode-and-decode-tinyurl/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Random Pick Index",
+                "url": "https://leetcode.com/problems/random-pick-index/",
+                "platform": "LeetCode"
+            },
+            {
+                "title": "Implement Rand10() Using Rand7()",
+                "url": "https://leetcode.com/problems/implement-rand10-using-rand7/",
                 "platform": "LeetCode"
             }
         ],
