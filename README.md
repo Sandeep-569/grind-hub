@@ -1,4 +1,4 @@
-# 🚀 GrindHub — Professional DSA Problem Tracker & Competitive Programming Vault
+# 🚀 GrindHub — Professional DSA Problem Tracker
 
 **GrindHub** is a fast, clean, dark-mode Data Structures & Algorithms (DSA) problem tracker. It organizes **3,500+ curated problems** across **23 canonical DSA topics** from 8 top competitive programming platforms into a structured workspace.
 
@@ -47,7 +47,7 @@ npx serve .
 ## 📂 Project Structure
 
 ```text
-├── index.html        # Main dashboard and question vault layout
+├── index.html        # Main dashboard and problem tracker layout
 ├── style.css         # Minimal dark styles, custom scrollbars, and layout
 ├── data.js           # Question bank data, topic palettes, and platform tokens
 ├── app.js            # Core application logic, multi-filter engine, and state management

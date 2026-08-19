@@ -1,4 +1,4 @@
-// ==================== GrindHub: Professional DSA Problem Tracker ====================
+// ==================== GrindHub: Unified DSA Problem Tracker ====================
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
@@ -37,57 +37,6 @@ let vaultFilters = {
     platform: 'all'
 };
 
-// ==================== View Controller ====================
-function hideAllViews() {
-    ['dashboard-view', 'questions-view'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.classList.add('hidden');
-            el.classList.remove('block');
-        }
-    });
-}
-
-function showDashboard() {
-    hideAllViews();
-    const dash = document.getElementById('dashboard-view');
-    if (dash) {
-        dash.classList.remove('hidden');
-        dash.classList.add('block');
-    }
-    updateDashboardSummaries();
-    renderDashboardTopicGrid();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showQuestionsView() {
-    hideAllViews();
-    const qView = document.getElementById('questions-view');
-    if (qView) {
-        qView.classList.remove('hidden');
-        qView.classList.add('block');
-    }
-    renderTopicQuickJumpBar();
-    renderQuestions();
-    updateQuestionsViewProgress();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function goToTopicQuestions(topicKey) {
-    showQuestionsView();
-    setTimeout(() => {
-        const sectionId = `topic-${slugify(topicKey)}`;
-        const sectionEl = document.getElementById(sectionId);
-        const contentEl = document.getElementById(`content-${sectionId}`);
-        if (sectionEl && contentEl) {
-            if (contentEl.classList.contains('hidden')) toggleAccordion(sectionId);
-            sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            sectionEl.classList.add('ring-1', 'ring-blue-500');
-            setTimeout(() => sectionEl.classList.remove('ring-1', 'ring-blue-500'), 1500);
-        }
-    }, 100);
-}
-
 // ==================== Helpers ====================
 function slugify(s) {
     return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -121,6 +70,20 @@ function escJs(str) {
 
 function escAttr(str) {
     return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function goToTopicQuestions(topicKey) {
+    const sectionId = `topic-${slugify(topicKey)}`;
+    const sectionEl = document.getElementById(sectionId);
+    const contentEl = document.getElementById(`content-${sectionId}`);
+    if (sectionEl && contentEl) {
+        if (contentEl.classList.contains('hidden')) {
+            toggleAccordion(sectionId);
+        }
+        sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        sectionEl.classList.add('ring-1', 'ring-blue-500');
+        setTimeout(() => sectionEl.classList.remove('ring-1', 'ring-blue-500'), 1500);
+    }
 }
 
 // ==================== User Profile ====================
@@ -382,7 +345,7 @@ function toggleQuestionSolved(urlKey, ev) {
         updateSingleQuestionCheckboxUI(urlKey, true);
     }
     updateDashboardSummaries();
-    updateQuestionsViewProgress();
+    updatePlatformLegend();
 }
 
 function toggleQuestionStarred(urlKey, ev) {
@@ -439,7 +402,7 @@ function resetQuestionProgress() {
         saveSolvedQuestions();
         renderQuestions();
         updateDashboardSummaries();
-        renderDashboardTopicGrid();
+        updatePlatformLegend();
         showToast("All progress reset");
     }
 }
@@ -508,64 +471,6 @@ function updateDashboardSummaries() {
     if (dashRemaining) dashRemaining.textContent = `${remaining.toLocaleString()} Unsolved`;
 }
 
-// ==================== 23-Topic Dashboard Grid Renderer ====================
-function renderDashboardTopicGrid() {
-    const grid = document.getElementById('dashboard-topics-grid');
-    if (!grid || typeof questionsData === 'undefined') return;
-
-    let html = '';
-    for (const topic in questionsData) {
-        let total = 0;
-        let solved = 0;
-        let easyCount = (questionsData[topic].Easy || []).length;
-        let medCount = (questionsData[topic].Medium || []).length;
-        let hardCount = (questionsData[topic].Hard || []).length;
-
-        ['Easy', 'Medium', 'Hard'].forEach(diff => {
-            (questionsData[topic][diff] || []).forEach(q => {
-                total++;
-                if (solvedSet.has(q.url)) solved++;
-            });
-        });
-
-        const pct = total ? Math.round((solved / total) * 100) : 0;
-        const colorCls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topic]) ? TOPIC_COLORS[topic] : 'text-blue-400 bg-blue-950/40 border-blue-500/30';
-
-        html += `
-        <div onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-roadmap-card p-4 sm:p-5 cursor-pointer flex flex-col justify-between group">
-            <div>
-                <div class="flex items-center justify-between mb-2.5">
-                    <h3 class="font-bold text-sm sm:text-base text-white group-hover:text-blue-400 transition-colors">${topic}</h3>
-                    <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded border ${colorCls}">
-                        ${solved}/${total}
-                    </span>
-                </div>
-
-                <div class="flex items-center gap-2 mb-3 text-[11px] font-mono">
-                    <span class="text-emerald-400 bg-emerald-950/40 px-1.5 py-0.5 rounded border border-emerald-900/50">E: ${easyCount}</span>
-                    <span class="text-amber-400 bg-amber-950/40 px-1.5 py-0.5 rounded border border-amber-900/50">M: ${medCount}</span>
-                    <span class="text-rose-400 bg-rose-950/40 px-1.5 py-0.5 rounded border border-rose-900/50">H: ${hardCount}</span>
-                </div>
-            </div>
-
-            <div>
-                <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 mb-2">
-                    <div class="bg-blue-500 h-full rounded-full transition-all duration-300" style="width: ${pct}%"></div>
-                </div>
-                <div class="flex items-center justify-between text-[11px] text-slate-400">
-                    <span class="font-mono">${pct}%</span>
-                    <span class="text-blue-400 group-hover:text-blue-300 font-semibold flex items-center gap-1">
-                        <span>Solve</span>
-                        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </span>
-                </div>
-            </div>
-        </div>`;
-    }
-
-    grid.innerHTML = html;
-}
-
 // ==================== Topic Quick-Jump Bar ====================
 function renderTopicQuickJumpBar() {
     const bar = document.getElementById('topic-quick-jump-bar');
@@ -581,54 +486,38 @@ function renderTopicQuickJumpBar() {
     bar.innerHTML = html;
 }
 
-// ==================== Questions View Progress ====================
-function updateQuestionsViewProgress() {
-    let total = 0;
-    let solved = 0;
+// ==================== Platform Summary Legend ====================
+function updatePlatformLegend() {
+    const legend = document.getElementById('platform-legend');
+    if (!legend || typeof questionsData === 'undefined') return;
+
     const platformCounts = {};
     const platformSolved = {};
 
-    if (typeof questionsData !== 'undefined') {
-        for (const topic in questionsData) {
-            ['Easy', 'Medium', 'Hard'].forEach(diff => {
-                const list = questionsData[topic][diff] || [];
-                total += list.length;
-                list.forEach(q => {
-                    const p = q.platform || 'Other';
-                    platformCounts[p] = (platformCounts[p] || 0) + 1;
-                    if (solvedSet.has(q.url)) {
-                        solved++;
-                        platformSolved[p] = (platformSolved[p] || 0) + 1;
-                    }
-                });
+    for (const topic in questionsData) {
+        ['Easy', 'Medium', 'Hard'].forEach(diff => {
+            (questionsData[topic][diff] || []).forEach(q => {
+                const p = q.platform || 'Other';
+                platformCounts[p] = (platformCounts[p] || 0) + 1;
+                if (solvedSet.has(q.url)) {
+                    platformSolved[p] = (platformSolved[p] || 0) + 1;
+                }
             });
-        }
+        });
     }
 
-    const pct = total ? Math.round((solved / total) * 100) : 0;
-    const bar = document.getElementById('questions-progress-bar');
-    const label = document.getElementById('questions-progress-label');
-    const pctBadge = document.getElementById('questions-stat-pct');
-
-    if (bar) bar.style.width = `${pct}%`;
-    if (label) label.textContent = `${solved.toLocaleString()} of ${total.toLocaleString()} problems completed`;
-    if (pctBadge) pctBadge.textContent = `${pct}% Completed`;
-
-    const legend = document.getElementById('platform-legend');
-    if (legend) {
-        legend.innerHTML = Object.keys(platformCounts).sort().map(p => {
-            const count = platformCounts[p];
-            const pSol = platformSolved[p] || 0;
-            const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-slate-300 bg-slate-800 border-slate-700';
-            return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border ${cls}">
-                <span>${p}</span>
-                <span class="text-slate-400 font-mono text-[11px]">${pSol}/${count}</span>
-            </span>`;
-        }).join('');
-    }
+    legend.innerHTML = Object.keys(platformCounts).sort().map(p => {
+        const count = platformCounts[p];
+        const pSol = platformSolved[p] || 0;
+        const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-slate-300 bg-slate-800 border-slate-700';
+        return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border ${cls}">
+            <span>${p}</span>
+            <span class="text-slate-400 font-mono text-[11px]">${pSol}/${count}</span>
+        </span>`;
+    }).join('');
 }
 
-// ==================== Vault Filtering Engine ====================
+// ==================== Filter Controls ====================
 function setVaultStatusFilter(status) {
     vaultFilters.status = status;
     ['all', 'unsolved', 'solved', 'starred'].forEach(s => {
@@ -667,7 +556,7 @@ function onVaultFilterChanged() {
     renderQuestions();
 }
 
-// ==================== Questions Accordion Rendering ====================
+// ==================== Accordion & Questions Rendering ====================
 function toggleAccordion(sectionId) {
     const content = document.getElementById(`content-${sectionId}`);
     const icon = document.getElementById(`icon-${sectionId}`);
@@ -767,7 +656,7 @@ function renderQuestions() {
 
         html += `
         <div id="${sectionId}" class="rounded-xl pro-card border border-slate-800 overflow-hidden mb-3">
-            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-slate-850 transition">
+            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-slate-800/60 transition">
                 <div class="flex items-center gap-2.5 flex-wrap">
                     <span class="font-bold text-sm sm:text-base text-slate-100">${topic}</span>
                     ${topicPill(topic)}
@@ -860,129 +749,16 @@ function renderDifficultyBlock(difficulty, list, sectionId) {
     </div>`;
 }
 
-// ==================== Random Problem Picker ====================
-function pickRandomQuestion() {
-    if (typeof questionsData === 'undefined') return;
-    const unsolvedList = [];
-    const allList = [];
-
-    for (const topic in questionsData) {
-        ['Easy', 'Medium', 'Hard'].forEach(diff => {
-            (questionsData[topic][diff] || []).forEach(q => {
-                allList.push({ ...q, topic, diff });
-                if (!solvedSet.has(q.url)) {
-                    unsolvedList.push({ ...q, topic, diff });
-                }
-            });
-        });
-    }
-
-    const pool = unsolvedList.length > 0 ? unsolvedList : allList;
-    if (pool.length === 0) return;
-
-    const randomPick = pool[Math.floor(Math.random() * pool.length)];
-    goToTopicQuestions(randomPick.topic);
-
-    showToast(`Selected: ${randomPick.title} (${randomPick.diff})`);
-}
-
-// ==================== Global Search Dropdown ====================
-function handleGlobalSearch(query) {
-    const resultsContainer = document.getElementById('global-search-results');
-    if (!resultsContainer) return;
-
-    const q = query.trim().toLowerCase();
-    if (!q) {
-        resultsContainer.classList.add('hidden');
-        resultsContainer.innerHTML = '';
-        return;
-    }
-
-    const matches = [];
-    if (typeof questionsData !== 'undefined') {
-        for (const topic in questionsData) {
-            ['Easy', 'Medium', 'Hard'].forEach(diff => {
-                (questionsData[topic][diff] || []).forEach(item => {
-                    if (
-                        item.title.toLowerCase().includes(q) ||
-                        (item.platform || '').toLowerCase().includes(q) ||
-                        topic.toLowerCase().includes(q)
-                    ) {
-                        matches.push({ ...item, topic, diff });
-                    }
-                });
-            });
-        }
-    }
-
-    if (matches.length === 0) {
-        resultsContainer.innerHTML = `<div class="p-4 text-xs text-slate-400 text-center font-medium">No problems found matching "${escAttr(query)}"</div>`;
-        resultsContainer.classList.remove('hidden');
-        return;
-    }
-
-    const maxShown = 30;
-    const listHtml = matches.slice(0, maxShown).map(item => {
-        const isSolved = solvedSet.has(item.url);
-        const badgeCls = difficultyBadgeClasses(item.diff);
-        return `
-        <div class="p-3 border-b border-slate-800 hover:bg-slate-800/60 transition flex items-center justify-between gap-3">
-            <div class="min-w-0 flex-grow">
-                <div class="flex items-center gap-2 mb-1 flex-wrap">
-                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase border ${badgeCls}">${item.diff}</span>
-                    ${platformPill(item.platform)}
-                    ${topicPill(item.topic)}
-                </div>
-                <a href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-medium text-white hover:text-blue-400 transition truncate block ${isSolved ? 'line-through text-slate-400' : ''}">
-                    ${escAttr(item.title)}
-                </a>
-            </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
-                <button type="button" onclick="goToTopicQuestions('${escJs(item.topic)}'); document.getElementById('global-search-results').classList.add('hidden');" class="text-[11px] font-semibold text-blue-400 hover:text-blue-300 bg-slate-800 px-2.5 py-1 rounded border border-slate-700 cursor-pointer transition">
-                    Jump
-                </button>
-            </div>
-        </div>`;
-    }).join('');
-
-    resultsContainer.innerHTML = `
-        <div class="p-2.5 bg-slate-900 border-b border-slate-800 text-[11px] font-semibold text-slate-400 flex items-center justify-between">
-            <span>Found ${matches.length} matching problems</span>
-        </div>
-        ${listHtml}
-        ${matches.length > maxShown ? `<div class="p-2.5 text-center text-xs text-slate-500 font-mono">Showing first ${maxShown} results</div>` : ''}
-    `;
-    resultsContainer.classList.remove('hidden');
-}
-
-// Close search dropdown on click outside
-document.addEventListener('click', (e) => {
-    const searchContainer = document.getElementById('global-search-results');
-    const searchInput = document.getElementById('global-question-search');
-    if (searchContainer && !searchContainer.contains(e.target) && e.target !== searchInput) {
-        searchContainer.classList.add('hidden');
-    }
-});
-
-// Keyboard shortcuts
+// Keyboard shortcuts: '/' to focus search, 'Escape' to close modals
 document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
         e.preventDefault();
-        const searchInput = document.getElementById('global-question-search');
-        if (searchInput) {
-            searchInput.focus();
-            searchInput.select();
-        }
-    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        const searchInput = document.getElementById('global-question-search');
+        const searchInput = document.getElementById('question-search');
         if (searchInput) {
             searchInput.focus();
             searchInput.select();
         }
     } else if (e.key === 'Escape') {
-        const searchContainer = document.getElementById('global-search-results');
-        if (searchContainer) searchContainer.classList.add('hidden');
         closeProfileModal();
         closeWelcomeModal();
     }
@@ -992,6 +768,8 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     updateProfileUI();
     updateDashboardSummaries();
-    renderDashboardTopicGrid();
+    renderTopicQuickJumpBar();
+    updatePlatformLegend();
+    renderQuestions();
     checkFirstTimeUser();
 });
