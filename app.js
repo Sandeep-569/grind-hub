@@ -27,10 +27,10 @@ let userProfile = loadUserProfile();
 let solvedSet = loadSolvedQuestions();
 let starredSet = loadStarredQuestions();
 
-// Initialize with foundational topics open by default so questions are immediately visible
-let openAccordions = new Set(['topic-patterns', 'topic-bit-manipulation-math', 'topic-arrays']);
+let currentTopic = null; // null => Home Roadmap View, string => Topic Questions View
+let roadmapSearchQuery = '';
 
-let filters = {
+let topicFilters = {
     search: '',
     status: 'all', // 'all' | 'unsolved' | 'solved' | 'starred'
     diff: 'all',   // 'all' | 'Easy' | 'Medium' | 'Hard'
@@ -45,6 +45,10 @@ function slugify(s) {
 function getInitial(name) {
     if (!name || !name.trim()) return 'C';
     return name.trim().charAt(0).toUpperCase();
+}
+
+function getTopicKeys() {
+    return (typeof questionsData !== 'undefined') ? Object.keys(questionsData) : [];
 }
 
 function topicPill(topicKey) {
@@ -70,20 +74,6 @@ function escJs(str) {
 
 function escAttr(str) {
     return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-}
-
-function goToTopicQuestions(topicKey) {
-    const sectionId = `topic-${slugify(topicKey)}`;
-    const sectionEl = document.getElementById(sectionId);
-    const contentEl = document.getElementById(`content-${sectionId}`);
-    if (sectionEl && contentEl) {
-        if (contentEl.classList.contains('hidden')) {
-            toggleAccordion(sectionId);
-        }
-        sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        sectionEl.classList.add('ring-1', 'ring-[#58a6ff]');
-        setTimeout(() => sectionEl.classList.remove('ring-1', 'ring-[#58a6ff]'), 1500);
-    }
 }
 
 // ==================== User Profile ====================
@@ -343,6 +333,9 @@ function toggleQuestionSolved(urlKey, ev) {
     }
     updateDashboardSummaries();
     updatePlatformLegend();
+    if (currentTopic) {
+        updateTopicHeaderStats(currentTopic);
+    }
 }
 
 function toggleQuestionStarred(urlKey, ev) {
@@ -356,8 +349,8 @@ function toggleQuestionStarred(urlKey, ev) {
         saveStarredQuestions();
         updateSingleQuestionStarUI(urlKey, true);
     }
-    if (filters.status === 'starred') {
-        renderQuestions();
+    if (topicFilters.status === 'starred' && currentTopic) {
+        renderTopicQuestions(currentTopic);
     }
 }
 
@@ -389,17 +382,6 @@ function updateSingleQuestionStarUI(urlKey, isStarred) {
     });
 }
 
-function resetQuestionProgress() {
-    if (confirm("Reset all problem progress? This will uncheck all solved problems.")) {
-        solvedSet.clear();
-        saveSolvedQuestions();
-        renderQuestions();
-        updateDashboardSummaries();
-        updatePlatformLegend();
-        showToast("All progress reset");
-    }
-}
-
 // ==================== Toast Notifications ====================
 let toastTimer = null;
 function showToast(msg) {
@@ -418,7 +400,7 @@ function showToast(msg) {
     }, 2000);
 }
 
-// ==================== Dashboard Summaries & Stats ====================
+// ==================== Overall Stats ====================
 function updateDashboardSummaries() {
     let totalQuestions = 0;
     let solvedCount = 0;
@@ -464,22 +446,6 @@ function updateDashboardSummaries() {
     if (dashRemaining) dashRemaining.textContent = `${remaining.toLocaleString()} Unsolved`;
 }
 
-// ==================== Topic Quick-Jump Bar ====================
-function renderTopicQuickJumpBar() {
-    const bar = document.getElementById('topic-quick-jump-bar');
-    if (!bar || typeof questionsData === 'undefined') return;
-
-    let html = '';
-    for (const topic in questionsData) {
-        html += `
-        <button type="button" onclick="goToTopicQuestions('${escJs(topic)}')" class="topic-jump-pill px-2.5 py-1 rounded-md bg-[#21262d] text-xs font-medium text-[#8b949e] hover:text-[#f0f6fc] border border-[#30363d] transition cursor-pointer flex-shrink-0">
-            ${topic}
-        </button>`;
-    }
-    bar.innerHTML = html;
-}
-
-// ==================== Platform Summary Legend ====================
 function updatePlatformLegend() {
     const legend = document.getElementById('platform-legend');
     if (!legend || typeof questionsData === 'undefined') return;
@@ -510,11 +476,232 @@ function updatePlatformLegend() {
     }).join('');
 }
 
-// ==================== Filter Controls ====================
-function setStatusFilter(status) {
-    filters.status = status;
+// ==================== VIEW 1: HOME ROADMAP GRID ====================
+function renderRoadmapGrid() {
+    const grid = document.getElementById('roadmap-grid');
+    if (!grid || typeof questionsData === 'undefined') return;
+
+    const topics = getTopicKeys();
+    const query = roadmapSearchQuery.toLowerCase();
+
+    let html = '';
+    let matchCount = 0;
+
+    topics.forEach((topic, idx) => {
+        if (query && !topic.toLowerCase().includes(query)) {
+            return;
+        }
+        matchCount++;
+
+        const easyList = questionsData[topic].Easy || [];
+        const medList = questionsData[topic].Medium || [];
+        const hardList = questionsData[topic].Hard || [];
+        const totalInTopic = easyList.length + medList.length + hardList.length;
+
+        let solvedInTopic = 0;
+        let easySolved = 0;
+        let medSolved = 0;
+        let hardSolved = 0;
+
+        easyList.forEach(q => { if (solvedSet.has(q.url)) { solvedInTopic++; easySolved++; } });
+        medList.forEach(q => { if (solvedSet.has(q.url)) { solvedInTopic++; medSolved++; } });
+        hardList.forEach(q => { if (solvedSet.has(q.url)) { solvedInTopic++; hardSolved++; } });
+
+        const pct = totalInTopic ? Math.round((solvedInTopic / totalInTopic) * 100) : 0;
+        const isCompleted = totalInTopic > 0 && solvedInTopic === totalInTopic;
+
+        html += `
+        <div onclick="openTopicPage('${escJs(topic)}')" class="roadmap-card group">
+            <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="text-xs font-mono text-[#6e7681] font-semibold">#${idx + 1}</span>
+                    ${topicPill(topic)}
+                </div>
+                <h3 class="text-base font-bold text-[#f0f6fc] group-hover:text-[#58a6ff] transition mb-1">
+                    ${topic}
+                </h3>
+                <div class="flex items-center gap-2 text-xs text-[#8b949e] font-mono mt-1">
+                    <span class="text-[#3fb950]">E: ${easySolved}/${easyList.length}</span>
+                    <span class="text-[#484f58]">•</span>
+                    <span class="text-[#d29922]">M: ${medSolved}/${medList.length}</span>
+                    <span class="text-[#484f58]">•</span>
+                    <span class="text-[#f85149]">H: ${hardSolved}/${hardList.length}</span>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-[#30363d]">
+                <div class="flex items-center justify-between text-xs mb-1.5 font-mono">
+                    <span class="text-[#8b949e]">${solvedInTopic}/${totalInTopic} Solved</span>
+                    <span class="${isCompleted ? 'text-[#3fb950] font-bold' : 'text-[#58a6ff] font-semibold'}">${pct}%</span>
+                </div>
+                <div class="w-full bg-[#0d1117] rounded-full h-1.5 overflow-hidden border border-[#30363d] mb-3">
+                    <div class="${isCompleted ? 'bg-[#3fb950]' : 'bg-[#238636]'} h-1.5 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs font-semibold text-[#58a6ff] group-hover:text-[#79c0ff] transition">
+                    <span>Solve Questions</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    if (!html) {
+        html = `
+        <div class="col-span-full pro-card p-8 text-center text-[#8b949e]">
+            <p class="font-semibold text-base text-[#f0f6fc]">No topics matching "${escAttr(roadmapSearchQuery)}"</p>
+            <button onclick="clearRoadmapSearch()" class="mt-3 px-3 py-1 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
+                Clear Search
+            </button>
+        </div>`;
+    }
+
+    grid.innerHTML = html;
+}
+
+function onRoadmapSearchChanged() {
+    const input = document.getElementById('roadmap-topic-search');
+    roadmapSearchQuery = input ? input.value.trim() : '';
+    renderRoadmapGrid();
+}
+
+function clearRoadmapSearch() {
+    const input = document.getElementById('roadmap-topic-search');
+    if (input) input.value = '';
+    roadmapSearchQuery = '';
+    renderRoadmapGrid();
+}
+
+// ==================== VIEW 2: TOPIC QUESTIONS PAGE ====================
+function openTopicPage(topicName) {
+    if (!questionsData || !questionsData[topicName]) return;
+
+    currentTopic = topicName;
+    window.location.hash = `topic=${encodeURIComponent(topicName)}`;
+
+    const homeView = document.getElementById('home-view');
+    const topicView = document.getElementById('topic-view');
+
+    if (homeView) homeView.classList.add('hidden');
+    if (topicView) {
+        topicView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Reset topic filters
+    topicFilters = {
+        search: '',
+        status: 'all',
+        diff: 'all',
+        platform: 'all'
+    };
+    const searchInput = document.getElementById('topic-question-search');
+    const platSelect = document.getElementById('topic-platform-select');
+    if (searchInput) searchInput.value = '';
+    if (platSelect) platSelect.value = 'all';
+
+    setTopicStatusFilter('all');
+    setTopicDiffFilter('all');
+
+    updateTopicHeaderStats(topicName);
+    updateAdjacentTopicButtons(topicName);
+    renderTopicQuestions(topicName);
+}
+
+function navigateToHome() {
+    currentTopic = null;
+    window.location.hash = '';
+
+    const homeView = document.getElementById('home-view');
+    const topicView = document.getElementById('topic-view');
+
+    if (topicView) topicView.classList.add('hidden');
+    if (homeView) {
+        homeView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    updateDashboardSummaries();
+    renderRoadmapGrid();
+}
+
+function updateTopicHeaderStats(topicName) {
+    const titleEl = document.getElementById('topic-page-title');
+    const badgeEl = document.getElementById('topic-page-badge');
+    const solvedCountEl = document.getElementById('topic-page-solved-count');
+    const pctEl = document.getElementById('topic-page-pct');
+    const barLabelEl = document.getElementById('topic-page-stat-bar-label');
+    const barEl = document.getElementById('topic-page-progress-bar');
+    const easyEl = document.getElementById('topic-page-easy-count');
+    const medEl = document.getElementById('topic-page-med-count');
+    const hardEl = document.getElementById('topic-page-hard-count');
+
+    if (!questionsData[topicName]) return;
+
+    const easyList = questionsData[topicName].Easy || [];
+    const medList = questionsData[topicName].Medium || [];
+    const hardList = questionsData[topicName].Hard || [];
+    const total = easyList.length + medList.length + hardList.length;
+
+    let solved = 0, eSol = 0, mSol = 0, hSol = 0;
+    easyList.forEach(q => { if (solvedSet.has(q.url)) { solved++; eSol++; } });
+    medList.forEach(q => { if (solvedSet.has(q.url)) { solved++; mSol++; } });
+    hardList.forEach(q => { if (solvedSet.has(q.url)) { solved++; hSol++; } });
+
+    const pct = total ? Math.round((solved / total) * 100) : 0;
+
+    if (titleEl) titleEl.textContent = topicName;
+    if (badgeEl) badgeEl.innerHTML = topicPill(topicName);
+    if (solvedCountEl) solvedCountEl.textContent = `${solved} / ${total} Solved`;
+    if (pctEl) pctEl.textContent = `${pct}%`;
+    if (barLabelEl) barLabelEl.textContent = `${pct}% Completed (${solved}/${total})`;
+    if (barEl) barEl.style.width = `${pct}%`;
+
+    if (easyEl) easyEl.textContent = `Easy: ${eSol}/${easyList.length}`;
+    if (medEl) medEl.textContent = `Med: ${mSol}/${medList.length}`;
+    if (hardEl) hardEl.textContent = `Hard: ${hSol}/${hardList.length}`;
+}
+
+function updateAdjacentTopicButtons(topicName) {
+    const topics = getTopicKeys();
+    const idx = topics.indexOf(topicName);
+    const prevBtn = document.getElementById('topic-prev-btn');
+    const nextBtn = document.getElementById('topic-next-btn');
+    const prevLabel = document.getElementById('topic-prev-label');
+    const nextLabel = document.getElementById('topic-next-label');
+
+    if (idx > 0) {
+        if (prevBtn) prevBtn.classList.remove('invisible');
+        if (prevLabel) prevLabel.textContent = `← ${topics[idx - 1]}`;
+    } else {
+        if (prevBtn) prevBtn.classList.add('invisible');
+    }
+
+    if (idx < topics.length - 1) {
+        if (nextBtn) nextBtn.classList.remove('invisible');
+        if (nextLabel) nextLabel.textContent = `${topics[idx + 1]} →`;
+    } else {
+        if (nextBtn) nextBtn.classList.add('invisible');
+    }
+}
+
+function navigateAdjacentTopic(offset) {
+    if (!currentTopic) return;
+    const topics = getTopicKeys();
+    const idx = topics.indexOf(currentTopic);
+    const targetIdx = idx + offset;
+    if (targetIdx >= 0 && targetIdx < topics.length) {
+        openTopicPage(topics[targetIdx]);
+    }
+}
+
+// Topic Filter Controls
+function setTopicStatusFilter(status) {
+    topicFilters.status = status;
     ['all', 'unsolved', 'solved', 'starred'].forEach(s => {
-        const btn = document.getElementById(`filter-status-${s}`);
+        const btn = document.getElementById(`topic-filter-status-${s}`);
         if (btn) {
             if (s === status) {
                 btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white';
@@ -523,13 +710,13 @@ function setStatusFilter(status) {
             }
         }
     });
-    renderQuestions();
+    if (currentTopic) renderTopicQuestions(currentTopic);
 }
 
-function setDiffFilter(diff) {
-    filters.diff = diff;
+function setTopicDiffFilter(diff) {
+    topicFilters.diff = diff;
     ['all', 'Easy', 'Medium', 'Hard'].forEach(d => {
-        const btn = document.getElementById(`filter-diff-${d}`);
+        const btn = document.getElementById(`topic-filter-diff-${d}`);
         if (btn) {
             if (d === diff) {
                 btn.className = 'px-2 py-0.5 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white';
@@ -538,145 +725,65 @@ function setDiffFilter(diff) {
             }
         }
     });
-    renderQuestions();
+    if (currentTopic) renderTopicQuestions(currentTopic);
 }
 
-function onFilterChanged() {
-    const searchInput = document.getElementById('question-search');
-    const platSelect = document.getElementById('platform-select');
-    filters.search = searchInput ? searchInput.value.trim() : '';
-    filters.platform = platSelect ? platSelect.value : 'all';
-    renderQuestions();
+function onTopicFilterChanged() {
+    const searchInput = document.getElementById('topic-question-search');
+    const platSelect = document.getElementById('topic-platform-select');
+    topicFilters.search = searchInput ? searchInput.value.trim() : '';
+    topicFilters.platform = platSelect ? platSelect.value : 'all';
+    if (currentTopic) renderTopicQuestions(currentTopic);
 }
 
-// ==================== Accordion & Questions Rendering ====================
-function toggleAccordion(sectionId) {
-    const content = document.getElementById(`content-${sectionId}`);
-    const icon = document.getElementById(`icon-${sectionId}`);
-    if (!content) return;
+function renderTopicQuestions(topicName) {
+    const container = document.getElementById('topic-questions-container');
+    if (!container || !questionsData || !questionsData[topicName]) return;
 
-    if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
-        if (icon) icon.classList.add('rotate-180');
-        openAccordions.add(sectionId);
-    } else {
-        content.classList.add('hidden');
-        if (icon) icon.classList.remove('rotate-180');
-        openAccordions.delete(sectionId);
-    }
-}
+    const query = topicFilters.search.toLowerCase();
+    const statusFilter = topicFilters.status;
+    const diffFilter = topicFilters.diff;
+    const platFilter = topicFilters.platform;
 
-function toggleAllAccordions(expand) {
-    if (typeof questionsData === 'undefined') return;
-    for (const topic in questionsData) {
-        const sectionId = `topic-${slugify(topic)}`;
-        const content = document.getElementById(`content-${sectionId}`);
-        const icon = document.getElementById(`icon-${sectionId}`);
-        if (content) {
-            if (expand) {
-                content.classList.remove('hidden');
-                if (icon) icon.classList.add('rotate-180');
-                openAccordions.add(sectionId);
-            } else {
-                content.classList.add('hidden');
-                if (icon) icon.classList.remove('rotate-180');
-                openAccordions.delete(sectionId);
+    const filterList = (list, dName) => {
+        if (diffFilter !== 'all' && diffFilter !== dName) return [];
+        return (list || []).filter(q => {
+            const isSolved = solvedSet.has(q.url);
+            const isStarred = starredSet.has(q.url);
+
+            if (statusFilter === 'solved' && !isSolved) return false;
+            if (statusFilter === 'unsolved' && isSolved) return false;
+            if (statusFilter === 'starred' && !isStarred) return false;
+
+            if (platFilter !== 'all' && (q.platform || '') !== platFilter) return false;
+
+            if (query) {
+                const matchTitle = q.title.toLowerCase().includes(query);
+                const matchPlat = (q.platform || '').toLowerCase().includes(query);
+                if (!matchTitle && !matchPlat) return false;
             }
-        }
-    }
-}
 
-function renderQuestions() {
-    const container = document.getElementById('questions-container');
-    if (!container || typeof questionsData === 'undefined') return;
+            return true;
+        });
+    };
 
-    const query = filters.search.toLowerCase();
-    const statusFilter = filters.status;
-    const diffFilter = filters.diff;
-    const platFilter = filters.platform;
+    const easyFiltered = filterList(questionsData[topicName].Easy, 'Easy');
+    const medFiltered = filterList(questionsData[topicName].Medium, 'Medium');
+    const hardFiltered = filterList(questionsData[topicName].Hard, 'Hard');
+
+    const totalVisible = easyFiltered.length + medFiltered.length + hardFiltered.length;
 
     let html = '';
+    html += renderDifficultyBlock('Easy', easyFiltered, 1);
+    html += renderDifficultyBlock('Medium', medFiltered, easyFiltered.length + 1);
+    html += renderDifficultyBlock('Hard', hardFiltered, easyFiltered.length + medFiltered.length + 1);
 
-    for (const topic in questionsData) {
-        const sectionId = `topic-${slugify(topic)}`;
-        let totalInTopic = 0;
-        let solvedInTopic = 0;
-
-        const filterList = (list, dName) => {
-            if (diffFilter !== 'all' && diffFilter !== dName) return [];
-            return (list || []).filter(q => {
-                const isSolved = solvedSet.has(q.url);
-                const isStarred = starredSet.has(q.url);
-
-                if (statusFilter === 'solved' && !isSolved) return false;
-                if (statusFilter === 'unsolved' && isSolved) return false;
-                if (statusFilter === 'starred' && !isStarred) return false;
-
-                if (platFilter !== 'all' && (q.platform || '') !== platFilter) return false;
-
-                if (query) {
-                    const matchTitle = q.title.toLowerCase().includes(query);
-                    const matchPlat = (q.platform || '').toLowerCase().includes(query);
-                    const matchTopic = topic.toLowerCase().includes(query);
-                    if (!matchTitle && !matchPlat && !matchTopic) return false;
-                }
-
-                return true;
-            });
-        };
-
-        const easyFiltered = filterList(questionsData[topic].Easy, 'Easy');
-        const medFiltered = filterList(questionsData[topic].Medium, 'Medium');
-        const hardFiltered = filterList(questionsData[topic].Hard, 'Hard');
-
-        const visibleCount = easyFiltered.length + medFiltered.length + hardFiltered.length;
-
-        ['Easy', 'Medium', 'Hard'].forEach(diff => {
-            (questionsData[topic][diff] || []).forEach(q => {
-                totalInTopic++;
-                if (solvedSet.has(q.url)) solvedInTopic++;
-            });
-        });
-
-        const topicPct = totalInTopic ? Math.round((solvedInTopic / totalInTopic) * 100) : 0;
-        const isOpen = (query || statusFilter !== 'all' || diffFilter !== 'all' || platFilter !== 'all') ? true : openAccordions.has(sectionId);
-
-        if (visibleCount === 0 && (query || statusFilter !== 'all' || diffFilter !== 'all' || platFilter !== 'all')) {
-            continue;
-        }
-
-        html += `
-        <div id="${sectionId}" class="rounded-lg pro-card border border-[#30363d] overflow-hidden mb-3">
-            <button type="button" onclick="toggleAccordion('${sectionId}')" class="w-full px-4 py-3.5 flex items-center justify-between text-left cursor-pointer focus:outline-none hover:bg-[#1c2128] transition">
-                <div class="flex items-center gap-2.5 flex-wrap">
-                    <span class="font-bold text-sm sm:text-base text-[#f0f6fc]">${topic}</span>
-                    ${topicPill(topic)}
-                    <span class="text-xs font-mono font-medium text-[#8b949e]">
-                        ${solvedInTopic}/${totalInTopic} solved (${topicPct}%)
-                    </span>
-                    ${visibleCount !== totalInTopic ? `<span class="text-[11px] font-mono text-[#58a6ff]">Showing ${visibleCount}</span>` : ''}
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg id="icon-${sectionId}" class="w-4 h-4 text-[#8b949e] transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </div>
-            </button>
-
-            <div id="content-${sectionId}" class="${isOpen ? '' : 'hidden'} border-t border-[#30363d] p-3.5 bg-[#0d1117]/80 space-y-4">
-                ${renderDifficultyBlock('Easy', easyFiltered, sectionId, 1)}
-                ${renderDifficultyBlock('Medium', medFiltered, sectionId, easyFiltered.length + 1)}
-                ${renderDifficultyBlock('Hard', hardFiltered, sectionId, easyFiltered.length + medFiltered.length + 1)}
-            </div>
-        </div>`;
-    }
-
-    if (!html) {
+    if (totalVisible === 0) {
         html = `
         <div class="pro-card p-8 rounded-lg border border-[#30363d] text-center text-[#8b949e]">
-            <p class="font-semibold text-base text-[#f0f6fc]">No problems found</p>
-            <p class="text-xs text-[#8b949e] mt-1">Try adjusting your search query or filters.</p>
-            <button onclick="clearAllFilters()" class="mt-3 px-3.5 py-1.5 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
+            <p class="font-semibold text-base text-[#f0f6fc]">No questions found matching your filter</p>
+            <p class="text-xs text-[#8b949e] mt-1">Try changing or resetting your search and filter criteria.</p>
+            <button onclick="clearTopicFilters()" class="mt-3 px-3 py-1.5 bg-[#1f6feb] hover:bg-[#388bfd] text-white text-xs font-semibold rounded-md transition cursor-pointer">
                 Clear Filters
             </button>
         </div>`;
@@ -685,18 +792,18 @@ function renderQuestions() {
     container.innerHTML = html;
 }
 
-function clearAllFilters() {
-    const searchInput = document.getElementById('question-search');
-    const platSelect = document.getElementById('platform-select');
+function clearTopicFilters() {
+    const searchInput = document.getElementById('topic-question-search');
+    const platSelect = document.getElementById('topic-platform-select');
     if (searchInput) searchInput.value = '';
     if (platSelect) platSelect.value = 'all';
-    filters.search = '';
-    filters.platform = 'all';
-    setStatusFilter('all');
-    setDiffFilter('all');
+    topicFilters.search = '';
+    topicFilters.platform = 'all';
+    setTopicStatusFilter('all');
+    setTopicDiffFilter('all');
 }
 
-function renderDifficultyBlock(difficulty, list, sectionId, startIndex = 1) {
+function renderDifficultyBlock(difficulty, list, startIndex = 1) {
     if (!list || list.length === 0) return '';
     const badgeCls = difficultyBadgeClasses(difficulty);
 
@@ -733,8 +840,8 @@ function renderDifficultyBlock(difficulty, list, sectionId, startIndex = 1) {
     }).join('');
 
     return `
-    <div>
-        <div class="flex items-center gap-2 mb-2">
+    <div class="pro-card p-4 border border-[#30363d] rounded-lg">
+        <div class="flex items-center gap-2 mb-3">
             <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
             <span class="text-xs font-mono text-[#8b949e] font-medium">(${list.length} problems)</span>
         </div>
@@ -744,18 +851,40 @@ function renderDifficultyBlock(difficulty, list, sectionId, startIndex = 1) {
     </div>`;
 }
 
-// Keyboard shortcuts: '/' to focus search, 'Escape' to close modals
+// ==================== Hash Routing ====================
+function handleHashRoute() {
+    const hash = window.location.hash.slice(1); // remove '#'
+    if (hash.startsWith('topic=')) {
+        const topicName = decodeURIComponent(hash.slice(6));
+        if (questionsData && questionsData[topicName]) {
+            openTopicPage(topicName);
+            return;
+        }
+    }
+    navigateToHome();
+}
+
+window.addEventListener('hashchange', handleHashRoute);
+
+// Keyboard shortcuts: '/' to focus search, 'Escape' to go back or close modals
 document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
         e.preventDefault();
-        const searchInput = document.getElementById('question-search');
+        const searchInput = currentTopic ? document.getElementById('topic-question-search') : document.getElementById('roadmap-topic-search');
         if (searchInput) {
             searchInput.focus();
             searchInput.select();
         }
     } else if (e.key === 'Escape') {
-        closeProfileModal();
-        closeWelcomeModal();
+        const profileModal = document.getElementById('profile-modal');
+        const welcomeModal = document.getElementById('welcome-modal');
+        if (profileModal && !profileModal.classList.contains('hidden')) {
+            closeProfileModal();
+        } else if (welcomeModal && !welcomeModal.classList.contains('hidden')) {
+            closeWelcomeModal();
+        } else if (currentTopic) {
+            navigateToHome();
+        }
     }
 });
 
@@ -763,8 +892,8 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     updateProfileUI();
     updateDashboardSummaries();
-    renderTopicQuickJumpBar();
     updatePlatformLegend();
-    renderQuestions();
+    renderRoadmapGrid();
+    handleHashRoute();
     checkFirstTimeUser();
 });

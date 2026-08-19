@@ -17,7 +17,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 gap-4">
                 <!-- Brand / Logo -->
-                <div class="flex items-center flex-shrink-0 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="GrindHub">
+                <div class="flex items-center flex-shrink-0 cursor-pointer group" onclick="navigateToHome()" title="GrindHub — Back to Roadmap">
                     <div class="w-8 h-8 rounded-lg bg-[#238636] flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm">
                         &lt;/&gt;
                     </div>
@@ -57,10 +57,11 @@
         </div>
     </nav>
 
-    <!-- Main Content Container (Direct Problem Base on Home Page) -->
+    <!-- Main Content Container -->
     <div id="app-container" class="flex-grow w-full relative">
 
-        <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 view-fade block">
+        <!-- ==================== VIEW 1: HOME ROADMAP VIEW ==================== -->
+        <main id="home-view" class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 view-fade block">
 
             <!-- Hero Section -->
             <div class="mb-6 p-5 sm:p-6 rounded-xl pro-card flex flex-col md:flex-row items-center justify-between gap-4">
@@ -70,7 +71,7 @@
                         Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" class="text-[#58a6ff] cursor-pointer hover:underline">Coder</span>
                     </h1>
                     <p class="text-[#8b949e] text-xs sm:text-sm leading-relaxed">
-                        Track progress across <span class="text-[#f0f6fc] font-semibold font-mono">3,532</span> curated problems across <span class="text-[#f0f6fc] font-semibold font-mono">23</span> essential topics arranged from basics to advanced from 8 competitive programming platforms.
+                        Master DSA step-by-step. Select any topic below to open its dedicated problem-solving workspace across <span class="text-[#f0f6fc] font-semibold font-mono">3,532</span> problems.
                     </p>
                 </div>
 
@@ -79,7 +80,7 @@
                     <div class="p-3 sm:p-4 rounded-lg bg-[#0d1117] border border-[#30363d] text-center min-w-[180px]">
                         <span class="text-[10px] font-semibold uppercase tracking-wider text-[#8b949e] block mb-0.5">Problem Repository</span>
                         <div class="text-lg font-bold text-[#f0f6fc] font-mono" id="dash-quick-target">3,532 Problems</div>
-                        <span class="text-xs text-[#58a6ff] mt-0.5 block">8 Coding Platforms</span>
+                        <span class="text-xs text-[#58a6ff] mt-0.5 block">23 Canonical Topics</span>
                     </div>
                 </div>
             </div>
@@ -105,7 +106,7 @@
                 <!-- Card 2: Solved Progress -->
                 <div class="pro-card p-4 flex flex-col justify-between">
                     <div>
-                        <span class="text-[11px] font-semibold uppercase tracking-wider text-[#8b949e]">Solved Progress</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-[#8b949e]">Overall Solved</span>
                         <div class="text-2xl font-bold text-[#58a6ff] font-mono mt-0.5" id="dash-stat-solved">0</div>
                         <div class="text-xs text-[#8b949e] mt-0.5" id="dash-stat-progress">0% Completed</div>
                     </div>
@@ -134,60 +135,131 @@
                         <div class="text-2xl font-bold text-[#f0f6fc] font-mono mt-0.5">8 Platforms</div>
                         <div class="text-xs text-[#8b949e] mt-0.5">LeetCode, CF, GFG, HR & more</div>
                     </div>
-                    <div class="text-[11px] text-[#58a6ff] font-medium mt-3">Unified Problem Tracker</div>
+                    <div class="text-[11px] text-[#58a6ff] font-medium mt-3">8 CP Platforms</div>
                 </div>
             </div>
 
-            <!-- Filter & Search Toolbar -->
+            <!-- Roadmap Section Header & Search -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div>
+                    <h2 class="text-base sm:text-lg font-bold text-[#f0f6fc]">DSA Roadmap Topics (23)</h2>
+                    <p class="text-xs text-[#8b949e]">Click any topic card to open its full question list</p>
+                </div>
+                <div class="relative min-w-[240px] sm:w-72">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-[#8b949e] font-mono">🔍</span>
+                    <input id="roadmap-topic-search" type="text"
+                        placeholder="Search topics (e.g. Arrays, Trees, DP)..."
+                        oninput="onRoadmapSearchChanged()"
+                        class="w-full bg-[#161b22] border border-[#30363d] rounded-md pl-8 pr-3 py-1.5 text-xs text-[#e6edf3] placeholder-[#6e7681] focus:outline-none focus:border-[#58a6ff] transition">
+                </div>
+            </div>
+
+            <!-- Platform Summary Legend -->
+            <div class="flex flex-wrap gap-1.5 mb-5" id="platform-legend">
+                <!-- Populated dynamically by JavaScript -->
+            </div>
+
+            <!-- ==================== 23-TOPIC ROADMAP GRID ==================== -->
+            <div id="roadmap-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-12">
+                <!-- Populated dynamically by JavaScript -->
+            </div>
+        </main>
+
+        <!-- ==================== VIEW 2: DEDICATED TOPIC QUESTIONS PAGE ==================== -->
+        <main id="topic-view" class="hidden w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 view-fade">
+
+            <!-- Back Button & Topic Header -->
+            <div class="mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#30363d] pb-4">
+                <div class="flex items-center gap-3">
+                    <button type="button" onclick="navigateToHome()" class="flex items-center gap-1.5 text-xs font-semibold text-[#8b949e] hover:text-[#f0f6fc] bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] px-3 py-1.5 rounded-md transition cursor-pointer" title="Back to All Topics (Esc)">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Back to Topics</span>
+                    </button>
+                    <div class="h-4 w-px bg-[#30363d] hidden sm:block"></div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <h1 id="topic-page-title" class="text-lg sm:text-xl font-bold text-[#f0f6fc]">Arrays</h1>
+                        <span id="topic-page-badge"></span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-xs font-mono text-[#8b949e]">
+                    <span id="topic-page-solved-count" class="font-semibold text-[#58a6ff]">0 / 0 Solved</span>
+                    <span>•</span>
+                    <span id="topic-page-pct">0%</span>
+                </div>
+            </div>
+
+            <!-- Topic Progress Overview Card -->
+            <div class="pro-card p-4 mb-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                <div class="flex-grow">
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-[#8b949e] font-medium">Topic Progress</span>
+                        <span id="topic-page-stat-bar-label" class="font-mono text-[#e6edf3] font-semibold">0% Completed</span>
+                    </div>
+                    <div class="w-full bg-[#0d1117] rounded-full h-2 overflow-hidden border border-[#30363d]">
+                        <div id="topic-page-progress-bar" class="bg-[#238636] h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 text-xs font-mono flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#30363d]">
+                    <span class="text-[#3fb950] font-semibold" id="topic-page-easy-count">Easy: 0/0</span>
+                    <span class="text-[#484f58]">•</span>
+                    <span class="text-[#d29922] font-semibold" id="topic-page-med-count">Med: 0/0</span>
+                    <span class="text-[#484f58]">•</span>
+                    <span class="text-[#f85149] font-semibold" id="topic-page-hard-count">Hard: 0/0</span>
+                </div>
+            </div>
+
+            <!-- Filter & Search Toolbar for Topic -->
             <div class="pro-card p-3 sm:p-4 mb-5 space-y-3">
                 <!-- Search and Status Tabs -->
                 <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
                     <div class="relative flex-grow">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-[#8b949e] font-mono">🔍</span>
-                        <input id="question-search" type="text"
-                            placeholder="Search problems by name, topic, or platform (e.g. Two Sum, Dijkstra, Binary Search)..."
-                            oninput="onFilterChanged()"
+                        <input id="topic-question-search" type="text"
+                            placeholder="Filter questions in this topic by title or platform..."
+                            oninput="onTopicFilterChanged()"
                             class="w-full bg-[#0d1117] border border-[#30363d] rounded-md pl-8 pr-3 py-1.5 text-xs sm:text-sm text-[#e6edf3] placeholder-[#6e7681] focus:outline-none focus:border-[#58a6ff] transition">
                     </div>
 
                     <!-- Status Filter Tabs -->
                     <div class="flex items-center gap-1 bg-[#0d1117] p-1 rounded-md border border-[#30363d] flex-shrink-0">
-                        <button type="button" onclick="setStatusFilter('all')" id="filter-status-all"
+                        <button type="button" onclick="setTopicStatusFilter('all')" id="topic-filter-status-all"
                             class="px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white">
                             All
                         </button>
-                        <button type="button" onclick="setStatusFilter('unsolved')" id="filter-status-unsolved"
+                        <button type="button" onclick="setTopicStatusFilter('unsolved')" id="topic-filter-status-unsolved"
                             class="px-2.5 py-1 text-xs font-semibold rounded text-[#8b949e] hover:text-[#e6edf3] transition cursor-pointer">
                             Unsolved
                         </button>
-                        <button type="button" onclick="setStatusFilter('solved')" id="filter-status-solved"
+                        <button type="button" onclick="setTopicStatusFilter('solved')" id="topic-filter-status-solved"
                             class="px-2.5 py-1 text-xs font-semibold rounded text-[#8b949e] hover:text-[#e6edf3] transition cursor-pointer">
                             Solved
                         </button>
-                        <button type="button" onclick="setStatusFilter('starred')" id="filter-status-starred"
+                        <button type="button" onclick="setTopicStatusFilter('starred')" id="topic-filter-status-starred"
                             class="px-2.5 py-1 text-xs font-semibold rounded text-[#8b949e] hover:text-[#d29922] transition cursor-pointer">
                             Starred
                         </button>
                     </div>
                 </div>
 
-                <!-- Secondary Filters: Difficulty, Platform & Actions -->
+                <!-- Secondary Filters: Difficulty & Platform -->
                 <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#30363d]">
                     <div class="flex items-center gap-1.5 flex-wrap">
                         <span class="text-xs font-semibold text-[#8b949e] uppercase tracking-wider mr-1">Difficulty:</span>
-                        <button type="button" onclick="setDiffFilter('all')" id="filter-diff-all"
+                        <button type="button" onclick="setTopicDiffFilter('all')" id="topic-filter-diff-all"
                             class="px-2 py-0.5 text-xs font-semibold rounded transition cursor-pointer bg-[#1f6feb] text-white">
                             All
                         </button>
-                        <button type="button" onclick="setDiffFilter('Easy')" id="filter-diff-Easy"
+                        <button type="button" onclick="setTopicDiffFilter('Easy')" id="topic-filter-diff-Easy"
                             class="px-2 py-0.5 text-xs font-semibold rounded text-[#8b949e] hover:text-[#3fb950] transition cursor-pointer">
                             Easy
                         </button>
-                        <button type="button" onclick="setDiffFilter('Medium')" id="filter-diff-Medium"
+                        <button type="button" onclick="setTopicDiffFilter('Medium')" id="topic-filter-diff-Medium"
                             class="px-2 py-0.5 text-xs font-semibold rounded text-[#8b949e] hover:text-[#d29922] transition cursor-pointer">
                             Medium
                         </button>
-                        <button type="button" onclick="setDiffFilter('Hard')" id="filter-diff-Hard"
+                        <button type="button" onclick="setTopicDiffFilter('Hard')" id="topic-filter-diff-Hard"
                             class="px-2 py-0.5 text-xs font-semibold rounded text-[#8b949e] hover:text-[#f85149] transition cursor-pointer">
                             Hard
                         </button>
@@ -196,7 +268,7 @@
                     <div class="flex items-center gap-2 flex-wrap">
                         <div class="flex items-center gap-2">
                             <span class="text-xs font-semibold text-[#8b949e] uppercase tracking-wider">Platform:</span>
-                            <select id="platform-select" onchange="onFilterChanged()"
+                            <select id="topic-platform-select" onchange="onTopicFilterChanged()"
                                 class="bg-[#0d1117] border border-[#30363d] text-xs font-semibold text-[#e6edf3] rounded-md px-2.5 py-1 focus:outline-none focus:border-[#58a6ff] cursor-pointer">
                                 <option value="all">All Platforms (8)</option>
                                 <option value="LeetCode">LeetCode</option>
@@ -209,40 +281,26 @@
                                 <option value="AtCoder">AtCoder</option>
                             </select>
                         </div>
-
-                        <div class="flex items-center gap-1.5 ml-2 border-l border-[#30363d] pl-2">
-                            <button onclick="toggleAllAccordions(true)" class="text-xs font-medium text-[#c9d1d9] hover:text-white bg-[#21262d] px-2.5 py-1 rounded-md border border-[#30363d] transition cursor-pointer" title="Expand All Topics">
-                                Expand All
-                            </button>
-                            <button onclick="toggleAllAccordions(false)" class="text-xs font-medium text-[#c9d1d9] hover:text-white bg-[#21262d] px-2.5 py-1 rounded-md border border-[#30363d] transition cursor-pointer" title="Collapse All Topics">
-                                Collapse All
-                            </button>
-                            <button onclick="resetQuestionProgress()" class="text-xs font-medium text-[#f85149] hover:text-red-300 bg-[#f85149]/10 px-2.5 py-1 rounded-md border border-[#f85149]/30 transition cursor-pointer" title="Reset All Progress">
-                                Reset
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Topic Quick-Jump Bar -->
-            <div class="mb-4">
-                <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1.5" id="topic-quick-jump-bar">
-                    <!-- Populated dynamically by JavaScript -->
-                </div>
-            </div>
-
-            <!-- Platform Summary Legend -->
-            <div class="flex flex-wrap gap-1.5 mb-5" id="platform-legend">
+            <!-- ==================== QUESTIONS LIST FOR SELECTED TOPIC ==================== -->
+            <div id="topic-questions-container" class="space-y-4 mb-8">
                 <!-- Populated dynamically by JavaScript -->
             </div>
 
-            <!-- ==================== 23-TOPIC QUESTIONS ACCORDION LIST ==================== -->
-            <section class="mb-12">
-                <div id="questions-container" class="space-y-2.5">
-                    <!-- Populated dynamically by JavaScript -->
-                </div>
-            </section>
+            <!-- Bottom Prev / Next Topic Navigation -->
+            <div class="flex items-center justify-between border-t border-[#30363d] pt-5 mb-12">
+                <button id="topic-prev-btn" onclick="navigateAdjacentTopic(-1)" class="flex items-center gap-2 text-xs font-semibold text-[#8b949e] hover:text-[#f0f6fc] bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] px-3.5 py-2 rounded-md transition cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span id="topic-prev-label">Previous Topic</span>
+                </button>
+                <button id="topic-next-btn" onclick="navigateAdjacentTopic(1)" class="flex items-center gap-2 text-xs font-semibold text-[#8b949e] hover:text-[#f0f6fc] bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] px-3.5 py-2 rounded-md transition cursor-pointer">
+                    <span id="topic-next-label">Next Topic</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
         </main>
 
     </div>
