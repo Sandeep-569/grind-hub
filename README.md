@@ -1,38 +1,28 @@
-# 🚀 GrindHub — Unified DSA Tracker & Problem-Solving Platform
+# 🐾 GrindNeko (GrindHub) — Cyber-Cat DSA Tracker & Problem Vault
 
-**GrindHub** is a modern, responsive, and high-performance Data Structures & Algorithms (DSA) tracker. It organizes **3,500+ curated problems** across **24 canonical DSA topics** from top competitive programming and interview platforms into a single unified workspace.
+**GrindNeko** is a cool, modern, cyber-cat themed Data Structures & Algorithms (DSA) tracker. It organizes **3,500+ curated problems** across **23 canonical DSA topics** from 8 top competitive programming and interview platforms into a gamified, state-of-the-art feline workspace.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![LocalStorage](https://img.shields.io/badge/Storage-LocalStorage-blue?style=flat)
+![Cyber-Cat](https://img.shields.io/badge/Theme-Cyber--Neko%20🐾-ff5376?style=flat)
 
 ---
 
 ## ✨ Features
 
-- 🎯 **3,500+ Curated Problems**: Covers Easy, Medium, and Hard difficulty tiers.
-- 📚 **23 Canonical DSA Topics**:
-  - Patterns, Bit Manipulation & Math, Arrays, Matrix (2D), Strings, Searching, Sorting
-  - Two Pointers & Sliding Window, Linked List, Stacks & Queues, Hash Tables & Sets
-  - Recursion & Backtracking, Greedy Algorithms, Intervals
-  - Binary Trees & BST, Heaps & Priority Queues, Tries
-  - Graphs, Disjoint Set Union (DSU), Dynamic Programming
-  - Segment Trees & Fenwick Trees, Data Structure Design & OOP
-- 🌐 **8 Supported Coding Platforms**:
-  - LeetCode
-  - HackerRank
-  - Codeforces
-  - CodeChef
-  - GeeksforGeeks
-  - CodeStudio
-  - InterviewBit
-  - AtCoder
-- 👤 **Customizable Profile & Quick Links**:
-  - Personal avatar colors and user profile name.
-  - Quick-access Codolio and GitHub links directly from the navigation bar.
-- ⚡ **Instant Search & Topic Filtering**: Real-time debounce search across all questions, difficulties, and platforms.
-- 💾 **Local Progress Persistence**: Stores solved questions and profile settings directly in browser `localStorage`. No server setup required.
+- 🐱 **Cyber-Cat (Neko) Aesthetic**: Sleek midnight void interface with glowing Kitty Pink, Cyber Violet, and Electric Cyan accents, frosted glass cards, and smooth micro-animations.
+- 🐾 **Feline Coder Rank Progression**: Level up your feline rank as you solve problems:
+  - 🍼 *Novice Kitten* ➔ 🐾 *Curious Prowler* ➔ ⚡ *Cyber TomCat* ➔ 🗡️ *Ninja Shorthair* ➔ 🔮 *Shadow Panther* ➔ 👑 *Apex Mythic Neko*.
+- 🐟 **Fish Treats & Paw-Print Checkboxes**: Earn 1 Fish Treat for every 5 solved problems with floating paw particle micro-effects and custom paw checkboxes.
+- 🐈 **Interactive Neko Desk Companion**: Click your cat mascot for witty, motivational DSA advice and speech bubble interactions.
+- 🎵 **Web Audio Meow & Chime SFX**: Pleasant synthesized completion audio cues with an instant mute toggle.
+- 🎯 **3,500+ Curated Problems**: Easy, Medium, and Hard tiers across 8 platforms (LeetCode, HackerRank, Codeforces, CodeChef, GeeksforGeeks, CodeStudio, InterviewBit, AtCoder).
+- 📚 **23 Canonical DSA Topics**: Roadmap-ordered topics from Bit Manipulation & Math to Dynamic Programming and Segment Trees.
+- 👤 **Customizable Feline Profile**: Choose from 10 cat avatars, neon accent glows, Codolio link, and GitHub profile.
+- ⚡ **Instant Global Search**: Fast filter by problem name, difficulty, platform, or topic.
+- 💾 **100% LocalStorage Auto-Save**: All solved states and settings persist in your browser seamlessly.
 
 ---
 
