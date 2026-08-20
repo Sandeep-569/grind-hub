@@ -1,26 +1,64 @@
-// ==================== GrindHub: Professional DSA Problem Tracker (Pure Black 000) ====================
+// ==================== GrindHub: Professional DSA Problem Tracker ====================
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
 const SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
 const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
-const ACTIVITY_LOG_KEY = 'dsa_tracker_activity_log_v1';
 
 const PRESET_COLORS = [
-    { name: "Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.25)" },
-    { name: "Green", hex: "#10b981", glow: "rgba(16, 185, 129, 0.25)" },
-    { name: "Purple", hex: "#8b5cf6", glow: "rgba(139, 92, 246, 0.25)" },
-    { name: "Cyan", hex: "#06b6d4", glow: "rgba(6, 182, 212, 0.25)" },
-    { name: "Amber", hex: "#f59e0b", glow: "rgba(245, 158, 11, 0.25)" },
-    { name: "Coral", hex: "#f43f5e", glow: "rgba(244, 63, 94, 0.25)" }
+    { name: "Cyan", hex: "#06b6d4" },
+    { name: "Blue", hex: "#3b82f6" },
+    { name: "Green", hex: "#10b981" },
+    { name: "Purple", hex: "#8b5cf6" },
+    { name: "Amber", hex: "#f59e0b" },
+    { name: "Rose", hex: "#f43f5e" }
 ];
 
 const DEFAULT_PROFILE = {
     name: "Coder",
-    color: "#3b82f6",
+    color: "#06b6d4",
     github: "",
     codolioUrl: ""
+};
+
+// --- Topic Metadata & Icons ---
+const TOPIC_METADATA = {
+    "Patterns": { icon: "📘", step: 1, category: "core" },
+    "Bit Manipulation & Math": { icon: "🔢", step: 2, category: "core" },
+    "Arrays": { icon: "🟢", step: 3, category: "core" },
+    "Matrix": { icon: "▦", step: 4, category: "core" },
+    "Strings": { icon: "🧵", step: 5, category: "core" },
+    "Searching": { icon: "🔍", step: 6, category: "core" },
+    "Sorting": { icon: "📊", step: 7, category: "core" },
+    "Two Pointer & Sliding Window": { icon: "🪟", step: 8, category: "core" },
+    "Linked List": { icon: "🔗", step: 9, category: "core" },
+    "Stacks & Queues": { icon: "🥞", step: 10, category: "core" },
+    "HashMap / Hash Table": { icon: "🔑", step: 11, category: "advanced" },
+    "Recursion & Backtracking": { icon: "🔄", step: 12, category: "advanced" },
+    "Greedy": { icon: "⚡", step: 13, category: "advanced" },
+    "Intervals": { icon: "📏", step: 14, category: "advanced" },
+    "Trees": { icon: "🌲", step: 15, category: "advanced" },
+    "Heaps": { icon: "📐", step: 16, category: "advanced" },
+    "Tries": { icon: "🌴", step: 17, category: "advanced" },
+    "Graphs": { icon: "🕸️", step: 18, category: "advanced" },
+    "Union Find / Disjoint Set": { icon: "🪢", step: 19, category: "advanced" },
+    "Dynamic Programming": { icon: "💡", step: 20, category: "advanced" },
+    "Segment Tree / Binary Indexed Tree": { icon: "🌳", step: 21, category: "advanced" },
+    "Design": { icon: "🛠️", step: 22, category: "advanced" },
+    "OOP": { icon: "🧩", step: 23, category: "advanced" }
+};
+
+// Platform Shorthand Tokens & Styles
+const PLATFORM_SHORTHAND = {
+    "LeetCode": { code: "LC", class: "platform-lc" },
+    "GeeksforGeeks": { code: "GFG", class: "platform-gfg" },
+    "HackerRank": { code: "HR", class: "platform-hr" },
+    "Codeforces": { code: "CF", class: "platform-cf" },
+    "CodeChef": { code: "CC", class: "platform-cc" },
+    "InterviewBit": { code: "IB", class: "platform-ib" },
+    "AtCoder": { code: "AC", class: "platform-ac" },
+    "CodeStudio": { code: "CS", class: "platform-other" }
 };
 
 // --- Application State ---
@@ -28,15 +66,12 @@ let userProfile = loadUserProfile();
 let solvedSet = loadSolvedQuestions();
 let starredSet = loadStarredQuestions();
 
-let currentTopic = null; // null => Home Roadmap View, string => Topic Questions View
-let roadmapSearchQuery = '';
+let searchFilter = '';
+let statusFilter = 'all';     // 'all' | 'unsolved' | 'solved' | 'starred'
+let diffFilter = 'all';       // 'all' | 'Easy' | 'Medium' | 'Hard'
+let platformFilter = 'all';   // 'all' | Platform string
 
-let topicFilters = {
-    search: '',
-    status: 'all', // 'all' | 'unsolved' | 'solved' | 'starred'
-    diff: 'all',   // 'all' | 'Easy' | 'Medium' | 'Hard'
-    platform: 'all'
-};
+let accordionCollapsed = {}; // topicKey -> boolean
 
 // ==================== Helpers ====================
 function slugify(s) {
@@ -52,29 +87,52 @@ function getTopicKeys() {
     return (typeof questionsData !== 'undefined') ? Object.keys(questionsData) : [];
 }
 
-function topicPill(topicKey) {
-    if (!topicKey) return '';
-    const cls = (typeof TOPIC_COLORS !== 'undefined' && TOPIC_COLORS[topicKey]) ? TOPIC_COLORS[topicKey] : 'text-blue-400 bg-blue-950/40 border-blue-900/50';
-    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border ${cls}">${topicKey}</span>`;
-}
-
-function platformPill(platform) {
-    const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[platform]) ? PLATFORM_COLORS[platform] : 'text-neutral-400 bg-[#0f0f0f] border-[#1c1c1c]';
-    return `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold border flex-shrink-0 ${cls}">${platform || 'Other'}</span>`;
-}
-
-function difficultyBadgeClasses(difficulty) {
-    if (difficulty === 'Easy') return 'badge-easy';
-    if (difficulty === 'Medium') return 'badge-medium';
-    return 'badge-hard';
-}
-
 function escJs(str) {
     return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
 function escAttr(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function getPlatformBadgeHTML(platform) {
+    const info = PLATFORM_SHORTHAND[platform] || { code: (platform || 'OTH').slice(0, 3).toUpperCase(), class: 'platform-other' };
+    return `<span class="platform-pill ${info.class}">${info.code}</span>`;
+}
+
+function getDifficultyBadgeHTML(difficulty) {
+    const cls = (difficulty === 'Easy') ? 'badge-easy' : (difficulty === 'Medium') ? 'badge-medium' : 'badge-hard';
+    return `<span class="${cls}">${difficulty || 'Easy'}</span>`;
+}
+
+function extractSubtitle(title, topic) {
+    if (!title) return '';
+    const match = title.match(/\(([^)]+)\)/);
+    if (match && match[1]) {
+        return match[1];
+    }
+    // Generic approach hint fallback derived from topic
+    if (topic === 'Sorting') return 'Divide & Conquer / Comparison Sort';
+    if (topic === 'Binary Search' || topic === 'Searching') return 'Logarithmic Divide & Conquer';
+    if (topic === 'Two Pointer & Sliding Window') return 'Two Pointer Window Scanning';
+    if (topic === 'Dynamic Programming') return 'Optimal Substructure & Memoization';
+    if (topic === 'Graphs') return 'Traversal & Graph Topography';
+    if (topic === 'Trees') return 'Recursive Tree Traversal';
+    if (topic === 'Bit Manipulation & Math') return 'Bitwise Bitmasks & Formulae';
+    return 'Optimal Solution Strategy';
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToTopic(topicKey) {
+    const el = document.getElementById(`topic-${slugify(topicKey)}`);
+    if (el) {
+        const yOffset = -80;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    }
 }
 
 // ==================== User Profile ====================
@@ -100,29 +158,23 @@ function saveUserProfile(profile) {
 function applyThemeAccent(hexColor) {
     if (!hexColor) return;
     document.documentElement.style.setProperty('--pro-accent', hexColor);
-    document.documentElement.style.setProperty('--border-hover', hexColor);
 }
 
 function updateProfileUI() {
     const profileName = (userProfile.name || 'Coder').trim();
-    applyThemeAccent(userProfile.color || '#3b82f6');
+    applyThemeAccent(userProfile.color || '#06b6d4');
 
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
         avatarEl.textContent = getInitial(profileName);
-        avatarEl.style.backgroundColor = userProfile.color || '#3b82f6';
+        avatarEl.style.backgroundColor = userProfile.color || '#06b6d4';
     }
     if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-blue-400 cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
-    }
-    const dashNameEl = document.getElementById('dashboard-user-name');
-    if (dashNameEl) {
-        dashNameEl.textContent = profileName;
-        dashNameEl.onclick = openProfileModal;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-cyan-400 cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
     }
 
     const githubLink = document.getElementById('nav-github-link');
@@ -166,11 +218,11 @@ function openProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     if (nameInput) nameInput.value = userProfile.name || 'Coder';
-    if (colorInput) colorInput.value = userProfile.color || '#3b82f6';
+    if (colorInput) colorInput.value = userProfile.color || '#06b6d4';
     if (githubInput) githubInput.value = userProfile.github || '';
     if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
-    renderColorOptions('profile-color-options', userProfile.color || '#3b82f6', (selected) => {
+    renderColorOptions('profile-color-options', userProfile.color || '#06b6d4', (selected) => {
         if (colorInput) colorInput.value = selected;
     });
 
@@ -194,7 +246,7 @@ function saveProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     userProfile.name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Coder';
-    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#3b82f6';
+    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#06b6d4';
     userProfile.github = githubInput ? githubInput.value.trim() : '';
     userProfile.codolioUrl = codolioInput ? codolioInput.value.trim() : '';
 
@@ -217,7 +269,7 @@ function renderColorOptions(containerId, activeColor, onSelect) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.title = c.name;
-        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-[#000000]' : 'opacity-70 hover:opacity-100'}`;
+        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-cyan-400 ring-offset-2 ring-offset-[#090d16]' : 'opacity-70 hover:opacity-100'}`;
         btn.style.backgroundColor = c.hex;
         btn.onclick = () => {
             renderColorOptions(containerId, c.hex, onSelect);
@@ -326,20 +378,16 @@ function toggleQuestionSolved(idKey, ev) {
     if (solvedSet.has(idKey)) {
         solvedSet.delete(idKey);
         saveSolvedQuestions();
-        updateSingleQuestionCheckboxUI(idKey, false);
+        updateSingleQuestionRowUI(idKey, false);
     } else {
         solvedSet.add(idKey);
         saveSolvedQuestions();
-        updateSingleQuestionCheckboxUI(idKey, true);
+        updateSingleQuestionRowUI(idKey, true);
     }
     updateDashboardSummaries();
     updatePlatformLegend();
-    if (currentTopic) {
-        updateTopicHeaderStats(currentTopic);
-    }
+    renderSidebar();
 }
-
-
 
 function toggleQuestionStarred(idKey, ev) {
     if (ev) ev.stopPropagation();
@@ -352,15 +400,15 @@ function toggleQuestionStarred(idKey, ev) {
         saveStarredQuestions();
         updateSingleQuestionStarUI(idKey, true);
     }
-    if (topicFilters.status === 'starred' && currentTopic) {
-        renderTopicQuestions(currentTopic);
+    if (statusFilter === 'starred') {
+        renderProblemAccordions();
     }
 }
 
-function updateSingleQuestionCheckboxUI(idKey, isSolved) {
+function updateSingleQuestionRowUI(idKey, isSolved) {
     document.querySelectorAll(`input[data-qid="${CSS.escape(idKey)}"]`).forEach(input => {
         input.checked = isSolved;
-        const row = input.closest('.question-row');
+        const row = input.closest('.problem-row');
         if (row) {
             if (isSolved) {
                 row.classList.add('is-solved');
@@ -403,9 +451,12 @@ function showToast(msg) {
     }, 2000);
 }
 
-// ==================== Overall Stats ====================
+// ==================== Dashboard Summaries & Platform Stats ====================
 function updateDashboardSummaries() {
     let totalQuestions = 0;
+    let totalEasy = 0;
+    let totalMed = 0;
+    let totalHard = 0;
     let solvedCount = 0;
     let solvedEasy = 0;
     let solvedMed = 0;
@@ -415,14 +466,17 @@ function updateDashboardSummaries() {
         for (const topic in questionsData) {
             (questionsData[topic].Easy || []).forEach(q => {
                 totalQuestions++;
+                totalEasy++;
                 if (solvedSet.has(q.id)) { solvedCount++; solvedEasy++; }
             });
             (questionsData[topic].Medium || []).forEach(q => {
                 totalQuestions++;
+                totalMed++;
                 if (solvedSet.has(q.id)) { solvedCount++; solvedMed++; }
             });
             (questionsData[topic].Hard || []).forEach(q => {
                 totalQuestions++;
+                totalHard++;
                 if (solvedSet.has(q.id)) { solvedCount++; solvedHard++; }
             });
         }
@@ -431,22 +485,34 @@ function updateDashboardSummaries() {
     const pct = totalQuestions ? Math.round((solvedCount / totalQuestions) * 100) : 0;
     const remaining = Math.max(0, totalQuestions - solvedCount);
 
-    const dashSolved = document.getElementById('dash-stat-solved');
-    const dashProg = document.getElementById('dash-stat-progress');
-    const dashBar = document.getElementById('dash-stat-bar');
-    if (dashSolved) dashSolved.textContent = solvedCount.toLocaleString();
-    if (dashProg) dashProg.textContent = `${pct}% Completed (${solvedCount}/${totalQuestions})`;
-    if (dashBar) dashBar.style.width = `${pct}%`;
+    const sidebarPct = document.getElementById('sidebar-progress-pct');
+    const sidebarBar = document.getElementById('sidebar-progress-bar');
+    const sidebarSolved = document.getElementById('sidebar-progress-solved');
+    const sidebarTotal = document.getElementById('sidebar-progress-total');
+
+    if (sidebarPct) sidebarPct.textContent = `${pct}%`;
+    if (sidebarBar) sidebarBar.style.width = `${pct}%`;
+    if (sidebarSolved) sidebarSolved.textContent = `${solvedCount.toLocaleString()} Solved`;
+    if (sidebarTotal) sidebarTotal.textContent = `${totalQuestions.toLocaleString()} Total`;
+
+    const dashTotal = document.getElementById('dash-stat-total');
+    const dashHeroTotal = document.getElementById('dash-hero-total');
+    if (dashTotal) dashTotal.textContent = totalQuestions.toLocaleString();
+    if (dashHeroTotal) dashHeroTotal.textContent = totalQuestions.toLocaleString();
+
+    const dashTotalEasy = document.getElementById('dash-total-easy');
+    const dashTotalMed = document.getElementById('dash-total-med');
+    const dashTotalHard = document.getElementById('dash-total-hard');
+    if (dashTotalEasy) dashTotalEasy.textContent = totalEasy.toLocaleString();
+    if (dashTotalMed) dashTotalMed.textContent = totalMed.toLocaleString();
+    if (dashTotalHard) dashTotalHard.textContent = totalHard.toLocaleString();
 
     const dashEasy = document.getElementById('dash-solved-easy');
     const dashMed = document.getElementById('dash-solved-med');
     const dashHard = document.getElementById('dash-solved-hard');
-    if (dashEasy) dashEasy.textContent = `E: ${solvedEasy}`;
-    if (dashMed) dashMed.textContent = `M: ${solvedMed}`;
-    if (dashHard) dashHard.textContent = `H: ${solvedHard}`;
-
-    const dashRemaining = document.getElementById('dash-stat-remaining');
-    if (dashRemaining) dashRemaining.textContent = `${remaining.toLocaleString()} Unsolved`;
+    if (dashEasy) dashEasy.textContent = `E: ${solvedEasy}/${totalEasy}`;
+    if (dashMed) dashMed.textContent = `M: ${solvedMed}/${totalMed}`;
+    if (dashHard) dashHard.textContent = `H: ${solvedHard}/${totalHard}`;
 }
 
 function updatePlatformLegend() {
@@ -471,323 +537,225 @@ function updatePlatformLegend() {
     legend.innerHTML = Object.keys(platformCounts).sort().map(p => {
         const count = platformCounts[p];
         const pSol = platformSolved[p] || 0;
-        const cls = (typeof PLATFORM_COLORS !== 'undefined' && PLATFORM_COLORS[p]) ? PLATFORM_COLORS[p] : 'text-neutral-400 bg-[#0f0f0f] border-[#1c1c1c]';
-        return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-medium border ${cls}">
+        const info = PLATFORM_SHORTHAND[p] || { code: p, class: 'platform-other' };
+        return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono border ${info.class}">
             <span>${p}</span>
-            <span class="text-neutral-400 font-mono text-[11px]">${pSol}/${count}</span>
+            <span class="text-slate-400 font-normal">${pSol}/${count}</span>
         </span>`;
     }).join('');
 }
 
-// ==================== VIEW 1: HOME ROADMAP GRID ====================
-function renderRoadmapGrid() {
-    const grid = document.getElementById('roadmap-grid');
-    if (!grid || typeof questionsData === 'undefined') return;
+// ==================== SIDEBAR RENDERING ====================
+function renderSidebar() {
+    const container = document.getElementById('sidebar-topic-list');
+    if (!container || typeof questionsData === 'undefined') return;
 
     const topics = getTopicKeys();
-    const query = roadmapSearchQuery.toLowerCase();
+    
+    // Group topics into Core (1-10) and Advanced (11-23)
+    const coreTopics = topics.filter(t => (TOPIC_METADATA[t]?.category || 'core') === 'core');
+    const advTopics = topics.filter(t => (TOPIC_METADATA[t]?.category || 'advanced') === 'advanced');
 
     let html = '';
 
-    topics.forEach((topic, idx) => {
-        if (query && !topic.toLowerCase().includes(query)) {
+    // Core Topics Group
+    if (coreTopics.length > 0) {
+        html += `
+        <div>
+            <div class="px-2 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center justify-between">
+                <span>STEP 1-${coreTopics.length} • CORE</span>
+            </div>
+            <div class="space-y-0.5">
+                ${coreTopics.map(t => renderSidebarItemHTML(t)).join('')}
+            </div>
+        </div>`;
+    }
+
+    // Advanced Topics Group
+    if (advTopics.length > 0) {
+        html += `
+        <div>
+            <div class="px-2 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center justify-between">
+                <span>STEP ${coreTopics.length + 1}-23 • ADVANCED</span>
+            </div>
+            <div class="space-y-0.5">
+                ${advTopics.map(t => renderSidebarItemHTML(t)).join('')}
+            </div>
+        </div>`;
+    }
+
+    container.innerHTML = html;
+}
+
+function renderSidebarItemHTML(topicKey) {
+    const meta = TOPIC_METADATA[topicKey] || { icon: "📁", step: 1 };
+    const easyList = questionsData[topicKey].Easy || [];
+    const medList = questionsData[topicKey].Medium || [];
+    const hardList = questionsData[topicKey].Hard || [];
+    const totalInTopic = easyList.length + medList.length + hardList.length;
+
+    return `
+    <a href="javascript:void(0)" onclick="scrollToTopic('${escJs(topicKey)}')" class="sidebar-item group" id="side-item-${slugify(topicKey)}">
+        <div class="flex items-center gap-2 truncate">
+            <span class="text-sm">${meta.icon}</span>
+            <span class="truncate">${topicKey}</span>
+        </div>
+        <span class="badge-count">${totalInTopic}</span>
+    </a>`;
+}
+
+// ==================== ACCORDIONS & PROBLEM TABLES RENDERING ====================
+function renderProblemAccordions() {
+    const container = document.getElementById('problem-accordion-container');
+    if (!container || typeof questionsData === 'undefined') return;
+
+    const topics = getTopicKeys();
+    const query = searchFilter.toLowerCase();
+
+    let html = '';
+    let globalIndex = 0;
+
+    topics.forEach((topicKey) => {
+        const meta = TOPIC_METADATA[topicKey] || { icon: "📁", step: 1 };
+        const easyList = questionsData[topicKey].Easy || [];
+        const medList = questionsData[topicKey].Medium || [];
+        const hardList = questionsData[topicKey].Hard || [];
+
+        // Combine all questions for this topic
+        const allQuestions = [
+            ...easyList.map(q => ({ ...q, difficulty: 'Easy' })),
+            ...medList.map(q => ({ ...q, difficulty: 'Medium' })),
+            ...hardList.map(q => ({ ...q, difficulty: 'Hard' }))
+        ];
+
+        // Apply Multi-Filters
+        const filteredQuestions = allQuestions.filter(q => {
+            // Text Search
+            if (query) {
+                const matchTitle = q.title.toLowerCase().includes(query);
+                const matchTopic = topicKey.toLowerCase().includes(query);
+                const matchPlatform = (q.platform || '').toLowerCase().includes(query);
+                if (!matchTitle && !matchTopic && !matchPlatform) return false;
+            }
+
+            // Status Filter
+            if (statusFilter === 'solved' && !solvedSet.has(q.id)) return false;
+            if (statusFilter === 'unsolved' && solvedSet.has(q.id)) return false;
+            if (statusFilter === 'starred' && !starredSet.has(q.id)) return false;
+
+            // Difficulty Filter
+            if (diffFilter !== 'all' && q.difficulty !== diffFilter) return false;
+
+            // Platform Filter
+            if (platformFilter !== 'all' && (q.platform || 'Other') !== platformFilter) return false;
+
+            return true;
+        });
+
+        // Hide topic section if zero matches found under active search/filter
+        if (filteredQuestions.length === 0 && (query || statusFilter !== 'all' || diffFilter !== 'all' || platformFilter !== 'all')) {
             return;
         }
 
-        const easyList = questionsData[topic].Easy || [];
-        const medList = questionsData[topic].Medium || [];
-        const hardList = questionsData[topic].Hard || [];
-        const totalInTopic = easyList.length + medList.length + hardList.length;
-
-        let solvedInTopic = 0;
-        let easySolved = 0;
-        let medSolved = 0;
-        let hardSolved = 0;
-
-        easyList.forEach(q => { if (solvedSet.has(q.id)) { solvedInTopic++; easySolved++; } });
-        medList.forEach(q => { if (solvedSet.has(q.id)) { solvedInTopic++; medSolved++; } });
-        hardList.forEach(q => { if (solvedSet.has(q.id)) { solvedInTopic++; hardSolved++; } });
-
-        const pct = totalInTopic ? Math.round((solvedInTopic / totalInTopic) * 100) : 0;
-        const isCompleted = totalInTopic > 0 && solvedInTopic === totalInTopic;
+        const topicSlug = slugify(topicKey);
+        const isCollapsed = !!accordionCollapsed[topicKey];
 
         html += `
-        <div onclick="openTopicPage('${escJs(topic)}')" class="roadmap-card group">
-            <div>
-                <div class="flex items-center justify-between gap-2 mb-2">
-                    <span class="text-xs font-mono text-neutral-500 font-semibold">#${idx + 1}</span>
-                    ${topicPill(topic)}
+        <section id="topic-${topicSlug}" class="scroll-mt-24">
+            <!-- Accordion Header Card -->
+            <div onclick="toggleAccordion('${escJs(topicKey)}')" class="accordion-header">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl">${meta.icon}</span>
+                    <div>
+                        <h2 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
+                            <span>Step ${meta.step}: ${topicKey}</span>
+                            <span class="text-[11px] font-mono font-normal text-slate-400">Step ${meta.step}</span>
+                        </h2>
+                    </div>
                 </div>
-                <h3 class="text-base font-bold text-white group-hover:text-blue-400 transition mb-1">
-                    ${topic}
-                </h3>
-                <div class="flex items-center gap-2 text-xs text-neutral-400 font-mono mt-1">
-                    <span class="text-emerald-400">E: ${easySolved}/${easyList.length}</span>
-                    <span class="text-neutral-700">•</span>
-                    <span class="text-amber-400">M: ${medSolved}/${medList.length}</span>
-                    <span class="text-neutral-700">•</span>
-                    <span class="text-rose-400">H: ${hardSolved}/${hardList.length}</span>
+
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/50 border border-cyan-800/80 px-2.5 py-1 rounded-full">
+                        ${filteredQuestions.length} problems
+                    </span>
+                    <button type="button" class="text-slate-400 hover:text-white transition p-1">
+                        <svg class="w-4 h-4 transform ${isCollapsed ? 'rotate-180' : ''} transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-[#1c1c1c]">
-                <div class="flex items-center justify-between text-xs mb-1.5 font-mono">
-                    <span class="text-neutral-400">${solvedInTopic}/${totalInTopic} Solved</span>
-                    <span class="${isCompleted ? 'text-emerald-400 font-bold' : 'text-blue-400 font-semibold'}">${pct}%</span>
-                </div>
-                <div class="w-full bg-[#000000] rounded-full h-1.5 overflow-hidden border border-[#1c1c1c] mb-3">
-                    <div class="${isCompleted ? 'bg-emerald-500' : 'bg-blue-600'} h-1.5 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
-                </div>
+            <!-- Problem Table Section -->
+            <div class="${isCollapsed ? 'hidden' : 'block'} problem-table-container">
+                <table class="problem-table">
+                    <thead>
+                        <tr>
+                            <th class="w-12 text-center">#</th>
+                            <th>PROBLEM</th>
+                            <th class="w-28 text-center">DIFF</th>
+                            <th class="w-24 text-center">PLATFORM</th>
+                            <th class="w-16 text-center">✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filteredQuestions.map(q => {
+                            globalIndex++;
+                            const isSolved = solvedSet.has(q.id);
+                            const isStarred = starredSet.has(q.id);
+                            const subtitle = extractSubtitle(q.title, topicKey);
 
-                <div class="flex items-center justify-between text-xs font-semibold text-blue-400 group-hover:text-blue-300 transition">
-                    <span>Solve Questions</span>
-                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                </div>
+                            return `
+                            <tr class="problem-row ${isSolved ? 'is-solved' : ''}">
+                                <!-- Number -->
+                                <td class="text-center font-mono text-xs text-slate-500 font-semibold">${globalIndex}</td>
+
+                                <!-- Title & Subtitle -->
+                                <td>
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div>
+                                            <a href="${escAttr(q.url)}" target="_blank" class="q-title-link">
+                                                ${escAttr(q.title)}
+                                            </a>
+                                            ${subtitle ? `<div class="q-subtitle">${escAttr(subtitle)}</div>` : ''}
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!-- Difficulty Badge -->
+                                <td class="text-center">
+                                    ${getDifficultyBadgeHTML(q.difficulty)}
+                                </td>
+
+                                <!-- Platform Pill -->
+                                <td class="text-center">
+                                    ${getPlatformBadgeHTML(q.platform)}
+                                </td>
+
+                                <!-- Checkbox & Star -->
+                                <td class="text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button type="button" onclick="toggleQuestionStarred('${escJs(q.id)}', event)" data-starid="${escAttr(q.id)}" class="star-btn ${isStarred ? 'starred' : ''}" title="${isStarred ? 'Remove bookmark' : 'Bookmark problem'}">
+                                            ${isStarred ? '★' : '☆'}
+                                        </button>
+                                        <input type="checkbox" data-qid="${escAttr(q.id)}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.id)}', event)" class="pro-checkbox" title="Mark as solved">
+                                    </div>
+                                </td>
+                            </tr>`;
+                        }).join('')}
+                    </tbody>
+                </table>
             </div>
-        </div>`;
+        </section>`;
     });
 
     if (!html) {
         html = `
-        <div class="col-span-full pro-card p-8 text-center text-neutral-400">
-            <p class="font-semibold text-base text-white">No topics matching "${escAttr(roadmapSearchQuery)}"</p>
-            <button onclick="clearRoadmapSearch()" class="mt-3 px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-md transition cursor-pointer">
-                Clear Search
-            </button>
-        </div>`;
-    }
-
-    grid.innerHTML = html;
-}
-
-function onRoadmapSearchChanged() {
-    const input = document.getElementById('roadmap-topic-search');
-    roadmapSearchQuery = input ? input.value.trim() : '';
-    renderRoadmapGrid();
-}
-
-function clearRoadmapSearch() {
-    const input = document.getElementById('roadmap-topic-search');
-    if (input) input.value = '';
-    roadmapSearchQuery = '';
-    renderRoadmapGrid();
-}
-
-// ==================== VIEW 2: TOPIC QUESTIONS PAGE ====================
-function openTopicPage(topicName) {
-    if (!questionsData || !questionsData[topicName]) return;
-
-    currentTopic = topicName;
-    window.location.hash = `topic=${encodeURIComponent(topicName)}`;
-
-    const homeView = document.getElementById('home-view');
-    const topicView = document.getElementById('topic-view');
-
-    if (homeView) homeView.classList.add('hidden');
-    if (topicView) {
-        topicView.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Reset topic filters
-    topicFilters = {
-        search: '',
-        status: 'all',
-        diff: 'all',
-        platform: 'all'
-    };
-    const searchInput = document.getElementById('topic-question-search');
-    const platSelect = document.getElementById('topic-platform-select');
-    if (searchInput) searchInput.value = '';
-    if (platSelect) platSelect.value = 'all';
-
-    setTopicStatusFilter('all');
-    setTopicDiffFilter('all');
-
-    updateTopicHeaderStats(topicName);
-    updateAdjacentTopicButtons(topicName);
-    renderTopicQuestions(topicName);
-}
-
-function navigateToHome() {
-    currentTopic = null;
-    window.location.hash = '';
-
-    const homeView = document.getElementById('home-view');
-    const topicView = document.getElementById('topic-view');
-
-    if (topicView) topicView.classList.add('hidden');
-    if (homeView) {
-        homeView.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    updateDashboardSummaries();
-    renderRoadmapGrid();
-    renderActivityHeatmap();
-    renderTopicMastery();
-}
-
-function updateTopicHeaderStats(topicName) {
-    const titleEl = document.getElementById('topic-page-title');
-    const badgeEl = document.getElementById('topic-page-badge');
-    const solvedCountEl = document.getElementById('topic-page-solved-count');
-    const pctEl = document.getElementById('topic-page-pct');
-    const barLabelEl = document.getElementById('topic-page-stat-bar-label');
-    const barEl = document.getElementById('topic-page-progress-bar');
-    const easyEl = document.getElementById('topic-page-easy-count');
-    const medEl = document.getElementById('topic-page-med-count');
-    const hardEl = document.getElementById('topic-page-hard-count');
-
-    if (!questionsData[topicName]) return;
-
-    const easyList = questionsData[topicName].Easy || [];
-    const medList = questionsData[topicName].Medium || [];
-    const hardList = questionsData[topicName].Hard || [];
-    const total = easyList.length + medList.length + hardList.length;
-
-    let solved = 0, eSol = 0, mSol = 0, hSol = 0;
-    easyList.forEach(q => { if (solvedSet.has(q.id)) { solved++; eSol++; } });
-    medList.forEach(q => { if (solvedSet.has(q.id)) { solved++; mSol++; } });
-    hardList.forEach(q => { if (solvedSet.has(q.id)) { solved++; hSol++; } });
-
-    const pct = total ? Math.round((solved / total) * 100) : 0;
-
-    if (titleEl) titleEl.textContent = topicName;
-    if (badgeEl) badgeEl.innerHTML = topicPill(topicName);
-    if (solvedCountEl) solvedCountEl.textContent = `${solved} / ${total} Solved`;
-    if (pctEl) pctEl.textContent = `${pct}%`;
-    if (barLabelEl) barLabelEl.textContent = `${pct}% Completed (${solved}/${total})`;
-    if (barEl) barEl.style.width = `${pct}%`;
-
-    if (easyEl) easyEl.textContent = `Easy: ${eSol}/${easyList.length}`;
-    if (medEl) medEl.textContent = `Med: ${mSol}/${medList.length}`;
-    if (hardEl) hardEl.textContent = `Hard: ${hSol}/${hardList.length}`;
-}
-
-function updateAdjacentTopicButtons(topicName) {
-    const topics = getTopicKeys();
-    const idx = topics.indexOf(topicName);
-    const prevBtn = document.getElementById('topic-prev-btn');
-    const nextBtn = document.getElementById('topic-next-btn');
-    const prevLabel = document.getElementById('topic-prev-label');
-    const nextLabel = document.getElementById('topic-next-label');
-
-    if (idx > 0) {
-        if (prevBtn) prevBtn.classList.remove('invisible');
-        if (prevLabel) prevLabel.textContent = `← ${topics[idx - 1]}`;
-    } else {
-        if (prevBtn) prevBtn.classList.add('invisible');
-    }
-
-    if (idx < topics.length - 1) {
-        if (nextBtn) nextBtn.classList.remove('invisible');
-        if (nextLabel) nextLabel.textContent = `${topics[idx + 1]} →`;
-    } else {
-        if (nextBtn) nextBtn.classList.add('invisible');
-    }
-}
-
-function navigateAdjacentTopic(offset) {
-    if (!currentTopic) return;
-    const topics = getTopicKeys();
-    const idx = topics.indexOf(currentTopic);
-    const targetIdx = idx + offset;
-    if (targetIdx >= 0 && targetIdx < topics.length) {
-        openTopicPage(topics[targetIdx]);
-    }
-}
-
-// Topic Filter Controls
-function setTopicStatusFilter(status) {
-    topicFilters.status = status;
-    ['all', 'unsolved', 'solved', 'starred'].forEach(s => {
-        const btn = document.getElementById(`topic-filter-status-${s}`);
-        if (btn) {
-            if (s === status) {
-                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
-            } else {
-                btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-neutral-400 hover:text-white transition cursor-pointer';
-            }
-        }
-    });
-    if (currentTopic) renderTopicQuestions(currentTopic);
-}
-
-function setTopicDiffFilter(diff) {
-    topicFilters.diff = diff;
-    ['all', 'Easy', 'Medium', 'Hard'].forEach(d => {
-        const btn = document.getElementById(`topic-filter-diff-${d}`);
-        if (btn) {
-            if (d === diff) {
-                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded transition cursor-pointer bg-blue-600 text-white';
-            } else {
-                btn.className = 'px-2 py-0.5 text-xs font-semibold rounded text-neutral-400 hover:text-white transition cursor-pointer';
-            }
-        }
-    });
-    if (currentTopic) renderTopicQuestions(currentTopic);
-}
-
-function onTopicFilterChanged() {
-    const searchInput = document.getElementById('topic-question-search');
-    const platSelect = document.getElementById('topic-platform-select');
-    topicFilters.search = searchInput ? searchInput.value.trim() : '';
-    topicFilters.platform = platSelect ? platSelect.value : 'all';
-    if (currentTopic) renderTopicQuestions(currentTopic);
-}
-
-function renderTopicQuestions(topicName) {
-    const container = document.getElementById('topic-questions-container');
-    if (!container || !questionsData || !questionsData[topicName]) return;
-
-    const query = topicFilters.search.toLowerCase();
-    const statusFilter = topicFilters.status;
-    const diffFilter = topicFilters.diff;
-    const platFilter = topicFilters.platform;
-
-    const filterList = (list, dName) => {
-        if (diffFilter !== 'all' && diffFilter !== dName) return [];
-        return (list || []).filter(q => {
-            const isSolved = solvedSet.has(q.id);
-            const isStarred = starredSet.has(q.id);
-
-            if (statusFilter === 'solved' && !isSolved) return false;
-            if (statusFilter === 'unsolved' && isSolved) return false;
-            if (statusFilter === 'starred' && !isStarred) return false;
-
-            if (platFilter !== 'all' && (q.platform || '') !== platFilter) return false;
-
-            if (query) {
-                const matchTitle = q.title.toLowerCase().includes(query);
-                const matchPlat = (q.platform || '').toLowerCase().includes(query);
-                if (!matchTitle && !matchPlat) return false;
-            }
-
-            return true;
-        });
-    };
-
-    const easyFiltered = filterList(questionsData[topicName].Easy, 'Easy');
-    const medFiltered = filterList(questionsData[topicName].Medium, 'Medium');
-    const hardFiltered = filterList(questionsData[topicName].Hard, 'Hard');
-
-    const totalVisible = easyFiltered.length + medFiltered.length + hardFiltered.length;
-
-    let html = '';
-    html += renderDifficultyBlock('Easy', easyFiltered, 1);
-    html += renderDifficultyBlock('Medium', medFiltered, easyFiltered.length + 1);
-    html += renderDifficultyBlock('Hard', hardFiltered, easyFiltered.length + medFiltered.length + 1);
-
-    if (totalVisible === 0) {
-        html = `
-        <div class="pro-card p-8 rounded-lg border border-[#1c1c1c] text-center text-neutral-400">
-            <p class="font-semibold text-base text-white">No questions found matching your filter</p>
-            <p class="text-xs text-neutral-400 mt-1">Try changing or resetting your search and filter criteria.</p>
-            <button onclick="clearTopicFilters()" class="mt-3 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-md transition cursor-pointer">
-                Clear Filters
+        <div class="pro-card p-10 text-center text-slate-400">
+            <p class="font-semibold text-base text-white">No problems found matching your active filters.</p>
+            <p class="text-xs text-slate-400 mt-1">Try clearing your search query or setting filters to "All".</p>
+            <button onclick="resetAllFilters()" class="mt-4 px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
+                Reset All Filters
             </button>
         </div>`;
     }
@@ -795,109 +763,55 @@ function renderTopicQuestions(topicName) {
     container.innerHTML = html;
 }
 
-function clearTopicFilters() {
-    const searchInput = document.getElementById('topic-question-search');
-    const platSelect = document.getElementById('topic-platform-select');
+function toggleAccordion(topicKey) {
+    accordionCollapsed[topicKey] = !accordionCollapsed[topicKey];
+    renderProblemAccordions();
+}
+
+// ==================== FILTER & SEARCH HANDLERS ====================
+function onSearchInputChanged() {
+    const input = document.getElementById('global-search-input');
+    searchFilter = input ? input.value.trim() : '';
+    renderProblemAccordions();
+}
+
+function onFilterChanged() {
+    const statusEl = document.getElementById('filter-status');
+    const diffEl = document.getElementById('filter-diff');
+    const platEl = document.getElementById('filter-platform');
+
+    statusFilter = statusEl ? statusEl.value : 'all';
+    diffFilter = diffEl ? diffEl.value : 'all';
+    platformFilter = platEl ? platEl.value : 'all';
+
+    renderProblemAccordions();
+}
+
+function resetAllFilters() {
+    const searchInput = document.getElementById('global-search-input');
+    const statusEl = document.getElementById('filter-status');
+    const diffEl = document.getElementById('filter-diff');
+    const platEl = document.getElementById('filter-platform');
+
     if (searchInput) searchInput.value = '';
-    if (platSelect) platSelect.value = 'all';
-    topicFilters.search = '';
-    topicFilters.platform = 'all';
-    setTopicStatusFilter('all');
-    setTopicDiffFilter('all');
+    if (statusEl) statusEl.value = 'all';
+    if (diffEl) diffEl.value = 'all';
+    if (platEl) platEl.value = 'all';
+
+    searchFilter = '';
+    statusFilter = 'all';
+    diffFilter = 'all';
+    platformFilter = 'all';
+
+    renderProblemAccordions();
 }
 
-function renderDifficultyBlock(difficulty, list, startIndex = 1) {
-    if (!list || list.length === 0) return '';
-    const badgeCls = difficultyBadgeClasses(difficulty);
-
-    const itemsHtml = list.map((q, idx) => {
-        const isSolved = solvedSet.has(q.id);
-        const isStarred = starredSet.has(q.id);
-        const urlAttr = escAttr(q.url);
-        const idAttr = escAttr(q.id);
-        const questionNum = startIndex + idx;
-
-        return `
-        <div class="question-row flex items-center justify-between p-2.5 rounded-md border border-[#1c1c1c] bg-[#080808] transition ${isSolved ? 'is-solved' : ''}">
-            <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-3">
-                <input type="checkbox" class="pro-checkbox" data-qid="${idAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.id)}', event)">
-                
-                <button type="button" data-starid="${idAttr}" onclick="toggleQuestionStarred('${escJs(q.id)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
-                    ${isStarred ? '★' : '☆'}
-                </button>
-
-                <span class="text-xs font-mono text-neutral-500 flex-shrink-0 w-6 text-right">${questionNum}.</span>
-
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="q-title-link text-[13.5px] font-medium text-white hover:text-blue-400 transition truncate hover:underline" title="${escAttr(q.title)}">
-                    ${escAttr(q.title)}
-                </a>
-            </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
-                ${platformPill(q.platform)}
-                <a href="${urlAttr}" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white p-1 transition" title="Open external problem link">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>`;
-    }).join('');
-
-    return `
-    <div class="pro-card p-4 border border-[#1c1c1c] rounded-lg">
-        <div class="flex items-center gap-2 mb-3">
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase border ${badgeCls}">${difficulty}</span>
-            <span class="text-xs font-mono text-neutral-400 font-medium">(${list.length} problems)</span>
-        </div>
-        <div class="space-y-1.5">
-            ${itemsHtml}
-        </div>
-    </div>`;
-}
-
-// ==================== Hash Routing ====================
-function handleHashRoute() {
-    const hash = window.location.hash.slice(1); // remove '#'
-    if (hash.startsWith('topic=')) {
-        const topicName = decodeURIComponent(hash.slice(6));
-        if (questionsData && questionsData[topicName]) {
-            openTopicPage(topicName);
-            return;
-        }
-    }
-    navigateToHome();
-}
-
-window.addEventListener('hashchange', handleHashRoute);
-
-// Keyboard shortcuts: '/' to focus search, 'Escape' to go back or close modals
-document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-        e.preventDefault();
-        const searchInput = currentTopic ? document.getElementById('topic-question-search') : document.getElementById('roadmap-topic-search');
-        if (searchInput) {
-            searchInput.focus();
-            searchInput.select();
-        }
-    } else if (e.key === 'Escape') {
-        const profileModal = document.getElementById('profile-modal');
-        const welcomeModal = document.getElementById('welcome-modal');
-        if (profileModal && !profileModal.classList.contains('hidden')) {
-            closeProfileModal();
-        } else if (welcomeModal && !welcomeModal.classList.contains('hidden')) {
-            closeWelcomeModal();
-        } else if (currentTopic) {
-            navigateToHome();
-        }
-    }
-});
-
-// ==================== Initialization ====================
+// ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
     updateProfileUI();
     updateDashboardSummaries();
     updatePlatformLegend();
-    renderRoadmapGrid();
-    handleHashRoute();
+    renderSidebar();
+    renderProblemAccordions();
     checkFirstTimeUser();
 });

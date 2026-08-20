@@ -1,23 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-    /* Normal, Clean & Easily Readable Pro Slate Dark Palette (GitHub Dark / Linear style) */
-    --bg-canvas: #0f172a;       /* Slate 900 */
-    --bg-card: #1e293b;         /* Slate 800 */
-    --bg-card-hover: #334155;   /* Slate 700 */
-    --bg-input: #0f172a;        /* Slate 900 */
+    /* Obsidian Tech Dark Theme Palette (Matching Reference UI) */
+    --bg-canvas: #090d16;
+    --bg-sidebar: #0c121e;
+    --bg-card: #111827;
+    --bg-card-header: #151e30;
+    --bg-row: #111827;
+    --bg-row-hover: #192438;
+    --bg-row-solved: #0c1320;
     
-    --border-subtle: #334155;    /* Slate 700 */
-    --border-hover: #3b82f6;     /* Blue 500 */
+    --border-subtle: #1e293b;
+    --border-bright: #334155;
+    --border-cyan: rgba(6, 182, 212, 0.35);
     
     /* Text Hierarchy */
-    --text-primary: #f8fafc;     /* Slate 50 - High Contrast White */
-    --text-secondary: #94a3b8;   /* Slate 400 - Readable Neutral */
-    --text-muted: #64748b;       /* Slate 500 */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-cyan: #22d3ee;
+    --text-cyan-bright: #00f2fe;
 
     /* Accents */
-    --brand-blue: #2563eb;
-    --brand-blue-hover: #1d4ed8;
+    --brand-cyan: #06b6d4;
+    --brand-cyan-hover: #0891b2;
+    --brand-blue: #3b82f6;
+    --pro-accent: #06b6d4;
 }
 
 *, *::before, *::after {
@@ -25,7 +33,7 @@
 }
 
 html, body {
-    background-color: #0f172a;
+    background-color: var(--bg-canvas);
     color: var(--text-primary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
@@ -35,32 +43,32 @@ html, body {
     scroll-behavior: smooth;
 }
 
-body {
-    background-color: #0f172a;
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #070a10;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #1e293b;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #06b6d4;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -68,53 +76,184 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #1e293b;
     border-radius: 3px;
 }
 
-/* Clean Slate Cards */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #06b6d4;
+}
+
+/* Clean Cards & Sidebar */
 .pro-card {
-    background-color: #1e293b;
-    border: 1px solid #334155;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
     border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .pro-card:hover {
-    border-color: #475569;
+    border-color: var(--border-bright);
 }
 
-/* Interactive Roadmap Cards */
-.roadmap-card {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 0.75rem;
-    padding: 1.25rem;
+/* Sidebar Specific Styles */
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
     transition: all 0.15s ease;
     cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+}
+
+.sidebar-item:hover {
+    background-color: #172033;
+    color: #ffffff;
+    border-color: rgba(6, 182, 212, 0.2);
+}
+
+.sidebar-item.active {
+    background-color: rgba(6, 182, 212, 0.12);
+    color: #22d3ee;
+    border-color: rgba(6, 182, 212, 0.4);
+    font-weight: 600;
+}
+
+.sidebar-item.active .badge-count {
+    background-color: rgba(6, 182, 212, 0.25);
+    color: #22d3ee;
+}
+
+.badge-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #64748b;
+    background-color: #151e2e;
+    padding: 0.1rem 0.45rem;
+    border-radius: 0.375rem;
+    border: 1px solid #1e293b;
+    transition: all 0.15s ease;
+}
+
+/* Accordion Step Header Card */
+.accordion-header {
+    background-color: var(--bg-card-header);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.25rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.accordion-header:hover {
+    border-color: var(--border-cyan);
+    background-color: #1a253b;
+}
+
+/* Problem Table Styles */
+.problem-table-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.problem-table {
+    width: 100%;
+    border-collapse: collapse;
     text-align: left;
 }
 
-.roadmap-card:hover {
-    background-color: #243347;
-    border-color: #3b82f6;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+.problem-table th {
+    background-color: #0c121e;
+    color: #64748b;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.problem-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #151f30;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    transition: background-color 0.12s ease;
+}
+
+.problem-row {
+    background-color: var(--bg-row);
+    transition: background-color 0.12s ease;
+}
+
+.problem-row:hover {
+    background-color: var(--bg-row-hover);
+}
+
+.problem-row:last-child td {
+    border-bottom: none;
+}
+
+.problem-row.is-solved {
+    background-color: var(--bg-row-solved);
+    opacity: 0.65;
+}
+
+.problem-row.is-solved .q-title-link {
+    color: #64748b;
+    text-decoration: line-through;
+}
+
+/* Problem Title & Subtitle */
+.q-title-link {
+    color: #f1f5f9;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition: color 0.12s ease;
+    display: inline-block;
+}
+
+.q-title-link:hover {
+    color: #22d3ee;
+}
+
+.q-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    color: #64748b;
+    margin-top: 0.15rem;
+    line-height: 1.25;
 }
 
 /* High Contrast Checkbox */
 .pro-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 19px;
-    height: 19px;
-    border: 1.5px solid #64748b;
-    border-radius: 5px;
-    background-color: #0f172a;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #475569;
+    border-radius: 6px;
+    background-color: #0c121e;
     cursor: pointer;
     position: relative;
     transition: all 0.12s ease;
@@ -127,20 +266,21 @@ body {
 }
 
 .pro-checkbox:hover {
-    border-color: #3b82f6;
-    background-color: #1e293b;
+    border-color: #06b6d4;
+    background-color: #152033;
 }
 
 .pro-checkbox:checked {
-    background-color: #2563eb;
-    border-color: #2563eb;
+    background-color: #06b6d4;
+    border-color: #06b6d4;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
 }
 
 .pro-checkbox:checked::after {
     content: '';
     width: 5px;
     height: 10px;
-    border: solid #ffffff;
+    border: solid #090d16;
     border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg) translate(-0.5px, -1px);
     display: block;
@@ -153,10 +293,10 @@ body {
     cursor: pointer;
     font-size: 16px;
     line-height: 1;
-    color: #64748b;
+    color: #475569;
     padding: 3px;
     border-radius: 4px;
-    transition: color 0.12s ease;
+    transition: all 0.12s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -175,91 +315,142 @@ body {
     color: #f59e0b;
 }
 
-/* View Fade in animation */
+/* Tech Badges & Difficulty Pills */
+.badge-easy {
+    background-color: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.375rem;
+}
+
+.badge-medium {
+    background-color: rgba(245, 158, 11, 0.12);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.375rem;
+}
+
+.badge-hard {
+    background-color: rgba(244, 63, 94, 0.12);
+    color: #fb7185;
+    border: 1px solid rgba(244, 63, 94, 0.35);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.375rem;
+}
+
+/* Platform Shorthand Badges (LC, GFG, HR, CF, etc.) */
+.platform-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.375rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+}
+
+.platform-lc {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.platform-gfg {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.platform-hr {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.platform-cf {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.platform-cc {
+    background-color: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.platform-ib {
+    background-color: rgba(236, 72, 153, 0.15);
+    color: #f472b6;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.platform-ac {
+    background-color: rgba(148, 163, 184, 0.15);
+    color: #cbd5e1;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.platform-other {
+    background-color: rgba(100, 116, 139, 0.15);
+    color: #94a3b8;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+/* Floating Action Button (TOP) */
+.btn-floating-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    background-color: #111827;
+    color: #00f2fe;
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.5rem 0.85rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(6, 182, 212, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.2s ease;
+}
+
+.btn-floating-top:hover {
+    background-color: #06b6d4;
+    color: #090d16;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(6, 182, 212, 0.45);
+}
+
+/* Animations */
 .view-fade {
-    animation: proFadeIn 0.15s ease-out;
+    animation: proFadeIn 0.2s ease-out;
 }
 
 @keyframes proFadeIn {
     from {
         opacity: 0;
-        transform: translateY(4px);
+        transform: translateY(6px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* Question Rows - Easily Readable */
-.question-row {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 12px 14px;
-    transition: background-color 0.12s ease, border-color 0.12s ease;
-}
-
-.question-row:hover {
-    background-color: #243347;
-    border-color: #475569;
-}
-
-.question-row.is-solved {
-    opacity: 0.65;
-    background-color: #152030;
-}
-
-.q-title-link {
-    color: #f8fafc;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-    text-decoration: none;
-    transition: color 0.12s ease;
-    word-break: break-word;
-}
-
-.q-title-link:hover {
-    color: #60a5fa;
-    text-decoration: underline;
-}
-
-.question-row.is-solved .q-title-link {
-    color: #64748b;
-    text-decoration: line-through;
-}
-
-/* Normal & Easily Readable Difficulty Badges */
-.badge-easy {
-    background-color: #064e3b;
-    color: #34d399;
-    border: 1px solid #059669;
-}
-
-.badge-medium {
-    background-color: #451a03;
-    color: #fbbf24;
-    border: 1px solid #d97706;
-}
-
-.badge-hard {
-    background-color: #450a0a;
-    color: #f87171;
-    border: 1px solid #dc2626;
-}
-
-/* Topic Jump Pill */
-.topic-jump-pill {
-    transition: all 0.12s ease;
-    white-space: nowrap;
-    user-select: none;
-    background-color: #1e293b;
-    border: 1px solid #334155;
-}
-
-.topic-jump-pill:hover {
-    border-color: #3b82f6;
-    color: #ffffff;
-    background-color: #2563eb;
 }
