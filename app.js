@@ -2,12 +2,10 @@
 
 // --- Storage Keys ---
 const PROFILE_KEY = 'dsa_user_profile_v1';
-const SOLVED_KEY = 'dsa_tracker_solved_questions_v2';
-const STARRED_KEY = 'dsa_tracker_starred_v2';
-const LEGACY_SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
-const LEGACY_STARRED_KEY = 'dsa_tracker_starred_v1';
-const MIGRATION_KEY = 'dsa_tracker_id_migration_v2';
+const SOLVED_KEY = 'dsa_tracker_solved_questions_v1';
+const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
+const ACTIVITY_LOG_KEY = 'dsa_tracker_activity_log_v1';
 
 const PRESET_COLORS = [
     { name: "Blue", hex: "#3b82f6", glow: "rgba(59, 130, 246, 0.25)" },
@@ -52,23 +50,6 @@ function getInitial(name) {
 
 function getTopicKeys() {
     return (typeof questionsData !== 'undefined') ? Object.keys(questionsData) : [];
-}
-
-function buildUrlToIdsMap() {
-    const map = new Map();
-    if (typeof questionsData !== 'undefined') {
-        for (const topic in questionsData) {
-            for (const diff of ['Easy', 'Medium', 'Hard']) {
-                (questionsData[topic][diff] || []).forEach(q => {
-                    if (q.url && q.id) {
-                        if (!map.has(q.url)) map.set(q.url, []);
-                        map.get(q.url).push(q.id);
-                    }
-                });
-            }
-        }
-    }
-    return map;
 }
 
 function topicPill(topicKey) {
@@ -306,48 +287,13 @@ function submitWelcomeModal() {
     showToast(`Welcome, ${name}`);
 }
 
-// ==================== Solved & Starred Storage & Migration ====================
+// ==================== Solved & Starred Storage ====================
 function loadSolvedQuestions() {
     try {
-        // Try V2 ID-based key first
         const raw = localStorage.getItem(SOLVED_KEY);
         if (raw) {
             const arr = JSON.parse(raw);
-            if (Array.isArray(arr)) {
-                // If contains any old URL items, migrate them
-                const urlMap = buildUrlToIdsMap();
-                const resultSet = new Set();
-                let hasLegacyUrls = false;
-                arr.forEach(item => {
-                    if (typeof item === 'string' && item.startsWith('http')) {
-                        hasLegacyUrls = true;
-                        const matchingIds = urlMap.get(item) || [];
-                        matchingIds.forEach(id => resultSet.add(id));
-                    } else {
-                        resultSet.add(item);
-                    }
-                });
-                if (hasLegacyUrls) {
-                    localStorage.setItem(SOLVED_KEY, JSON.stringify(Array.from(resultSet)));
-                }
-                return resultSet;
-            }
-        }
-
-        // Fallback: Check Legacy V1 URL-based key
-        const legacyRaw = localStorage.getItem(LEGACY_SOLVED_KEY);
-        if (legacyRaw) {
-            const legacyArr = JSON.parse(legacyRaw);
-            if (Array.isArray(legacyArr)) {
-                const urlMap = buildUrlToIdsMap();
-                const migratedSet = new Set();
-                legacyArr.forEach(url => {
-                    const matchingIds = urlMap.get(url) || [];
-                    matchingIds.forEach(id => migratedSet.add(id));
-                });
-                localStorage.setItem(SOLVED_KEY, JSON.stringify(Array.from(migratedSet)));
-                return migratedSet;
-            }
+            if (Array.isArray(arr)) return new Set(arr);
         }
     } catch (e) {}
     return new Set();
@@ -361,45 +307,10 @@ function saveSolvedQuestions() {
 
 function loadStarredQuestions() {
     try {
-        // Try V2 ID-based key first
         const raw = localStorage.getItem(STARRED_KEY);
         if (raw) {
             const arr = JSON.parse(raw);
-            if (Array.isArray(arr)) {
-                // If contains any old URL items, migrate them
-                const urlMap = buildUrlToIdsMap();
-                const resultSet = new Set();
-                let hasLegacyUrls = false;
-                arr.forEach(item => {
-                    if (typeof item === 'string' && item.startsWith('http')) {
-                        hasLegacyUrls = true;
-                        const matchingIds = urlMap.get(item) || [];
-                        matchingIds.forEach(id => resultSet.add(id));
-                    } else {
-                        resultSet.add(item);
-                    }
-                });
-                if (hasLegacyUrls) {
-                    localStorage.setItem(STARRED_KEY, JSON.stringify(Array.from(resultSet)));
-                }
-                return resultSet;
-            }
-        }
-
-        // Fallback: Check Legacy V1 URL-based key
-        const legacyRaw = localStorage.getItem(LEGACY_STARRED_KEY);
-        if (legacyRaw) {
-            const legacyArr = JSON.parse(legacyRaw);
-            if (Array.isArray(legacyArr)) {
-                const urlMap = buildUrlToIdsMap();
-                const migratedSet = new Set();
-                legacyArr.forEach(url => {
-                    const matchingIds = urlMap.get(url) || [];
-                    matchingIds.forEach(id => migratedSet.add(id));
-                });
-                localStorage.setItem(STARRED_KEY, JSON.stringify(Array.from(migratedSet)));
-                return migratedSet;
-            }
+            if (Array.isArray(arr)) return new Set(arr);
         }
     } catch (e) {}
     return new Set();
@@ -411,57 +322,204 @@ function saveStarredQuestions() {
     } catch (e) {}
 }
 
-function checkMigrationNotice() {
-    try {
-        const hasMigrated = localStorage.getItem(MIGRATION_KEY);
-        if (!hasMigrated) {
-            const hadLegacySolved = localStorage.getItem(LEGACY_SOLVED_KEY);
-            const hadLegacyStarred = localStorage.getItem(LEGACY_STARRED_KEY);
-            localStorage.setItem(MIGRATION_KEY, 'true');
-            if (hadLegacySolved || hadLegacyStarred) {
-                setTimeout(() => {
-                    showToast("GrindHub updated: Solved progress migrated to unique problem IDs!");
-                }, 600);
-            }
-        }
-    } catch (e) {}
-}
-
-function toggleQuestionSolved(qId, ev) {
-    if (solvedSet.has(qId)) {
-        solvedSet.delete(qId);
+function toggleQuestionSolved(idKey, ev) {
+    if (solvedSet.has(idKey)) {
+        solvedSet.delete(idKey);
         saveSolvedQuestions();
-        updateSingleQuestionCheckboxUI(qId, false);
+        updateSingleQuestionCheckboxUI(idKey, false);
     } else {
-        solvedSet.add(qId);
+        solvedSet.add(idKey);
         saveSolvedQuestions();
-        updateSingleQuestionCheckboxUI(qId, true);
+        updateSingleQuestionCheckboxUI(idKey, true);
+        logActivity();
     }
     updateDashboardSummaries();
     updatePlatformLegend();
+    renderTopicMastery();
     if (currentTopic) {
         updateTopicHeaderStats(currentTopic);
     }
 }
 
-function toggleQuestionStarred(qId, ev) {
+// ==================== Activity Log (for heatmap & streaks) ====================
+function todayKey(d) {
+    d = d || new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+function loadActivityLog() {
+    try {
+        const raw = localStorage.getItem(ACTIVITY_LOG_KEY);
+        if (raw) {
+            const obj = JSON.parse(raw);
+            if (obj && typeof obj === 'object') return obj;
+        }
+    } catch (e) {}
+    return {};
+}
+
+function saveActivityLog(log) {
+    try {
+        localStorage.setItem(ACTIVITY_LOG_KEY, JSON.stringify(log));
+    } catch (e) {}
+}
+
+function logActivity() {
+    const log = loadActivityLog();
+    const key = todayKey();
+    log[key] = (log[key] || 0) + 1;
+    saveActivityLog(log);
+    renderActivityHeatmap();
+}
+
+function computeStreaks(log) {
+    const oneDay = 24 * 60 * 60 * 1000;
+    let current = 0;
+    let cursor = new Date();
+    // If nothing logged today, streak can still count from yesterday backward
+    if (!log[todayKey(cursor)]) {
+        cursor = new Date(cursor.getTime() - oneDay);
+    }
+    while (log[todayKey(cursor)]) {
+        current++;
+        cursor = new Date(cursor.getTime() - oneDay);
+    }
+
+    // Best streak: scan all logged dates
+    const dates = Object.keys(log).sort();
+    let best = 0, run = 0, prev = null;
+    dates.forEach(dateStr => {
+        const d = new Date(dateStr + 'T00:00:00');
+        if (prev !== null && (d - prev) === oneDay) {
+            run++;
+        } else {
+            run = 1;
+        }
+        if (run > best) best = run;
+        prev = d;
+    });
+
+    return { current, best: Math.max(best, current) };
+}
+
+function renderActivityHeatmap() {
+    const container = document.getElementById('activity-heatmap');
+    if (!container) return;
+    const log = loadActivityLog();
+
+    const WEEKS = 12;
+    const totalDays = WEEKS * 7;
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    // align end of grid to end of current week (Saturday)
+    const endOffset = 6 - today.getDay();
+    const gridEnd = new Date(today.getTime() + endOffset * oneDay);
+    const gridStart = new Date(gridEnd.getTime() - (totalDays - 1) * oneDay);
+
+    let maxCount = 0;
+    for (let i = 0; i < totalDays; i++) {
+        const d = new Date(gridStart.getTime() + i * oneDay);
+        const c = log[todayKey(d)] || 0;
+        if (c > maxCount) maxCount = c;
+    }
+
+    function levelFor(count) {
+        if (count === 0) return 0;
+        if (maxCount <= 1) return count > 0 ? 4 : 0;
+        const ratio = count / maxCount;
+        if (ratio > 0.75) return 4;
+        if (ratio > 0.5) return 3;
+        if (ratio > 0.25) return 2;
+        return 1;
+    }
+
+    let html = '<div class="heatmap-grid">';
+    for (let i = 0; i < totalDays; i++) {
+        const d = new Date(gridStart.getTime() + i * oneDay);
+        const key = todayKey(d);
+        const count = log[key] || 0;
+        const level = d > today ? -1 : levelFor(count);
+        const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        if (level === -1) {
+            html += `<span class="heat-cell" style="visibility:hidden;"></span>`;
+        } else {
+            const title = count > 0 ? `${count} solved on ${label}` : `No activity on ${label}`;
+            html += `<span class="heat-cell" data-level="${level}" title="${title}"></span>`;
+        }
+    }
+    html += '</div>';
+    container.innerHTML = html;
+
+    const streaks = computeStreaks(log);
+    const curEl = document.getElementById('streak-current');
+    const bestEl = document.getElementById('streak-best');
+    if (curEl) curEl.textContent = streaks.current;
+    if (bestEl) bestEl.textContent = streaks.best;
+}
+
+// ==================== Topic Mastery Widget ====================
+function renderTopicMastery() {
+    const container = document.getElementById('mastery-list');
+    if (!container || typeof questionsData === 'undefined') return;
+
+    const rows = getTopicKeys().map(topic => {
+        const easy = questionsData[topic].Easy || [];
+        const med = questionsData[topic].Medium || [];
+        const hard = questionsData[topic].Hard || [];
+        const all = [...easy, ...med, ...hard];
+        const total = all.length;
+        const solved = all.filter(q => solvedSet.has(q.id)).length;
+        const pct = total ? Math.round((solved / total) * 100) : 0;
+        return { topic, solved, total, pct };
+    }).filter(r => r.total > 0);
+
+    // Weakest (lowest %) first, so the user sees where to focus
+    rows.sort((a, b) => a.pct - b.pct);
+    const top = rows.slice(0, 6);
+
+    const barColor = (pct) => {
+        if (pct === 0) return '#3f3f46';
+        if (pct < 34) return '#f43f5e';
+        if (pct < 67) return '#f59e0b';
+        return '#10b981';
+    };
+
+    container.innerHTML = top.map(r => `
+        <div>
+            <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-medium text-neutral-300 truncate pr-2">${r.topic}</span>
+                <span class="text-[11px] font-mono text-neutral-500 flex-shrink-0">${r.solved}/${r.total}</span>
+            </div>
+            <div class="mastery-row">
+                <div class="mastery-track">
+                    <div class="mastery-fill" style="width: ${r.pct}%; background-color: ${barColor(r.pct)};"></div>
+                </div>
+                <span class="text-[10px] font-mono text-neutral-500 w-8 text-right flex-shrink-0">${r.pct}%</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function toggleQuestionStarred(idKey, ev) {
     if (ev) ev.stopPropagation();
-    if (starredSet.has(qId)) {
-        starredSet.delete(qId);
+    if (starredSet.has(idKey)) {
+        starredSet.delete(idKey);
         saveStarredQuestions();
-        updateSingleQuestionStarUI(qId, false);
+        updateSingleQuestionStarUI(idKey, false);
     } else {
-        starredSet.add(qId);
+        starredSet.add(idKey);
         saveStarredQuestions();
-        updateSingleQuestionStarUI(qId, true);
+        updateSingleQuestionStarUI(idKey, true);
     }
     if (topicFilters.status === 'starred' && currentTopic) {
         renderTopicQuestions(currentTopic);
     }
 }
 
-function updateSingleQuestionCheckboxUI(qId, isSolved) {
-    document.querySelectorAll(`input[data-qid="${CSS.escape(qId)}"]`).forEach(input => {
+function updateSingleQuestionCheckboxUI(idKey, isSolved) {
+    document.querySelectorAll(`input[data-qid="${CSS.escape(idKey)}"]`).forEach(input => {
         input.checked = isSolved;
         const row = input.closest('.question-row');
         if (row) {
@@ -474,8 +532,8 @@ function updateSingleQuestionCheckboxUI(qId, isSolved) {
     });
 }
 
-function updateSingleQuestionStarUI(qId, isStarred) {
-    document.querySelectorAll(`button[data-starid="${CSS.escape(qId)}"]`).forEach(btn => {
+function updateSingleQuestionStarUI(idKey, isStarred) {
+    document.querySelectorAll(`button[data-starid="${CSS.escape(idKey)}"]`).forEach(btn => {
         if (isStarred) {
             btn.classList.add('starred');
             btn.textContent = '★';
@@ -503,7 +561,7 @@ function showToast(msg) {
     toastTimer = setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-8', 'opacity-0');
-    }, 2500);
+    }, 2000);
 }
 
 // ==================== Overall Stats ====================
@@ -729,6 +787,8 @@ function navigateToHome() {
 
     updateDashboardSummaries();
     renderRoadmapGrid();
+    renderActivityHeatmap();
+    renderTopicMastery();
 }
 
 function updateTopicHeaderStats(topicName) {
@@ -914,16 +974,16 @@ function renderDifficultyBlock(difficulty, list, startIndex = 1) {
     const itemsHtml = list.map((q, idx) => {
         const isSolved = solvedSet.has(q.id);
         const isStarred = starredSet.has(q.id);
-        const qIdAttr = escAttr(q.id);
         const urlAttr = escAttr(q.url);
+        const idAttr = escAttr(q.id);
         const questionNum = startIndex + idx;
 
         return `
         <div class="question-row flex items-center justify-between p-2.5 rounded-md border border-[#1c1c1c] bg-[#080808] transition ${isSolved ? 'is-solved' : ''}">
             <div class="flex items-center gap-2.5 min-w-0 flex-grow pr-3">
-                <input type="checkbox" class="pro-checkbox" data-qid="${qIdAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.id)}', event)">
+                <input type="checkbox" class="pro-checkbox" data-qid="${idAttr}" ${isSolved ? 'checked' : ''} onchange="toggleQuestionSolved('${escJs(q.id)}', event)">
                 
-                <button type="button" data-starid="${qIdAttr}" onclick="toggleQuestionStarred('${escJs(q.id)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
+                <button type="button" data-starid="${idAttr}" onclick="toggleQuestionStarred('${escJs(q.id)}', event)" class="star-btn ${isStarred ? 'starred' : ''} focus:outline-none" title="${isStarred ? 'Remove bookmark' : 'Bookmark'}">
                     ${isStarred ? '★' : '☆'}
                 </button>
 
@@ -999,7 +1059,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDashboardSummaries();
     updatePlatformLegend();
     renderRoadmapGrid();
+    renderActivityHeatmap();
+    renderTopicMastery();
     handleHashRoute();
     checkFirstTimeUser();
-    checkMigrationNotice();
 });

@@ -9,12 +9,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "id": "patterns-e-2",
-                "title": "Pattern 1 (square pattern)",
-                "url": "https://www.geeksforgeeks.org/problems/square-pattern/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "id": "patterns-e-3",
                 "title": "Pattern 2 (right triangle)",
                 "url": "https://www.geeksforgeeks.org/problems/right-triangle/1",
@@ -2010,12 +2004,6 @@ const questionsData = {
                 "platform": "AtCoder"
             },
             {
-                "id": "bit-manipulation-math-m-70",
-                "title": "Extra Long Factorials",
-                "url": "https://www.hackerrank.com/challenges/extra-long-factorials/problem",
-                "platform": "HackerRank"
-            },
-            {
                 "id": "bit-manipulation-math-m-71",
                 "title": "Non-Divisible Subset",
                 "url": "https://www.hackerrank.com/challenges/non-divisible-subset/problem",
@@ -2536,12 +2524,6 @@ const questionsData = {
                 "title": "Summary Ranges",
                 "url": "https://leetcode.com/problems/summary-ranges/",
                 "platform": "LeetCode"
-            },
-            {
-                "id": "arrays-e-45",
-                "title": "Array Operations (sum all elements)",
-                "url": "https://www.hackerrank.com/challenges/simple-array-sum/problem",
-                "platform": "HackerRank"
             },
             {
                 "id": "arrays-e-46",
@@ -3968,12 +3950,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "id": "arrays-m-99",
-                "title": "Spiral Matrix 2",
-                "url": "https://leetcode.com/problems/spiral-matrix-ii/",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "id": "arrays-m-100",
                 "title": "Diagonal Traversal 2",
                 "url": "https://leetcode.com/problems/diagonal-traverse-ii/",
@@ -4483,18 +4459,6 @@ const questionsData = {
                 "id": "arrays-h-12",
                 "title": "Largest element",
                 "url": "https://www.geeksforgeeks.org/problems/largest-element-in-array4009/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "id": "arrays-h-13",
-                "title": "Count even odd",
-                "url": "https://www.geeksforgeeks.org/problems/count-odd-even/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "id": "arrays-h-14",
-                "title": "Palindrone array",
-                "url": "https://www.geeksforgeeks.org/problems/palindromic-array-1587115620/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -5746,12 +5710,6 @@ const questionsData = {
                 "platform": "HackerRank"
             },
             {
-                "id": "strings-e-94",
-                "title": "CamelCase",
-                "url": "https://www.hackerrank.com/challenges/camelcase/problem",
-                "platform": "HackerRank"
-            },
-            {
                 "id": "strings-e-95",
                 "title": "Strong Password",
                 "url": "https://www.hackerrank.com/challenges/strong-password/problem",
@@ -6456,12 +6414,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "id": "strings-m-42",
-                "title": "Search a Word in a 2D Grid of characters",
-                "url": "https://www.geeksforgeeks.org/problems/find-the-string-in-grid0111/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "id": "strings-m-43",
                 "title": "Boyer Moore Algorithm for Pattern Searching",
                 "url": "https://www.geeksforgeeks.org/problems/pattern-searching5231/1",
@@ -7076,12 +7028,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "id": "strings-h-22",
-                "title": "Find Character in String",
-                "url": "https://www.geeksforgeeks.org/problems/search-an-element-in-an-array-1587115621/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
                 "id": "strings-h-23",
                 "title": "Ransom Note",
                 "url": "https://leetcode.com/problems/ransom-note/",
@@ -7305,12 +7251,6 @@ const questionsData = {
                 "id": "searching-e-20",
                 "title": "Find a Fixed Point (value equal to index) in a given array",
                 "url": "https://www.geeksforgeeks.org/problems/value-equal-to-index-value1330/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "id": "searching-e-21",
-                "title": "Square root of an integer (GFG)",
-                "url": "https://www.geeksforgeeks.org/problems/count-squares3649/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -8300,12 +8240,6 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "id": "sorting-e-35",
-                "title": "Array Swaps",
-                "url": "https://codeforces.com/problemset/problem/1353/B",
-                "platform": "Codeforces"
-            },
-            {
                 "id": "sorting-e-36",
                 "title": "Make Two Arrays Equal by Reversing Subarrays",
                 "url": "https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/",
@@ -8560,21 +8494,9 @@ const questionsData = {
                 "platform": "GeeksforGeeks"
             },
             {
-                "id": "sorting-m-14",
-                "title": "Index of the target element after sorting",
-                "url": "https://leetcode.com/problems/find-target-indices-after-sorting-array/",
-                "platform": "LeetCode"
-            },
-            {
                 "id": "sorting-m-15",
                 "title": "Even Odd Sorting",
                 "url": "https://www.geeksforgeeks.org/problems/segregate-even-and-odd-numbers4629/1",
-                "platform": "GeeksforGeeks"
-            },
-            {
-                "id": "sorting-m-16",
-                "title": "TAS Sorting Problem 4",
-                "url": "https://www.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1",
                 "platform": "GeeksforGeeks"
             },
             {
@@ -17210,12 +17132,6 @@ const questionsData = {
                 "id": "dynamic-programming-m-6",
                 "title": "Maximum Length Of Repeated Subarray",
                 "url": "https://leetcode.com/problems/maximum-length-of-repeated-subarray/",
-                "platform": "LeetCode"
-            },
-            {
-                "id": "dynamic-programming-m-7",
-                "title": "Palindromic Substrings",
-                "url": "https://leetcode.com/problems/palindromic-substrings/",
                 "platform": "LeetCode"
             },
             {
