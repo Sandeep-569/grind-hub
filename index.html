@@ -168,51 +168,7 @@
                 </div>
             </div>
 
-            <!-- ==================== ACTIVITY & MASTERY SECTION ==================== -->
-            <div class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 mb-8">
 
-                <!-- Activity Heatmap Card -->
-                <div class="pro-card p-5 sm:p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-sm font-extrabold text-white tracking-tight">Solve Activity Heatmap</h3>
-                            <p class="text-[11px] text-slate-400 mt-0.5 font-mono" id="heatmap-subtitle">Last 12 weeks activity</p>
-                        </div>
-                        <div class="flex items-center gap-4 text-xs font-mono">
-                            <div class="text-right">
-                                <div class="text-xl font-extrabold text-amber-400" id="streak-current">0</div>
-                                <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Streak</div>
-                            </div>
-                            <div class="h-8 w-px bg-white/10"></div>
-                            <div class="text-right">
-                                <div class="text-xl font-extrabold text-white" id="streak-best">0</div>
-                                <div class="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Best</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="activity-heatmap" class="overflow-x-auto custom-scrollbar pb-2">
-                        <!-- Populated dynamically by JavaScript -->
-                    </div>
-                    <div class="flex items-center justify-end gap-2 mt-3 text-[10px] text-slate-400 font-mono">
-                        <span>Less</span>
-                        <span class="heat-cell" data-level="0"></span>
-                        <span class="heat-cell" data-level="1"></span>
-                        <span class="heat-cell" data-level="2"></span>
-                        <span class="heat-cell" data-level="3"></span>
-                        <span class="heat-cell" data-level="4"></span>
-                        <span>More</span>
-                    </div>
-                </div>
-
-                <!-- Topic Mastery Card -->
-                <div class="pro-card p-5 sm:p-6 flex flex-col">
-                    <h3 class="text-sm font-extrabold text-white tracking-tight mb-0.5">Topic Mastery Ranking</h3>
-                    <p class="text-[11px] text-slate-400 mb-4 font-mono">Ranked by completion progress</p>
-                    <div id="mastery-list" class="space-y-3 flex-grow">
-                        <!-- Populated dynamically by JavaScript -->
-                    </div>
-                </div>
-            </div>
 
             <!-- Roadmap Section Header & Search -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">

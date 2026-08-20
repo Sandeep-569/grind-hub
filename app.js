@@ -331,176 +331,15 @@ function toggleQuestionSolved(idKey, ev) {
         solvedSet.add(idKey);
         saveSolvedQuestions();
         updateSingleQuestionCheckboxUI(idKey, true);
-        logActivity();
     }
     updateDashboardSummaries();
     updatePlatformLegend();
-    renderTopicMastery();
     if (currentTopic) {
         updateTopicHeaderStats(currentTopic);
     }
 }
 
-// ==================== Activity Log (for heatmap & streaks) ====================
-function todayKey(d) {
-    d = d || new Date();
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-}
 
-function loadActivityLog() {
-    try {
-        const raw = localStorage.getItem(ACTIVITY_LOG_KEY);
-        if (raw) {
-            const obj = JSON.parse(raw);
-            if (obj && typeof obj === 'object') return obj;
-        }
-    } catch (e) {}
-    return {};
-}
-
-function saveActivityLog(log) {
-    try {
-        localStorage.setItem(ACTIVITY_LOG_KEY, JSON.stringify(log));
-    } catch (e) {}
-}
-
-function logActivity() {
-    const log = loadActivityLog();
-    const key = todayKey();
-    log[key] = (log[key] || 0) + 1;
-    saveActivityLog(log);
-    renderActivityHeatmap();
-}
-
-function computeStreaks(log) {
-    const oneDay = 24 * 60 * 60 * 1000;
-    let current = 0;
-    let cursor = new Date();
-    // If nothing logged today, streak can still count from yesterday backward
-    if (!log[todayKey(cursor)]) {
-        cursor = new Date(cursor.getTime() - oneDay);
-    }
-    while (log[todayKey(cursor)]) {
-        current++;
-        cursor = new Date(cursor.getTime() - oneDay);
-    }
-
-    // Best streak: scan all logged dates
-    const dates = Object.keys(log).sort();
-    let best = 0, run = 0, prev = null;
-    dates.forEach(dateStr => {
-        const d = new Date(dateStr + 'T00:00:00');
-        if (prev !== null && (d - prev) === oneDay) {
-            run++;
-        } else {
-            run = 1;
-        }
-        if (run > best) best = run;
-        prev = d;
-    });
-
-    return { current, best: Math.max(best, current) };
-}
-
-function renderActivityHeatmap() {
-    const container = document.getElementById('activity-heatmap');
-    if (!container) return;
-    const log = loadActivityLog();
-
-    const WEEKS = 12;
-    const totalDays = WEEKS * 7;
-    const oneDay = 24 * 60 * 60 * 1000;
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    // align end of grid to end of current week (Saturday)
-    const endOffset = 6 - today.getDay();
-    const gridEnd = new Date(today.getTime() + endOffset * oneDay);
-    const gridStart = new Date(gridEnd.getTime() - (totalDays - 1) * oneDay);
-
-    let maxCount = 0;
-    for (let i = 0; i < totalDays; i++) {
-        const d = new Date(gridStart.getTime() + i * oneDay);
-        const c = log[todayKey(d)] || 0;
-        if (c > maxCount) maxCount = c;
-    }
-
-    function levelFor(count) {
-        if (count === 0) return 0;
-        if (maxCount <= 1) return count > 0 ? 4 : 0;
-        const ratio = count / maxCount;
-        if (ratio > 0.75) return 4;
-        if (ratio > 0.5) return 3;
-        if (ratio > 0.25) return 2;
-        return 1;
-    }
-
-    let html = '<div class="heatmap-grid">';
-    for (let i = 0; i < totalDays; i++) {
-        const d = new Date(gridStart.getTime() + i * oneDay);
-        const key = todayKey(d);
-        const count = log[key] || 0;
-        const level = d > today ? -1 : levelFor(count);
-        const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        if (level === -1) {
-            html += `<span class="heat-cell" style="visibility:hidden;"></span>`;
-        } else {
-            const title = count > 0 ? `${count} solved on ${label}` : `No activity on ${label}`;
-            html += `<span class="heat-cell" data-level="${level}" title="${title}"></span>`;
-        }
-    }
-    html += '</div>';
-    container.innerHTML = html;
-
-    const streaks = computeStreaks(log);
-    const curEl = document.getElementById('streak-current');
-    const bestEl = document.getElementById('streak-best');
-    if (curEl) curEl.textContent = streaks.current;
-    if (bestEl) bestEl.textContent = streaks.best;
-}
-
-// ==================== Topic Mastery Widget ====================
-function renderTopicMastery() {
-    const container = document.getElementById('mastery-list');
-    if (!container || typeof questionsData === 'undefined') return;
-
-    const rows = getTopicKeys().map(topic => {
-        const easy = questionsData[topic].Easy || [];
-        const med = questionsData[topic].Medium || [];
-        const hard = questionsData[topic].Hard || [];
-        const all = [...easy, ...med, ...hard];
-        const total = all.length;
-        const solved = all.filter(q => solvedSet.has(q.id)).length;
-        const pct = total ? Math.round((solved / total) * 100) : 0;
-        return { topic, solved, total, pct };
-    }).filter(r => r.total > 0);
-
-    // Weakest (lowest %) first, so the user sees where to focus
-    rows.sort((a, b) => a.pct - b.pct);
-    const top = rows.slice(0, 6);
-
-    const barColor = (pct) => {
-        if (pct === 0) return '#3f3f46';
-        if (pct < 34) return '#f43f5e';
-        if (pct < 67) return '#f59e0b';
-        return '#10b981';
-    };
-
-    container.innerHTML = top.map(r => `
-        <div>
-            <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-medium text-neutral-300 truncate pr-2">${r.topic}</span>
-                <span class="text-[11px] font-mono text-neutral-500 flex-shrink-0">${r.solved}/${r.total}</span>
-            </div>
-            <div class="mastery-row">
-                <div class="mastery-track">
-                    <div class="mastery-fill" style="width: ${r.pct}%; background-color: ${barColor(r.pct)};"></div>
-                </div>
-                <span class="text-[10px] font-mono text-neutral-500 w-8 text-right flex-shrink-0">${r.pct}%</span>
-            </div>
-        </div>
-    `).join('');
-}
 
 function toggleQuestionStarred(idKey, ev) {
     if (ev) ev.stopPropagation();
@@ -1059,8 +898,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDashboardSummaries();
     updatePlatformLegend();
     renderRoadmapGrid();
-    renderActivityHeatmap();
-    renderTopicMastery();
     handleHashRoute();
     checkFirstTimeUser();
 });
