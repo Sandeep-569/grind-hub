@@ -64,9 +64,9 @@ function platformPill(platform) {
 }
 
 function difficultyBadgeClasses(difficulty) {
-    if (difficulty === 'Easy') return 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40';
-    if (difficulty === 'Medium') return 'text-amber-400 bg-amber-950/40 border-amber-800/40';
-    return 'text-rose-400 bg-rose-950/40 border-rose-800/40';
+    if (difficulty === 'Easy') return 'badge-easy';
+    if (difficulty === 'Medium') return 'badge-medium';
+    return 'badge-hard';
 }
 
 function escJs(str) {
