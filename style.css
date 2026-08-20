@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-    /* Obsidian Tech Dark Theme Palette (Matching Reference UI) */
-    --bg-canvas: #090d16;
-    --bg-sidebar: #0c121e;
-    --bg-card: #111827;
-    --bg-card-header: #151e30;
-    --bg-row: #111827;
-    --bg-row-hover: #192438;
-    --bg-row-solved: #0c1320;
+    /* LeetCode Pure Black & Orange Theme Palette */
+    --bg-canvas: #0a0a0a;
+    --bg-sidebar: #141414;
+    --bg-card: #1f1f1f;
+    --bg-card-header: #262626;
+    --bg-row: #1a1a1a;
+    --bg-row-hover: #262626;
+    --bg-row-solved: #121212;
     
-    --border-subtle: #1e293b;
-    --border-bright: #334155;
-    --border-cyan: rgba(6, 182, 212, 0.35);
+    --border-subtle: #2d2d2d;
+    --border-bright: #3d3d3d;
+    --border-orange: rgba(255, 161, 22, 0.45);
     
     /* Text Hierarchy */
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --text-cyan: #22d3ee;
-    --text-cyan-bright: #00f2fe;
+    --text-primary: #eff1f6;
+    --text-secondary: #9d9d9d;
+    --text-muted: #6e6e6e;
+    --text-orange: #ffa116;
+    --text-orange-bright: #ffb84d;
 
     /* Accents */
-    --brand-cyan: #06b6d4;
-    --brand-cyan-hover: #0891b2;
+    --brand-orange: #ffa116;
+    --brand-orange-hover: #ff9900;
     --brand-blue: #3b82f6;
-    --pro-accent: #06b6d4;
+    --pro-accent: #ffa116;
 }
 
 *, *::before, *::after {
@@ -47,23 +47,23 @@ html, body {
     font-family: 'JetBrains Mono', monospace;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - LeetCode Style */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #070a10;
+    background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #2d2d2d;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #06b6d4;
+    background: #ffa116;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -76,12 +76,12 @@ html, body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #2d2d2d;
     border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #06b6d4;
+    background: #ffa116;
 }
 
 /* Clean Cards & Sidebar */
@@ -89,7 +89,7 @@ html, body {
     background-color: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: 0.75rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
@@ -115,32 +115,32 @@ html, body {
 }
 
 .sidebar-item:hover {
-    background-color: #172033;
+    background-color: #262626;
     color: #ffffff;
-    border-color: rgba(6, 182, 212, 0.2);
+    border-color: rgba(255, 161, 22, 0.25);
 }
 
 .sidebar-item.active {
-    background-color: rgba(6, 182, 212, 0.12);
-    color: #22d3ee;
-    border-color: rgba(6, 182, 212, 0.4);
+    background-color: rgba(255, 161, 22, 0.12);
+    color: #ffa116;
+    border-color: rgba(255, 161, 22, 0.45);
     font-weight: 600;
 }
 
 .sidebar-item.active .badge-count {
-    background-color: rgba(6, 182, 212, 0.25);
-    color: #22d3ee;
+    background-color: rgba(255, 161, 22, 0.2);
+    color: #ffa116;
 }
 
 .badge-count {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
-    color: #64748b;
-    background-color: #151e2e;
+    color: #8c8c8c;
+    background-color: #141414;
     padding: 0.1rem 0.45rem;
     border-radius: 0.375rem;
-    border: 1px solid #1e293b;
+    border: 1px solid #2d2d2d;
     transition: all 0.15s ease;
 }
 
@@ -159,8 +159,8 @@ html, body {
 }
 
 .accordion-header:hover {
-    border-color: var(--border-cyan);
-    background-color: #1a253b;
+    border-color: var(--border-orange);
+    background-color: #2d2d2d;
 }
 
 /* Problem Table Styles */
@@ -170,7 +170,7 @@ html, body {
     border-radius: 0.75rem;
     overflow: hidden;
     margin-top: 0.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .problem-table {
@@ -180,8 +180,8 @@ html, body {
 }
 
 .problem-table th {
-    background-color: #0c121e;
-    color: #64748b;
+    background-color: #141414;
+    color: #8c8c8c;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     font-weight: 700;
@@ -193,7 +193,7 @@ html, body {
 
 .problem-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #151f30;
+    border-bottom: 1px solid #262626;
     vertical-align: middle;
     font-size: 0.875rem;
     transition: background-color 0.12s ease;
@@ -218,13 +218,13 @@ html, body {
 }
 
 .problem-row.is-solved .q-title-link {
-    color: #64748b;
+    color: #6e6e6e;
     text-decoration: line-through;
 }
 
 /* Problem Title & Subtitle */
 .q-title-link {
-    color: #f1f5f9;
+    color: #eff1f6;
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.35;
@@ -234,13 +234,13 @@ html, body {
 }
 
 .q-title-link:hover {
-    color: #22d3ee;
+    color: #ffa116;
 }
 
 .q-subtitle {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.725rem;
-    color: #64748b;
+    color: #8c8c8c;
     margin-top: 0.15rem;
     line-height: 1.25;
 }
@@ -251,9 +251,9 @@ html, body {
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    border: 1.5px solid #475569;
+    border: 1.5px solid #4a4a4a;
     border-radius: 6px;
-    background-color: #0c121e;
+    background-color: #141414;
     cursor: pointer;
     position: relative;
     transition: all 0.12s ease;
@@ -266,21 +266,21 @@ html, body {
 }
 
 .pro-checkbox:hover {
-    border-color: #06b6d4;
-    background-color: #152033;
+    border-color: #ffa116;
+    background-color: #262626;
 }
 
 .pro-checkbox:checked {
-    background-color: #06b6d4;
-    border-color: #06b6d4;
-    box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+    background-color: #ffa116;
+    border-color: #ffa116;
+    box-shadow: 0 0 10px rgba(255, 161, 22, 0.45);
 }
 
 .pro-checkbox:checked::after {
     content: '';
     width: 5px;
     height: 10px;
-    border: solid #090d16;
+    border: solid #0a0a0a;
     border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg) translate(-0.5px, -1px);
     display: block;
@@ -293,7 +293,7 @@ html, body {
     cursor: pointer;
     font-size: 16px;
     line-height: 1;
-    color: #475569;
+    color: #595959;
     padding: 3px;
     border-radius: 4px;
     transition: all 0.12s ease;
@@ -307,19 +307,19 @@ html, body {
 }
 
 .star-btn:hover {
-    color: #f59e0b;
-    background-color: rgba(245, 158, 11, 0.1);
+    color: #ffa116;
+    background-color: rgba(255, 161, 22, 0.12);
 }
 
 .star-btn.starred {
-    color: #f59e0b;
+    color: #ffa116;
 }
 
-/* Tech Badges & Difficulty Pills */
+/* LeetCode Authentic Difficulty Badges */
 .badge-easy {
-    background-color: rgba(16, 185, 129, 0.12);
-    color: #34d399;
-    border: 1px solid rgba(16, 185, 129, 0.35);
+    background-color: rgba(44, 187, 93, 0.12);
+    color: #2cbb5d;
+    border: 1px solid rgba(44, 187, 93, 0.35);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.725rem;
     font-weight: 600;
@@ -328,9 +328,9 @@ html, body {
 }
 
 .badge-medium {
-    background-color: rgba(245, 158, 11, 0.12);
-    color: #fbbf24;
-    border: 1px solid rgba(245, 158, 11, 0.35);
+    background-color: rgba(255, 192, 30, 0.12);
+    color: #ffc01e;
+    border: 1px solid rgba(255, 192, 30, 0.35);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.725rem;
     font-weight: 600;
@@ -339,9 +339,9 @@ html, body {
 }
 
 .badge-hard {
-    background-color: rgba(244, 63, 94, 0.12);
-    color: #fb7185;
-    border: 1px solid rgba(244, 63, 94, 0.35);
+    background-color: rgba(239, 71, 67, 0.12);
+    color: #ef4743;
+    border: 1px solid rgba(239, 71, 67, 0.35);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.725rem;
     font-weight: 600;
@@ -363,21 +363,21 @@ html, body {
 }
 
 .platform-lc {
-    background-color: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    background-color: rgba(255, 161, 22, 0.18);
+    color: #ffa116;
+    border: 1px solid rgba(255, 161, 22, 0.4);
 }
 
 .platform-gfg {
-    background-color: rgba(34, 197, 94, 0.15);
-    color: #4ade80;
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    background-color: rgba(44, 187, 93, 0.15);
+    color: #2cbb5d;
+    border: 1px solid rgba(44, 187, 93, 0.3);
 }
 
 .platform-hr {
-    background-color: rgba(16, 185, 129, 0.15);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    background-color: rgba(0, 186, 136, 0.15);
+    color: #00ba88;
+    border: 1px solid rgba(0, 186, 136, 0.3);
 }
 
 .platform-cf {
@@ -405,26 +405,26 @@ html, body {
 }
 
 .platform-other {
-    background-color: rgba(100, 116, 139, 0.15);
-    color: #94a3b8;
-    border: 1px solid rgba(100, 116, 139, 0.3);
+    background-color: rgba(110, 110, 110, 0.15);
+    color: #a0a0a0;
+    border: 1px solid rgba(110, 110, 110, 0.3);
 }
 
-/* Floating Action Button (TOP) */
+/* Floating Action Button (TOP) - LeetCode Orange */
 .btn-floating-top {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
     z-index: 50;
-    background-color: #111827;
-    color: #00f2fe;
-    border: 1px solid rgba(6, 182, 212, 0.4);
+    background-color: #1f1f1f;
+    color: #ffa116;
+    border: 1px solid rgba(255, 161, 22, 0.45);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.5rem 0.85rem;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(6, 182, 212, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 161, 22, 0.25);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -433,10 +433,10 @@ html, body {
 }
 
 .btn-floating-top:hover {
-    background-color: #06b6d4;
-    color: #090d16;
+    background-color: #ffa116;
+    color: #0a0a0a;
     transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(6, 182, 212, 0.45);
+    box-shadow: 0 6px 24px rgba(255, 161, 22, 0.45);
 }
 
 /* Animations */

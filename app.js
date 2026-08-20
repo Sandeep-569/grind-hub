@@ -7,46 +7,46 @@ const STARRED_KEY = 'dsa_tracker_starred_v1';
 const VISITED_KEY = 'dsa_tracker_has_visited_v1';
 
 const PRESET_COLORS = [
+    { name: "LeetCode Orange", hex: "#ffa116" },
     { name: "Cyan", hex: "#06b6d4" },
     { name: "Blue", hex: "#3b82f6" },
     { name: "Green", hex: "#10b981" },
     { name: "Purple", hex: "#8b5cf6" },
-    { name: "Amber", hex: "#f59e0b" },
     { name: "Rose", hex: "#f43f5e" }
 ];
 
 const DEFAULT_PROFILE = {
     name: "Coder",
-    color: "#06b6d4",
+    color: "#ffa116",
     github: "",
     codolioUrl: ""
 };
 
 // --- Topic Metadata & Icons ---
 const TOPIC_METADATA = {
-    "Patterns": { icon: "📘", step: 1, category: "core" },
-    "Bit Manipulation & Math": { icon: "🔢", step: 2, category: "core" },
-    "Arrays": { icon: "🟢", step: 3, category: "core" },
-    "Matrix": { icon: "▦", step: 4, category: "core" },
-    "Strings": { icon: "🧵", step: 5, category: "core" },
-    "Searching": { icon: "🔍", step: 6, category: "core" },
-    "Sorting": { icon: "📊", step: 7, category: "core" },
-    "Two Pointer & Sliding Window": { icon: "🪟", step: 8, category: "core" },
-    "Linked List": { icon: "🔗", step: 9, category: "core" },
-    "Stacks & Queues": { icon: "🥞", step: 10, category: "core" },
-    "HashMap / Hash Table": { icon: "🔑", step: 11, category: "advanced" },
-    "Recursion & Backtracking": { icon: "🔄", step: 12, category: "advanced" },
-    "Greedy": { icon: "⚡", step: 13, category: "advanced" },
-    "Intervals": { icon: "📏", step: 14, category: "advanced" },
-    "Trees": { icon: "🌲", step: 15, category: "advanced" },
-    "Heaps": { icon: "📐", step: 16, category: "advanced" },
-    "Tries": { icon: "🌴", step: 17, category: "advanced" },
-    "Graphs": { icon: "🕸️", step: 18, category: "advanced" },
-    "Union Find / Disjoint Set": { icon: "🪢", step: 19, category: "advanced" },
-    "Dynamic Programming": { icon: "💡", step: 20, category: "advanced" },
-    "Segment Tree / Binary Indexed Tree": { icon: "🌳", step: 21, category: "advanced" },
-    "Design": { icon: "🛠️", step: 22, category: "advanced" },
-    "OOP": { icon: "🧩", step: 23, category: "advanced" }
+    "Patterns": { icon: "📘", category: "core" },
+    "Bit Manipulation & Math": { icon: "🔢", category: "core" },
+    "Arrays": { icon: "🟢", category: "core" },
+    "Matrix": { icon: "▦", category: "core" },
+    "Strings": { icon: "🧵", category: "core" },
+    "Searching": { icon: "🔍", category: "core" },
+    "Sorting": { icon: "📊", category: "core" },
+    "Two Pointer & Sliding Window": { icon: "🪟", category: "core" },
+    "Linked List": { icon: "🔗", category: "core" },
+    "Stacks & Queues": { icon: "🥞", category: "core" },
+    "HashMap / Hash Table": { icon: "🔑", category: "advanced" },
+    "Recursion & Backtracking": { icon: "🔄", category: "advanced" },
+    "Greedy": { icon: "⚡", category: "advanced" },
+    "Intervals": { icon: "📏", category: "advanced" },
+    "Trees": { icon: "🌲", category: "advanced" },
+    "Heaps": { icon: "📐", category: "advanced" },
+    "Tries": { icon: "🌴", category: "advanced" },
+    "Graphs": { icon: "🕸️", category: "advanced" },
+    "Union Find / Disjoint Set": { icon: "🪢", category: "advanced" },
+    "Dynamic Programming": { icon: "💡", category: "advanced" },
+    "Segment Tree / Binary Indexed Tree": { icon: "🌳", category: "advanced" },
+    "Design": { icon: "🛠️", category: "advanced" },
+    "OOP": { icon: "🧩", category: "advanced" }
 };
 
 // Platform Shorthand Tokens & Styles
@@ -127,10 +127,18 @@ function scrollToTop() {
 }
 
 function scrollToTopic(topicKey) {
-    const el = document.getElementById(`topic-${slugify(topicKey)}`);
-    if (el) {
+    const topicSlug = slugify(topicKey);
+    const section = document.getElementById(`topic-${topicSlug}`);
+    if (section) {
+        const tableContainer = section.querySelector('.problem-table-container');
+        const arrow = section.querySelector('.accordion-arrow');
+        if (tableContainer && tableContainer.classList.contains('hidden')) {
+            tableContainer.classList.remove('hidden');
+            accordionCollapsed[topicKey] = false;
+            if (arrow) arrow.classList.remove('rotate-180');
+        }
         const yOffset = -80;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
     }
 }
@@ -162,19 +170,20 @@ function applyThemeAccent(hexColor) {
 
 function updateProfileUI() {
     const profileName = (userProfile.name || 'Coder').trim();
-    applyThemeAccent(userProfile.color || '#06b6d4');
+    applyThemeAccent(userProfile.color || '#ffa116');
 
     const avatarEl = document.getElementById('active-profile-avatar');
     const nameEl = document.getElementById('active-profile-name');
     if (avatarEl) {
         avatarEl.textContent = getInitial(profileName);
-        avatarEl.style.backgroundColor = userProfile.color || '#06b6d4';
+        avatarEl.style.backgroundColor = userProfile.color || '#ffa116';
+        avatarEl.style.color = '#0a0a0a';
     }
     if (nameEl) nameEl.textContent = profileName;
 
     const welcomeEl = document.getElementById('dashboard-welcome-heading');
     if (welcomeEl) {
-        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-cyan-400 cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
+        welcomeEl.innerHTML = `Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" title="Edit Profile" class="text-[#ffa116] cursor-pointer hover:underline font-bold">${escAttr(profileName)}</span>`;
     }
 
     const githubLink = document.getElementById('nav-github-link');
@@ -218,11 +227,11 @@ function openProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     if (nameInput) nameInput.value = userProfile.name || 'Coder';
-    if (colorInput) colorInput.value = userProfile.color || '#06b6d4';
+    if (colorInput) colorInput.value = userProfile.color || '#ffa116';
     if (githubInput) githubInput.value = userProfile.github || '';
     if (codolioInput) codolioInput.value = userProfile.codolioUrl || '';
 
-    renderColorOptions('profile-color-options', userProfile.color || '#06b6d4', (selected) => {
+    renderColorOptions('profile-color-options', userProfile.color || '#ffa116', (selected) => {
         if (colorInput) colorInput.value = selected;
     });
 
@@ -246,7 +255,7 @@ function saveProfileModal() {
     const codolioInput = document.getElementById('profile-modal-codolio');
 
     userProfile.name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Coder';
-    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#06b6d4';
+    userProfile.color = (colorInput && colorInput.value.trim()) ? colorInput.value.trim() : '#ffa116';
     userProfile.github = githubInput ? githubInput.value.trim() : '';
     userProfile.codolioUrl = codolioInput ? codolioInput.value.trim() : '';
 
@@ -269,7 +278,7 @@ function renderColorOptions(containerId, activeColor, onSelect) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.title = c.name;
-        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-cyan-400 ring-offset-2 ring-offset-[#090d16]' : 'opacity-70 hover:opacity-100'}`;
+        btn.className = `w-6 h-6 rounded-full transition transform cursor-pointer ${c.hex.toLowerCase() === activeColor.toLowerCase() ? 'scale-125 ring-2 ring-[#ffa116] ring-offset-2 ring-offset-[#0a0a0a]' : 'opacity-70 hover:opacity-100'}`;
         btn.style.backgroundColor = c.hex;
         btn.onclick = () => {
             renderColorOptions(containerId, c.hex, onSelect);
@@ -540,7 +549,7 @@ function updatePlatformLegend() {
         const info = PLATFORM_SHORTHAND[p] || { code: p, class: 'platform-other' };
         return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono border ${info.class}">
             <span>${p}</span>
-            <span class="text-slate-400 font-normal">${pSol}/${count}</span>
+            <span class="text-neutral-400 font-normal">${pSol}/${count}</span>
         </span>`;
     }).join('');
 }
@@ -552,7 +561,7 @@ function renderSidebar() {
 
     const topics = getTopicKeys();
     
-    // Group topics into Core (1-10) and Advanced (11-23)
+    // Group topics into Core and Advanced without Step numbers
     const coreTopics = topics.filter(t => (TOPIC_METADATA[t]?.category || 'core') === 'core');
     const advTopics = topics.filter(t => (TOPIC_METADATA[t]?.category || 'advanced') === 'advanced');
 
@@ -562,8 +571,8 @@ function renderSidebar() {
     if (coreTopics.length > 0) {
         html += `
         <div>
-            <div class="px-2 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center justify-between">
-                <span>STEP 1-${coreTopics.length} • CORE</span>
+            <div class="px-2 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-500">
+                CORE TOPICS
             </div>
             <div class="space-y-0.5">
                 ${coreTopics.map(t => renderSidebarItemHTML(t)).join('')}
@@ -575,8 +584,8 @@ function renderSidebar() {
     if (advTopics.length > 0) {
         html += `
         <div>
-            <div class="px-2 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center justify-between">
-                <span>STEP ${coreTopics.length + 1}-23 • ADVANCED</span>
+            <div class="px-2 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-500">
+                ADVANCED TOPICS
             </div>
             <div class="space-y-0.5">
                 ${advTopics.map(t => renderSidebarItemHTML(t)).join('')}
@@ -588,7 +597,7 @@ function renderSidebar() {
 }
 
 function renderSidebarItemHTML(topicKey) {
-    const meta = TOPIC_METADATA[topicKey] || { icon: "📁", step: 1 };
+    const meta = TOPIC_METADATA[topicKey] || { icon: "📁" };
     const easyList = questionsData[topicKey].Easy || [];
     const medList = questionsData[topicKey].Medium || [];
     const hardList = questionsData[topicKey].Hard || [];
@@ -616,7 +625,7 @@ function renderProblemAccordions() {
     let globalIndex = 0;
 
     topics.forEach((topicKey) => {
-        const meta = TOPIC_METADATA[topicKey] || { icon: "📁", step: 1 };
+        const meta = TOPIC_METADATA[topicKey] || { icon: "📁" };
         const easyList = questionsData[topicKey].Easy || [];
         const medList = questionsData[topicKey].Medium || [];
         const hardList = questionsData[topicKey].Hard || [];
@@ -662,24 +671,23 @@ function renderProblemAccordions() {
 
         html += `
         <section id="topic-${topicSlug}" class="scroll-mt-24">
-            <!-- Accordion Header Card -->
+            <!-- Accordion Header Card (Clean Text, No Step X prefix) -->
             <div onclick="toggleAccordion('${escJs(topicKey)}')" class="accordion-header">
                 <div class="flex items-center gap-3">
                     <span class="text-xl">${meta.icon}</span>
                     <div>
-                        <h2 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
-                            <span>Step ${meta.step}: ${topicKey}</span>
-                            <span class="text-[11px] font-mono font-normal text-slate-400">Step ${meta.step}</span>
+                        <h2 class="text-base font-bold text-white tracking-tight">
+                            ${topicKey}
                         </h2>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/50 border border-cyan-800/80 px-2.5 py-1 rounded-full">
+                    <span class="text-xs font-mono font-bold text-[#ffa116] bg-[#ffa116]/10 border border-[#ffa116]/40 px-2.5 py-1 rounded-full">
                         ${filteredQuestions.length} problems
                     </span>
-                    <button type="button" class="text-slate-400 hover:text-white transition p-1">
-                        <svg class="w-4 h-4 transform ${isCollapsed ? 'rotate-180' : ''} transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button type="button" class="text-neutral-400 hover:text-white transition p-1">
+                        <svg class="accordion-arrow w-4 h-4 transform ${isCollapsed ? 'rotate-180' : ''} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
@@ -708,7 +716,7 @@ function renderProblemAccordions() {
                             return `
                             <tr class="problem-row ${isSolved ? 'is-solved' : ''}">
                                 <!-- Number -->
-                                <td class="text-center font-mono text-xs text-slate-500 font-semibold">${globalIndex}</td>
+                                <td class="text-center font-mono text-xs text-neutral-500 font-semibold">${globalIndex}</td>
 
                                 <!-- Title & Subtitle -->
                                 <td>
@@ -751,10 +759,10 @@ function renderProblemAccordions() {
 
     if (!html) {
         html = `
-        <div class="pro-card p-10 text-center text-slate-400">
+        <div class="pro-card p-10 text-center text-neutral-400">
             <p class="font-semibold text-base text-white">No problems found matching your active filters.</p>
-            <p class="text-xs text-slate-400 mt-1">Try clearing your search query or setting filters to "All".</p>
-            <button onclick="resetAllFilters()" class="mt-4 px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
+            <p class="text-xs text-neutral-400 mt-1">Try clearing your search query or setting filters to "All".</p>
+            <button onclick="resetAllFilters()" class="mt-4 px-4 py-1.5 bg-[#ffa116] hover:bg-[#ff9900] text-black font-bold text-xs rounded-lg transition cursor-pointer">
                 Reset All Filters
             </button>
         </div>`;
@@ -763,9 +771,28 @@ function renderProblemAccordions() {
     container.innerHTML = html;
 }
 
+// 0ms Instant Accordion Toggle (Direct DOM manipulation - Zero lag!)
 function toggleAccordion(topicKey) {
-    accordionCollapsed[topicKey] = !accordionCollapsed[topicKey];
-    renderProblemAccordions();
+    const topicSlug = slugify(topicKey);
+    const section = document.getElementById(`topic-${topicSlug}`);
+    if (!section) return;
+
+    const tableContainer = section.querySelector('.problem-table-container');
+    const arrow = section.querySelector('.accordion-arrow');
+
+    if (tableContainer) {
+        tableContainer.classList.toggle('hidden');
+        const isCollapsed = tableContainer.classList.contains('hidden');
+        accordionCollapsed[topicKey] = isCollapsed;
+
+        if (arrow) {
+            if (isCollapsed) {
+                arrow.classList.add('rotate-180');
+            } else {
+                arrow.classList.remove('rotate-180');
+            }
+        }
+    }
 }
 
 // ==================== FILTER & SEARCH HANDLERS ====================

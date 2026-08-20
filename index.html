@@ -21,12 +21,12 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                            600: '#0891b2',
-                            700: '#0e7490'
+                            50: '#fffbe6',
+                            100: '#fff1b8',
+                            400: '#ffc01e',
+                            500: '#ffa116',
+                            600: '#ff9900',
+                            700: '#d97706'
                         }
                     }
                 }
@@ -38,22 +38,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-[#090d16] text-slate-100 min-h-screen flex flex-col antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="bg-[#0a0a0a] text-[#eff1f6] min-h-screen flex flex-col antialiased selection:bg-[#ffa116]/30 selection:text-[#ffa116]">
 
     <!-- ==================== TOP NAVIGATION ==================== -->
-    <nav class="bg-[#0c121e]/95 border-b border-slate-800/80 sticky top-0 z-40 backdrop-blur-md flex-shrink-0">
+    <nav class="bg-[#141414]/95 border-b border-[#262626] sticky top-0 z-40 backdrop-blur-md flex-shrink-0">
         <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 gap-4">
                 <!-- Brand / Logo -->
                 <div class="flex items-center flex-shrink-0 cursor-pointer group" onclick="scrollToTop()" title="GrindHub — Back to Top">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-cyan-500/10">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 to-orange-500 flex items-center justify-center text-black font-mono font-extrabold text-sm shadow-md shadow-amber-500/20">
                         &lt;/&gt;
                     </div>
                     <div class="ml-2.5 flex items-center gap-2">
                         <span class="font-bold text-base tracking-tight text-white">
-                            Grind<span class="text-cyan-400 font-mono">Hub</span>
+                            Grind<span class="text-[#ffa116] font-mono">Hub</span>
                         </span>
-                        <span class="hidden sm:inline text-xs text-slate-400 border-l border-slate-800 pl-2.5 font-medium">DSA Tracker</span>
+                        <span class="hidden sm:inline text-xs text-neutral-400 border-l border-neutral-800 pl-2.5 font-medium">DSA Tracker</span>
                     </div>
                 </div>
 
@@ -61,13 +61,13 @@
                 <div class="flex items-center space-x-2 sm:space-x-3">
                     <!-- GitHub & Codolio Profile Links -->
                     <a id="nav-github-link" href="https://github.com" target="_blank"
-                        class="hidden text-slate-300 hover:text-white px-2.5 py-1.5 rounded-md text-xs font-medium bg-slate-900 border border-slate-800 hover:border-slate-700 transition items-center gap-1.5 cursor-pointer font-mono">
-                        <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                        class="hidden text-neutral-300 hover:text-white px-2.5 py-1.5 rounded-md text-xs font-medium bg-[#1f1f1f] border border-[#2d2d2d] hover:border-neutral-700 transition items-center gap-1.5 cursor-pointer font-mono">
+                        <svg class="w-3.5 h-3.5 text-neutral-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                         <span class="hidden md:inline">GitHub</span>
                     </a>
                     <a id="nav-codolio-link" href="https://codolio.com" target="_blank"
-                        class="hidden text-slate-300 hover:text-cyan-400 px-2.5 py-1.5 rounded-md text-xs font-medium bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition items-center gap-1.5 cursor-pointer font-mono">
-                        <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="hidden text-neutral-300 hover:text-[#ffa116] px-2.5 py-1.5 rounded-md text-xs font-medium bg-[#1f1f1f] border border-[#2d2d2d] hover:border-[#ffa116]/50 transition items-center gap-1.5 cursor-pointer font-mono">
+                        <svg class="w-3.5 h-3.5 text-[#ffa116]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                         <span class="hidden md:inline">Codolio</span>
@@ -75,10 +75,10 @@
 
                     <!-- User Profile Button -->
                     <button onclick="openProfileModal()" id="profile-edit-btn" title="Profile Settings"
-                        class="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-2.5 py-1.5 rounded-md border border-slate-800 transition cursor-pointer">
-                        <span id="active-profile-avatar" class="w-5 h-5 rounded bg-cyan-600 flex items-center justify-center text-[11px] font-bold text-white font-mono">C</span>
+                        class="flex items-center gap-2 bg-[#1f1f1f] hover:bg-[#262626] text-white px-2.5 py-1.5 rounded-md border border-[#2d2d2d] transition cursor-pointer">
+                        <span id="active-profile-avatar" class="w-5 h-5 rounded bg-[#ffa116] flex items-center justify-center text-[11px] font-extrabold text-black font-mono">C</span>
                         <span id="active-profile-name" class="text-xs font-medium max-w-[90px] sm:max-w-[120px] truncate">Coder</span>
-                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                 </div>
             </div>
@@ -91,15 +91,15 @@
         <!-- ==================== LEFT SIDEBAR NAVIGATION ==================== -->
         <aside id="sidebar" class="w-64 flex-shrink-0 hidden lg:block sticky top-20 h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar pr-2">
             <!-- Sidebar Progress Banner -->
-            <div class="p-3.5 mb-5 rounded-xl bg-[#0c121e] border border-slate-800 shadow-md">
+            <div class="p-3.5 mb-5 rounded-xl bg-[#141414] border border-[#2d2d2d] shadow-md">
                 <div class="flex items-center justify-between text-xs font-mono mb-2">
-                    <span class="text-slate-400 font-semibold uppercase tracking-wider text-[11px]">Progress</span>
-                    <span id="sidebar-progress-pct" class="text-cyan-400 font-bold">0%</span>
+                    <span class="text-neutral-400 font-semibold uppercase tracking-wider text-[11px]">Progress</span>
+                    <span id="sidebar-progress-pct" class="text-[#ffa116] font-bold">0%</span>
                 </div>
-                <div class="w-full bg-[#070a10] rounded-full h-2 overflow-hidden border border-slate-800">
-                    <div id="sidebar-progress-bar" class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                <div class="w-full bg-[#0a0a0a] rounded-full h-2 overflow-hidden border border-[#262626]">
+                    <div id="sidebar-progress-bar" class="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
                 </div>
-                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mt-2">
+                <div class="flex items-center justify-between text-[11px] font-mono text-neutral-400 mt-2">
                     <span id="sidebar-progress-solved">0 Solved</span>
                     <span id="sidebar-progress-total">3,185 Total</span>
                 </div>
@@ -115,57 +115,57 @@
         <main id="main-content" class="flex-grow w-full min-w-0 view-fade">
 
             <!-- Hero Summary Banner -->
-            <div class="mb-5 p-4 sm:p-5 rounded-xl bg-[#0c121e] border border-slate-800/90 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="mb-5 p-4 sm:p-5 rounded-xl bg-[#141414] border border-[#2d2d2d] shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="text-center md:text-left max-w-2xl">
-                    <div class="text-[11px] font-semibold font-mono uppercase tracking-wider text-cyan-400 mb-0.5">DSA Roadmap Tracker</div>
+                    <div class="text-[11px] font-semibold font-mono uppercase tracking-wider text-[#ffa116] mb-0.5">DSA Roadmap Tracker</div>
                     <h1 id="dashboard-welcome-heading" class="text-lg sm:text-xl font-bold tracking-tight text-white">
-                        Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" class="text-cyan-400 cursor-pointer hover:underline">Coder</span>
+                        Welcome back, <span id="dashboard-user-name" onclick="openProfileModal()" class="text-[#ffa116] cursor-pointer hover:underline">Coder</span>
                     </h1>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-0.5 leading-relaxed">
+                    <p class="text-neutral-400 text-xs sm:text-sm mt-0.5 leading-relaxed">
                         Master 23 canonical DSA topics across <span id="dash-hero-total" class="text-white font-semibold font-mono">3,185</span> curated problems across 8 top platforms.
                     </p>
                 </div>
 
-                <!-- Overall Stats Cards -->
+                <!-- Overall Stats Cards (LeetCode Difficulty Colors) -->
                 <div class="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
-                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#090d16] border border-slate-800 text-center min-w-[110px]">
-                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400 block">Total</span>
+                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#0a0a0a] border border-[#2d2d2d] text-center min-w-[110px]">
+                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-400 block">Total</span>
                         <div class="text-base font-bold text-white font-mono" id="dash-stat-total">3,185</div>
-                        <span class="text-[10px] text-slate-400 font-mono">23 Topics</span>
+                        <span class="text-[10px] text-neutral-400 font-mono">23 Topics</span>
                     </div>
-                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#090d16] border border-slate-800 text-center min-w-[110px]">
-                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-emerald-400 block">Easy</span>
-                        <div class="text-base font-bold text-emerald-400 font-mono" id="dash-total-easy">1,082</div>
-                        <span class="text-[10px] text-slate-400 font-mono" id="dash-solved-easy">E: 0</span>
+                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#0a0a0a] border border-[#2d2d2d] text-center min-w-[110px]">
+                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#2cbb5d] block">Easy</span>
+                        <div class="text-base font-bold text-[#2cbb5d] font-mono" id="dash-total-easy">1,082</div>
+                        <span class="text-[10px] text-neutral-400 font-mono" id="dash-solved-easy">E: 0</span>
                     </div>
-                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#090d16] border border-slate-800 text-center min-w-[110px]">
-                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-amber-400 block">Medium</span>
-                        <div class="text-base font-bold text-amber-400 font-mono" id="dash-total-med">1,569</div>
-                        <span class="text-[10px] text-slate-400 font-mono" id="dash-solved-med">M: 0</span>
+                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#0a0a0a] border border-[#2d2d2d] text-center min-w-[110px]">
+                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#ffc01e] block">Medium</span>
+                        <div class="text-base font-bold text-[#ffc01e] font-mono" id="dash-total-med">1,569</div>
+                        <span class="text-[10px] text-neutral-400 font-mono" id="dash-solved-med">M: 0</span>
                     </div>
-                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#090d16] border border-slate-800 text-center min-w-[110px]">
-                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-rose-400 block">Hard</span>
-                        <div class="text-base font-bold text-rose-400 font-mono" id="dash-total-hard">534</div>
-                        <span class="text-[10px] text-slate-400 font-mono" id="dash-solved-hard">H: 0</span>
+                    <div class="p-2.5 sm:p-3 rounded-lg bg-[#0a0a0a] border border-[#2d2d2d] text-center min-w-[110px]">
+                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#ef4743] block">Hard</span>
+                        <div class="text-base font-bold text-[#ef4743] font-mono" id="dash-total-hard">534</div>
+                        <span class="text-[10px] text-neutral-400 font-mono" id="dash-solved-hard">H: 0</span>
                     </div>
                 </div>
             </div>
 
             <!-- Multi-Filter & Search Bar -->
-            <div class="mb-5 p-3 sm:p-3.5 rounded-xl bg-[#0c121e] border border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-3 shadow-md">
+            <div class="mb-5 p-3 sm:p-3.5 rounded-xl bg-[#141414] border border-[#2d2d2d] flex flex-col md:flex-row items-center justify-between gap-3 shadow-md">
                 <!-- Search Input -->
                 <div class="relative w-full md:w-80">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-mono">🔍</span>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-neutral-400 font-mono">🔍</span>
                     <input id="global-search-input" type="text"
                         placeholder="Search problems, topics, or approaches..."
                         oninput="onSearchInputChanged()"
-                        class="w-full bg-[#090d16] border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition">
+                        class="w-full bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#ffa116] transition">
                 </div>
 
                 <!-- Filter Controls -->
                 <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
                     <!-- Status Filter -->
-                    <select id="filter-status" onchange="onFilterChanged()" class="bg-[#090d16] border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 font-mono focus:outline-none focus:border-cyan-500 transition cursor-pointer">
+                    <select id="filter-status" onchange="onFilterChanged()" class="bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-2.5 py-1.5 text-xs text-neutral-300 font-mono focus:outline-none focus:border-[#ffa116] transition cursor-pointer">
                         <option value="all">Status: All</option>
                         <option value="unsolved">Unsolved</option>
                         <option value="solved">Solved ✓</option>
@@ -173,7 +173,7 @@
                     </select>
 
                     <!-- Difficulty Filter -->
-                    <select id="filter-diff" onchange="onFilterChanged()" class="bg-[#090d16] border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 font-mono focus:outline-none focus:border-cyan-500 transition cursor-pointer">
+                    <select id="filter-diff" onchange="onFilterChanged()" class="bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-2.5 py-1.5 text-xs text-neutral-300 font-mono focus:outline-none focus:border-[#ffa116] transition cursor-pointer">
                         <option value="all">Difficulty: All</option>
                         <option value="Easy">Easy</option>
                         <option value="Medium">Medium</option>
@@ -181,7 +181,7 @@
                     </select>
 
                     <!-- Platform Filter -->
-                    <select id="filter-platform" onchange="onFilterChanged()" class="bg-[#090d16] border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 font-mono focus:outline-none focus:border-cyan-500 transition cursor-pointer">
+                    <select id="filter-platform" onchange="onFilterChanged()" class="bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-2.5 py-1.5 text-xs text-neutral-300 font-mono focus:outline-none focus:border-[#ffa116] transition cursor-pointer">
                         <option value="all">Platform: All</option>
                         <option value="LeetCode">LeetCode (LC)</option>
                         <option value="GeeksforGeeks">GeeksforGeeks (GFG)</option>
@@ -194,7 +194,7 @@
                     </select>
 
                     <!-- Reset Filters Button -->
-                    <button onclick="resetAllFilters()" title="Reset Filters" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono rounded-lg border border-slate-700 transition cursor-pointer">
+                    <button onclick="resetAllFilters()" title="Reset Filters" class="px-2.5 py-1.5 bg-[#1f1f1f] hover:bg-[#262626] text-neutral-300 text-xs font-mono rounded-lg border border-[#2d2d2d] transition cursor-pointer">
                         Reset
                     </button>
                 </div>
@@ -220,17 +220,17 @@
 
     <!-- ==================== MODAL: PROFILE SETTINGS ==================== -->
     <div id="profile-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-[#0c121e] border border-slate-800 rounded-xl max-w-md w-full p-6 shadow-2xl relative view-fade">
+        <div class="bg-[#141414] border border-[#2d2d2d] rounded-xl max-w-md w-full p-6 shadow-2xl relative view-fade">
             <h3 class="text-lg font-bold text-white mb-4">Developer Profile</h3>
             
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-mono text-slate-400 mb-1">Developer Name</label>
-                    <input id="profile-modal-name" type="text" class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                    <label class="block text-xs font-mono text-neutral-400 mb-1">Developer Name</label>
+                    <input id="profile-modal-name" type="text" class="w-full bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#ffa116]">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-mono text-slate-400 mb-1">Theme Accent Color</label>
+                    <label class="block text-xs font-mono text-neutral-400 mb-1">Theme Accent Color</label>
                     <div id="profile-color-options" class="flex items-center gap-3 pt-1">
                         <!-- Populated by JS -->
                     </div>
@@ -238,21 +238,21 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-mono text-slate-400 mb-1">GitHub Username / URL</label>
-                    <input id="profile-modal-github" type="text" placeholder="e.g. username" class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                    <label class="block text-xs font-mono text-neutral-400 mb-1">GitHub Username / URL</label>
+                    <input id="profile-modal-github" type="text" placeholder="e.g. username" class="w-full bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#ffa116]">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-mono text-slate-400 mb-1">Codolio Profile URL</label>
-                    <input id="profile-modal-codolio" type="text" placeholder="e.g. codolio.com/profile/..." class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                    <label class="block text-xs font-mono text-neutral-400 mb-1">Codolio Profile URL</label>
+                    <input id="profile-modal-codolio" type="text" placeholder="e.g. codolio.com/profile/..." class="w-full bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#ffa116]">
                 </div>
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-3">
-                <button type="button" onclick="closeProfileModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg transition cursor-pointer">
+                <button type="button" onclick="closeProfileModal()" class="px-4 py-2 bg-[#1f1f1f] hover:bg-[#262626] text-neutral-300 text-xs font-semibold rounded-lg transition cursor-pointer">
                     Cancel
                 </button>
-                <button type="button" onclick="saveProfileModal()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold rounded-lg transition cursor-pointer">
+                <button type="button" onclick="saveProfileModal()" class="px-4 py-2 bg-[#ffa116] hover:bg-[#ff9900] text-black font-bold text-xs rounded-lg transition cursor-pointer">
                     Save Profile
                 </button>
             </div>
@@ -261,19 +261,19 @@
 
     <!-- ==================== MODAL: WELCOME ONBOARDING ==================== -->
     <div id="welcome-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-[#0c121e] border border-slate-800 rounded-xl max-w-md w-full p-6 shadow-2xl text-center view-fade">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-mono font-bold text-xl mx-auto mb-3 shadow-lg shadow-cyan-500/20">
+        <div class="bg-[#141414] border border-[#2d2d2d] rounded-xl max-w-md w-full p-6 shadow-2xl text-center view-fade">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-500 flex items-center justify-center text-black font-mono font-extrabold text-xl mx-auto mb-3 shadow-lg shadow-amber-500/20">
                 &lt;/&gt;
             </div>
             <h3 class="text-xl font-bold text-white mb-1">Welcome to GrindHub</h3>
-            <p class="text-slate-400 text-xs mb-5">Your personal DSA problem tracking workspace across 3,185 questions.</p>
+            <p class="text-neutral-400 text-xs mb-5">Your personal DSA problem tracking workspace across 3,185 questions.</p>
 
             <div class="text-left mb-5">
-                <label class="block text-xs font-mono text-slate-400 mb-1">Enter Your Name</label>
-                <input id="welcome-modal-name" type="text" placeholder="Coder" class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                <label class="block text-xs font-mono text-neutral-400 mb-1">Enter Your Name</label>
+                <input id="welcome-modal-name" type="text" placeholder="Coder" class="w-full bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#ffa116]">
             </div>
 
-            <button type="button" onclick="submitWelcomeModal()" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold rounded-lg transition cursor-pointer">
+            <button type="button" onclick="submitWelcomeModal()" class="w-full py-2.5 bg-[#ffa116] hover:bg-[#ff9900] text-black text-sm font-bold rounded-lg transition cursor-pointer">
                 Start Grinding DSA
             </button>
         </div>
@@ -281,7 +281,7 @@
 
     <!-- Toast Container -->
     <div id="toast-container" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 transform translate-y-8 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-cyan-950/90 text-cyan-300 border border-cyan-800/80 px-4 py-2 rounded-lg text-xs font-mono shadow-xl flex items-center gap-2">
+        <div class="bg-[#1f1f1f] text-[#ffa116] border border-[#ffa116]/40 px-4 py-2 rounded-lg text-xs font-mono shadow-xl flex items-center gap-2">
             <span>⚡</span>
             <span id="toast-text">Notification</span>
         </div>
