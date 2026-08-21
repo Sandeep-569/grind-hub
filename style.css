@@ -439,6 +439,98 @@ html, body {
     box-shadow: 0 6px 24px rgba(255, 161, 22, 0.45);
 }
 
+/* ==================== 16-FRAME SPRITE WALKING CAT ANIMATION ==================== */
+.nav-cat-container {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 36px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.walking-cat-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: -65px;
+    z-index: 45;
+    animation: catWalkAcross 45s linear infinite;
+    display: flex;
+    align-items: flex-end;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+@keyframes catWalkAcross {
+    0% {
+        left: -65px;
+        transform: scaleX(1);
+    }
+    48% {
+        left: calc(100% + 20px);
+        transform: scaleX(1);
+    }
+    50% {
+        left: calc(100% + 20px);
+        transform: scaleX(-1);
+    }
+    98% {
+        left: -65px;
+        transform: scaleX(-1);
+    }
+    100% {
+        left: -65px;
+        transform: scaleX(1);
+    }
+}
+
+#gato {
+    background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
+    width: 61px;
+    height: 36px;
+    background-size: 976px 36px;
+    background-repeat: no-repeat;
+    animation: sprite-animation 1.8s steps(16, end) infinite;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to { background-position: -976px 0; }
+}
+
+@-webkit-keyframes sprite-animation {
+    from { background-position: 0 0; }
+    to { background-position: -976px 0; }
+}
+
+/* Cat Meow Speech Bubble */
+.cat-meow-bubble {
+    position: absolute;
+    top: -22px;
+    left: 10px;
+    background: #ffa116;
+    color: #0a0a0a;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(4px) scale(0.8);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(255, 161, 22, 0.4);
+    z-index: 50;
+}
+
+.cat-meow-bubble.show-meow {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
 /* Animations */
 .view-fade {
     animation: proFadeIn 0.2s ease-out;

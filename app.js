@@ -833,6 +833,29 @@ function resetAllFilters() {
     renderProblemAccordions();
 }
 
+// ==================== WALKING CAT MEOW INTERACTION ====================
+const CAT_MEOWS = [
+    "Meow! 🐾",
+    "Purrr... 🐱",
+    "Keep Grinding! ⚡",
+    "DSA Cat approved! 🐾",
+    "Meow! Solved today? 💻"
+];
+let meowIndex = 0;
+
+function makeCatMeow() {
+    const bubble = document.getElementById('cat-meow-bubble');
+    if (!bubble) return;
+
+    bubble.textContent = CAT_MEOWS[meowIndex % CAT_MEOWS.length];
+    meowIndex++;
+
+    bubble.classList.add('show-meow');
+    setTimeout(() => {
+        bubble.classList.remove('show-meow');
+    }, 1800);
+}
+
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
     updateProfileUI();

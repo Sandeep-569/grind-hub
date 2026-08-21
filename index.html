@@ -41,7 +41,15 @@
 <body class="bg-[#0a0a0a] text-[#eff1f6] min-h-screen flex flex-col antialiased selection:bg-[#ffa116]/30 selection:text-[#ffa116]">
 
     <!-- ==================== TOP NAVIGATION ==================== -->
-    <nav class="bg-[#141414]/95 border-b border-[#262626] sticky top-0 z-40 backdrop-blur-md flex-shrink-0">
+    <nav class="bg-[#141414]/95 border-b border-[#262626] sticky top-0 z-40 backdrop-blur-md flex-shrink-0 relative overflow-hidden">
+        <!-- 16-Frame Sprite Walking Cat Navbar Animation -->
+        <div class="nav-cat-container">
+            <div id="walking-cat-wrapper" class="walking-cat-wrapper" onclick="makeCatMeow()" title="Click me! Meow 🐱">
+                <div id="cat-meow-bubble" class="cat-meow-bubble">Meow! 🐾</div>
+                <div id="gato"></div>
+            </div>
+        </div>
+
         <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 gap-4">
                 <!-- Brand / Logo -->
